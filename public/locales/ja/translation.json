@@ -1,0 +1,11 @@
+{
+  "common": {
+    "error": "エラー"
+  },
+  "login": {
+    "passwordsDoNotMatch": "パスワードが再入力したパスワードと違っています。"
+  },
+  "logout": {
+    "logoutComplete": "ログアウトが完了しました。"
+  }
+}

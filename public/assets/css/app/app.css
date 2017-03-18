@@ -1,0 +1,36 @@
+/*.flipsnap_viewport {
+    overflow: hidden;
+    width:320px;
+}
+
+.flipsnap {
+    overflow:hidden;
+    width:1000%;
+}
+
+.flipsnap:after {
+    content: '';
+    display: block;
+    clear: both;
+    height: 0;
+}
+
+.flipsnap_item {
+    float:left;
+    width:320px;
+}*/
+
+div.app_content_loading{
+    width: 100%;
+    height: 300px;
+    display:table;
+    text-align: center;
+}
+div.app_content_loading > *{
+    display:table-cell;
+    vertical-align: middle;
+}
+
+.app_link_color {
+    color: #337ab7;
+}

@@ -1,0 +1,11 @@
+{
+  "common": {
+    "error": "Error"
+  },
+  "login": {
+    "passwordsDoNotMatch": "Passwords do not match."
+  },
+  "logout": {
+    "logoutComplete": "Logout complete."
+  }
+}

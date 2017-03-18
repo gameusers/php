@@ -1,0 +1,278 @@
+/* 差分の色　luluスキンでは設定されてないため */
+
+.diff_added {
+	color:#FF0000;
+}
+.diff_removed {
+	color: #0000FF;
+}
+
+
+/* テーブル */
+
+.style_table {
+	word-break:break-all;
+}
+/*.style_td {
+	word-wrap: break-word;
+}*/
+
+
+/* YouTube */
+
+div.video_box {
+    margin: 0px 0px 10px 0px;
+    padding: 0px 0px 0px 0px;
+    position: relative;
+    max-width: 320px;
+}
+div.video_thumbnail {
+
+}
+div.video_thumbnail img {
+    width: 100%;
+}
+div.video_play_button {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+div.video_play_button img {
+    width: 100%;
+}
+
+div.video_play_button {
+  -webkit-transition: 0.5s ease-in-out;
+}
+div.video_play_button:hover {
+  opacity: 0.7;
+}
+
+div.video-container {
+    margin: 0px 0px 10px 0px;
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+}
+div.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+div.video-wrapper {
+    width: 560px;
+    max-width: 100%;
+}
+
+
+
+/* --------------------------------------------------
+   ソーシャルボタン
+ --------------------------------------------------*/
+
+ .social_box {
+	margin: 0;
+    padding: 0px 0 0px 0;
+ }
+
+.social_button_box {
+    position: relative;
+    float: left;
+    width: 63px;
+    cursor: pointer;
+}
+
+.social_button_count {
+    position: absolute;
+    top: 33px;
+    left: 0;
+    text-align: center;
+    width: 53px;
+    /*font-weight: bold;*/
+}
+
+
+/* 忍者おまとめボタン */
+
+div.ninja_onebutton_box {
+    margin: 40px 0px 50px 0px;
+    padding: 0px 0px 0px 0px;
+}
+div.ninja_onebutton_recommendation {
+    margin: 10px 0px 10px 0px;
+    padding: 0px 0px 0px 0px;
+    font-weight: bold;
+    font-size: 13pt;
+}
+span.ninja_onebutton_recommendation_emphasis {
+    color: red;
+}
+
+
+
+/* 広告　*/
+
+aside.gu_ad_top {
+	margin: 0px 0px 20px 0px;
+	padding: 0px 0px 0px 0px;
+	text-align: left;
+}
+
+aside.gu_ad_bottom {
+	margin: 30px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	text-align: left;
+}
+
+aside.gu_ad_bottom_rectangle {
+	margin: 0px 10px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	float: left;
+}
+aside.gu_ad_user {
+	margin: 20px 0px 20px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+
+/* アドセンス */
+
+aside.adsense_top {
+	margin: 0px 0px 20px 0px;
+	padding: 0px 0px 0px 0px;
+	/*background-color: #269ABC;*/
+	text-align: left;
+}
+
+aside.adsense_bottom {
+	margin: 30px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	/*background-color: #269ABC;*/
+	text-align: left;
+}
+
+aside.adsense_bottom_rectangle {
+	margin: 0px 10px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	float: left;
+}
+
+aside.adsense_side {
+	margin: 20px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	text-align: left;
+}
+
+
+
+
+
+
+/* ラベル */
+
+div.original_label_game {
+    margin: 10px 5px 0px 0px;
+    padding: 2px 6px 3px 6px;
+    font-size: 12px;
+    color: #FFFFFF;
+    text-align: center;
+    border-radius: 2px;
+    float: left;
+}
+div.original_label {
+    margin: 0px 5px 0px 0px;
+    padding: 2px 6px 3px 6px;
+    font-size: 12px;
+    color: #FFFFFF;
+    text-align: center;
+    border-radius: 2px;
+    float: left;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    div.original_label_game {
+        margin: 10px 5px 0px 0px;
+        padding: 3px 6px 2px 6px;
+        font-size: 12px;
+        color: #FFFFFF;
+        text-align: center;
+        border-radius: 2px;
+        float: left;
+    }
+    div.original_label {
+        margin: 0px 5px 0px 0px;
+        padding: 3px 6px 2px 6px;
+        font-size: 12px;
+        color: #FFFFFF;
+        text-align: center;
+        border-radius: 2px;
+        float: left;
+    }
+}
+a.orignal_label_game:link {
+    color: #FFFFFF;
+}
+a.orignal_label_game:visited {
+    color: #FFFFFF;
+}
+
+
+div.bgc_black {
+    background-color: #000000;
+}
+div.bgc_royalblue {
+    background-color: #4169e1;
+}
+div.bgc_darkgray {
+    background-color: #a9a9a9;
+}
+div.bgc_dodgerblue {
+    background-color: #1E90FF;
+}
+div.bgc_lightseagreen {
+    background-color: #20b2aa;
+}
+div.bgc_lightcoral {
+    background-color: #f08080;
+}
+div.bgc_salmon {
+    background-color: #FA8072;
+}
+
+
+
+/* Amazonスライド広告 */
+
+.swiper-container {
+    width: 100%;
+    margin: 20px auto;
+}
+.swiper-slide {
+}
+
+.ad_amazon_slide_item {
+	border-radius: 30px;
+    float: left;
+    width: 90px;
+    margin:0 auto 0 auto;
+}
+div.ad_amazon_slide_label {
+	overflow: hidden;
+	width: 80px;
+	height: 20px;
+    margin: 6px 10px 0px 0px;
+    padding: 2px 4px 2px 5px;
+    font-size: 12px;
+    text-align: center;
+    color: #FFFFFF;
+    border-radius: 2px;
+    float: left;
+}
+div.ad_amazon_slide_datetime {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	font-size: 14px;
+}

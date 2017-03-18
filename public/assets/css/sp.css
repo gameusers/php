@@ -1,0 +1,16 @@
+/* -------------------------------------------------
+	Bootstrap上書き
+-------------------------------------------------- */
+
+.panel-body {
+	padding: 10px;
+}
+
+/*.list-group-item {
+  position: relative;
+  display: block;
+  padding: 15px 10px;
+  margin-bottom: -1px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}*/

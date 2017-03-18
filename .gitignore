@@ -1,0 +1,46 @@
+# temp files from editors
+*~
+*.bak
+.DS_Store
+.buildpath
+.project
+.settings
+*.tmproj
+build
+.idea
+nbproject/
+
+# hidden files created by Windows
+Thumbs.db
+desktop.ini
+
+# the composer package lock file and install directory
+/composer.lock
+
+# any of the fuel packages installed by default
+/docs/
+
+# dynamically generated files
+/fuel/app/logs/*/*/*
+/fuel/app/cache/*/*
+
+# 現在は不要なコンテンツ
+/fuel/app/classes/controller/cod/
+/fuel/app/classes/model/cod/
+/fuel/app/classes/original/cod/
+/fuel/app/views/cod/
+/public/wiki/
+/public/assets/css/cod/
+/public/assets/js/cod/
+
+# 制作補助用で不要なファイル
+_test.js
+_test.php
+/fuel/app/classes/controller/test.php
+/fuel/app/views/test_view.php
+
+# 公開できないデータを含むファイル
+/fuel/app/classes/original/file/*
+/fuel/app/config/development/*.php
+/fuel/app/config/production/*.php
+/public/assets/_img*
