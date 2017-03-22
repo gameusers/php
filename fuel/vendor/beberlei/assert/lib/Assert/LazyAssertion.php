@@ -83,7 +83,10 @@ use LogicException;
  * @method LazyAssertion notSame(mixed $value2, string|callable $message = null, string $propertyPath = null) Assert that two values are not the same (using === ).
  * @method LazyAssertion null(string|callable $message = null, string $propertyPath = null) Assert that value is null.
  * @method LazyAssertion numeric(string|callable $message = null, string $propertyPath = null) Assert that value is numeric.
+ * @method LazyAssertion objectOrClass(string|callable $message = null, string $propertyPath = null) Assert that the value is an object, or a class that exists.
  * @method LazyAssertion phpVersion(mixed $version, string|callable $message = null, string $propertyPath = null) Assert on PHP version.
+ * @method LazyAssertion propertiesExist(array $properties, string|callable $message = null, string $propertyPath = null) Assert that the value is an object or class, and that the properties all exist.
+ * @method LazyAssertion propertyExists(string $property, string|callable $message = null, string $propertyPath = null) Assert that the value is an object or class, and that the property exists.
  * @method LazyAssertion range(mixed $minValue, mixed $maxValue, string|callable $message = null, string $propertyPath = null) Assert that value is in range of numbers.
  * @method LazyAssertion readable(string|callable $message = null, string $propertyPath = null) Assert that the value is something readable.
  * @method LazyAssertion regex(string $pattern, string|callable $message = null, string $propertyPath = null) Assert that value matches a regex.
@@ -142,7 +145,7 @@ class LazyAssertion
         }
 
         try {
-            call_user_func_array(array($this->currentChain, $method), $args);
+            \call_user_func_array(array($this->currentChain, $method), $args);
         } catch (AssertionFailedException $e) {
             $this->errors[] = $e;
             $this->currentChainFailed = true;
@@ -159,7 +162,7 @@ class LazyAssertion
     public function verifyNow()
     {
         if ($this->errors) {
-            throw call_user_func(array($this->exceptionClass, 'fromErrors'), $this->errors);
+            throw \call_user_func(array($this->exceptionClass, 'fromErrors'), $this->errors);
         }
 
         return true;
@@ -172,11 +175,11 @@ class LazyAssertion
      */
     public function setExceptionClass($className)
     {
-        if (!is_string($className)) {
+        if (!\is_string($className)) {
             throw new LogicException('Exception class name must be passed as a string');
         }
 
-        if ($className !== 'Assert\LazyAssertionException' && !is_subclass_of($className, 'Assert\LazyAssertionException')) {
+        if ($className !== 'Assert\LazyAssertionException' && !\is_subclass_of($className, 'Assert\LazyAssertionException')) {
             throw new LogicException($className . ' is not (a subclass of) Assert\LazyAssertionException');
         }
 

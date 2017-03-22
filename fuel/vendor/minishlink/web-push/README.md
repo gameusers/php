@@ -4,18 +4,25 @@
 [![Build Status](https://travis-ci.org/web-push-libs/web-push-php.svg?branch=master)](https://travis-ci.org/web-push-libs/web-push-php)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/d60e8eea-aea1-4739-8ce0-a3c3c12c6ccf/mini.png)](https://insight.sensiolabs.com/projects/d60e8eea-aea1-4739-8ce0-a3c3c12c6ccf)
 
-## Installation
-`composer require minishlink/web-push`
-
-## Usage
-WebPush can be used to send notifications to endpoints which server delivers web push notifications as described in 
+WebPush can be used to send notifications to endpoints which server delivers Web Push notifications as described in 
 the [Web Push protocol](https://tools.ietf.org/html/draft-thomson-webpush-protocol-00).
 As it is standardized, you don't have to worry about what server type it relies on.
 
-Notifications with payloads are supported with this library on Firefox 46+ and Chrome 50+.
+## Requirements
+* PHP 5.6
+  * gmp
+  * mbstring
+  * curl
+  * openssl
 
-You'll need at least PHP 5.6, and PHP 7.1 is recommended for much better performance.
+PHP 7.1 is recommended for better performance.
 
+## Installation
+Use [composer](https://getcomposer.org/) to download and install the library and its dependencies.
+
+`composer require minishlink/web-push`
+
+## Usage
 ```php
 <?php
 
@@ -173,6 +180,8 @@ $res = array(
 );
 ```
 
+Firefox errors are listed in the [autopush documentation](https://autopush.readthedocs.io/en/latest/http.html#errors).
+
 ### Payload length, security, and performance
 Payloads are encrypted by the library. The maximum payload length is theoretically 4078 bytes (or ASCII characters).
 For [compatibility reasons](mozilla-services/autopush/issues/748) though, your payload should be less than 3052 bytes long.
@@ -249,7 +258,15 @@ local public and private keys and compute the shared secret.
 Then, if you have a PHP >= 7.1, WebPush uses `openssl` in order to encrypt the payload with the encryption key.
 Otherwise, if you have PHP < 7.1, it uses [Spomky-Labs/php-aes-gcm](https://github.com/Spomky-Labs/php-aes-gcm), which is slower.
 
-### How to solve "SSL certificate problem: unable to get local issuer certificate" ?
+### How do I scale?
+Here are some ideas:
+
+1. Upgrade to PHP 7.1
+2. Make sure MultiCurl is available on your server
+3. Find the right balance for your needs between security and performance (see above)
+4. Find the right batch size (set it in `defaultOptions` or as parameter to `flush()`)
+
+### How to solve "SSL certificate problem: unable to get local issuer certificate"?
 Your installation lacks some certificates.
 
 1. Download [cacert.pem](http://curl.haxx.se/ca/cacert.pem).
@@ -257,8 +274,27 @@ Your installation lacks some certificates.
 
 You can also force using a client without peer verification.
 
+### How to solve "Bad key encryption key length"?
+Disable `mbstring.func_overload` in your `php.ini`.
+
+### How to solve "Class 'Minishlink\WebPush\WebPush' not found"
+Make sure to require Composer's [autoloader](https://getcomposer.org/doc/01-basic-usage.md#autoloading).
+
+```php
+require __DIR__ . '/path/to/vendor/autoload.php';
+```
+
+### I must use PHP 5.4 or 5.5. What can I do?
+You won't be able to send any payload, so you'll be only able to use `sendNotification($endpoint)`.
+Install the libray with `composer` using `--ignore-platform-reqs`.
+The workaround for getting the payload is to fetch it in the service worker ([example](https://github.com/Minishlink/physbook/blob/2ed8b9a8a217446c9747e9191a50d6312651125d/web/service-worker.js#L75)). 
+
 ### I lost my VAPID keys!
 See [issue #58](https://github.com/web-push-libs/web-push-php/issues/58).
+
+### I'm using Firebase push notifications, how do I use this library?
+This library is not designed for Firebase push notifications.
+You can still use it for your web projects (for standard WebPush notifications), but you should forget any link to Firebase while using the library.
 
 ### I need to send notifications to native apps. (eg. APNS for iOS)
 WebPush is for web apps.

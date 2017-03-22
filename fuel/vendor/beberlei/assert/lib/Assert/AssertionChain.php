@@ -84,7 +84,10 @@ use ReflectionClass;
  * @method AssertionChain notSame(mixed $value2, string|callable $message = null, string $propertyPath = null) Assert that two values are not the same (using === ).
  * @method AssertionChain null(string|callable $message = null, string $propertyPath = null) Assert that value is null.
  * @method AssertionChain numeric(string|callable $message = null, string $propertyPath = null) Assert that value is numeric.
+ * @method AssertionChain objectOrClass(string|callable $message = null, string $propertyPath = null) Assert that the value is an object, or a class that exists.
  * @method AssertionChain phpVersion(mixed $version, string|callable $message = null, string $propertyPath = null) Assert on PHP version.
+ * @method AssertionChain propertiesExist(array $properties, string|callable $message = null, string $propertyPath = null) Assert that the value is an object or class, and that the properties all exist.
+ * @method AssertionChain propertyExists(string $property, string|callable $message = null, string $propertyPath = null) Assert that the value is an object or class, and that the property exists.
  * @method AssertionChain range(mixed $minValue, mixed $maxValue, string|callable $message = null, string $propertyPath = null) Assert that value is in range of numbers.
  * @method AssertionChain readable(string|callable $message = null, string $propertyPath = null) Assert that the value is something readable.
  * @method AssertionChain regex(string $pattern, string|callable $message = null, string $propertyPath = null) Assert that value matches a regex.
@@ -144,14 +147,14 @@ class AssertionChain
             return $this;
         }
 
-        if (!method_exists($this->assertionClassName, $methodName)) {
+        if (!\method_exists($this->assertionClassName, $methodName)) {
             throw new \RuntimeException("Assertion '" . $methodName . "' does not exist.");
         }
 
         $reflClass = new ReflectionClass($this->assertionClassName);
         $method = $reflClass->getMethod($methodName);
 
-        array_unshift($args, $this->value);
+        \array_unshift($args, $this->value);
         $params = $method->getParameters();
 
         foreach ($params as $idx => $param) {
@@ -172,7 +175,7 @@ class AssertionChain
             $methodName = 'all' . $methodName;
         }
 
-        call_user_func_array(array($this->assertionClassName, $methodName), $args);
+        \call_user_func_array(array($this->assertionClassName, $methodName), $args);
 
         return $this;
     }
@@ -210,11 +213,11 @@ class AssertionChain
      */
     public function setAssertionClassName($className)
     {
-        if (!is_string($className)) {
+        if (!\is_string($className)) {
             throw new LogicException('Exception class name must be passed as a string');
         }
 
-        if ($className !== 'Assert\Assertion' && !is_subclass_of($className, 'Assert\Assertion')) {
+        if ($className !== 'Assert\Assertion' && !\is_subclass_of($className, 'Assert\Assertion')) {
             throw new LogicException($className . ' is not (a subclass of) Assert\Assertion');
         }
 

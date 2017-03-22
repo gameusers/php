@@ -3,12 +3,18 @@ root = true
 [*]
 end_of_line = lf
 charset = utf-8
-indent_style = tab
-indent_size = 4
-# trim_trailing_whitespace = true # doesn't work yet
-# insert_final_newline = true # doesn't work yet
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = true
+insert_final_newline = true
 
-[{*.html,*_view.php,*.js,*.jsx,*.eslintrc}]
+# PSR-2に準拠します
+[*.php]
+indent_style = space
+indent_size = 4
+
+# FuelPHPのViewファイル用です。ViewはHTMLとPHPが混ざるので、ファイル名を_view.phpにして、スペース2つを基準にしていました。独自の書き方をしていた既存ファイル用なので気にしないでください。
+[*_view.php]
 indent_style = space
 indent_size = 2
 

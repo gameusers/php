@@ -20,7 +20,8 @@
         "minishlink/web-push": "1.*"
     },
     "require-dev": {
-        "fuel/docs": "1.8.*"
+        "fuel/docs": "1.8.*",
+        "friendsofphp/php-cs-fixer": "2.*"
     },
     "suggest": {
         "dwoo/dwoo" : "Allow Dwoo templating with the Parser package",
