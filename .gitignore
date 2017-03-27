@@ -36,11 +36,16 @@ desktop.ini
 # 制作補助用で不要なファイル
 _test.js
 _test.php
+.atomignore
 /fuel/app/classes/controller/test.php
 /fuel/app/views/test_view.php
+/public/assets/js/react/_*.jsx
 
 # 公開できないデータを含むファイル
 /fuel/app/classes/original/file/*
 /fuel/app/config/development/*.php
 /fuel/app/config/production/*.php
+
+# 公開しなくてもいいファイル
 /public/assets/_img*
+/public/google*html
