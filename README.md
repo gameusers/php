@@ -21,6 +21,15 @@ PHPは7以上でないと正常に動作しません。Windows版のXAMPPで開�
 
 https://localhost/gameusers/public/
 
+### パッケージのインストール
+
+	npm install
+
+cdコマンドでgameusersディレクトリに移動してから、上記コマンドを入力してパッケージをインストールしてください。Node.jsやnpmについてブログで解説していますので、わからない方はこちらを参考にしてみてください。
+
+- [Node.jsをイントールしよう！](https://gameusers.org/dev/blog/environment/node-js-install)
+- [npmの基本的な使い方](https://gameusers.org/dev/blog/environment/npm-tutorial)
+
 ### php.iniの変更（XAMPPの場合 C:\xampp\php\php.ini）
 
 ;extension=php_fileinfo.dll  
@@ -69,7 +78,7 @@ SNSのConsumer KeyやAccess Tokenなどは公開できないため、それを�
 
 ## インストールについて
 
-GitHubの知識があまりなく、プロジェクトを公開するのも初めてなため、解説している方法で問題なく環境が構築できるのかわかりません。XAMPPについて言及していたり、node_modulesディレクトリをそのまま公開していたり、もしかすると非常にバカバカしい構成になっているかもしれませんが、高スキルなプログラマーではないため、生暖かい目で見ていただけるとありがたいです。
+GitHubの知識があまりなく、プロジェクトを公開するのも初めてなため、解説している方法で問題なく環境が構築できるのかわかりません。XAMPPについて言及していたり、もしかすると非常にバカバカしい構成になっているかもしれませんが、高スキルなプログラマーではないため、生暖かい目で見ていただけるとありがたいです。
 
 ## ライセンス
 

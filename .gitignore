@@ -19,6 +19,7 @@ desktop.ini
 
 # any of the fuel packages installed by default
 /docs/
+/node_modules/
 
 # dynamically generated files
 /fuel/app/logs/*/*/*
@@ -47,5 +48,6 @@ _test.php
 /fuel/app/config/production/*.php
 
 # 公開しなくてもいいファイル
+/public/dev/
 /public/assets/_img*
 /public/google*html

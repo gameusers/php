@@ -5,14 +5,18 @@
     "jquery": true,
     "es6": true
   },
-  "ecmaFeatures": {
-    "jsx": true
+  "parserOptions": {
+    "ecmaVersion": 2015,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "jsx": true
+    }
   },
   "extends": "airbnb",
   "rules": {
     "comma-dangle": 0,// 行末にコンマを付けなければならない 無効
     "func-names": 0,// 必ず関数名を付けなければならない 無効
-    # "padded-blocks": 0,// {}の後に無駄な改行を入れてはいけない 無効
     "max-len": 0,
     "no-multiple-empty-lines": [2, {"max": 20}],// 空白のラインが20行以上あってはいけない
     "react/no-multi-comp": 0,// ひとつのファイルにはひとつのコンポーネントしか存在してはいけない 無効

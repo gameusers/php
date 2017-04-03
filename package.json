@@ -2,7 +2,7 @@
   "name": "gameusers",
   "version": "1.0.0",
   "description": "Game Users Organization",
-  "main": "build.js",
+  "main": "public/assets/js/react/build.js",
   "scripts": {
     "build": "webpack --display-error-details",
     "watch": "webpack --watch"
