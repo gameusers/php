@@ -5,6 +5,25 @@
 
 ゲームを好きな開発者がなんでも作れる砂場のような場所にしたい！
 
+## 現在更新している内容
+2017/9/3
+
+Game UsersをReactで書き直しています。React化するに当たってファイルをひとところにまとめようと思い、reactというディレクトリー内に必要なファイルを集めています。現在はサイトを構成するファイルがあちこちに散在しているのですが、以後は以下のファイル、ディレクトリーだけで動作するようにしたいです。
+
+#### PHP部分
+- fuel/app/classes/controller/app.php（アプリケーションページのコントローラー）
+- fuel/app/classes/controller/api.php（Rest API）
+- fuel/app/classes/react/（React関連ディレクトリー）
+
+#### Javascript部分
+- public/react/（React関連ディレクトリー）
+
+#### 編集中のページ
+現在、オリジナルのシェアボタン（ソーシャルボタン）を作成しているのですが、そのシェアボタンの公式ページを作成しています。
+
+https://localhost/gameusers/public/app/share-buttons
+
+
 ## 必要な開発環境
 
 PHP 7.1以上  

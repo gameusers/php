@@ -29,8 +29,6 @@
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.2",
     "react-color": "^2.13.4",
-    "react-contexify": "^2.1.1",
-    "react-contextmenu": "^2.6.5",
     "react-dom": "^15.6.1",
     "react-ga": "^2.2.0",
     "react-masonry-component": "^5.0.7",
