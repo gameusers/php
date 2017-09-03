@@ -8,7 +8,7 @@ indent_size = 2
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-[*.html]
+[*.{html,json}]
 insert_final_newline = false
 
 # PSR-2に準拠します

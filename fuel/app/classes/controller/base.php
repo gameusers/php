@@ -150,15 +150,15 @@ class Controller_Base extends Controller
 		//   初期ステート
 		// --------------------------------------------------
 
-		$this->initial_state_arr['agentType'] = AGENT_TYPE;
-		$this->initial_state_arr['host'] = HOST;
-		$this->initial_state_arr['userAgent'] = USER_AGENT;
-		$this->initial_state_arr['userNo'] = USER_NO;
-		$this->initial_state_arr['playerId'] = USER_ID;
-		$this->initial_state_arr['language'] = LANGUAGE;
-		$this->initial_state_arr['urlBase'] = URI_BASE;
-		$this->initial_state_arr['adBlock'] = AD_BLOCK;
-		$this->initial_state_arr['paginationTimes'] = PAGINATION_TIMES;
+		// $this->initialStateArr['agentType'] = AGENT_TYPE;
+		// $this->initialStateArr['host'] = HOST;
+		// $this->initialStateArr['userAgent'] = USER_AGENT;
+		// $this->initialStateArr['userNo'] = USER_NO;
+		// $this->initialStateArr['playerId'] = USER_ID;
+		// $this->initialStateArr['language'] = LANGUAGE;
+		// $this->initialStateArr['urlBase'] = URI_BASE;
+		// $this->initialStateArr['adBlock'] = AD_BLOCK;
+		// $this->initialStateArr['paginationColumn'] = PAGINATION_TIMES;
 
 
 		// --------------------------------------------------

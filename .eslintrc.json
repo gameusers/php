@@ -6,7 +6,7 @@
     "es6": true
   },
   "parserOptions": {
-    "ecmaVersion": 2015,
+    "ecmaVersion": 2017,
     "sourceType": "module",
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true,
@@ -19,7 +19,10 @@
     "func-names": 0,// 必ず関数名を付けなければならない 無効
     "max-len": 0,
     "no-multiple-empty-lines": [2, {"max": 20}],// 空白のラインが20行以上あってはいけない
-    "react/no-multi-comp": 0,// ひとつのファイルにはひとつのコンポーネントしか存在してはいけない 無効
-    "react/prefer-stateless-function": 0//react ステートレス関数にしなければならない 無効
+    "consistent-return": 0,// 値を返すreturnがある場合、なんらかの値を必ず返さなければならない、条件によって値を返さないのは禁止 無効
+    "no-undef": 0,// 未定義の変数、関数を使用している 無効
+    "padded-blocks": 0,// {}のあとに空白のラインがあってはならない 無効
+    "react/no-danger": 0,// dangerouslySetInnerHTMLを使ってはいけない 無効
+    "class-methods-use-this": 0// クラスメソッドはthisを使わなければならない 無効
   }
 }

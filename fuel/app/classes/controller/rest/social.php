@@ -219,7 +219,7 @@ class Controller_Rest_Social extends Controller_Rest_Base
 			// --------------------------------------------------
 
 			$url = (Input::post('url')) ? Input::post('url') : null;
-			
+
 
 			// --------------------------------------------------
 			//   URLがない場合は処理停止
@@ -257,7 +257,7 @@ class Controller_Rest_Social extends Controller_Rest_Base
 			if (isset($result->nodeValue)) {
 				$count = $result->nodeValue;
 			} else {
-				$count = 0 ;
+				$count = 0;
 			}
 
 			$arr['count'] = $count;

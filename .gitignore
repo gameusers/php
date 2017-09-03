@@ -49,5 +49,36 @@ _test.php
 
 # 公開しなくてもいいファイル
 /public/dev/
-/public/assets/_img*
 /public/google*html
+
+# 開発環境で使用している画像
+/public/assets/img/announcement/*
+!/public/assets/img/announcement/.gitkeep
+
+/public/assets/img/bbs_gc/comment/*
+!/public/assets/img/bbs_gc/comment/.gitkeep
+/public/assets/img/bbs_gc/reply/*
+!/public/assets/img/bbs_gc/reply/.gitkeep
+/public/assets/img/bbs_gc/thread/*
+!/public/assets/img/bbs_gc/thread/.gitkeep
+
+/public/assets/img/bbs_uc/comment/*
+!/public/assets/img/bbs_uc/comment/.gitkeep
+/public/assets/img/bbs_uc/reply/*
+!/public/assets/img/bbs_uc/reply/.gitkeep
+/public/assets/img/bbs_uc/thread/*
+!/public/assets/img/bbs_uc/thread/.gitkeep
+
+/public/assets/img/community/*
+!/public/assets/img/community/.gitkeep
+
+/public/assets/img/profile/*
+!/public/assets/img/profile/.gitkeep
+
+/public/assets/img/recruitment/recruitment/*
+!/public/assets/img/recruitment/recruitment/.gitkeep
+/public/assets/img/recruitment/reply/*
+!/public/assets/img/recruitment/reply/.gitkeep
+
+/public/assets/img/user/*
+!/public/assets/img/user/.gitkeep

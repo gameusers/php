@@ -112,6 +112,17 @@ class Controller_Admin extends Controller_Base
 
 
 
+		// $url = "https://gameusers.org/";
+		//
+		// //データを取得
+		// $json = @file_get_contents("http://cloud.feedly.com/v3/feeds/feed%2F".rawurlencode($url));
+		//
+		// //JSONデータを連想配列に変換
+		// $array = json_decode($json,true);
+		// Debug::dump($array);
+
+
+
 		// --------------------------------------------------
 		//   SNS送信
 		// --------------------------------------------------

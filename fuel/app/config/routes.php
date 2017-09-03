@@ -7,4 +7,5 @@ return array(
 	'pl/(:any)'      => 'pl/index/$1', 	// プレイヤーページ
 	'gc/(:any)'      => 'gc/index/$1', 	// ゲームコミュニティ
 	'uc/(:any)'      => 'uc/index/$1', 	// ユーザーコミュニティ
+    'app/(:any)'      => 'app/index/$1', 	// アプリケーション
 );

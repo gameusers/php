@@ -1,0 +1,16 @@
+{
+    "name": "gameusers/react",
+    "description": "Game Users Organization",
+    "type": "project",
+    "license": "SEE LICENSE IN LICENSE.txt",
+    "authors": [
+        {
+            "name": "Game Users",
+            "email": "mail@gameusers.org"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.1",
+        "mobiledetect/mobiledetectlib": "^2.8"
+    }
+}

@@ -1,0 +1,960 @@
+/* --------------------------------------------------
+   基本
+-------------------------------------------------- */
+
+@font-face {
+  font-family: 'Yu Gothic';
+  src: local('Yu Gothic Medium');
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: "Yu Gothic";
+  src: local("Yu Gothic Medium");
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: "Yu Gothic";
+  src: local("Yu Gothic Medium");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Yu Gothic";
+  src: local("Yu Gothic Medium");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Yu Gothic";
+  src: local("Yu Gothic Bold");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: local("Helvetica Neue Regular");
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: local("Helvetica Neue Regular");
+  font-weight: 200;
+}
+
+
+body {
+  background-color: #ecf0f1;
+
+  /* 参考： http://qiita.com/RinoTsuka/items/4181efd43d072e246519 2020年まで使えるfont-familyのベストプラクティス */
+  font-family: "-apple-system", "Helvetica Neue", "Yu Gothic", YuGothic, Verdana, Meiryo, "M+ 1p", sans-serif;
+  word-wrap: break-word;
+}
+
+/* IE10以上 */
+@media all and (-ms-high-contrast: none) {
+  body {
+    font-family: Verdana, Meiryo, sans-serif;
+  }
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+
+/*.mfp-wrap {
+  z-index: 1060;
+}*/
+
+
+/* --------------------------------------------------
+   通知
+-------------------------------------------------- */
+
+/*.notification-box {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 0;
+  padding: 0 0 15px;
+}
+
+.notification-box .left-box {
+  margin: 0;
+  padding: 0;
+}
+
+.notification-box .right-box {
+  margin: 0;
+  padding: 0 0 0 10px;
+}
+
+.player_notifications_box {
+  margin: 15px 0px 0px 0px;
+  padding: 0px 0px 15px 0px;
+  border-bottom-width: 1px;
+  border-bottom-style: dashed;
+  border-bottom-color: #CCCCCC;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.player_notifications_left_box {
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  display: table-cell;
+  width: 66px;
+}
+
+.player_notifications_right_box {
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 10px;
+  display: table-cell;
+  word-wrap: break-word;
+   vertical-align: top;
+}
+
+.player_notifications_title {
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 5px 0px;
+  font-weight: bold;
+}
+
+.player_notifications_read_all_button_center {
+  text-align: center;
+}
+
+.player_notifications_read_all_button {
+  margin: 10px 0px 0px 0px;
+}
+
+.player_notifications_text {
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+}
+
+div.player_notifications_short {
+  margin: 10px 0px 0px 0px;
+  padding: 10px 0px 0px 0px;
+  border-top-width: 1px;
+  border-top-style: dotted;
+  border-top-color: #CCCCCC;
+}
+div.player_notifications_long {
+  margin: 10px 0px 0px 0px;
+  padding: 10px 0px 0px 0px;
+  border-top-width: 1px;
+  border-top-style: dotted;
+  border-top-color: #CCCCCC;
+}
+
+
+div.player_config_notification_data_app_select_box {
+  margin: 20px 0px 0px 0px;
+  padding: 20px 0px 0px 0px;
+  border-top-width: 1px;
+  border-top-style: dashed;
+  border-top-color: #CCCCCC;
+}
+div.player_config_notification_data_app_select_radio_box {
+  margin: 20px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+}
+.player_config_notification_data_app_checkbox {
+  margin: 0px 0px 0px 10px;
+  padding: 0px 0px 0px 0px;
+}
+div.player_config_notification_data_save_mail_box {
+  margin: 20px 0px 0px 0px;
+  padding: 20px 0px 0px 0px;
+  border-top-width: 1px;
+  border-top-style: dashed;
+  border-top-color: #CCCCCC;
+}*/
+
+
+
+/* --------------------------------------------------
+   ヘッダー / 通知ベル
+-------------------------------------------------- */
+
+header .bell-box {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  outline: none;
+}
+
+header .bell-box:link {
+  color: #000;
+}
+
+header .bell-box:visited {
+  color: #000;
+}
+
+header .bell-box:hover {
+  color: #0f7718;
+}
+
+header .bell-box:active {
+  color: #000;
+}
+
+header .bell-box .bell {
+  padding: 4px 4px 0 20px;
+  font-size: 18px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+header .bell-box .bell-number {
+  cursor: pointer;
+}
+
+
+
+/* --------------------------------------------------
+   ヘッダー / ヒーローイメージ
+-------------------------------------------------- */
+
+header .hero-image-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+header .hero-image-box .title-link .title {
+  font-size: 40px;
+  color: #efefef;
+  margin: 10px 0 0 20px;
+  text-decoration: none;
+  text-shadow:
+    0 1px 0 #222,
+    0 2px 0 #5e5e5e,
+    0 3px 0 #111,
+    0 4px 0 #5e5e5e,
+    0 5px 0 #000,
+    0 6px 1px rgba(0, 0, 0, 0.1),
+    0 0 5px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.3),
+    0 3px 5px rgba(0, 0, 0, 0.2),
+    0 5px 10px rgba(0, 0, 0, 0.25),
+    0 10px 10px rgba(0, 0, 0, 0.2),
+    0 20px 20px rgba(0, 0, 0, 0.15);
+}
+
+@media screen and (max-width: 767px) {
+  header .hero-image-box .title-link .title {
+    font-size: 26px;
+    color: #efefef;
+    margin: 10px 0 0 20px;
+    text-decoration: none;
+    text-shadow:
+      0 1px 0 #222,
+      0 2px 0 #5e5e5e,
+      0 3px 0 #111,
+      0 4px 0 #5e5e5e,
+      0 5px 0 #000,
+      0 6px 1px rgba(0, 0, 0, 0.1),
+      0 0 5px rgba(0, 0, 0, 0.1),
+      0 1px 3px rgba(0, 0, 0, 0.3),
+      0 3px 5px rgba(0, 0, 0, 0.2),
+      0 5px 10px rgba(0, 0, 0, 0.25),
+      0 10px 10px rgba(0, 0, 0, 0.2),
+      0 20px 20px rgba(0, 0, 0, 0.15);
+  }
+}
+
+header .hero-image-box .title-link:link {
+  text-decoration: none;
+}
+
+header .hero-image-box .title-link:visited {
+  text-decoration: none;
+}
+
+header .hero-image-box .title-link:hover {
+  text-decoration: none;
+}
+
+header .hero-image-box .title-link:active {
+  text-decoration: none;
+}
+
+
+
+/* --------------------------------------------------
+   ヘッダー / ヒーローイメージ / カード
+-------------------------------------------------- */
+
+header .card-hero-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 20px auto;
+}
+
+header .card {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 0 14px;
+  width: 128px;
+  border-radius: 8px;
+  box-shadow: 4px 4px 10px #383838;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+header .card-hero-box .image {
+  padding: 0;
+  border-radius: 8px;
+  /*background-color: #cbaa83;*/
+}
+
+header .card-hero-box .image img {
+  width: 100%;
+  /*border-radius: 8px 8px 0 0;*/
+  border-radius: 8px;
+}
+
+
+
+/* --------------------------------------------------
+   ヘッダー / ヒーローイメージ / ゲームデータ
+-------------------------------------------------- */
+
+header .hero-image-data-position-right {
+  align-self: flex-end;
+  margin: 0 0 14px;
+}
+
+header .hero-image-data {
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+  max-width: 300px;
+  margin: 0 14px;
+  padding: 0;
+  border-radius: 8px;
+  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+}
+
+header .hero-image-data .title {
+  margin: 0;
+  padding: 4px 10px;
+  border-bottom: #d51a53 solid 1px;
+  font-size: 14px;
+  line-height: 1.6em;
+}
+
+header .hero-image-data .data {
+  padding: 6px 20px 0;
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+header .hero-image-data .link {
+  padding: 10px 10px 8px;
+}
+
+header .hero-image-data .link .icon {
+  padding: 0 12px 0 0;
+  font-size: 12px;
+}
+
+
+
+/* --------------------------------------------------
+   フッター
+-------------------------------------------------- */
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px 0 20px 20px;
+  background-color: #000;
+}
+
+footer .contents-type {
+  margin: 0 0 20px;
+  width: 280px;
+}
+
+footer .content-card-box {
+  width: 100%;
+}
+
+footer .content-card-box .select-type {
+  width: 280px;
+}
+
+footer .content-card-box .cards {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  width: 100%;
+  margin: 20px 0;
+}
+
+footer .index_box {
+  width: 80%;
+  margin: 20px auto 40px;
+  padding: 0 20px 0 0;
+  box-sizing: border-box;
+}
+
+footer .index_box_s {
+  width: 100%;
+  margin: 20px auto 40px;
+  padding: 0 20px 0 0;
+  box-sizing: border-box;
+}
+
+footer .copyright {
+  align-self: center;
+  color: #fff;
+}
+
+footer .btn-group .btn-group .active {
+  z-index: 0;
+}
+
+
+
+/* --------------------------------------------------
+   フッター / モーダル / 通知用
+-------------------------------------------------- */
+
+.modal-notification-box {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.modal-notification-buttons {
+  margin: 0;
+  padding: 10px;
+  /*background-color: black;*/
+}
+
+.modal-body {
+  background-color: #ecf0f1;
+}
+
+.modal-notification-footer {
+  display: flex;
+  flex-flow: row nowrap;
+  text-align: left;
+  border-top: 1px solid #e5e5e5;
+  margin: 0;
+  padding: 10px;
+  /*margin-right: auto;*/
+  /*margin-left: auto;*/
+}
+
+.modal-notification-footer .close-button {
+  /*text-align: left;*/
+  /*margin-right: auto;*/
+  margin-left: auto;
+}
+
+
+
+
+/* --------------------------------------------------
+   カード / リンク
+-------------------------------------------------- */
+
+.card-link {
+  text-decoration: none;
+  color: #000;
+}
+
+.card-link:link {
+  text-decoration: none;
+  color: #000;
+}
+
+.card-link:visited {
+  text-decoration: none;
+  color: #000;
+}
+
+.card-link:hover {
+  text-decoration: none;
+  color: #000;
+}
+
+.card-link:active {
+  text-decoration: none;
+  color: #000;
+}
+
+
+/*.card-link2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}*/
+
+
+/* --------------------------------------------------
+  カード / ノーマルサイズ
+-------------------------------------------------- */
+
+.card-box {
+  position: relative;
+  display: inline-flex;
+  flex-direction: row;
+  width: 614px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px #bababa;
+  margin: 0 0 14px;
+}
+
+.card-box .left {
+  border-radius: 8px 0 0 8px;
+  vertical-align: top;
+  background-color: #ecf0f1;
+}
+
+.card-box .left img {
+  border-radius: 8px 0 0 8px;
+}
+
+.card-box .right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  border-radius: 0 8px 8px 0;
+  background-color: #fff;
+  /*padding: 10px 12px;*/
+  vertical-align: top;
+  font-size: 14px;
+  line-height: 1.6em;
+}
+
+.card-box .right .title {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.6em;
+  margin: 0 0 8px;
+  padding: 10px 12px 0;
+}
+
+.card-box .right .comment {
+  margin: 0 0 10px;
+  padding: 0 12px;
+}
+
+.card-box .right .info {
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+  margin: auto 0 0;
+  border-top: #dbdeff solid 1px;
+}
+
+.card-box .right .info .category-and-time {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  padding: 10px 12px;
+  /*background-color: rgb(224, 182, 242);*/
+}
+
+.card-box .right .info .category-and-time .category {
+  padding: 0 14px 0 0;
+  white-space: nowrap;
+  /*background-color: red;*/
+}
+
+.card-box .right .info .category-and-time .category span {
+  padding: 0 3px 0 0;
+}
+
+.card-box .right .info .category-and-time .time {
+  align-self: flex-start;
+  padding: 0 16px 0 0;
+  white-space: nowrap;
+  /*background-color: blue;*/
+}
+
+.card-box .right .info .page-name {
+  margin-left: auto;
+  font-weight: bold;
+  color: #337ab7;
+  padding: 10px 12px;
+}
+
+.card-box .right .info .name:hover {
+  text-decoration: underline;
+}
+
+
+
+/* --------------------------------------------------
+  カード / モバイル用 / ノーマルサイズ
+-------------------------------------------------- */
+
+.card-s {
+  display: inline-flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px #bababa;
+  background-color: #fff;
+  margin: 0 0 14px;
+}
+
+.card-s .top {
+  display: inline-flex;
+  flex-direction: row;
+  border-radius: 8px 0 0;
+}
+
+.card-s .top .left {
+  width: 96px;
+}
+
+.card-s .top .left img {
+  border-radius: 8px;
+}
+
+.card-s .top .right {
+  flex: 1;
+  font-weight: bold;
+}
+
+.card-s .top .right .title {
+  /*display: inline-flex;
+  flex-direction: row;
+  align-items: center;*/
+  width: 100%;
+  height: 48px;
+  /*line-height: 4.5em;*/
+  overflow: hidden;
+  word-break: break-all;
+  /*background-color: red;*/
+  padding: 6px 0 0;
+}
+
+.card-s .top .right .title h2 {
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1.6em;
+  margin: 0;
+  padding: 0 8px;
+}
+
+.card-s .top .right .info {
+  display: flex;
+  flex-direction: column;
+  /*flex-flow: wrap column;*/
+  /*width: 100%;*/
+  /*height: 48px;*/
+  /*max-width: 100%;*/
+  overflow: hidden;
+  font-size: 12px;
+  background-color: #f5f5f5;
+}
+
+.card-s .top .right .info .category-and-time {
+  display: flex;
+  flex-direction: row;
+  /*width: 30px;*/
+  height: 24px;
+  padding: 6px 12px 0;
+}
+
+.card-s .top .right .info .category-and-time .category {
+  padding: 0 14px 0 0;
+}
+
+.card-s .top .right .info .category-and-time .category span {
+  padding: 0 3px 0 0;
+}
+
+.card-s .top .right .info .category-and-time .time {
+  /*white-space: nowrap;*/
+  /*padding: 4px 0 0;*/
+}
+
+.card-s .top .right .info .page-name {
+  font-size: 12px;
+  color: #337ab7;
+  height: 24px;
+  /*background-color: #f4c5c5;*/
+  word-break: break-all;
+  /*overflow: hidden;*/
+  margin: 0;
+  padding: 4px 8px 0;
+}
+
+/*.card-s .top .right .info .page-name div {
+  line-height: 2em;
+  font-weight: bold;
+  padding: 0 8px;
+}*/
+
+/*.card-s .top .right .name_tall {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 12px;
+  width: 100%;
+  height: 48px;
+  background-color: #f5f5f5;
+  overflow: hidden;
+}
+
+.card-s .top .right .name_tall div {
+  padding: 0 8px;
+  line-height: 2em;
+  font-weight: bold;
+  color: #337ab7;
+}*/
+
+.card-s .bottom {
+  border-radius: 0 0 8px 8px;
+  padding: 12px;
+}
+
+
+
+/* --------------------------------------------------
+  カード / 中サイズ
+-------------------------------------------------- */
+
+.card-medium-box {
+  display: inline-flex;
+  flex-direction: column;
+  /*width: 300px;*/
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px #bababa;
+  margin: 0 0 14px;
+  /*cursor: pointer;*/
+}
+
+/*.card-medium-box .top {
+  border-radius: 8px 8px 0 0;
+  vertical-align: top;
+  position: relative;
+  background-color: #fff;
+}
+
+.card-medium-box .top img {
+  border-radius: 8px 8px 0 0;
+  max-height: 500px;
+  width: 100%;
+}*/
+
+/*.card-medium-box .top-v {
+  border-radius: 8px 8px 0 0;
+  vertical-align: top;
+  text-align: center;
+  position: relative;
+  background-color: #000;
+}
+
+.card-medium-box .top-v img {
+  max-height: 300px;
+}*/
+
+
+.card-medium-box .top {
+  border-radius: 8px 8px 0 0;
+  vertical-align: top;
+  text-align: center;
+  position: relative;
+  background-color: #000;
+  overflow: hidden;
+}
+
+.card-medium-box .top img {
+  width: 100%;
+  height: 100%;
+}
+
+/*.card-medium-box .top-vertical {
+  border-radius: 8px 8px 0 0;
+  vertical-align: top;
+  text-align: center;
+  position: relative;
+  background-color: #000;
+}
+
+.card-medium-box .top-vertical img {
+  border-radius: 8px 8px 0 0;
+  max-height: 284px;
+  max-width: 600px;
+  width: 100%;
+  height: 100%;
+}*/
+
+
+.card-medium-box .top .movie-play-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  transition: 0.5s ease-in-out;
+}
+
+.card-medium-box .top .movie-play-button:hover {
+  opacity: 0.7;
+}
+
+.card-medium-box .bottom {
+  display: flex;
+  flex-direction: column;
+  border-radius: 0 0 8px 8px;
+  background-color: #fff;
+  /*padding: 10px 12px;*/
+  vertical-align: top;
+  font-size: 14px;
+  line-height: 1.6em;
+  /*background-color: rgb(235, 139, 75);*/
+}
+
+.card-medium-box .bottom .title {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.6em;
+  /*background-color: rgb(224, 182, 242);*/
+  margin: 0;
+  padding: 10px 12px 8px;
+}
+
+.card-medium-box .bottom .comment {
+  /*margin: 0 0 10px;*/
+  padding: 0 12px 10px;
+}
+
+.card-medium-box .bottom .info {
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+  width: 100%;
+  overflow: hidden;
+  border-top: #dbdeff solid 1px;
+  /*margin: auto 0 0;*/
+  /*padding: 0 20px;*/
+}
+
+.card-medium-box .bottom .info .category-and-time {
+  display: flex;
+  flex-flow: row wrap;
+  flex: 1;
+  padding: 10px 12px;
+  /*background-color: rgb(136, 171, 245);*/
+}
+
+.card-medium-box .bottom .info .category-and-time .category {
+  padding: 0 14px 0 0;
+  white-space: nowrap;
+}
+
+.card-medium-box .bottom .info .category-and-time .category span {
+  padding: 0 3px 0 0;
+}
+
+.card-medium-box .bottom .info .category-and-time .time {
+  align-self: flex-start;
+  padding: 0 16px 0 0;
+  white-space: nowrap;
+}
+
+.card-medium-box .bottom .info .page-name {
+  font-weight: bold;
+  color: #337ab7;
+  margin-left: auto;
+  padding: 10px 12px;
+  /*background-color: rgb(169, 241, 130);*/
+}
+
+.card-medium-box .bottom .info .page-name:hover {
+  text-decoration: underline;
+}
+
+
+
+/* --------------------------------------------------
+   カード　小　フッター
+-------------------------------------------------- */
+
+.card-game {
+  display: flex;
+  flex-direction: column;
+  max-width: 110px;
+  width: 28vw;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px #bababa;
+  background-color: #fff;
+  margin: 0 10px 10px 0;
+  cursor: pointer;
+}
+
+.card-game .image {
+  padding: 4px;
+  border-radius: 8px;
+}
+
+.card-game .image img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.card-game .title {
+  margin: 0;
+  padding: 0 10px 6px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+
+/* --------------------------------------------------
+   ページネーション
+-------------------------------------------------- */
+
+.pagination-margin {
+  box-shadow: 2px 2px 5px #bababa;
+  margin: 20px 0 0;
+}
+
+
+/* --------------------------------------------------
+   共通
+-------------------------------------------------- */
+
+.width-96percent {
+  width: 96%;
+}
+
+.width-100percent {
+  width: 100%;
+}
+
+.margin-bottom-0 {
+  margin-bottom: 0;
+}
+
+.margin-left-5px {
+  margin-left: 5px;
+}

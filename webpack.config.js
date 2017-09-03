@@ -1,28 +1,39 @@
 const webpack = require('webpack');
+const path = require('path');
 
 // 環境を記述 development or production
 const env = 'development';
 
 const config = {
-  entry: './public/assets/js/react/entry.jsx',
+  entry: {
+    root: ['babel-polyfill', './public/react/js/entry-root.jsx']
+  },
   output: {
-    path: 'public/assets/js/react',
-    filename: 'bundle.js',
+    path: path.join(__dirname, '/public/react/js'),
+    filename: '[name]-bundle.min.js',
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx$/,
-        loader: 'babel-loader',
         exclude: /node_modules/,
-        query: {
-          presets: ['react', 'es2015']
+        loader: 'babel-loader',
+        options: {
+          presets: ['react', 'es2015', 'es2016', 'es2017']
         }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          { loader: 'css-loader', options: { importLoaders: 1 } },
+          'postcss-loader'
+        ]
       }
     ]
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx']
+    extensions: ['.js', '.jsx', 'css']
   },
   plugins: [
     new webpack.EnvironmentPlugin({
