@@ -33,13 +33,17 @@ class Controller_Api extends Controller_Rest
 		//   テスト変数
 		// --------------------------------------------------
 
-		$test = true;
+		// $test = true;
 
 		if (isset($test)) {
 			Debug::$js_toggle_open = true;
 
             $_POST['csrfToken'] = '92fab32bb41475af1a8896e24829479953c81ce4cdda318e099a39f10db3c6e51ee589c8138c65a1adbdd17cf306cb557b3e26fb28d3ace5fdd1ceee73764291';
+
 			$_POST['apiType'] = 'selectNotification';
+            $_POST['readType'] = 'unread';
+            // $_POST['readType'] = 'alreadyRead';
+            $_POST['page'] = 2;
 		}
 
 

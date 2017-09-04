@@ -131,7 +131,7 @@ define('LIMIT_NOTIFICATION_PRESERVATION_TERM', '-5 years');
 define('LIMIT_NOTIFICATION', [
     'smartphone' => 5,
     'tablet' => 5,
-    'other' => 10
+    'other' => 1
 ]);
 
 

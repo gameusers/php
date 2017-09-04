@@ -73,7 +73,10 @@ const reducer = (state = new Model(), action) => {
     // --------------------------------------------------
 
     case 'MODAL_NOTIFICATION_SHOW': {
-      return state.setIn(['modalObj', 'notification', 'show'], action.value);
+      // console.log('action.show = ', action.show);
+      return state
+        .setIn(['modalObj', 'notification', 'show'], action.show)
+        .setSelectNotification(action.unreadTotal, action.unreadArr, action.alreadyReadTotal, action.alreadyReadArr, action.activePage);
     }
 
 

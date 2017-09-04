@@ -4,14 +4,10 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Pagination } from 'react-bootstrap';
+// import { Pagination } from 'react-bootstrap';
 import moment from 'moment';
-// import { ContextMenu, MenuItem, ContextMenuTrigger } from 'react-contextmenu';
 import { List } from 'immutable';
-// import Masonry from 'react-masonry-component';
-// import { ContextMenuProvider, ContextMenu, Item, Separator, IconFont } from 'react-contexify';
-// import 'react-contexify/dist/ReactContexify.min.css';
-import { Model, fromJSOrdered } from '../models/model';
+import { Model } from '../models/model';
 
 import '../../css/style.css';
 
@@ -24,7 +20,7 @@ export default class Card extends React.Component {
   constructor() {
     super();
 
-    // Momentの言語を ja に指定
+    // Momentの言語を ja に指定（相対的時間用）
     moment.locale('ja');
   }
 
@@ -72,130 +68,144 @@ export default class Card extends React.Component {
   // }
 
 
-  codeBox() {
+  codeCards() {
 
     const codeArr = [];
 
-    // pageType: 'gameCommunity',
-    // contentType: 'bbs',
-    // tabType: 'recruitment',
 
-    const arr = [
-      {
-        contentsType: ['gameCommunity', 'bbs', 'comment'],
-        datetime: '2017-08-29 15:41:40',
-        pageName: 'アサシンクリードユニティ',
-        gameThumbnail: 1,
-        gameNo: 1,
-        gameId: 'assassins-creed-unity',
-        title: 'Assassin\'s Creed Unityについて語ろう！',
-        comment: 'Game Usersとは？Game Users（ゲームユーザーズ）はゲームユーザーのためのSNS・コミュニティサイトです。ゲームに興味のある人たちが集まって、交流がしやすくなるような様々な機能を用意しています',
-        imageArr: null,
-        movieArr: null,
-        bbsId: 'ffoa79pspg11zxvn',
-        commentReplyTotal: 15
-      },
-      {
-        contentsType: ['userCommunity', 'bbs', 'reply'],
-        datetime: '2017-03-17 15:33:35',
-        pageName: 'User2のコミュニティ012345678901234567890123456789012345678901234567890123456789',
-        communityThumbnail: 1,
-        communityNo: 1,
-        communityId: 'community',
-        title: '雑談スレッド01234567890123456789012345678901234567890123456789012345678901234567890123456789',
-        comment: 'コンテンツについて Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。',
-        imageArr: null,
-        movieArr: null,
-        bbsId: 'doo4rqjid8kbn713',
-        commentReplyTotal: 100
-      },
-      {
-        contentsType: ['userCommunity', 'bbs', 'comment'],
-        datetime: '2017-02-10 18:00:01',
-        pageName: 'User2のコミュニティ',
-        communityThumbnail: 1,
-        communityNo: 1,
-        communityId: 'community',
-        title: 'スレッド1',
-        comment: '画像テスト',
-        imageArr: [
-          {
-            width: 1000,
-            height: 563
-          }
-        ],
-        movieArr: null,
-        bbsId: 'm8lxk167l3r9zepc',
-        bbsThreadNo: 1,
-        bbsCommentNo: 4,
-        commentReplyTotal: 1
-      },
-      {
-        contentsType: ['gameCommunity', 'bbs', 'comment'],
-        datetime: '2017-01-03 11:11:50',
-        pageName: 'Grand Theft Auto V',
-        gameThumbnail: 1,
-        gameNo: 3,
-        gameId: 'gta5',
-        title: 'Grand Theft Auto Vについて語ろう！',
-        comment: '縦長画像',
-        imageArr: [
-          {
-            width: 284,
-            height: 600
-          }
-        ],
-        movieArr: null,
-        bbsId: '6albgf1af7caw0ct',
-        bbsThreadNo: 3,
-        bbsCommentNo: 7,
-        commentReplyTotal: 88
-      },
-      {
-        contentsType: ['gameCommunity', 'bbs', 'comment'],
-        datetime: '2017-01-02 11:11:50',
-        pageName: 'Grand Theft Auto V / グランセフトオート5',
-        gameThumbnail: 1,
-        gameNo: 3,
-        gameId: 'gta5',
-        title: 'Grand Theft Auto Vについて語ろう！',
-        comment: '小さい画像',
-        imageArr: [
-          {
-            width: 128,
-            height: 128
-          }
-        ],
-        movieArr: null,
-        bbsId: '6albgf1af7caw0ct',
-        bbsThreadNo: 3,
-        bbsCommentNo: 8,
-        commentReplyTotal: 888
-      },
-      {
-        contentsType: ['gameCommunity', 'bbs', 'comment'],
-        datetime: '2016-12-02 10:10:10',
-        pageName: 'Grand Theft Auto V 01234567890123456789012345678901234567890123456789',
-        gameThumbnail: 1,
-        gameNo: 3,
-        gameId: 'gta5',
-        title: 'Grand Theft Auto Vについて語ろう！012345678901234567890123456789',
-        comment: 'YouTube動画テスト 0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789',
-        imageArr: null,
-        movieArr: [
-          {
-            YouTube: 'M8-vje-bq9c'
-          }
-        ],
-        bbsId: 'tjlk62tztyzvmr9g',
-        bbsThreadNo: 3,
-        bbsCommentNo: 9,
-        commentReplyTotal: 8888
-      },
-    ];
+    // --------------------------------------------------
+    //   表示するデータ
+    // --------------------------------------------------
+
+    let list = [];
+
+    if (this.props.type === 'notification') {
+
+      if (this.props.notificationActiveType === 'unread') {
+        list = this.props.notificationUnreadList;
+      } else {
+        list = this.props.notificationAlreadyReadList;
+      }
+
+    }
 
 
-    const list = fromJSOrdered(arr);
+    // const arr = [
+    //   {
+    //     contentsType: ['gameCommunity', 'bbs', 'comment'],
+    //     datetime: '2017-08-29 15:41:40',
+    //     pageName: 'アサシンクリードユニティ',
+    //     gameThumbnail: 1,
+    //     gameNo: 1,
+    //     gameId: 'assassins-creed-unity',
+    //     title: 'Assassin\'s Creed Unityについて語ろう！',
+    //     comment: 'Game Usersとは？Game Users（ゲームユーザーズ）はゲームユーザーのためのSNS・コミュニティサイトです。ゲームに興味のある人たちが集まって、交流がしやすくなるような様々な機能を用意しています',
+    //     imageArr: null,
+    //     movieArr: null,
+    //     bbsId: 'ffoa79pspg11zxvn',
+    //     commentReplyTotal: 15
+    //   },
+    //   {
+    //     contentsType: ['userCommunity', 'bbs', 'reply'],
+    //     datetime: '2017-03-17 15:33:35',
+    //     pageName: 'User2のコミュニティ012345678901234567890123456789012345678901234567890123456789',
+    //     communityThumbnail: 1,
+    //     communityNo: 1,
+    //     communityId: 'community',
+    //     title: '雑談スレッド01234567890123456789012345678901234567890123456789012345678901234567890123456789',
+    //     comment: 'コンテンツについて Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。',
+    //     imageArr: null,
+    //     movieArr: null,
+    //     bbsId: 'doo4rqjid8kbn713',
+    //     commentReplyTotal: 100
+    //   },
+    //   {
+    //     contentsType: ['userCommunity', 'bbs', 'comment'],
+    //     datetime: '2017-02-10 18:00:01',
+    //     pageName: 'User2のコミュニティ',
+    //     communityThumbnail: 1,
+    //     communityNo: 1,
+    //     communityId: 'community',
+    //     title: 'スレッド1',
+    //     comment: '画像テスト',
+    //     imageArr: [
+    //       {
+    //         width: 1000,
+    //         height: 563
+    //       }
+    //     ],
+    //     movieArr: null,
+    //     bbsId: 'm8lxk167l3r9zepc',
+    //     bbsThreadNo: 1,
+    //     bbsCommentNo: 4,
+    //     commentReplyTotal: 1
+    //   },
+    //   {
+    //     contentsType: ['gameCommunity', 'bbs', 'comment'],
+    //     datetime: '2017-01-03 11:11:50',
+    //     pageName: 'Grand Theft Auto V',
+    //     gameThumbnail: 1,
+    //     gameNo: 3,
+    //     gameId: 'gta5',
+    //     title: 'Grand Theft Auto Vについて語ろう！',
+    //     comment: '縦長画像',
+    //     imageArr: [
+    //       {
+    //         width: 284,
+    //         height: 600
+    //       }
+    //     ],
+    //     movieArr: null,
+    //     bbsId: '6albgf1af7caw0ct',
+    //     bbsThreadNo: 3,
+    //     bbsCommentNo: 7,
+    //     commentReplyTotal: 88
+    //   },
+    //   {
+    //     contentsType: ['gameCommunity', 'bbs', 'comment'],
+    //     datetime: '2017-01-02 11:11:50',
+    //     pageName: 'Grand Theft Auto V / グランセフトオート5',
+    //     gameThumbnail: 1,
+    //     gameNo: 3,
+    //     gameId: 'gta5',
+    //     title: 'Grand Theft Auto Vについて語ろう！',
+    //     comment: '小さい画像',
+    //     imageArr: [
+    //       {
+    //         width: 128,
+    //         height: 128
+    //       }
+    //     ],
+    //     movieArr: null,
+    //     bbsId: '6albgf1af7caw0ct',
+    //     bbsThreadNo: 3,
+    //     bbsCommentNo: 8,
+    //     commentReplyTotal: 888
+    //   },
+    //   {
+    //     contentsType: ['gameCommunity', 'bbs', 'comment'],
+    //     datetime: '2016-12-02 10:10:10',
+    //     pageName: 'Grand Theft Auto V 01234567890123456789012345678901234567890123456789',
+    //     gameThumbnail: 1,
+    //     gameNo: 3,
+    //     gameId: 'gta5',
+    //     title: 'Grand Theft Auto Vについて語ろう！012345678901234567890123456789',
+    //     comment: 'YouTube動画テスト 0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789',
+    //     imageArr: null,
+    //     movieArr: [
+    //       {
+    //         YouTube: 'M8-vje-bq9c'
+    //       }
+    //     ],
+    //     bbsId: 'tjlk62tztyzvmr9g',
+    //     bbsThreadNo: 3,
+    //     bbsCommentNo: 9,
+    //     commentReplyTotal: 8888
+    //   },
+    // ];
+
+
+    // const list = fromJSOrdered(arr);
 
     // console.log('list = ', list.toJS());
     // console.log('list count = ', list.count());
@@ -217,15 +227,35 @@ export default class Card extends React.Component {
 
 
       // --------------------------------------------------
-      //   カードタイプ
+      //   カードのサイズ指定 ＆ カードのクラス
       // --------------------------------------------------
 
-      let cardType = 'normal';
+      let cardSize = 'normal';
       let classCard = 'card-box';
 
+      // 画像か動画がある場合は中サイズのカードにする
       if (value.get('imageArr') || value.get('movieArr')) {
-        cardType = 'medium';
+        cardSize = 'medium';
         classCard = 'card-medium-box';
+      }
+
+
+      // --------------------------------------------------
+      //   カードのクラス / 一番下のカードは margin-bottom を 0 にする
+      // --------------------------------------------------
+
+      if (list.count() === (key + 1)) {
+        classCard += ' margin-bottom-0';
+      }
+
+
+      // --------------------------------------------------
+      //   指定されたタイプによって変える値
+      // --------------------------------------------------
+
+      // 通知に表示するカードの場合、widthを100%にする
+      if (this.props.type === 'notification') {
+        classCard += ' width-100percent';
       }
 
 
@@ -296,7 +326,7 @@ export default class Card extends React.Component {
 
 
       // --------------------------------------------------
-      //   コメントトータル
+      //   コメント総数
       // --------------------------------------------------
 
       let codeTotal = null;
@@ -308,22 +338,6 @@ export default class Card extends React.Component {
           </span>
         );
       }
-
-      // let codeTitle = null;
-      //
-      // if (value.get('commentReplyTotal')) {
-      //   codeTitle = (
-      //     <h2 className="title">
-      //       {value.get('title')} <span className="glyphicon glyphicon-comment margin-left-5px" aria-hidden="true" /> {value.get('commentReplyTotal')}
-      //     </h2>
-      //   );
-      // } else {
-      //   codeTitle = (
-      //     <h2 className="title">
-      //       {value.get('title')}
-      //     </h2>
-      //   );
-      // }
 
 
       // --------------------------------------------------
@@ -377,7 +391,6 @@ export default class Card extends React.Component {
         }
 
 
-
         // --------------------------------------------------
         //   大きい画像は縦幅、横幅を制限する
         // --------------------------------------------------
@@ -400,7 +413,6 @@ export default class Card extends React.Component {
 
         }
 
-
         codeImageOrMovie = (
           <div className="top">
             <img src={imageUrl} style={{ maxWidth, maxHeight }} alt="" />
@@ -415,6 +427,7 @@ export default class Card extends React.Component {
       } else if (value.get('movieArr')) {
 
         const youtubeId = value.getIn(['movieArr', 0, 'YouTube']);
+        // console.log('youtubeId = ', youtubeId);
         // const maxWidth = 640;
         // const maxHeight = 480;
         const maxWidth = 320;
@@ -430,27 +443,11 @@ export default class Card extends React.Component {
       }
 
 
-
-      // --------------------------------------------------
-      //   カードのクラス
-      // --------------------------------------------------
-
-      // 一番下のカードはmargin-bottomを0にする
-      if (list.count() === (key + 1)) {
-        classCard += ' margin-bottom-0';
-      }
-
-      // 通知に表示するカードの場合、widthを100%にする
-      if (this.props.dataType === 'notification') {
-        classCard += ' width-100percent';
-      }
-
-
       // --------------------------------------------------
       //   コード / ノーマルサイズ
       // --------------------------------------------------
 
-      if (cardType === 'normal') {
+      if (cardSize === 'normal') {
 
 
         // --------------------------------------------------
@@ -523,7 +520,7 @@ export default class Card extends React.Component {
       //   コード / 中サイズ
       // --------------------------------------------------
 
-      } else if (cardType === 'medium') {
+      } else if (cardSize === 'medium') {
 
         codeArr.push(
           <section className={classCard} key={key}>
@@ -559,39 +556,39 @@ export default class Card extends React.Component {
     //   Pagination
     // --------------------------------------------------
 
-    let paginationItems = 0;
-
-    // let paginationTotal = 0;
-    let paginationActivePage = 1;
-
-    if (this.props.notificationActiveType === 'unread') {
-      // paginationTotal = this.props.notificationUnreadTotal;
-      paginationItems = Math.ceil(this.props.notificationUnreadTotal / this.props.notificationLimitNotification);
-      paginationActivePage = this.props.notificationUnreadActivePage;
-    } else {
-      // paginationTotal = this.props.notificationUnreadTotal;
-      paginationItems = Math.ceil(this.props.notificationAlreadyReadTotal / this.props.notificationLimitNotification);
-      paginationActivePage = this.props.notificationAlreadyReadActivePage;
-    }
-
-    // console.log('paginationItems = ', paginationItems);
-
-    codeArr.push(
-      <Pagination
-        key="pagination"
-        className="pagination-margin"
-        prev
-        next
-        first
-        last
-        ellipsis={false}
-        boundaryLinks
-        items={paginationItems}
-        maxButtons={this.props.paginationColumn}
-        activePage={paginationActivePage}
-        // onSelect={e => this.props.funcChangeShareButtonsList(this.props.stateObj, 'iconThemes', e)}
-      />
-    );
+    // let paginationItems = 0;
+    //
+    // // let paginationTotal = 0;
+    // let paginationActivePage = 1;
+    //
+    // if (this.props.notificationActiveType === 'unread') {
+    //   // paginationTotal = this.props.notificationUnreadTotal;
+    //   paginationItems = Math.ceil(this.props.notificationUnreadTotal / this.props.notificationLimitNotification);
+    //   paginationActivePage = this.props.notificationUnreadActivePage;
+    // } else {
+    //   // paginationTotal = this.props.notificationUnreadTotal;
+    //   paginationItems = Math.ceil(this.props.notificationAlreadyReadTotal / this.props.notificationLimitNotification);
+    //   paginationActivePage = this.props.notificationAlreadyReadActivePage;
+    // }
+    //
+    // // console.log('paginationItems = ', paginationItems);
+    //
+    // codeArr.push(
+    //   <Pagination
+    //     key="pagination"
+    //     className="pagination-margin"
+    //     prev
+    //     next
+    //     first
+    //     last
+    //     ellipsis={false}
+    //     boundaryLinks
+    //     items={paginationItems}
+    //     maxButtons={this.props.paginationColumn}
+    //     activePage={paginationActivePage}
+    //     // onSelect={e => this.props.funcChangeShareButtonsList(this.props.stateObj, 'iconThemes', e)}
+    //   />
+    // );
 
 
     return codeArr;
@@ -603,7 +600,7 @@ export default class Card extends React.Component {
   render() {
     return (
       <div>
-        {this.codeBox()}
+        {this.codeCards()}
       </div>
     );
   }
@@ -626,7 +623,7 @@ Card.propTypes = {
   //   モーダル
   // --------------------------------------------------
 
-  dataType: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
 
 
   // --------------------------------------------------
@@ -647,7 +644,7 @@ Card.propTypes = {
   //   関数
   // --------------------------------------------------
 
-  funcJavascriptLink: PropTypes.func.isRequired,
+  // funcJavascriptLink: PropTypes.func.isRequired,
   // funcModalNotificationShow: PropTypes.func.isRequired,
 
 };

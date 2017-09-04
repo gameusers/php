@@ -132,15 +132,15 @@ const mapDispatchToProps = (dispatch) => {
   // });
 
 
-  bindActionObj.funcJavascriptLink = () => {
-
-    // e.preventDefault();
-    console.log('funcJavascriptLink');
-    // console.log('e = ', e);
-
-    // window.open(url, '_self');
-
-  };
+  // bindActionObj.funcJavascriptLink = () => {
+  //
+  //   // e.preventDefault();
+  //   console.log('funcJavascriptLink');
+  //   // console.log('e = ', e);
+  //
+  //   // window.open(url, '_self');
+  //
+  // };
 
 
   bindActionObj.funcLightbox = (url) => {
@@ -192,6 +192,7 @@ const mapDispatchToProps = (dispatch) => {
   });
 
 
+
   /**
    * 通知の未読数を取得
    * @param  {Model}  stateModel State
@@ -239,6 +240,147 @@ const mapDispatchToProps = (dispatch) => {
     }
 
   };
+
+
+
+  /**
+   * モーダルを開く / 同時に通知データを読み込む
+   * @param  {Model}  stateModel State
+   * @param  {boolean}  show     モーダルを開く場合は true、閉じる場合は false
+   */
+  bindActionObj.funcModalNotificationShow = async (stateModel, show) => {
+
+
+    // --------------------------------------------------
+    //   Get Data
+    // --------------------------------------------------
+
+    const urlBase = stateModel.get('urlBase');
+    const activeType = stateModel.getIn(['notificationObj', 'activeType']);
+
+    let activePage = 1;
+
+    if (activeType === 'unread') {
+      activePage = stateModel.getIn(['notificationObj', 'unreadActivePage']);
+    } else {
+      activePage = stateModel.getIn(['notificationObj', 'alreadyReadActivePage']);
+    }
+
+
+    // --------------------------------------------------
+    //   FormData
+    // --------------------------------------------------
+
+    const formData = new FormData();
+
+    formData.append('apiType', 'selectNotification');
+    formData.append('readType', activeType);
+    formData.append('page', activePage);
+
+
+    // --------------------------------------------------
+    //   Await & Dispatch
+    // --------------------------------------------------
+
+    try {
+
+      const returnObj = await funcPromise(urlBase, formData);
+
+      // console.log('returnObj = ', returnObj);
+
+
+      if (returnObj.error) {
+        throw new Error();
+      }
+
+
+      let unreadTotal = null;
+      let unreadArr = null;
+      let alreadyReadTotal = null;
+      let alreadyReadArr = null;
+
+      if (activeType === 'unread') {
+        unreadTotal = returnObj.total;
+        unreadArr = returnObj.dataArr;
+      } else {
+        alreadyReadTotal = returnObj.total;
+        alreadyReadArr = returnObj.dataArr;
+      }
+
+      // console.log('show = ', show);
+
+
+      dispatch(actions.funcModalNotificationShow(show, unreadTotal, unreadArr, alreadyReadTotal, alreadyReadArr, activePage));
+
+    } catch (e) {
+      // continue regardless of error
+    }
+
+  };
+
+
+
+  bindActionObj.funcSelectNotification = async (stateModel, activePage) => {
+
+    // console.log('funcSelectNotification');
+    // console.log('stateModel = ', stateModel);
+
+
+    // --------------------------------------------------
+    //   Get Data
+    // --------------------------------------------------
+
+    const urlBase = stateModel.get('urlBase');
+    const activeType = stateModel.getIn(['notificationObj', 'activeType']);
+
+
+    // --------------------------------------------------
+    //   FormData
+    // --------------------------------------------------
+
+    const formData = new FormData();
+
+    formData.append('apiType', 'selectNotification');
+    formData.append('readType', activeType);
+    formData.append('page', activePage);
+
+
+    // --------------------------------------------------
+    //   Await & Dispatch
+    // --------------------------------------------------
+
+    try {
+
+      const returnObj = await funcPromise(urlBase, formData);
+
+      // console.log('returnObj = ', returnObj);
+
+      if (returnObj.error) {
+        throw new Error();
+      }
+
+
+      let unreadTotal = null;
+      let unreadArr = null;
+      let alreadyReadTotal = null;
+      let alreadyReadArr = null;
+
+      if (activeType === 'unread') {
+        unreadTotal = returnObj.total;
+        unreadArr = returnObj.dataArr;
+      } else {
+        alreadyReadTotal = returnObj.total;
+        alreadyReadArr = returnObj.dataArr;
+      }
+
+      dispatch(actions.funcModalNotificationShow(true, unreadTotal, unreadArr, alreadyReadTotal, alreadyReadArr, activePage));
+
+    } catch (e) {
+      // continue regardless of error
+    }
+
+  };
+
 
 
   /**

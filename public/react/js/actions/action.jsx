@@ -37,7 +37,12 @@ export const funcFooterCardType = (cardType, gameCommunityRenewalArr, gameCommun
 //   モーダル
 // --------------------------------------------------
 
-export const funcModalNotificationShow = value => ({
+export const funcModalNotificationShow = (show, unreadTotal, unreadArr, alreadyReadTotal, alreadyReadArr, activePage) => ({
   type: 'MODAL_NOTIFICATION_SHOW',
-  value
+  show,
+  unreadTotal,
+  unreadArr,
+  alreadyReadTotal,
+  alreadyReadArr,
+  activePage
 });

@@ -7,10 +7,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 // import { Button, FormGroup, Radio } from 'react-bootstrap';
 import { List } from 'immutable';
-// import 'jquery';
-// import { Model } from '../models/model';
+import { Model } from '../models/model';
 import { getDeviceType, formatDateTime } from '../modules/common';
-// import '../../lib/auto-hiding-navigation/auto-hiding-navigation';
 
 import '../../lib/auto-hiding-navigation/auto-hiding-navigation.css';
 import '../../css/style.css';
@@ -259,7 +257,7 @@ export default class Header extends React.Component {
 
     let code = null;
 
-    const imageType = getDeviceType() === 'smartphone' ? '_s' : '';
+    const imageType = this.props.deviceType === 'smartphone' ? '_s' : '';
     const heroImageTitleLink = this.props.headerCommunityId ? `${this.props.urlBase}uc/${this.props.headerCommunityId}` : `${this.props.urlBase}gc/${this.props.headerGameId}`;
 
     if (this.props.headerHeroImageId) {
@@ -394,7 +392,7 @@ export default class Header extends React.Component {
             {this.props.userNo &&
               <div
                 className="bell-box"
-                onClick={() => this.props.funcModalNotificationShow(true)}
+                onClick={() => this.props.funcModalNotificationShow(this.props.stateModel, true)}
                 role="menuitem"
                 tabIndex="0"
               >
@@ -436,12 +434,13 @@ Header.propTypes = {
   //   共通
   // --------------------------------------------------
 
-  // stateModel: PropTypes.instanceOf(Model).isRequired,
+  stateModel: PropTypes.instanceOf(Model).isRequired,
 
   urlDirectory1: PropTypes.string,
   urlDirectory2: PropTypes.string,
   // urlDirectory3: PropTypes.string,
 
+  deviceType: PropTypes.string.isRequired,
   urlBase: PropTypes.string.isRequired,
   userNo: PropTypes.number,
   playerId: PropTypes.string,

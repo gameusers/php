@@ -6,7 +6,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { BrowserRouter, Route } from 'react-router-dom';
 import ReactGA from 'react-ga';
-import { ContextMenu, MenuItem, ContextMenuTrigger } from 'react-contextmenu';
 import Header from './header';
 import Footer from './footer';
 import { Model } from '../models/model';
@@ -20,32 +19,6 @@ const About = () => (
 Game Users（ゲームユーザーズ）はゲームユーザーのためのSNS・コミュニティサイトです。ゲームに興味のある人たちが集まって、交流がしやすくなるような様々な機能を用意しています。<br /><br />
 コンテンツについて<br />
 Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。<br /><br /></p>
-
-
-    <div
-      className="page-name"
-      // onClick={e => this.props.funcJavascriptLink(e, pageUrl)}
-      role="link"
-      tabIndex="0"
-    >
-      <ContextMenuTrigger id={'some-unique-identifier'}>
-        AAA
-      </ContextMenuTrigger>
-    </div>
-
-
-    <ContextMenu id={'some-unique-identifier'}>
-      <MenuItem>
-        ContextMenu Item 1
-      </MenuItem>
-      <MenuItem>
-        ContextMenu Item 2
-      </MenuItem>
-      <MenuItem divider />
-      <MenuItem>
-        ContextMenu Item 3
-      </MenuItem>
-    </ContextMenu>
   </div>
 );
 

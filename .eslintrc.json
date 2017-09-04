@@ -23,6 +23,7 @@
     "no-undef": 0,// 未定義の変数、関数を使用している 無効
     "padded-blocks": 0,// {}のあとに空白のラインがあってはならない 無効
     "react/no-danger": 0,// dangerouslySetInnerHTMLを使ってはいけない 無効
-    "class-methods-use-this": 0// クラスメソッドはthisを使わなければならない 無効
+    "class-methods-use-this": 0,// クラスメソッドはthisを使わなければならない 無効
+    "react/prefer-stateless-function": 0// stateless functionが望ましい 無効
   }
 }

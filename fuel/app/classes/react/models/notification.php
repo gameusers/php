@@ -25,6 +25,13 @@ class Notification extends \Model_Crud
         $modulesValidationsUser->login();
 
 
+        // --------------------------------------------------
+        //   返り値の配列
+        // --------------------------------------------------
+
+        $resultArr = [];
+
+
 		// --------------------------------------------------
 		//   検索用データ取得
 		//   参加しているコミュニティ情報と既読の通知IDを取得
@@ -220,6 +227,13 @@ class Notification extends \Model_Crud
 
 
         // --------------------------------------------------
+        //   返り値の配列
+        // --------------------------------------------------
+
+        $resultArr = [];
+
+
+        // --------------------------------------------------
 		//   検索に使用する値を代入する
 		// --------------------------------------------------
 
@@ -228,6 +242,9 @@ class Notification extends \Model_Crud
         $page = $arr['page'] ?? 1;
         $offset = $limit * ($page - 1);
         $readType = $arr['readType'] ?? 'unread';
+
+        // echo '$readType';
+        // \Debug::dump($readType);
 
 
         // --------------------------------------------------
@@ -267,6 +284,17 @@ class Notification extends \Model_Crud
                 array_push($alreadyReadIdArr, $value['id']);
             }
 
+        }
+
+
+        // --------------------------------------------------
+        //   既読IDがない場合は処理停止
+        // --------------------------------------------------
+
+        if ($readType === 'alreadyRead' && count($alreadyReadIdArr) === 0) {
+            $resultArr['dataArr'] = [];
+            $resultArr['total'] = 0;
+            return $resultArr;
         }
 
 
@@ -331,7 +359,6 @@ class Notification extends \Model_Crud
         // --------------------------------------------------
 
         $query = \DB::select(
-            // 'notifications.*',
             ['notifications.id', 'notificationId'],
             ['notifications.regi_date', 'regiDate'],
             ['notifications.community_no', 'communityNo'],
@@ -396,8 +423,10 @@ class Notification extends \Model_Crud
         // 既読・未読の切り替え
         if (count($alreadyReadIdArr) > 0) {
             if ($readType === 'unread') {// 未読の通知を読み込む
+                // echo '未読の通知';
                 $query->and_where('notifications.id', 'not in', $alreadyReadIdArr);
             } else {// 既読の通知を読み込む
+                // echo '既読の通知';
                 $query->and_where('notifications.id', 'in', $alreadyReadIdArr);
             }
         }
@@ -410,16 +439,20 @@ class Notification extends \Model_Crud
         $resultArr['total'] = \DB::count_last_query();
 
 
+        // echo '$alreadyReadIdArr';
+        // \Debug::dump($alreadyReadIdArr);
+        //
+        // echo '$dataArr';
+        // \Debug::dump($dataArr);
 
-        \Debug::dump($dataArr);
 
-        $time_start = microtime(true);
+        // $time_start = microtime(true);
 
 
         // --------------------------------------------------
         //   画像と動画のデータを取得
         //   設計が悪いため、繰り返しデータベースにアクセスすることになっている
-        //   ひどい…
+        //   ひどすぎる作り…
         // --------------------------------------------------
 
         $notificationArr = [];
@@ -684,13 +717,7 @@ class Notification extends \Model_Crud
 
 
                 } else {
-
                     continue;
-                    // $dbArr = [
-                    //     'image' => null,
-                    //     'movie' => null
-                    // ];
-
                 }
 
 
@@ -700,18 +727,20 @@ class Notification extends \Model_Crud
                     $imageArr = unserialize($dbArr['image']);
                     // \Debug::dump($imageArr);
 
-                    $tempArr['imageArr'] = [
+                    $tempArr['imageArr'][0] = [
                         'width' => $imageArr['image_1']['width'],
                         'height' => $imageArr['image_1']['height']
                     ];
 
                 } else if (isset($dbArr['movie'])) {
-                    $movieArr = unserialize($dbArr['movie']);
-                    \Debug::dump($movieArr);
 
-                    $tempArr['movieArr'] = [
+                    $movieArr = unserialize($dbArr['movie']);
+                    // \Debug::dump($movieArr);
+
+                    $tempArr['movieArr'][0] = [
                         'YouTube' => $movieArr[0]['youtube']
                     ];
+
                 }
 
 
@@ -719,10 +748,10 @@ class Notification extends \Model_Crud
                 // echo '$argumentArr';
                 // \Debug::dump($argumentArr);
 
-                if (isset($dbArr)) {
-                    echo '$dbArr';
-                    \Debug::dump($dbArr);
-                }
+                // if (isset($dbArr)) {
+                //     echo '$dbArr';
+                //     \Debug::dump($dbArr);
+                // }
 
 
                 array_push($notificationArr, $tempArr);
@@ -732,49 +761,25 @@ class Notification extends \Model_Crud
         }
 
 
-        $time = microtime(true) - $time_start;
-        echo "{$time} 秒<br><br>";
+        // $time = microtime(true) - $time_start;
+        // echo "{$time} 秒<br><br>";
+		//
+		//
+		//
+        // echo '$notificationArr';
+        // \Debug::dump($notificationArr);
 
 
 
-        echo '$notificationArr';
-        \Debug::dump($notificationArr);
+		$resultArr['dataArr'] = $notificationArr;
 
-
-
-
-
-
-        // echo '$limit';
-        // \Debug::dump($limit);
+        // echo '$resultArr';
+        // \Debug::dump($resultArr);
         //
-        // echo '$page';
-        // \Debug::dump($page);
-        //
-        // echo '$offset';
-        // \Debug::dump($offset);
-        //
-        // echo '$preservationTerm';
-        // \Debug::dump($preservationTerm);
-
-        echo '$resultArr';
-        \Debug::dump($resultArr);
-
-        exit();
+        // exit();
 
 
-        return $result_arr;
-
-
-        // --------------------------------------------------
-        //   型変換
-        // --------------------------------------------------
-
-        if (isset($returnArr['unreadCount'])) $returnArr['unreadCount'] = (int) $returnArr['unreadCount'];
-
-
-
-        return $returnArr;
+        return $resultArr;
 
     }
 

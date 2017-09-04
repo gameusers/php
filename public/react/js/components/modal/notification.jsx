@@ -6,7 +6,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ButtonGroup, Button, FormGroup, FormControl, Modal } from 'react-bootstrap';
 // import { List, OrderedMap } from 'immutable';
-import Masonry from 'react-masonry-component';
+import Pagination from '../pagination';
 import { Model } from '../../models/model';
 import Card from '../card';
 
@@ -44,7 +44,8 @@ export default class ModalNotification extends React.Component {
 
   render() {
     return (
-      <Modal show={this.props.modalNotificationShow} onHide={() => this.props.funcModalNotificationShow(false)} bsSize="lg">
+      <Modal show={this.props.modalNotificationShow} onHide={() => this.props.funcModalNotificationShow(this.props.stateModel, false)} bsSize="lg">
+
 
         <Modal.Header closeButton className="modal-notification-buttons">
           <div className="modal-notification-box">
@@ -74,17 +75,12 @@ export default class ModalNotification extends React.Component {
           </div>
         </Modal.Header>
 
+
         <Modal.Body className="modal-body">
-
-          <Card {...this.props} dataType="notification" />
-          {/* {this.codeBox()} */}
-
-          {/* <h4>Overflowing text to show scroll behavior</h4>
-          <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-          <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-          <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-          <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p> */}
+          <Card {...this.props} type="notification" />
+          <Pagination {...this.props} type="notification" />
         </Modal.Body>
+
 
         <Modal.Footer bsClass="modal-notification-footer">
           <Button
@@ -97,8 +93,9 @@ export default class ModalNotification extends React.Component {
           >
             <span className="ladda-label">すべて既読にする</span>
           </Button>
-          <Button className="close-button" onClick={() => this.props.funcModalNotificationShow(false)}>閉じる</Button>
+          <Button className="close-button" onClick={() => this.props.funcModalNotificationShow(this.props.stateModel, false)}>閉じる</Button>
         </Modal.Footer>
+
 
       </Modal>
     );
