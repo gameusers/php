@@ -145,7 +145,7 @@ export default class Footer extends React.Component {
           <FormControl
             componentClass="select"
             value={this.props.footerCardType}
-            onChange={e => this.props.funcFooterCardType(
+            onChange={e => this.props.funcSelectFooterCardType(
               this.props.stateModel,
               e.target.value
             )}
@@ -220,9 +220,7 @@ Footer.propTypes = {
 
   funcUrlDirectory: PropTypes.func.isRequired,
 
-  funcFooterCardType: PropTypes.func.isRequired,
-
-  funcModalNotificationShow: PropTypes.func.isRequired,
+  funcSelectFooterCardType: PropTypes.func.isRequired,
 
 };
 

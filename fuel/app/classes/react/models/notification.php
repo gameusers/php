@@ -238,7 +238,7 @@ class Notification extends \Model_Crud
 		// --------------------------------------------------
 
         $language = $arr['language'] ?? 'ja';
-        $limit = LIMIT_NOTIFICATION[DEVICE_TYPE];
+        $limit = LIMIT_NOTIFICATION_ARR[DEVICE_TYPE];
         $page = $arr['page'] ?? 1;
         $offset = $limit * ($page - 1);
         $readType = $arr['readType'] ?? 'unread';
@@ -780,6 +780,310 @@ class Notification extends \Model_Crud
 
 
         return $resultArr;
+
+    }
+
+
+
+
+    /**
+     * すべて既読にする / 要ログイン
+     * @param  array $arr [description]
+     * @return array      [description]
+     */
+    public function updateAllUnreadToAlreadyRead(array $arr): array
+    {
+
+        // --------------------------------------------------
+        //   ログインチェック
+        // --------------------------------------------------
+
+        $modulesValidationsUser = new \React\Modules\Validations\User();
+        $modulesValidationsUser->login();
+
+
+        // --------------------------------------------------
+        //   返り値の配列
+        // --------------------------------------------------
+
+        $resultArr = [];
+
+
+        // --------------------------------------------------
+        //   検索用データ取得
+        //   参加しているコミュニティ情報と既読の通知IDを取得
+        // --------------------------------------------------
+
+        $query = \DB::select(
+            ['participation_community', 'participationCommunity'],
+            ['participation_community_secret', 'participationCommunitySecret'],
+            ['notifications_already_read_id', 'notificationsAlreadyReadId']
+        )->from('users_data');
+
+        $query->where('user_no', '=', USER_NO);
+        $query->where('on_off', '=', 1);
+        $dbUsersDataArr = $query->execute()->current();
+
+
+        // --------------------------------------------------
+        //   通知の既読IDを処理する
+        //   既読IDの情報はシリアライズされて以下の形式で保存されています
+        //   ['id' => "8craskew3nfg1gh", 'regi_date' => "2017-08-26 17:48:39"]
+        //   これを以下のようなIDだけが入っている配列にします
+        //   ['0zj0pnd2vlw2eex', '2rwgyd1sbzyu5ub']
+        // --------------------------------------------------
+
+        $alreadyReadIdArr = [];
+
+        if ($dbUsersDataArr['notificationsAlreadyReadId']) {
+
+            // アンシリアライズ
+            $oldAlreadyReadIdArr = unserialize($dbUsersDataArr['notificationsAlreadyReadId']);
+            // \Debug::dump($oldAlreadyReadIdArr);
+
+            // 日付を削除した配列を作る
+            foreach ($oldAlreadyReadIdArr as $key => $value) {
+                array_push($alreadyReadIdArr, $value['id']);
+            }
+
+        }
+
+
+        // --------------------------------------------------
+        //   検索用データ取得
+        //   参加しているユーザーコミュニティの No を普通の配列に変換する
+        //   参加しているユーザーコミュニティは、公開と非公開の2種類があります
+        //   （非公開は他のユーザーに秘密で参加しているユーザーコミュニティです）
+        //   例）(string) /1,2,3,4,5/ → (array) [1,2,3,4,5]
+        // --------------------------------------------------
+
+        $modulesFormat = new \React\Modules\Format();
+
+        $participationCommunityNoArr = [];
+        $participationCommunitySecretNoArr = [];
+
+        // 公開
+        if ($dbUsersDataArr['participationCommunity']) {
+            $participationCommunityNoArr = $modulesFormat->convertDatabaseData('dbformat into array', $dbUsersDataArr['participationCommunity']);
+        }
+
+        // 非公開
+        if ($dbUsersDataArr['participationCommunitySecret']) {
+            $participationCommunitySecretNoArr = $modulesFormat->convertDatabaseData('dbformat into array', $dbUsersDataArr['participationCommunitySecret']);
+        }
+
+        // 公開と非公開を合成
+        $mergedParticipationCommunityNoArr = array_merge($participationCommunityNoArr, $participationCommunitySecretNoArr);
+
+
+
+        // --------------------------------------------------
+        //   検索用データ取得
+        //   新規募集があったときに通知を受ける設定にしているゲームNoを取得
+        //   例）(string) /1,2,3,4,5/ → (array) [1,2,3,4,5]
+        // --------------------------------------------------
+
+        $query = \DB::select(
+            ['notification_recruitment', 'notificationRecruitment']
+        )->from('users_game_community');
+        $query->where('user_no', '=', USER_NO);
+        $dbUsersGameCommunityArr = $query->execute()->current();
+
+
+        $notificationRecruitmentNoArr = [];
+
+        if ($dbUsersGameCommunityArr['notificationRecruitment']) {
+            $notificationRecruitmentNoArr = $modulesFormat->convertDatabaseData('dbformat into array', $dbUsersGameCommunityArr['notificationRecruitment']);
+        }
+
+
+
+        // --------------------------------------------------
+        //   検索用データ取得
+        //   ○○前の日時を取得 / 通知の保存期間
+        // --------------------------------------------------
+
+        $modulesDatetime = new \React\Modules\Datetime();
+        $preservationTerm = $modulesDatetime->databaseFormat(LIMIT_NOTIFICATION_PRESERVATION_TERM);
+
+
+
+        // --------------------------------------------------
+        //   未読数取得
+        // --------------------------------------------------
+
+        $query = \DB::select(
+            'notifications.id',
+            'notifications.regi_date'
+        )->from('notifications');
+        $query->join('users_data', 'LEFT');
+        $query->on('notifications.user_no', '=', 'users_data.user_no');
+        $query->join('community', 'LEFT');
+        $query->on('notifications.community_no', '=', 'community.community_no');
+        $query->join('game_data', 'LEFT');
+        $query->on('notifications.game_no', '=', 'game_data.game_no');
+
+
+        // 一定期間以上過ぎた古い通知は読み込まない
+        $query->where('notifications.regi_date', '>', $preservationTerm);
+
+
+        // User No　自分のNo以外（他人のアクションを通知）　または　null（ログインしていないユーザーのアクションを通知）
+        $query->and_where_open();
+        $query->and_where('notifications.user_no', '!=', USER_NO);
+        $query->or_where('notifications.user_no', '=', null);
+        $query->and_where_close();
+
+
+        // 参加してるコミュニティの通知
+        $query->and_where_open();
+
+        $query->and_where('notifications.target_user_no', '=', USER_NO);
+        if (count($mergedParticipationCommunityNoArr) > 0) {
+            $query->or_where('notifications.community_no', 'in', $mergedParticipationCommunityNoArr);
+        }
+
+        // 通知を受けとる設定にしてるゲームコミュニティの通知
+        if (count($notificationRecruitmentNoArr) > 0) {
+            $query->or_where_open();
+            $query->and_where('notifications.type1', '=', 'gc');
+            $query->and_where('notifications.type2', '=', 'recruitment');
+            $query->and_where('notifications.game_no', 'in', $notificationRecruitmentNoArr);
+            $query->or_where_close();
+        }
+
+        $query->and_where_close();
+
+
+        // 既読の通知は除く
+        if (count($alreadyReadIdArr) > 0) {
+            $query->and_where('notifications.id', 'not in', $alreadyReadIdArr);
+        }
+
+
+        $unreadIdArr = $query->execute()->as_array();
+
+
+
+        // --------------------------------------------------
+		//   未読の通知がない場合は処理停止
+		// --------------------------------------------------
+
+        if (count($unreadIdArr) === 0) {
+            return [];
+        }
+
+
+
+        // --------------------------------------------------
+		//   既読の通知ID取得
+		// --------------------------------------------------
+
+        $query = \DB::select(
+            ['notifications_already_read_id', 'notificationsAlreadyReadId']
+        )->from('users_data');
+
+		$query->where('user_no', '=', USER_NO);
+		$query->where('on_off', '=', 1);
+		$dbUsersDataArr = $query->execute()->current();
+
+        $alreadyReadIdArr = [];
+
+        if ($dbUsersDataArr['notificationsAlreadyReadId']) {
+            $alreadyReadIdArr = unserialize($dbUsersDataArr['notificationsAlreadyReadId']);
+        }
+
+
+        // --------------------------------------------------
+		//   未読と既読の配列を合成
+		// --------------------------------------------------
+
+        $mergedArr = array_merge($unreadIdArr, $alreadyReadIdArr);
+
+        // array_push($mergedArr, [
+        //     'id' => '7pby9s1lner2km2',
+        //     'regi_date' => '2017-03-17 15:42:24'
+        // ]);
+
+
+        // --------------------------------------------------
+		//   古いIDを削除するためにDateTimeオブジェクトを作成
+		// --------------------------------------------------
+
+        $limitDatetime = new \DateTime();
+        $limitDatetime->modify(LIMIT_NOTIFICATION_PRESERVATION_TERM);
+        // $limitDatetime->modify('-5 day');
+
+
+        // --------------------------------------------------
+		//   通知IDが重複している場合、通知の日付が古い場合、削除
+		// --------------------------------------------------
+
+        $tempArr = $resultArr = [];
+
+        foreach ($mergedArr as $key => $value) {
+
+            $regiDatetime = new \DateTime($value['regi_date']);
+
+            if ( ! in_array($value['id'], $tempArr) && ($limitDatetime < $regiDatetime)) {
+                $tempArr[] = $value['id'];
+                $resultArr[] = $value;
+            }
+
+            // echo $limitDatetime->format('Y-m-d H:i:s') . ' < ' . $regiDatetime->format('Y-m-d H:i:s') . '<br><br>';
+
+
+            // echo '$limitDatetime';
+            // \Debug::dump($limitDatetime);
+            //
+            // echo '$regiDatetime';
+            // \Debug::dump($regiDatetime);
+            //
+            // echo '$limitDatetime < $regiDatetime';
+            // \Debug::dump($limitDatetime < $regiDatetime);
+
+        }
+
+
+        // --------------------------------------------------
+        //   保存用配列作成
+        // --------------------------------------------------
+
+        $saveArr['notifications_already_read_id'] = serialize($resultArr);
+
+
+        // --------------------------------------------------
+        //   既読IDを保存する
+        // --------------------------------------------------
+
+        $query = \DB::update('users_data');
+        $query->set($saveArr);
+        $query->where('user_no', '=', USER_NO);
+        $query->execute();
+
+
+
+        // echo '$unreadIdArr';
+        // \Debug::dump($unreadIdArr);
+        //
+        // echo '$alreadyReadIdArr';
+        // \Debug::dump($alreadyReadIdArr);
+
+        // echo '$mergedArr';
+        // \Debug::dump($mergedArr);
+        //
+        // echo '$limitDatetime';
+        // \Debug::dump($limitDatetime);
+        //
+        // echo '$saveArr';
+        // \Debug::dump($saveArr);
+        //
+        //
+        // exit();
+
+
+
+        return [];
 
     }
 

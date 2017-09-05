@@ -762,9 +762,9 @@ class Model_Notifications extends Model_Crud
 		//   存在するIDのみを取得
 		// --------------------------------------------------
 
-		$query = DB::select('id', 'regi_date')->from('notifications');
-		$query->and_where('id', 'in', $id_arr);
-		$checked_id_arr = $query->execute()->as_array();
+		// $query = DB::select('id', 'regi_date')->from('notifications');
+		// $query->and_where('id', 'in', $id_arr);
+		// $checked_id_arr = $query->execute()->as_array();
 
 
 

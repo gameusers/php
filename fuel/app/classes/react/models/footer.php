@@ -29,7 +29,7 @@ class Footer extends \Model_Crud
 		// --------------------------------------------------
 
         $language = $arr['language'] ?? 'ja';
-        $limit = LIMIT_FOOTER_THUMBNAIL_CARDS[DEVICE_TYPE];
+        $limit = LIMIT_FOOTER_THUMBNAIL_CARDS_ARR[DEVICE_TYPE];
 
         $cardType = $arr['cardType'] ?? \Cookie::get('footerCardType', 'gameCommunityRenewal');
         // $returnArr['cardTypeAAA'] = $cardType;

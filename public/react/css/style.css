@@ -77,6 +77,10 @@ p {
    通知
 -------------------------------------------------- */
 
+/*.all-unread-to-already-read-button {
+  outline: 0;
+}*/
+
 /*.notification-box {
   display: flex;
   flex-flow: row nowrap;
@@ -958,3 +962,46 @@ footer .btn-group .btn-group .active {
 .margin-left-5px {
   margin-left: 5px;
 }
+
+.outline-0 {
+  /*border: 0;*/
+  outline: none;
+}
+
+
+
+
+.outline-none {
+  border-style: none;
+  outline: none;
+}
+
+.outline-none:hover {
+  border-style: none;
+  outline: none;
+}
+
+.outline-none:active {
+  border-style: none;
+  outline: none;
+}
+
+.outline-none:link {
+  border-style: none;
+  outline: none;
+}
+
+.outline-none:visited {
+  border-style: none;
+  outline: none;
+}
+
+.outline-none:focus {
+  border-style: none;
+  outline: none;
+}
+
+/**:focus {
+  border-style: none;
+  outline: none;
+}*/

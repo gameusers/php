@@ -40,10 +40,14 @@ class Controller_Api extends Controller_Rest
 
             $_POST['csrfToken'] = '92fab32bb41475af1a8896e24829479953c81ce4cdda318e099a39f10db3c6e51ee589c8138c65a1adbdd17cf306cb557b3e26fb28d3ace5fdd1ceee73764291';
 
-			$_POST['apiType'] = 'selectNotification';
-            $_POST['readType'] = 'unread';
-            // $_POST['readType'] = 'alreadyRead';
-            $_POST['page'] = 2;
+			// $_POST['apiType'] = 'selectNotification';
+            // $_POST['readType'] = 'unread';
+            // // $_POST['readType'] = 'alreadyRead';
+            // $_POST['page'] = 2;
+
+
+            $_POST['apiType'] = 'updateAllUnreadToAlreadyRead';
+
 		}
 
 
@@ -80,6 +84,16 @@ class Controller_Api extends Controller_Rest
             if (Input::post('apiType') === 'selectNotification') {
                 $instance = new \React\Models\Notification();
                 $arr = $instance->selectNotification(Input::post());
+            }
+
+
+            // --------------------------------------------------
+            //   通知 / すべて既読にする
+            // --------------------------------------------------
+
+            if (Input::post('apiType') === 'updateAllUnreadToAlreadyRead') {
+                $instance = new \React\Models\Notification();
+                $arr = $instance->updateAllUnreadToAlreadyRead(Input::post());
             }
 
 

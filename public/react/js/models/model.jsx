@@ -164,7 +164,7 @@ export class Model extends ModelRecord {
 
 
   /**
-   * [setSelectNotification description]
+   * 通知を切り替える
    * @param {number} unreadTotal      [description]
    * @param {array} unreadArr        [description]
    * @param {number} alreadyReadTotal [description]
@@ -190,13 +190,15 @@ export class Model extends ModelRecord {
     //   Notification
     // --------------------------------------------------
 
-    if (unreadTotal && unreadArr) {
+    if (unreadArr) {
+      map = map.setIn(['notificationObj', 'activeType'], 'unread');
       map = map.setIn(['notificationObj', 'unreadTotal'], unreadTotal);
       map = map.setIn(['notificationObj', 'unreadList'], fromJSOrdered(unreadArr));
       map = map.setIn(['notificationObj', 'unreadActivePage'], activePage);
     }
 
-    if (alreadyReadTotal && alreadyReadArr) {
+    if (alreadyReadArr) {
+      map = map.setIn(['notificationObj', 'activeType'], 'alreadyRead');
       map = map.setIn(['notificationObj', 'alreadyReadTotal'], alreadyReadTotal);
       map = map.setIn(['notificationObj', 'alreadyReadList'], fromJSOrdered(alreadyReadArr));
       map = map.setIn(['notificationObj', 'alreadyReadActivePage'], activePage);

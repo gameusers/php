@@ -2,7 +2,7 @@
 //   Import
 // --------------------------------------------------
 
-import { List } from 'immutable';
+// import { List } from 'immutable';
 import { Model, fromJSOrdered } from '../models/model';
 
 
@@ -72,7 +72,7 @@ const reducer = (state = new Model(), action) => {
     //   モーダル
     // --------------------------------------------------
 
-    case 'MODAL_NOTIFICATION_SHOW': {
+    case 'MODAL_NOTIFICATION': {
       // console.log('action.show = ', action.show);
       return state
         .setIn(['modalObj', 'notification', 'show'], action.show)

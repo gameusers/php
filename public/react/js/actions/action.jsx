@@ -11,10 +11,25 @@ export const funcUrlDirectory = (urlDirectory1, urlDirectory2, urlDirectory3) =>
 
 
 // --------------------------------------------------
+//   モーダル
+// --------------------------------------------------
+
+export const funcSelectModalNotification = (show, unreadTotal, unreadArr, alreadyReadTotal, alreadyReadArr, activePage) => ({
+  type: 'MODAL_NOTIFICATION',
+  show,
+  unreadTotal,
+  unreadArr,
+  alreadyReadTotal,
+  alreadyReadArr,
+  activePage
+});
+
+
+// --------------------------------------------------
 //   通知
 // --------------------------------------------------
 
-export const funcNotificationUnreadCount = value => ({
+export const funcSelectNotificationUnreadCount = value => ({
   type: 'NOTIFICATION_UNREAD_COUNT',
   value
 });
@@ -24,25 +39,10 @@ export const funcNotificationUnreadCount = value => ({
 //   フッター
 // --------------------------------------------------
 
-export const funcFooterCardType = (cardType, gameCommunityRenewalArr, gameCommunityAccessArr, userCommunityAccessArr) => ({
+export const funcSelectFooterCardType = (cardType, gameCommunityRenewalArr, gameCommunityAccessArr, userCommunityAccessArr) => ({
   type: 'FOOTER_CARD_TYPE',
   cardType,
   gameCommunityRenewalArr,
   gameCommunityAccessArr,
   userCommunityAccessArr
-});
-
-
-// --------------------------------------------------
-//   モーダル
-// --------------------------------------------------
-
-export const funcModalNotificationShow = (show, unreadTotal, unreadArr, alreadyReadTotal, alreadyReadArr, activePage) => ({
-  type: 'MODAL_NOTIFICATION_SHOW',
-  show,
-  unreadTotal,
-  unreadArr,
-  alreadyReadTotal,
-  alreadyReadArr,
-  activePage
 });

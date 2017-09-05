@@ -392,7 +392,7 @@ export default class Header extends React.Component {
             {this.props.userNo &&
               <div
                 className="bell-box"
-                onClick={() => this.props.funcModalNotificationShow(this.props.stateModel, true)}
+                onClick={() => this.props.funcSelectModalNotification(this.props.stateModel, true)}
                 role="menuitem"
                 tabIndex="0"
               >
@@ -489,7 +489,7 @@ Header.propTypes = {
 
   funcUrlDirectory: PropTypes.func.isRequired,
 
-  funcModalNotificationShow: PropTypes.func.isRequired
+  funcSelectModalNotification: PropTypes.func.isRequired
 
 };
 

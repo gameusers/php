@@ -37,7 +37,7 @@ class Controller_App extends Controller
 		}
 
 
-		// $tempArr = unserialize('a:1:{s:7:"image_1";a:2:{s:5:"width";i:1000;s:6:"height";i:563;}}');
+		// $tempArr = unserialize('a:3:{i:0;a:2:{s:2:"id";s:15:"8rodcn2jtuvmcar";s:9:"regi_date";s:19:"2017-09-02 18:15:59";}i:1;a:2:{s:2:"id";s:15:"awh591nracwnu7b";s:9:"regi_date";s:19:"2017-09-02 21:52:22";}i:2;a:2:{s:2:"id";s:15:"iihcen9c28dhjoi";s:9:"regi_date";s:19:"2017-08-29 15:41:40";}}');
         // $tempArr = unserialize('a:1:{i:0;a:1:{s:7:"youtube";s:11:"M8-vje-bq9c";}}');
         // $json = json_encode($tempArr, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
         //
@@ -171,6 +171,7 @@ class Controller_App extends Controller
 		$cssArr = array(
 			CSS_RESET_CDN_ARR,
             CSS_BOOTSTRAP_CDN_ARR,
+			CSS_LADDA_BOOTSTRAP_CDN_ARR,
             CSS_JQUERY_MAGNIFIC_POPUP_ARR,
             // CSS_JQUERY_CONTEXT_MENU_ARR
             CSS_REACT_CONTEXTMENU_ARR
@@ -218,6 +219,8 @@ class Controller_App extends Controller
             JS_JQUERY_CDN_ARR,
             JS_JQUERY_AUTO_HIDING_NAVIGATION_ARR,
             JS_JQUERY_MAGNIFIC_POPUP_ARR,
+            JS_LADDA_BOOTSTRAP_SPIN_ARR,
+            JS_LADDA_BOOTSTRAP_ARR
             // JS_JQUERY_CONTEXT_MENU_UI_POSITION_ARR,
             // JS_JQUERY_CONTEXT_MENU_ARR
 			// Config::get('js_jquery'),

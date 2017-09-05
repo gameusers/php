@@ -143,26 +143,26 @@ const mapDispatchToProps = (dispatch) => {
   // };
 
 
-  bindActionObj.funcLightbox = (url) => {
-
-    console.log('funcLightbox');
-    // console.log('stateModel = ', stateModel);
-
-    $.magnificPopup.open({
-      items: {
-        src: url
-      },
-      type: 'image'
-    });
-
-    // $.magnificPopup.open({
-    //   items: {
-    //     src: url
-    //   },
-    //   type: 'iframe'
-    // });
-
-  };
+  // bindActionObj.funcLightbox = (url) => {
+  //
+  //   console.log('funcLightbox');
+  //   // console.log('stateModel = ', stateModel);
+  //
+  //   $.magnificPopup.open({
+  //     items: {
+  //       src: url
+  //     },
+  //     type: 'image'
+  //   });
+  //
+  //   // $.magnificPopup.open({
+  //   //   items: {
+  //   //     src: url
+  //   //   },
+  //   //   type: 'iframe'
+  //   // });
+  //
+  // };
 
 
 
@@ -193,53 +193,7 @@ const mapDispatchToProps = (dispatch) => {
 
 
 
-  /**
-   * 通知の未読数を取得
-   * @param  {Model}  stateModel State
-   */
-  bindActionObj.funcNotificationUnreadCount = async (stateModel) => {
 
-    // console.log('funcNotificationUnreadCount');
-    // console.log('stateModel = ', stateModel);
-
-
-    // --------------------------------------------------
-    //   Get Data
-    // --------------------------------------------------
-
-    const urlBase = stateModel.get('urlBase');
-
-
-    // --------------------------------------------------
-    //   FormData
-    // --------------------------------------------------
-
-    const formData = new FormData();
-
-    formData.append('apiType', 'selectNotificationUnreadCount');
-
-
-    // --------------------------------------------------
-    //   Await & Dispatch
-    // --------------------------------------------------
-
-    try {
-
-      const returnObj = await funcPromise(urlBase, formData);
-
-      // console.log('returnObj = ', returnObj);
-
-      if (returnObj.error) {
-        throw new Error();
-      }
-
-      dispatch(actions.funcNotificationUnreadCount(returnObj.unreadCount));
-
-    } catch (e) {
-      // continue regardless of error
-    }
-
-  };
 
 
 
@@ -248,7 +202,7 @@ const mapDispatchToProps = (dispatch) => {
    * @param  {Model}  stateModel State
    * @param  {boolean}  show     モーダルを開く場合は true、閉じる場合は false
    */
-  bindActionObj.funcModalNotificationShow = async (stateModel, show) => {
+  bindActionObj.funcSelectModalNotification = async (stateModel, show) => {
 
 
     // --------------------------------------------------
@@ -286,7 +240,7 @@ const mapDispatchToProps = (dispatch) => {
 
       const returnObj = await funcPromise(urlBase, formData);
 
-      // console.log('returnObj = ', returnObj);
+      console.log('returnObj = ', returnObj);
 
 
       if (returnObj.error) {
@@ -310,7 +264,7 @@ const mapDispatchToProps = (dispatch) => {
       // console.log('show = ', show);
 
 
-      dispatch(actions.funcModalNotificationShow(show, unreadTotal, unreadArr, alreadyReadTotal, alreadyReadArr, activePage));
+      dispatch(actions.funcSelectModalNotification(show, unreadTotal, unreadArr, alreadyReadTotal, alreadyReadArr, activePage));
 
     } catch (e) {
       // continue regardless of error
@@ -320,9 +274,13 @@ const mapDispatchToProps = (dispatch) => {
 
 
 
-  bindActionObj.funcSelectNotification = async (stateModel, activePage) => {
+  /**
+   * 通知の未読数を取得
+   * @param  {Model}  stateModel State
+   */
+  bindActionObj.funcSelectNotificationUnreadCount = async (stateModel) => {
 
-    // console.log('funcSelectNotification');
+    // console.log('funcSelectNotificationUnreadCount');
     // console.log('stateModel = ', stateModel);
 
 
@@ -331,7 +289,73 @@ const mapDispatchToProps = (dispatch) => {
     // --------------------------------------------------
 
     const urlBase = stateModel.get('urlBase');
-    const activeType = stateModel.getIn(['notificationObj', 'activeType']);
+
+
+    // --------------------------------------------------
+    //   FormData
+    // --------------------------------------------------
+
+    const formData = new FormData();
+
+    formData.append('apiType', 'selectNotificationUnreadCount');
+
+
+    // --------------------------------------------------
+    //   Await & Dispatch
+    // --------------------------------------------------
+
+    try {
+
+      const returnObj = await funcPromise(urlBase, formData);
+
+      // console.log('returnObj = ', returnObj);
+
+      if (returnObj.error) {
+        throw new Error();
+      }
+
+      dispatch(actions.funcSelectNotificationUnreadCount(returnObj.unreadCount));
+
+    } catch (e) {
+      // continue regardless of error
+    }
+
+  };
+
+
+
+  /**
+   * 通知のページを切り替える
+   * @param  {Model}  stateModel  State
+   * @param  {number}  activePage 表示するページ
+   */
+  bindActionObj.funcSelectNotification = async (stateModel, currentTarget, readType, activePage) => {
+
+    // console.log('funcSelectNotification');
+    // console.log('readType = ', readType);
+
+
+    // --------------------------------------------------
+    //   Loading Start
+    // --------------------------------------------------
+
+    // console.log('currentTarget = ', currentTarget);
+
+    let instanceLadda = null;
+
+    if (currentTarget) {
+      instanceLadda = Ladda.create(currentTarget);
+      instanceLadda.start();
+    }
+
+
+    // --------------------------------------------------
+    //   Get Data
+    // --------------------------------------------------
+
+    const urlBase = stateModel.get('urlBase');
+    // const activeType = stateModel.getIn(['notificationObj', 'activeType']);
+    // console.log('activeType = ', activeType);
 
 
     // --------------------------------------------------
@@ -341,7 +365,7 @@ const mapDispatchToProps = (dispatch) => {
     const formData = new FormData();
 
     formData.append('apiType', 'selectNotification');
-    formData.append('readType', activeType);
+    formData.append('readType', readType);
     formData.append('page', activePage);
 
 
@@ -365,7 +389,7 @@ const mapDispatchToProps = (dispatch) => {
       let alreadyReadTotal = null;
       let alreadyReadArr = null;
 
-      if (activeType === 'unread') {
+      if (readType === 'unread') {
         unreadTotal = returnObj.total;
         unreadArr = returnObj.dataArr;
       } else {
@@ -373,11 +397,107 @@ const mapDispatchToProps = (dispatch) => {
         alreadyReadArr = returnObj.dataArr;
       }
 
-      dispatch(actions.funcModalNotificationShow(true, unreadTotal, unreadArr, alreadyReadTotal, alreadyReadArr, activePage));
+      dispatch(actions.funcSelectModalNotification(true, unreadTotal, unreadArr, alreadyReadTotal, alreadyReadArr, activePage));
 
     } catch (e) {
       // continue regardless of error
     }
+
+
+    // --------------------------------------------------
+    //   Loading Stop
+    // --------------------------------------------------
+
+    if (currentTarget) {
+      instanceLadda.stop();
+    }
+
+
+  };
+
+
+
+  /**
+   * 通知 / すべて既読にする
+   * @param  {Model}  stateModel  State
+   * @param  {number}  activePage 表示するページ
+   */
+  bindActionObj.funcUpdateAllUnreadToAlreadyRead = async (stateModel, currentTarget) => {
+
+    console.log('funcUpdateAllUnreadToAlreadyRead');
+
+
+    // --------------------------------------------------
+    //   Loading Start
+    // --------------------------------------------------
+
+    let instanceLadda = null;
+
+    if (currentTarget) {
+      instanceLadda = Ladda.create(currentTarget);
+      instanceLadda.start();
+    }
+
+
+    // --------------------------------------------------
+    //   Get Data
+    // --------------------------------------------------
+
+    const urlBase = stateModel.get('urlBase');
+
+
+    // --------------------------------------------------
+    //   FormData
+    // --------------------------------------------------
+
+    const formData = new FormData();
+
+    formData.append('apiType', 'updateAllUnreadToAlreadyRead');
+
+
+    // --------------------------------------------------
+    //   Await & Dispatch
+    // --------------------------------------------------
+
+    try {
+
+      const returnObj = await funcPromise(urlBase, formData);
+
+      console.log('returnObj = ', returnObj);
+
+      if (returnObj.error) {
+        throw new Error();
+      }
+
+
+      // let unreadTotal = null;
+      // let unreadArr = null;
+      // let alreadyReadTotal = null;
+      // let alreadyReadArr = null;
+      //
+      // if (readType === 'unread') {
+      //   unreadTotal = returnObj.total;
+      //   unreadArr = returnObj.dataArr;
+      // } else {
+      //   alreadyReadTotal = returnObj.total;
+      //   alreadyReadArr = returnObj.dataArr;
+      // }
+      //
+      dispatch(actions.funcSelectModalNotification(true, 0, [], null, null, 1));
+
+    } catch (e) {
+      // continue regardless of error
+    }
+
+
+    // --------------------------------------------------
+    //   Loading Stop
+    // --------------------------------------------------
+
+    if (currentTarget) {
+      instanceLadda.stop();
+    }
+
 
   };
 
@@ -389,7 +509,7 @@ const mapDispatchToProps = (dispatch) => {
    * @param  {Model}  stateModel State
    * @param  {string}  cardType gameCommunityRenewal / gameCommunityAccess / userCommunityAccess
    */
-  bindActionObj.funcFooterCardType = async (stateModel, cardType) => {
+  bindActionObj.funcSelectFooterCardType = async (stateModel, cardType) => {
 
 
     // --------------------------------------------------
@@ -454,7 +574,7 @@ const mapDispatchToProps = (dispatch) => {
       // console.log('userCommunityAccessArr = ', userCommunityAccessArr);
 
 
-      dispatch(actions.funcFooterCardType(cardType, gameCommunityRenewalArr, gameCommunityAccessArr, userCommunityAccessArr));
+      dispatch(actions.funcSelectFooterCardType(cardType, gameCommunityRenewalArr, gameCommunityAccessArr, userCommunityAccessArr));
 
     } catch (e) {
       // continue regardless of error
@@ -463,11 +583,13 @@ const mapDispatchToProps = (dispatch) => {
   };
 
 
+
   bindActionObj.funcInitialAsynchronous = async (stateModel) => {
 
-    // bindActionObj.funcNotificationUnreadCount(stateModel);
+    // bindActionObj.funcSelectNotificationUnreadCount(stateModel);
 
   };
+
 
 
   return bindActionObj;

@@ -609,6 +609,7 @@ export default class Card extends React.Component {
 
 Card.propTypes = {
 
+
   // --------------------------------------------------
   //   共通
   // --------------------------------------------------
@@ -645,7 +646,7 @@ Card.propTypes = {
   // --------------------------------------------------
 
   // funcJavascriptLink: PropTypes.func.isRequired,
-  // funcModalNotificationShow: PropTypes.func.isRequired,
+
 
 };
 

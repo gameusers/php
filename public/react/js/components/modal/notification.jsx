@@ -44,7 +44,7 @@ export default class ModalNotification extends React.Component {
 
   render() {
     return (
-      <Modal show={this.props.modalNotificationShow} onHide={() => this.props.funcModalNotificationShow(this.props.stateModel, false)} bsSize="lg">
+      <Modal show={this.props.modalNotificationShow} onHide={() => this.props.funcSelectModalNotification(this.props.stateModel, false)} bsSize="lg">
 
 
         <Modal.Header closeButton className="modal-notification-buttons">
@@ -54,10 +54,14 @@ export default class ModalNotification extends React.Component {
                 bsStyle="default"
                 className="ladda-button"
                 data-style="slide-right"
-                // data-size="s"
                 data-spinner-color="#000000"
-                active
-                // onClick={e => this.props.funcAjaxDeleteTheme(this.props.stateModel, e.currentTarget, themeNameId)}
+                active={this.props.notificationActiveType === 'unread' || false}
+                onClick={e => this.props.funcSelectNotification(
+                  this.props.stateModel,
+                  e.currentTarget,
+                  'unread',
+                  this.props.notificationUnreadActivePage
+                )}
               >
                 <span className="ladda-label">未読</span>
               </Button>
@@ -65,9 +69,14 @@ export default class ModalNotification extends React.Component {
                 bsStyle="default"
                 className="ladda-button"
                 data-style="slide-right"
-                // data-size="s"
                 data-spinner-color="#000000"
-                // onClick={e => this.props.funcAjaxDeleteTheme(this.props.stateModel, e.currentTarget, themeNameId)}
+                active={this.props.notificationActiveType === 'alreadyRead' || false}
+                onClick={e => this.props.funcSelectNotification(
+                  this.props.stateModel,
+                  e.currentTarget,
+                  'alreadyRead',
+                  this.props.notificationAlreadyReadActivePage
+                )}
               >
                 <span className="ladda-label">既読</span>
               </Button>
@@ -85,15 +94,15 @@ export default class ModalNotification extends React.Component {
         <Modal.Footer bsClass="modal-notification-footer">
           <Button
             bsStyle="default"
-            className="ladda-button all-already-read-button"
-            data-style="slide-right"
-            // data-size="s"
+            className="ladda-button"
+            data-style="expand-right"
             data-spinner-color="#000000"
-            // onClick={e => this.props.funcAjaxDeleteTheme(this.props.stateModel, e.currentTarget, themeNameId)}
+            onClick={e => this.props.funcUpdateAllUnreadToAlreadyRead(this.props.stateModel, e.currentTarget)}
+            style={{ outline: 'none' }}
           >
             <span className="ladda-label">すべて既読にする</span>
           </Button>
-          <Button className="close-button" onClick={() => this.props.funcModalNotificationShow(this.props.stateModel, false)}>閉じる</Button>
+          <Button className="close-button" onClick={() => this.props.funcSelectModalNotification(this.props.stateModel, false)}>閉じる</Button>
         </Modal.Footer>
 
 
@@ -104,6 +113,7 @@ export default class ModalNotification extends React.Component {
 }
 
 ModalNotification.propTypes = {
+
 
   // --------------------------------------------------
   //   共通
@@ -122,10 +132,22 @@ ModalNotification.propTypes = {
 
 
   // --------------------------------------------------
+  //   通知
+  // --------------------------------------------------
+
+  notificationActiveType: PropTypes.string.isRequired,
+  notificationUnreadActivePage: PropTypes.number.isRequired,
+  notificationAlreadyReadActivePage: PropTypes.number.isRequired,
+
+
+  // --------------------------------------------------
   //   関数
   // --------------------------------------------------
 
-  funcModalNotificationShow: PropTypes.func.isRequired,
+  funcSelectModalNotification: PropTypes.func.isRequired,
+  funcSelectNotification: PropTypes.func.isRequired,
+  funcUpdateAllUnreadToAlreadyRead: PropTypes.func.isRequired,
+
 
 };
 

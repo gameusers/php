@@ -128,7 +128,7 @@ if (DEVICE_TYPE === 'smartphone') {
 define('LIMIT_NOTIFICATION_PRESERVATION_TERM', '-5 years');
 
 // 通知の表示件数
-define('LIMIT_NOTIFICATION', [
+define('LIMIT_NOTIFICATION_ARR', [
     'smartphone' => 5,
     'tablet' => 5,
     'other' => 1
@@ -140,7 +140,7 @@ define('LIMIT_NOTIFICATION', [
 // --------------------------------------------------
 
 // 画面に表示するサムネイルカードの数
-define('LIMIT_FOOTER_THUMBNAIL_CARDS', [
+define('LIMIT_FOOTER_THUMBNAIL_CARDS_ARR', [
     'smartphone' => 30,
     'tablet' => 30,
     'other' => 30
@@ -163,7 +163,7 @@ $this->initialStateArr['urlBase'] = URL_BASE;
 $this->initialStateArr['adBlock'] = AD_BLOCK;
 $this->initialStateArr['paginationColumn'] = PAGINATION_COLUMN;
 
-$this->initialStateArr['notificationObj']['limitNotification'] = LIMIT_NOTIFICATION[DEVICE_TYPE];
+$this->initialStateArr['notificationObj']['limitNotification'] = LIMIT_NOTIFICATION_ARR[DEVICE_TYPE];
 
 
 
@@ -186,6 +186,10 @@ define('CSS_BOOTSTRAP_CDN_ARR', [
     'href' => 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
 ]);
 
+define('CSS_LADDA_BOOTSTRAP_CDN_ARR', [
+    'href' => 'https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda-themeless.min.css'
+]);
+
 define('CSS_JQUERY_MAGNIFIC_POPUP_ARR', [
     'href' => 'https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css'
 ]);
@@ -194,9 +198,6 @@ define('CSS_REACT_CONTEXTMENU_ARR', [
     'href' => URL_BASE . 'react/lib/react-contextmenu/react-contextmenu.css'
 ]);
 
-// define('CSS_JQUERY_CONTEXT_MENU_ARR', [
-//     'href' => 'https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.5.0/jquery.contextMenu.min.css'
-// ]);
 
 
 // ---------------------------------------------
@@ -219,10 +220,10 @@ define('JS_JQUERY_MAGNIFIC_POPUP_ARR', [
     'src' => 'https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js'
 ]);
 
-// define('JS_JQUERY_CONTEXT_MENU_UI_POSITION_ARR', [
-//     'src' => 'https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.5.0/jquery.ui.position.min.js'
-// ]);
-//
-// define('JS_JQUERY_CONTEXT_MENU_ARR', [
-//     'src' => 'https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.5.0/jquery.contextMenu.min.js'
-// ]);
+define('JS_LADDA_BOOTSTRAP_SPIN_ARR', [
+    'src' => 'https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/spin.min.js'
+]);
+
+define('JS_LADDA_BOOTSTRAP_ARR', [
+    'src' => 'https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda.min.js'
+]);

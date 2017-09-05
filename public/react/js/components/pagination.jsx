@@ -45,6 +45,11 @@ export default class Pagination extends React.Component {
     let activePage = 1;
     let onSelect = null;
 
+
+    // --------------------------------------------------
+    //   モーダル / 通知
+    // --------------------------------------------------
+
     if (this.props.type === 'notification') {
 
       if (this.props.notificationActiveType === 'unread') {
@@ -60,9 +65,18 @@ export default class Pagination extends React.Component {
       }
 
       onSelect = (
-        e => this.props.funcSelectNotification(this.props.stateModel, e)
+        e => this.props.funcSelectNotification(this.props.stateModel, null, this.props.notificationActiveType, e)
       );
 
+    }
+
+
+    // --------------------------------------------------
+    //   表示するデータがない場合は空を返す
+    // --------------------------------------------------
+
+    if (items === 0) {
+      return null;
     }
 
 
@@ -122,7 +136,6 @@ Pagination.propTypes = {
   // --------------------------------------------------
 
   funcSelectNotification: PropTypes.func.isRequired,
-  // funcModalNotificationShow: PropTypes.func.isRequired,
 
 };
 
