@@ -10,13 +10,35 @@ export const funcUrlDirectory = (urlDirectory1, urlDirectory2, urlDirectory3) =>
 });
 
 
+
 // --------------------------------------------------
 //   モーダル
 // --------------------------------------------------
 
-export const funcSelectModalNotification = (show, unreadTotal, unreadArr, alreadyReadTotal, alreadyReadArr, activePage) => ({
-  type: 'MODAL_NOTIFICATION',
-  show,
+export const funcModalObjNotificationShow = value => ({
+  type: 'MODAL_OBJ_NOTIFICATION_SHOW',
+  value
+});
+
+
+
+// --------------------------------------------------
+//   通知
+// --------------------------------------------------
+
+export const funcNotificationObjUnreadCount = value => ({
+  type: 'NOTIFICATION_OBJ_UNREAD_COUNT',
+  value
+});
+
+
+export const funcNotificationObjResetActivePage = () => ({
+  type: 'NOTIFICATION_OBJ_RESET_ACTIVE_PAGE'
+});
+
+
+export const funcNotificationObj = (unreadTotal, unreadArr, alreadyReadTotal, alreadyReadArr, activePage) => ({
+  type: 'NOTIFICATION_OBJ',
   unreadTotal,
   unreadArr,
   alreadyReadTotal,
@@ -25,14 +47,11 @@ export const funcSelectModalNotification = (show, unreadTotal, unreadArr, alread
 });
 
 
-// --------------------------------------------------
-//   通知
-// --------------------------------------------------
+// export const funcSelectNotificationUnreadCount = value => ({
+//   type: 'NOTIFICATION_UNREAD_COUNT',
+//   value
+// });
 
-export const funcSelectNotificationUnreadCount = value => ({
-  type: 'NOTIFICATION_UNREAD_COUNT',
-  value
-});
 
 
 // --------------------------------------------------

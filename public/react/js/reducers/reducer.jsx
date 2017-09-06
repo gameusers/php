@@ -40,13 +40,42 @@ const reducer = (state = new Model(), action) => {
     }
 
 
+
+    // --------------------------------------------------
+    //   モーダル
+    // --------------------------------------------------
+
+    case 'MODAL_OBJ_NOTIFICATION_SHOW': {
+      return state.setIn(['modalObj', 'notification', 'show'], action.value);
+    }
+
+
+
     // --------------------------------------------------
     //   通知
     // --------------------------------------------------
 
-    case 'NOTIFICATION_UNREAD_COUNT': {
+    case 'NOTIFICATION_OBJ_UNREAD_COUNT': {
       return state.setIn(['notificationObj', 'unreadCount'], action.value);
     }
+
+
+    case 'NOTIFICATION_OBJ_RESET_ACTIVE_PAGE': {
+      return state
+        .setIn(['notificationObj', 'unreadActivePage'], 1)
+        .setIn(['notificationObj', 'alreadyReadActivePage'], 1);
+    }
+
+
+    case 'NOTIFICATION_OBJ': {
+      return state.setNotificationObj(action.unreadTotal, action.unreadArr, action.alreadyReadTotal, action.alreadyReadArr, action.activePage);
+    }
+
+
+    // case 'NOTIFICATION_UNREAD_COUNT': {
+    //   return state.setIn(['notificationObj', 'unreadCount'], action.value);
+    // }
+
 
 
     // --------------------------------------------------
@@ -64,19 +93,6 @@ const reducer = (state = new Model(), action) => {
 
       return state.set('footerObj', fromJSOrdered(footerObj));
 
-    }
-
-
-
-    // --------------------------------------------------
-    //   モーダル
-    // --------------------------------------------------
-
-    case 'MODAL_NOTIFICATION': {
-      // console.log('action.show = ', action.show);
-      return state
-        .setIn(['modalObj', 'notification', 'show'], action.show)
-        .setSelectNotification(action.unreadTotal, action.unreadArr, action.alreadyReadTotal, action.alreadyReadArr, action.activePage);
     }
 
 

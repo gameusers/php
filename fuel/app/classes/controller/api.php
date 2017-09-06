@@ -36,6 +36,7 @@ class Controller_Api extends Controller_Rest
 		// $test = true;
 
 		if (isset($test)) {
+
 			Debug::$js_toggle_open = true;
 
             $_POST['csrfToken'] = '92fab32bb41475af1a8896e24829479953c81ce4cdda318e099a39f10db3c6e51ee589c8138c65a1adbdd17cf306cb557b3e26fb28d3ace5fdd1ceee73764291';
@@ -46,7 +47,9 @@ class Controller_Api extends Controller_Rest
             // $_POST['page'] = 2;
 
 
-            $_POST['apiType'] = 'updateAllUnreadToAlreadyRead';
+            // $_POST['apiType'] = 'updateAllUnreadToAlreadyRead';
+
+            $_POST['apiType'] = 'updateReservationIdToAlreadyReadId';
 
 		}
 
@@ -84,6 +87,16 @@ class Controller_Api extends Controller_Rest
             if (Input::post('apiType') === 'selectNotification') {
                 $instance = new \React\Models\Notification();
                 $arr = $instance->selectNotification(Input::post());
+            }
+
+
+            // --------------------------------------------------
+            //   通知 / 予約IDを既読IDにする
+            // --------------------------------------------------
+
+            if (Input::post('apiType') === 'updateReservationIdToAlreadyReadId') {
+                $instance = new \React\Models\Notification();
+                $arr = $instance->updateReservationIdToAlreadyReadId(Input::post());
             }
 
 

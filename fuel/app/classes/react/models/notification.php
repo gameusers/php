@@ -29,7 +29,7 @@ class Notification extends \Model_Crud
         //   返り値の配列
         // --------------------------------------------------
 
-        $resultArr = [];
+        $returnArr = [];
 
 
 		// --------------------------------------------------
@@ -209,10 +209,9 @@ class Notification extends \Model_Crud
 
 
 
-
     /**
-     * 通知の未読数を取得する / 要ログイン
-     * @param  array $arr [description]
+     * 通知を取得する / 要ログイン
+     * @param  array $arr language / page / readType
      * @return array      [description]
      */
     public function selectNotification(array $arr): array
@@ -230,7 +229,7 @@ class Notification extends \Model_Crud
         //   返り値の配列
         // --------------------------------------------------
 
-        $resultArr = [];
+        $returnArr = [];
 
 
         // --------------------------------------------------
@@ -288,13 +287,13 @@ class Notification extends \Model_Crud
 
 
         // --------------------------------------------------
-        //   既読IDがない場合は処理停止
+        //   既読で既読IDがない場合は処理停止
         // --------------------------------------------------
 
         if ($readType === 'alreadyRead' && count($alreadyReadIdArr) === 0) {
-            $resultArr['dataArr'] = [];
-            $resultArr['total'] = 0;
-            return $resultArr;
+            $returnArr['dataArr'] = [];
+            $returnArr['total'] = 0;
+            return $returnArr;
         }
 
 
@@ -436,7 +435,22 @@ class Notification extends \Model_Crud
         $query->offset($offset);
 
         $dataArr = $query->execute()->as_array();
-        $resultArr['total'] = \DB::count_last_query();
+        $returnArr['total'] = \DB::count_last_query();
+
+
+
+
+
+        // --------------------------------------------------
+        //   未読で通知がない場合は処理停止
+        // --------------------------------------------------
+
+        if ($readType === 'unread' && count($dataArr) === 0) {
+            $returnArr['dataArr'] = [];
+            $returnArr['total'] = 0;
+            return $returnArr;
+        }
+
 
 
         // echo '$alreadyReadIdArr';
@@ -456,6 +470,7 @@ class Notification extends \Model_Crud
         // --------------------------------------------------
 
         $notificationArr = [];
+        $reservationIdArr = [];
 
         foreach ($dataArr as $key => $value) {
 
@@ -463,6 +478,13 @@ class Notification extends \Model_Crud
 
             $tempArr['notificationId'] = $value['notificationId'];
             $tempArr['datetime'] = $value['regiDate'];
+
+
+            // 未読のIDを配列に入れる
+            if ($readType === 'unread') {
+                array_push($reservationIdArr, $value['notificationId']);
+            }
+
 
 
             if ($value['argument']) {
@@ -761,33 +783,282 @@ class Notification extends \Model_Crud
         }
 
 
+
+        // --------------------------------------------------
+        //   一度、表示した未読の通知を既読の通知に変更するために
+        //   通知のIDを保存しておく
+        //   再度、ページにアクセスしたタイミング、またはモーダルを閉じたタイミングで
+        //   予約IDの配列から既読IDの配列に追加し直して保存する
+        // --------------------------------------------------
+
+        if ($readType === 'unread') {
+
+
+            // --------------------------------------------------
+            //   既読の予約通知IDを取得
+            // --------------------------------------------------
+
+            $query = \DB::select(
+                ['notifications_reservation_id', 'notificationsReservationId']
+            )->from('users_data');
+
+            $query->where('user_no', '=', USER_NO);
+            $query->where('on_off', '=', 1);
+            $dbUsersDataArr = $query->execute()->current();
+
+            $dbReservationIdArr = [];
+
+            if ($dbUsersDataArr['notificationsReservationId']) {
+                $dbReservationIdArr = unserialize($dbUsersDataArr['notificationsReservationId']);
+            }
+
+
+            // echo '$reservationIdArr';
+            // \Debug::dump($reservationIdArr);
+            //
+            // echo '$dbReservationIdArr';
+            // \Debug::dump($dbReservationIdArr);
+
+
+
+            // --------------------------------------------------
+            //   データベースの予約IDと新たな予約IDの配列を合成
+            //   重複も削除
+            // --------------------------------------------------
+
+            $mergedArr = array_merge($reservationIdArr, $dbReservationIdArr);
+            $mergedArr = array_unique($mergedArr);
+            $mergedArr = array_values($mergedArr);
+
+            // echo '$mergedArr';
+            // \Debug::dump($mergedArr);
+
+
+
+            // --------------------------------------------------
+            //   新たな予約IDと既存の予約IDが違う場合に、データベースに保存する
+            // --------------------------------------------------
+
+            if ($mergedArr !== $dbReservationIdArr) {
+
+
+                // --------------------------------------------------
+                //   保存用配列作成
+                // --------------------------------------------------
+
+                $saveArr['notifications_reservation_id'] = serialize($mergedArr);
+
+
+                // --------------------------------------------------
+                //   予約IDを保存する
+                // --------------------------------------------------
+
+                $query = \DB::update('users_data');
+                $query->set($saveArr);
+                $query->where('user_no', '=', USER_NO);
+                $query->execute();
+
+                // echo '$saveArr';
+                // \Debug::dump($saveArr);
+
+
+            }
+
+
+        }
+
+
         // $time = microtime(true) - $time_start;
         // echo "{$time} 秒<br><br>";
-		//
-		//
-		//
-        // echo '$notificationArr';
-        // \Debug::dump($notificationArr);
 
 
+		$returnArr['dataArr'] = $notificationArr;
 
-		$resultArr['dataArr'] = $notificationArr;
-
-        // echo '$resultArr';
-        // \Debug::dump($resultArr);
+        // echo '$returnArr';
+        // \Debug::dump($returnArr);
         //
         // exit();
 
 
-        return $resultArr;
+        return $returnArr;
 
     }
 
 
 
+    /**
+     * 予約IDを既読IDにする / 要ログイン
+     * @param  array $arr [description]
+     * @return array      [description]
+     */
+    public function updateReservationIdToAlreadyReadId(array $arr): array
+    {
+
+        // --------------------------------------------------
+        //   ログインチェック
+        // --------------------------------------------------
+
+        $modulesValidationsUser = new \React\Modules\Validations\User();
+        $modulesValidationsUser->login();
+
+
+        // --------------------------------------------------
+        //   返り値の配列
+        // --------------------------------------------------
+
+        $returnArr = [];
+
+
+        // --------------------------------------------------
+        //   予約IDを取得する
+        // --------------------------------------------------
+
+        $query = \DB::select(
+            ['notifications_reservation_id', 'notificationsReservationId']
+        )->from('users_data');
+
+        $query->where('user_no', '=', USER_NO);
+        $query->where('on_off', '=', 1);
+        $dbUsersDataArr = $query->execute()->current();
+
+
+        // --------------------------------------------------
+        //   予約IDを処理する / アンシリアライズ
+        //   ['8rodcn2jtuvmcar', '2rwgyd1sbzyu5ub']
+        // --------------------------------------------------
+
+        $reservationIdArr = [];
+
+        if ($dbUsersDataArr['notificationsReservationId']) {
+            $reservationIdArr = unserialize($dbUsersDataArr['notificationsReservationId']);
+        }
+
+
+        // --------------------------------------------------
+        //   予約IDがない場合は処理停止
+        // --------------------------------------------------
+
+        if (count($reservationIdArr) === 0) {
+            return $returnArr;
+        }
+
+
+        // --------------------------------------------------
+        //   予約通知のデータを取得
+        // --------------------------------------------------
+
+        $query = \DB::select(
+            'id',
+            'regi_date'
+        )->from('notifications');
+
+        $query->where('id', 'in', $reservationIdArr);
+        $query->where('on_off', '=', 1);
+        $dbReservationIdArr = $query->execute()->as_array();
+
+
+        // --------------------------------------------------
+        //   既読の通知ID取得
+        // --------------------------------------------------
+
+        $query = \DB::select(
+            ['notifications_already_read_id', 'notificationsAlreadyReadId']
+        )->from('users_data');
+
+        $query->where('user_no', '=', USER_NO);
+        $query->where('on_off', '=', 1);
+        $dbUsersDataArr = $query->execute()->current();
+
+        $alreadyReadIdArr = [];
+
+        if ($dbUsersDataArr['notificationsAlreadyReadId']) {
+            $alreadyReadIdArr = unserialize($dbUsersDataArr['notificationsAlreadyReadId']);
+        }
+
+
+        // --------------------------------------------------
+        //   予約と既読の配列を合成
+        // --------------------------------------------------
+
+        $mergedArr = array_merge($dbReservationIdArr, $alreadyReadIdArr);
+
+
+        // --------------------------------------------------
+        //   古いIDを削除するためにDateTimeオブジェクトを作成
+        // --------------------------------------------------
+
+        $limitDatetime = new \DateTime();
+        $limitDatetime->modify(LIMIT_NOTIFICATION_PRESERVATION_TERM);
+        // $limitDatetime->modify('-5 day');
+
+
+        // --------------------------------------------------
+        //   通知IDが重複している場合、通知の日付が古い場合、削除
+        // --------------------------------------------------
+
+        $tempArr = $resultArr = [];
+
+        foreach ($mergedArr as $key => $value) {
+
+            $regiDatetime = new \DateTime($value['regi_date']);
+
+            if ( ! in_array($value['id'], $tempArr) && ($limitDatetime < $regiDatetime)) {
+                $tempArr[] = $value['id'];
+                $resultArr[] = $value;
+            }
+
+        }
+
+
+        // --------------------------------------------------
+        //   保存用配列作成
+        // --------------------------------------------------
+
+        $saveArr['notifications_reservation_id'] = null;
+        $saveArr['notifications_already_read_id'] = serialize($resultArr);
+
+
+        // --------------------------------------------------
+        //   既読IDを保存する
+        // --------------------------------------------------
+
+        $query = \DB::update('users_data');
+        $query->set($saveArr);
+        $query->where('user_no', '=', USER_NO);
+        $query->execute();
+
+
+
+        // echo '$reservationIdArr';
+        // \Debug::dump($reservationIdArr);
+        //
+        // echo '$dbReservationIdArr';
+        // \Debug::dump($dbReservationIdArr);
+        //
+        // echo '$alreadyReadIdArr';
+        // \Debug::dump($alreadyReadIdArr);
+        //
+        // echo '$mergedArr';
+        // \Debug::dump($mergedArr);
+        //
+        // echo '$returnArr';
+        // \Debug::dump($returnArr);
+        //
+        // echo '$saveArr';
+        // \Debug::dump($saveArr);
+        //
+        // exit();
+
+
+
+        return $returnArr;
+
+    }
+
+
 
     /**
-     * すべて既読にする / 要ログイン
+     * すべての未読を既読にする / 要ログイン
      * @param  array $arr [description]
      * @return array      [description]
      */
@@ -806,7 +1077,7 @@ class Notification extends \Model_Crud
         //   返り値の配列
         // --------------------------------------------------
 
-        $resultArr = [];
+        $returnArr = [];
 
 
         // --------------------------------------------------
@@ -1049,6 +1320,7 @@ class Notification extends \Model_Crud
         //   保存用配列作成
         // --------------------------------------------------
 
+        $saveArr['notifications_reservation_id'] = null;
         $saveArr['notifications_already_read_id'] = serialize($resultArr);
 
 
@@ -1086,6 +1358,10 @@ class Notification extends \Model_Crud
         return [];
 
     }
+
+
+
+
 
 
 

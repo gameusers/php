@@ -52,10 +52,10 @@ const mapStateToProps = state => ({
   notificationActiveType: state.getIn(['notificationObj', 'activeType']),
   notificationUnreadCount: state.getIn(['notificationObj', 'unreadCount']),
   notificationUnreadTotal: state.getIn(['notificationObj', 'unreadTotal']),
-  notificationUnreadList: state.getIn(['notificationObj', 'unreadList']),
+  notificationUnreadList: state.getIn(['notificationObj', 'unreadArr']),
   notificationUnreadActivePage: state.getIn(['notificationObj', 'unreadActivePage']),
   notificationAlreadyReadTotal: state.getIn(['notificationObj', 'alreadyReadTotal']),
-  notificationAlreadyReadList: state.getIn(['notificationObj', 'alreadyReadList']),
+  notificationAlreadyReadList: state.getIn(['notificationObj', 'alreadyReadArr']),
   notificationAlreadyReadActivePage: state.getIn(['notificationObj', 'alreadyReadActivePage']),
   notificationLimitNotification: state.getIn(['notificationObj', 'limitNotification']),
 
@@ -193,16 +193,11 @@ const mapDispatchToProps = (dispatch) => {
 
 
 
-
-
-
-
   /**
-   * モーダルを開く / 同時に通知データを読み込む
+   * モーダルを開く / 通知データを読み込む
    * @param  {Model}  stateModel State
-   * @param  {boolean}  show     モーダルを開く場合は true、閉じる場合は false
    */
-  bindActionObj.funcSelectModalNotification = async (stateModel, show) => {
+  bindActionObj.funcShowModalNotification = async (stateModel) => {
 
 
     // --------------------------------------------------
@@ -238,10 +233,14 @@ const mapDispatchToProps = (dispatch) => {
 
     try {
 
+
+      // --------------------------------------------------
+      //   通知データ更新
+      // --------------------------------------------------
+
       const returnObj = await funcPromise(urlBase, formData);
 
-      console.log('returnObj = ', returnObj);
-
+      // console.log('returnObj = ', returnObj);
 
       if (returnObj.error) {
         throw new Error();
@@ -261,10 +260,102 @@ const mapDispatchToProps = (dispatch) => {
         alreadyReadArr = returnObj.dataArr;
       }
 
-      // console.log('show = ', show);
+      dispatch(actions.funcNotificationObj(unreadTotal, unreadArr, alreadyReadTotal, alreadyReadArr, activePage));
 
 
-      dispatch(actions.funcSelectModalNotification(show, unreadTotal, unreadArr, alreadyReadTotal, alreadyReadArr, activePage));
+      // --------------------------------------------------
+      //   モーダルを開く
+      // --------------------------------------------------
+
+      dispatch(actions.funcModalObjNotificationShow(true));
+
+
+    } catch (e) {
+      // continue regardless of error
+    }
+
+  };
+
+
+
+  /**
+   * モーダルを閉じる / 予約IDを既読IDにする / 未読の総数を取得する
+   * @param  {Model}  stateModel State
+   */
+  bindActionObj.funcHideModalNotification = async (stateModel) => {
+
+    // console.log('funcHideModalNotification');
+
+
+    // --------------------------------------------------
+    //   Get Data
+    // --------------------------------------------------
+
+    const urlBase = stateModel.get('urlBase');
+
+
+    // --------------------------------------------------
+    //   FormData1
+    // --------------------------------------------------
+
+    const formData1 = new FormData();
+
+    formData1.append('apiType', 'updateReservationIdToAlreadyReadId');
+
+
+    // --------------------------------------------------
+    //   FormData2
+    // --------------------------------------------------
+
+    const formData2 = new FormData();
+
+    formData2.append('apiType', 'selectNotificationUnreadCount');
+
+
+    // --------------------------------------------------
+    //   Await & Dispatch
+    // --------------------------------------------------
+
+    try {
+
+
+      // --------------------------------------------------
+      //   モーダルを閉じる
+      // --------------------------------------------------
+
+      dispatch(actions.funcModalObjNotificationShow(false));
+
+
+      // --------------------------------------------------
+      //   unreadActivePage & alreadyReadActivePage を 1 にする
+      // --------------------------------------------------
+
+      dispatch(actions.funcNotificationObjResetActivePage());
+
+
+      // --------------------------------------------------
+      //   未読の総数変更
+      // --------------------------------------------------
+
+      const returnObj1 = await funcPromise(urlBase, formData1);
+
+      // console.log('returnObj1 = ', returnObj1);
+
+      if (returnObj1.error) {
+        throw new Error();
+      }
+
+
+      const returnObj2 = await funcPromise(urlBase, formData2);
+
+      // console.log('returnObj2 = ', returnObj2);
+
+      if (returnObj2.error) {
+        throw new Error();
+      }
+
+      dispatch(actions.funcNotificationObjUnreadCount(returnObj2.unreadCount));
+
 
     } catch (e) {
       // continue regardless of error
@@ -314,7 +405,9 @@ const mapDispatchToProps = (dispatch) => {
         throw new Error();
       }
 
-      dispatch(actions.funcSelectNotificationUnreadCount(returnObj.unreadCount));
+
+      dispatch(actions.funcNotificationObjUnreadCount(returnObj.unreadCount));
+
 
     } catch (e) {
       // continue regardless of error
@@ -325,21 +418,22 @@ const mapDispatchToProps = (dispatch) => {
 
 
   /**
-   * 通知のページを切り替える
-   * @param  {Model}  stateModel  State
+   * 通知を取得してページを切り替える
+   * @param  {Model}  stateModel State
+   * @param  {element}  currentTarget エレメント
+   * @param  {string}  readType unread / alreadyRead
    * @param  {number}  activePage 表示するページ
    */
   bindActionObj.funcSelectNotification = async (stateModel, currentTarget, readType, activePage) => {
 
     // console.log('funcSelectNotification');
     // console.log('readType = ', readType);
+    // console.log('currentTarget = ', currentTarget);
 
 
     // --------------------------------------------------
     //   Loading Start
     // --------------------------------------------------
-
-    // console.log('currentTarget = ', currentTarget);
 
     let instanceLadda = null;
 
@@ -375,6 +469,7 @@ const mapDispatchToProps = (dispatch) => {
 
     try {
 
+
       const returnObj = await funcPromise(urlBase, formData);
 
       // console.log('returnObj = ', returnObj);
@@ -397,7 +492,8 @@ const mapDispatchToProps = (dispatch) => {
         alreadyReadArr = returnObj.dataArr;
       }
 
-      dispatch(actions.funcSelectModalNotification(true, unreadTotal, unreadArr, alreadyReadTotal, alreadyReadArr, activePage));
+      dispatch(actions.funcNotificationObj(unreadTotal, unreadArr, alreadyReadTotal, alreadyReadArr, activePage));
+
 
     } catch (e) {
       // continue regardless of error
@@ -418,13 +514,65 @@ const mapDispatchToProps = (dispatch) => {
 
 
   /**
-   * 通知 / すべて既読にする
-   * @param  {Model}  stateModel  State
-   * @param  {number}  activePage 表示するページ
+   * 通知 / 予約通知を既読通知にする / 未読通知の総数も取得
+   * @param  {Model}  stateModel State
+   */
+  bindActionObj.funcUpdateReservationIdToAlreadyReadId = async (stateModel) => {
+
+    // console.log('funcUpdateReservationIdToAlreadyReadId');
+
+
+    // --------------------------------------------------
+    //   Get Data
+    // --------------------------------------------------
+
+    const urlBase = stateModel.get('urlBase');
+
+
+    // --------------------------------------------------
+    //   FormData
+    // --------------------------------------------------
+
+    const formData = new FormData();
+
+    formData.append('apiType', 'updateReservationIdToAlreadyReadId');
+
+
+    // --------------------------------------------------
+    //   Await & Dispatch
+    // --------------------------------------------------
+
+    try {
+
+
+      const returnObj = await funcPromise(urlBase, formData);
+
+      // console.log('returnObj = ', returnObj);
+
+      if (returnObj.error) {
+        throw new Error();
+      }
+
+
+      dispatch(actions.funcNotificationObj(0, [], null, null, 1));
+
+
+    } catch (e) {
+      // continue regardless of error
+    }
+
+  };
+
+
+
+  /**
+   * 通知 / 未読をすべて既読にする
+   * @param  {Model}  stateModel State
+   * @param  {element}  currentTarget エレメント
    */
   bindActionObj.funcUpdateAllUnreadToAlreadyRead = async (stateModel, currentTarget) => {
 
-    console.log('funcUpdateAllUnreadToAlreadyRead');
+    // console.log('funcUpdateAllUnreadToAlreadyRead');
 
 
     // --------------------------------------------------
@@ -463,27 +611,15 @@ const mapDispatchToProps = (dispatch) => {
 
       const returnObj = await funcPromise(urlBase, formData);
 
-      console.log('returnObj = ', returnObj);
+      // console.log('returnObj = ', returnObj);
 
       if (returnObj.error) {
         throw new Error();
       }
 
 
-      // let unreadTotal = null;
-      // let unreadArr = null;
-      // let alreadyReadTotal = null;
-      // let alreadyReadArr = null;
-      //
-      // if (readType === 'unread') {
-      //   unreadTotal = returnObj.total;
-      //   unreadArr = returnObj.dataArr;
-      // } else {
-      //   alreadyReadTotal = returnObj.total;
-      //   alreadyReadArr = returnObj.dataArr;
-      // }
-      //
-      dispatch(actions.funcSelectModalNotification(true, 0, [], null, null, 1));
+      dispatch(actions.funcNotificationObj(0, [], null, null, 1));
+
 
     } catch (e) {
       // continue regardless of error
@@ -542,6 +678,7 @@ const mapDispatchToProps = (dispatch) => {
 
     try {
 
+
       const returnObj = await funcPromise(urlBase, formData);
 
       // console.log('returnObj = ', returnObj);
@@ -575,6 +712,7 @@ const mapDispatchToProps = (dispatch) => {
 
 
       dispatch(actions.funcSelectFooterCardType(cardType, gameCommunityRenewalArr, gameCommunityAccessArr, userCommunityAccessArr));
+
 
     } catch (e) {
       // continue regardless of error

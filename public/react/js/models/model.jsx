@@ -73,10 +73,10 @@ if (tempArr[2]) {
 
 initialStateObj.notificationObj.activeType = 'unread';
 initialStateObj.notificationObj.unreadTotal = 10;
-initialStateObj.notificationObj.unreadList = [];
+initialStateObj.notificationObj.unreadArr = [];
 initialStateObj.notificationObj.unreadActivePage = 1;
 initialStateObj.notificationObj.alreadyReadTotal = 10;
-initialStateObj.notificationObj.alreadyReadList = [];
+initialStateObj.notificationObj.alreadyReadArr = [];
 initialStateObj.notificationObj.alreadyReadActivePage = 1;
 
 
@@ -171,7 +171,7 @@ export class Model extends ModelRecord {
    * @param {array} alreadyReadArr   [description]
    * @param {number} activePage       [description]
    */
-  setSelectNotification(unreadTotal, unreadArr, alreadyReadTotal, alreadyReadArr, activePage) {
+  setNotificationObj(unreadTotal, unreadArr, alreadyReadTotal, alreadyReadArr, activePage) {
 
     // console.log('setModalNotificationShow');
     // console.log('unreadTotal = ', unreadTotal);
@@ -193,14 +193,14 @@ export class Model extends ModelRecord {
     if (unreadArr) {
       map = map.setIn(['notificationObj', 'activeType'], 'unread');
       map = map.setIn(['notificationObj', 'unreadTotal'], unreadTotal);
-      map = map.setIn(['notificationObj', 'unreadList'], fromJSOrdered(unreadArr));
+      map = map.setIn(['notificationObj', 'unreadArr'], fromJSOrdered(unreadArr));
       map = map.setIn(['notificationObj', 'unreadActivePage'], activePage);
     }
 
     if (alreadyReadArr) {
       map = map.setIn(['notificationObj', 'activeType'], 'alreadyRead');
       map = map.setIn(['notificationObj', 'alreadyReadTotal'], alreadyReadTotal);
-      map = map.setIn(['notificationObj', 'alreadyReadList'], fromJSOrdered(alreadyReadArr));
+      map = map.setIn(['notificationObj', 'alreadyReadArr'], fromJSOrdered(alreadyReadArr));
       map = map.setIn(['notificationObj', 'alreadyReadActivePage'], activePage);
     }
 

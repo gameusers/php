@@ -44,7 +44,11 @@ export default class ModalNotification extends React.Component {
 
   render() {
     return (
-      <Modal show={this.props.modalNotificationShow} onHide={() => this.props.funcSelectModalNotification(this.props.stateModel, false)} bsSize="lg">
+      <Modal
+        show={this.props.modalNotificationShow}
+        onHide={() => this.props.funcHideModalNotification(this.props.stateModel)}
+        bsSize="lg"
+      >
 
 
         <Modal.Header closeButton className="modal-notification-buttons">
@@ -102,7 +106,13 @@ export default class ModalNotification extends React.Component {
           >
             <span className="ladda-label">すべて既読にする</span>
           </Button>
-          <Button className="close-button" onClick={() => this.props.funcSelectModalNotification(this.props.stateModel, false)}>閉じる</Button>
+          <Button
+            className="close-button"
+            onClick={() => this.props.funcHideModalNotification(this.props.stateModel)}
+            // onClick={() => this.props.funcSelectModalNotification(this.props.stateModel, false)}
+          >
+            閉じる
+          </Button>
         </Modal.Footer>
 
 
@@ -144,8 +154,10 @@ ModalNotification.propTypes = {
   //   関数
   // --------------------------------------------------
 
-  funcSelectModalNotification: PropTypes.func.isRequired,
+  funcHideModalNotification: PropTypes.func.isRequired,
+  // funcSelectModalNotification: PropTypes.func.isRequired,
   funcSelectNotification: PropTypes.func.isRequired,
+  funcUpdateReservationIdToAlreadyReadId: PropTypes.func.isRequired,
   funcUpdateAllUnreadToAlreadyRead: PropTypes.func.isRequired,
 
 
