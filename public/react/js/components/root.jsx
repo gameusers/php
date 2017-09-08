@@ -7,20 +7,21 @@ import PropTypes from 'prop-types';
 import { BrowserRouter, Route } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import Header from './header';
+import MainAppShareButtons from './main/app/share-buttons';
 import Footer from './footer';
 import { Model } from '../models/model';
 
 
 
-const About = () => (
-  <div>
-    <h2>Main / Share Buttons</h2>
-    <p>Game Usersとは？<br />
-Game Users（ゲームユーザーズ）はゲームユーザーのためのSNS・コミュニティサイトです。ゲームに興味のある人たちが集まって、交流がしやすくなるような様々な機能を用意しています。<br /><br />
-コンテンツについて<br />
-Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。<br /><br /></p>
-  </div>
-);
+// const MainAppShareButtons = () => (
+//   <div>
+//     <h2>Main / Share Buttons</h2>
+//     <p>Game Usersとは？<br />
+// Game Users（ゲームユーザーズ）はゲームユーザーのためのSNS・コミュニティサイトです。ゲームに興味のある人たちが集まって、交流がしやすくなるような様々な機能を用意しています。<br /><br />
+// コンテンツについて<br />
+// Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。<br /><br /></p>
+//   </div>
+// );
 
 // const Main = () => (
 //   <div>
@@ -103,7 +104,9 @@ export default class Root extends React.Component {
         <div>
           <Header {...this.props} />
 
-          <Route path="/app/share-buttons" component={About} />
+          {/* <Route path="/app/share-buttons" component={MainAppShareButtons} {...this.props} /> */}
+          <Route path="/app/share-buttons" render={() => <MainAppShareButtons {...this.props} />} />
+          <Route path="/app/test1" render={() => <MainAppShareButtons {...this.props} />} />
 
           <Footer {...this.props} />
         </div>

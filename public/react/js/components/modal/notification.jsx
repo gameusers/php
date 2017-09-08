@@ -4,8 +4,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ButtonGroup, Button, FormGroup, FormControl, Modal } from 'react-bootstrap';
-// import { List, OrderedMap } from 'immutable';
+import { ButtonGroup, Button, Modal } from 'react-bootstrap';
 import Pagination from '../pagination';
 import { Model } from '../../models/model';
 import Card from '../card';
@@ -17,30 +16,6 @@ import '../../../css/style.css';
 
 
 export default class ModalNotification extends React.Component {
-
-  codeBox() {
-
-    let codeArr = [];
-
-    codeArr = (
-      <div className="notification-box">
-
-        <div className="left-box">
-          AAA
-        </div>
-
-        <div className="right-box">
-          BBB
-        </div>
-
-      </div>
-    );
-
-    return codeArr;
-
-  }
-
-
 
   render() {
     return (
@@ -109,7 +84,6 @@ export default class ModalNotification extends React.Component {
           <Button
             className="close-button"
             onClick={() => this.props.funcHideModalNotification(this.props.stateModel)}
-            // onClick={() => this.props.funcSelectModalNotification(this.props.stateModel, false)}
           >
             閉じる
           </Button>
@@ -130,8 +104,6 @@ ModalNotification.propTypes = {
   // --------------------------------------------------
 
   stateModel: PropTypes.instanceOf(Model).isRequired,
-  // urlBase: PropTypes.string.isRequired,
-  // csrfToken: PropTypes.string.isRequired,
 
 
   // --------------------------------------------------
@@ -155,18 +127,12 @@ ModalNotification.propTypes = {
   // --------------------------------------------------
 
   funcHideModalNotification: PropTypes.func.isRequired,
-  // funcSelectModalNotification: PropTypes.func.isRequired,
   funcSelectNotification: PropTypes.func.isRequired,
-  funcUpdateReservationIdToAlreadyReadId: PropTypes.func.isRequired,
   funcUpdateAllUnreadToAlreadyRead: PropTypes.func.isRequired,
 
 
 };
 
 ModalNotification.defaultProps = {
-
-  // footerCardGameCommunityRenewalList: null,
-  // footerCardGameCommunityAccessList: null,
-  // footerCardUserCommunityAccessList: null
 
 };

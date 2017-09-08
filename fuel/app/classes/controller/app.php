@@ -83,6 +83,13 @@ class Controller_App extends Controller
         $this->initialStateArr['csrfToken'] = $modulesSecurity->setCsrfToken();
 
 
+        // --------------------------------------------------
+        //   通知 / 予約IDを既読IDにする
+        // --------------------------------------------------
+
+        $modelsNotification = new \React\Models\Notification();
+        $modelsNotification->updateReservationIdToAlreadyReadId([]);
+
 
         // --------------------------------------------------
 		//   通知のデータ取得

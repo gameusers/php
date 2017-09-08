@@ -5,7 +5,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Pagination as ReactBootstrapPagination } from 'react-bootstrap';
-// import { List } from 'immutable';
 import { Model } from '../models/model';
 
 import '../../css/style.css';
@@ -13,31 +12,6 @@ import '../../css/style.css';
 
 
 export default class Pagination extends React.Component {
-
-  // constructor() {
-  //
-  //   super();
-  //
-  //
-  //   let items = 0;
-  //   let activePage = 1;
-  //
-  //   if (this.props.notificationActiveType === 'unread') {
-  //
-  //     items = Math.ceil(this.props.notificationUnreadTotal / this.props.notificationLimitNotification);
-  //     activePage = this.props.notificationUnreadActivePage;
-  //
-  //   } else {
-  //
-  //     items = Math.ceil(this.props.notificationAlreadyReadTotal / this.props.notificationLimitNotification);
-  //     activePage = this.props.notificationAlreadyReadActivePage;
-  //
-  //   }
-  //
-  // }
-
-
-
 
   render() {
 
@@ -107,8 +81,6 @@ Pagination.propTypes = {
   // --------------------------------------------------
 
   stateModel: PropTypes.instanceOf(Model).isRequired,
-  // deviceType: PropTypes.string.isRequired,
-  // urlBase: PropTypes.string.isRequired,
   paginationColumn: PropTypes.number.isRequired,
 
 
@@ -140,9 +112,5 @@ Pagination.propTypes = {
 };
 
 Pagination.defaultProps = {
-
-  // footerCardGameCommunityRenewalList: null,
-  // footerCardGameCommunityAccessList: null,
-  // footerCardUserCommunityAccessList: null
 
 };

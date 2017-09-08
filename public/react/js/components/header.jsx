@@ -348,17 +348,20 @@ export default class Header extends React.Component {
     let codeArr = [];
 
     if (this.props.urlDirectory1 === 'app') {
+
       codeArr = (
         <nav className="cd-secondary-nav">
           <ul>
+
             <li className={this.props.urlDirectory2 === 'share-buttons' && 'active'}>
               <Link
                 to="/app/share-buttons"
                 onClick={() => this.props.funcUrlDirectory('app', 'share-buttons', null)}
               >
-                シェアボタン
+                アプリケーション
               </Link>
             </li>
+
             <li className={this.props.urlDirectory2 === 'buy' && 'active'}>
               <Link
                 to="/app/buy"
@@ -367,9 +370,11 @@ export default class Header extends React.Component {
                 購入
               </Link>
             </li>
+
           </ul>
         </nav>
       );
+
     }
 
     return codeArr;

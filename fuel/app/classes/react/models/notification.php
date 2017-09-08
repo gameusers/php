@@ -365,6 +365,7 @@ class Notification extends \Model_Crud
             'notifications.type1',
             'notifications.type2',
             'notifications.argument',
+						'notifications.comment',
             ['users_data.handle_name', 'userHandleName'],
             ['users_data.thumbnail', 'userThumbnail'],
             ['profile.handle_name', 'profileHandleName'],
@@ -738,7 +739,52 @@ class Notification extends \Model_Crud
                     $tempArr['commentReplyTotal'] = (int) $dbArr['commentReplyTotal'];
 
 
-                } else {
+									} else if ($value['type2'] === 'recruitment_reply') {
+
+											// テーブル notifications の argument に recruitment_reply_id がないため
+											// 返信を読み込み直すことができない
+											// notifications の comment をそのまま表示しているので投稿後の編集は反映されない
+											// また画像や動画も表示されない
+
+
+	                    // --------------------------------------------------
+	                    //   データ取得
+	                    // --------------------------------------------------
+
+	                    $query = \DB::select(
+	                        ['recruitment.recruitment_id', 'recruitmentId'],
+	                        // 'recruitment.image',
+	                        // 'recruitment.movie',
+	                        ['recruitment.etc_title', 'title'],
+	                        ['recruitment.comment', 'comment'],
+	                        ['game_community.recruitment_total_' . $language, 'commentReplyTotal']
+	                    )->from('recruitment');
+
+	                    $query->join('game_community', 'LEFT');
+	                    $query->on('recruitment.game_no', '=', 'game_community.game_no');
+
+	                    $query->where('recruitment.recruitment_id', '=', $recruitmentId);
+	                    $query->where('recruitment.on_off', '=', 1);
+
+	                    $dbArr = $query->execute()->current();
+
+
+	                    // --------------------------------------------------
+	                    //   データ入力
+	                    // --------------------------------------------------
+
+	                    $tempArr['contentsType'] = ['gameCommunity', 'recruitment', 'recruitment'];
+	                    $tempArr['pageName'] = $value['gameName'];
+	                    $tempArr['gameNo'] = (int) $value['gameNo'];
+	                    $tempArr['gameId'] = $value['gameId'];
+	                    $tempArr['gameThumbnail'] = $value['gameThumbnail'] ? true : false;
+	                    $tempArr['title'] = $dbArr['title'];
+	                    $tempArr['comment'] = $value['comment'];
+	                    $tempArr['recruitmentId'] = $dbArr['recruitmentId'];
+	                    $tempArr['commentReplyTotal'] = (int) $dbArr['commentReplyTotal'];
+
+
+	              } else {
                     continue;
                 }
 
@@ -920,6 +966,7 @@ class Notification extends \Model_Crud
         $query->where('user_no', '=', USER_NO);
         $query->where('on_off', '=', 1);
         $dbUsersDataArr = $query->execute()->current();
+        // \Debug::dump($dbUsersDataArr);
 
 
         // --------------------------------------------------

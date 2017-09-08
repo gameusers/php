@@ -67,120 +67,9 @@ p {
 
 
 
-
-/*.mfp-wrap {
-  z-index: 1060;
-}*/
-
-
 /* --------------------------------------------------
    通知
 -------------------------------------------------- */
-
-/*.all-unread-to-already-read-button {
-  outline: 0;
-}*/
-
-/*.notification-box {
-  display: flex;
-  flex-flow: row nowrap;
-  margin: 0;
-  padding: 0 0 15px;
-}
-
-.notification-box .left-box {
-  margin: 0;
-  padding: 0;
-}
-
-.notification-box .right-box {
-  margin: 0;
-  padding: 0 0 0 10px;
-}
-
-.player_notifications_box {
-  margin: 15px 0px 0px 0px;
-  padding: 0px 0px 15px 0px;
-  border-bottom-width: 1px;
-  border-bottom-style: dashed;
-  border-bottom-color: #CCCCCC;
-  display: table;
-  table-layout: fixed;
-  width: 100%;
-}
-
-.player_notifications_left_box {
-  margin: 0px 0px 0px 0px;
-  padding: 0px 0px 0px 0px;
-  display: table-cell;
-  width: 66px;
-}
-
-.player_notifications_right_box {
-  margin: 0px 0px 0px 0px;
-  padding: 0px 0px 0px 10px;
-  display: table-cell;
-  word-wrap: break-word;
-   vertical-align: top;
-}
-
-.player_notifications_title {
-  margin: 0px 0px 0px 0px;
-  padding: 0px 0px 5px 0px;
-  font-weight: bold;
-}
-
-.player_notifications_read_all_button_center {
-  text-align: center;
-}
-
-.player_notifications_read_all_button {
-  margin: 10px 0px 0px 0px;
-}
-
-.player_notifications_text {
-  margin: 0px 0px 0px 0px;
-  padding: 0px 0px 0px 0px;
-}
-
-div.player_notifications_short {
-  margin: 10px 0px 0px 0px;
-  padding: 10px 0px 0px 0px;
-  border-top-width: 1px;
-  border-top-style: dotted;
-  border-top-color: #CCCCCC;
-}
-div.player_notifications_long {
-  margin: 10px 0px 0px 0px;
-  padding: 10px 0px 0px 0px;
-  border-top-width: 1px;
-  border-top-style: dotted;
-  border-top-color: #CCCCCC;
-}
-
-
-div.player_config_notification_data_app_select_box {
-  margin: 20px 0px 0px 0px;
-  padding: 20px 0px 0px 0px;
-  border-top-width: 1px;
-  border-top-style: dashed;
-  border-top-color: #CCCCCC;
-}
-div.player_config_notification_data_app_select_radio_box {
-  margin: 20px 0px 0px 0px;
-  padding: 0px 0px 0px 0px;
-}
-.player_config_notification_data_app_checkbox {
-  margin: 0px 0px 0px 10px;
-  padding: 0px 0px 0px 0px;
-}
-div.player_config_notification_data_save_mail_box {
-  margin: 20px 0px 0px 0px;
-  padding: 20px 0px 0px 0px;
-  border-top-width: 1px;
-  border-top-style: dashed;
-  border-top-color: #CCCCCC;
-}*/
 
 
 
@@ -375,6 +264,326 @@ header .hero-image-data .link {
 header .hero-image-data .link .icon {
   padding: 0 12px 0 0;
   font-size: 12px;
+}
+
+
+
+/* --------------------------------------------------
+   メイン
+-------------------------------------------------- */
+
+.main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 20px;
+  /*background-color: red;*/
+}
+
+/* スモール版 */
+.main_s {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper_s {
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+/* --------------------------------------------------
+   メイン / メニュー
+-------------------------------------------------- */
+
+main .menu {
+  width: 300px;
+  padding: 0 15px 0 0;
+  /*background-color: red;*/
+}
+
+main .menu .slide .visible {
+  display: block;
+}
+
+main .menu .slide .hidden {
+  display: none;
+}
+
+main .menu .slide {
+  position: relative;
+}
+
+main .menu .ad {
+  margin: 0 0 30px;
+}
+
+main .menu .ad_thumbnail_box {
+  display: flex;
+  flex-flow: row wrap;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+main .menu .box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 4px;
+  box-shadow: 2px 2px 5px #bababa;
+  margin: 0 0 14px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+main .menu .box .left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px 0  0 4px;
+  width: 44px;
+  height: 35px;
+  background-color: #fff;
+}
+
+main .menu .box .left i {
+  border-radius: 4px 0  0 4px;
+  font-size: 30px;
+}
+
+main .menu .box .right {
+  padding: 0 0 0 16px;
+  border-left: #c7c7c7 solid 1px;
+}
+
+main .menu .box .selected-icon {
+  margin: 0 0 0 auto;
+  padding: 0 10px 0 0;
+}
+
+main .menu .border-right-1 {
+  border-right: #ff5252 solid 10px;
+}
+
+main .menu .border-right-2 {
+  border-right: #ff4081 solid 10px;
+}
+
+main .menu .border-right-3 {
+  border-right: #e040fb solid 10px;
+}
+
+main .menu .border-right-4 {
+  border-right: #7c4dff solid 10px;
+}
+
+main .menu .border-right-5 {
+  border-right: #536dfe solid 10px;
+}
+
+main .menu .border-right-6 {
+  border-right: #448aff solid 10px;
+}
+
+main .menu .border-right-7 {
+  border-right: #40c4ff solid 10px;
+}
+
+main .menu .border-right-8 {
+  border-right: #18ffff solid 10px;
+}
+
+main .menu .border-right-9 {
+  border-right: #64ffda solid 10px;
+}
+
+main .menu .border-right-10 {
+  border-right: #69f0ae solid 10px;
+}
+
+main .menu .border-right-11 {
+  border-right: #b2ff59 solid 10px;
+}
+
+
+/*.menu_margin_feed {
+  margin: 0 0 25px;
+}
+
+.menu_margin_community {
+  margin: 0 0 10px;
+}
+
+.menu_margin_wiki {
+  margin: 0 0 10px;
+}
+
+.menu_margin_bbs {
+  margin: 0 0 10px;
+}
+
+.menu_margin_rec {
+  margin: 0 0 15px;
+}
+
+.menu_margin_config {
+  margin: 0 0 10px;
+}*/
+
+
+/* スモール版 */
+
+main .menu_s {
+  width: 40px;
+  /*background-color: pink;*/
+  /*margin: 0 0 15px 0;*/
+}
+
+main .menu_s .visible {
+  visibility: visible;
+}
+
+main .menu_s .hidden {
+  visibility: hidden;
+}
+
+main .menu_s .icon_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 200px;
+  /*background-color: orange;*/
+}
+
+main .menu_s .icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 3px;
+  background-color: #fff;
+  box-shadow: 1px 1px 3px #bababa;
+  border: #dbdeff solid 1px;
+}
+
+main .menu_s .icon i {
+  font-size: 28px;
+}
+
+main .menu_s .icon .icon_arrow {
+  padding: 5px;
+  font-size: 20px;
+}
+
+main .menu_s .icon .icon_menu {
+  padding: 4px 6px 6px 4px;
+  font-size: 20px;
+}
+
+
+
+/* --------------------------------------------------
+   メイン / メニュー / ウェーブアイコン
+-------------------------------------------------- */
+
+.spinner {
+  margin: 5px auto;
+  width: 50px;
+  height: 40px;
+  text-align: center;
+  font-size: 10px;
+}
+
+.spinner > div {
+  background-color: #333;
+  height: 100%;
+  width: 6px;
+  display: inline-block;
+  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  margin: 0 2px 0 0;
+}
+
+.spinner .rect2 {
+  animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+  animation-delay: -1s;
+}
+
+.spinner .rect4 {
+  animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+  animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+  0%,
+  40%,
+  100% {
+    transform: scaleY(0.4);
+  }
+
+  20% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes sk-stretchdelay {
+  0%,
+  40%,
+  100% {
+    transform: scaleY(0.4);
+  }
+
+  20% {
+    transform: scaleY(1);
+  }
+}
+
+
+
+/* --------------------------------------------------
+   コンテンツ
+-------------------------------------------------- */
+
+main .content {
+  flex: 1;
+  min-width: 1em;
+  padding: 0;
+  /*background-color: #0d6330;*/
+}
+
+main .content .feed_card_box {
+  margin: 0 0 0 5px;
+  /*background-color: #0d6330;*/
+}
+
+
+/* スモール版 */
+
+main .content_s {
+  flex: 1;
+  /*background-color: blue;*/
+  /*margin: 0 0 15px 0;*/
+  min-width: 1em;
+}
+
+main .content_s .visible {
+  display: block;
+}
+
+main .content_s .hidden {
+  display: none;
+}
+
+main .content_s .feed_card_box {
+  margin: 0 0 0 5px;
+  /*background-color: #0d6330;*/
 }
 
 
@@ -963,8 +1172,7 @@ footer .btn-group .btn-group .active {
   margin-left: 5px;
 }
 
-.outline-0 {
-  /*border: 0;*/
+/*.outline-0 {
   outline: none;
 }
 
@@ -999,7 +1207,7 @@ footer .btn-group .btn-group .active {
 .outline-none:focus {
   border-style: none;
   outline: none;
-}
+}*/
 
 /**:focus {
   border-style: none;
