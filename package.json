@@ -2,7 +2,7 @@
   "name": "gameusers",
   "version": "1.0.0",
   "description": "Game Users Organization",
-  "main": "public/assets/js/react/build.js",
+  "main": "public/react/js/root-build.min.js",
   "scripts": {
     "build": "webpack --display-error-details",
     "watch": "webpack --watch"
@@ -34,6 +34,7 @@
     "react-masonry-component": "^5.0.7",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
+    "react-transition-group": "^1.2.0",
     "redux": "^3.7.2",
     "whatwg-fetch": "^2.0.3"
   },
@@ -49,7 +50,7 @@
     "eslint": "^4.6.1",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.3.0",
     "postcss-loader": "^2.0.6",
     "style-loader": "^0.18.2",

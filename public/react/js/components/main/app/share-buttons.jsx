@@ -29,18 +29,32 @@ export default class MainAppShareButtons extends React.Component {
   //   console.log('componentDidMount');
   //
   //
+  //
   //   // --------------------------------------------------
-  //   //   Masonry
+  //   //   スライドメニュー / スマートフォン・タブレット用
   //   // --------------------------------------------------
   //
-  //   // imagesLoaded('footer', () => {
-  //   //   this.msnry = new Masonry('footer .content-card-box .cards', {
-  //   //     itemSelector: '.card-link',
-  //   //     transitionDuration: '2s'
-  //   //   });
-  //   // });
+  //   // this.props.funcSlideMenu(this.props.stateModel, true);
+  //
   //
   // }
+  //
+  //
+  // componentWillUnmount() {
+  //
+  //   console.log('componentWillUnmount');
+  //
+  //
+  //
+  //   // --------------------------------------------------
+  //   //   スライドメニュー / スマートフォン・タブレット用
+  //   // --------------------------------------------------
+  //
+  //   // this.props.funcSlideMenu(this.props.stateModel, false);
+  //
+  //
+  // }
+
   //
   // componentDidUpdate() {
   //
@@ -54,138 +68,97 @@ export default class MainAppShareButtons extends React.Component {
   // }
 
 
-
-  // codeCard() {
-  //
-  //   const codeArr = [];
-  //   let thumbnailMap = {};
-  //
-  //
-  //   if (this.props.footerCardType === 'gameCommunityAccess') {
-  //     thumbnailMap = this.props.footerCardGameCommunityAccessList;
-  //   } else if (this.props.footerCardType === 'userCommunityAccess') {
-  //     thumbnailMap = this.props.footerCardUserCommunityAccessList;
-  //   } else {
-  //     thumbnailMap = this.props.footerCardGameCommunityRenewalList;
-  //   }
-  //
-  //   // console.log('this.props.footerCardType = ', this.props.footerCardType);
-  //   // console.log('this.props.footerCardGameCommunityAccessList = ', this.props.footerCardGameCommunityAccessList);
-  //   // console.log('this.props.footerCardUserCommunityAccessList = ', this.props.footerCardUserCommunityAccessList);
-  //   // console.log('this.props.footerCardGameCommunityRenewalList = ', this.props.footerCardGameCommunityRenewalList);
-  //   // console.log('thumbnailMap = ', thumbnailMap.toJS());
-  //
-  //
-  //   thumbnailMap.entrySeq().forEach((e) => {
-  //
-  //     const key = e[0];
-  //     const value = e[1];
-  //     // console.log("value.get('gameNo')", value.get('gameNo'));
-  //
-  //
-  //     // --------------------------------------------------
-  //     //   リンクのURL
-  //     // --------------------------------------------------
-  //
-  //     let linkUrl = null;
-  //
-  //     if (value.get('communityNo')) {
-  //       linkUrl = `${this.props.urlBase}uc/${value.get('communityId')}`;
-  //     } else {
-  //       linkUrl = `${this.props.urlBase}gc/${value.get('gameId')}`;
-  //     }
-  //
-  //
-  //     // --------------------------------------------------
-  //     //   サムネイル画像のURL
-  //     // --------------------------------------------------
-  //
-  //     let thumbnailUrl = null;
-  //
-  //     if (value.get('thumbnail')) {
-  //
-  //       if (value.get('communityNo')) {
-  //         thumbnailUrl = `${this.props.urlBase}assets/img/community/${value.get('communityNo')}/thumbnail.jpg`;
-  //       } else if (value.get('gameNo')) {
-  //         thumbnailUrl = `${this.props.urlBase}assets/img/game/${value.get('gameNo')}/thumbnail.jpg`;
-  //       }
-  //
-  //     } else {
-  //
-  //       const renewalDate = new Date(value.get('renewalDate'));
-  //       const second = renewalDate.getSeconds();
-  //       thumbnailUrl = `${this.props.urlBase}react/img/common/thumbnail-none-${second}.png`;
-  //
-  //     }
-  //
-  //
-  //     codeArr.push(
-  //       <a href={linkUrl} className="card-link" key={key}>
-  //         <div className="card-game">
-  //           <div className="image"><img src={thumbnailUrl} alt={value.get('name')} /></div>
-  //           <div className="title">{value.get('name')}</div>
-  //         </div>
-  //       </a>
-  //     );
-  //
-  //   });
-  //
-  //
-  //   const masonryOptions = {
-  //     transitionDuration: '0.5s'
-  //   };
-
-
-  //   const code = (
-  //     <div className="content-card-box" id="footer_content_card">
-  //
-  //       {/* <FormGroup className="select-type" validationState={null}>
-  //         <FormControl
-  //           componentClass="select"
-  //           value={this.props.footerCardType}
-  //           onChange={e => this.props.funcSelectFooterCardType(
-  //             this.props.stateModel,
-  //             e.target.value
-  //           )}
-  //         >
-  //           <option value="gameCommunityRenewal">最近更新されたゲームコミュニティ</option>
-  //           <option value="gameCommunityAccess">最近アクセスしたゲームコミュニティ</option>
-  //           <option value="userCommunityAccess">最近アクセスしたユーザーコミュニティ</option>
-  //         </FormControl>
-  //       </FormGroup>
-  //
-  //       <Masonry className="cards" options={masonryOptions}>
-  //         {codeArr}
-  //       </Masonry> */}
-  //
-  //     </div>
-  //   );
-  //
-  //   return code;
-  //
-  // }
-
-
-
   render() {
+
+
+    // --------------------------------------------------
+    //   PC
+    // --------------------------------------------------
+
+    if (this.props.deviceType === 'other') {
+
+      return (
+        <main className="main">
+
+          <MainMenu {...this.props} />
+
+          <article className="content">
+
+            <strong>Main / App / Share Buttons</strong>
+
+            <p>Game Usersとは？2<br />
+            Game Users（ゲームユーザーズ）はゲームユーザーのためのSNS・コミュニティサイトです。ゲームに興味のある人たちが集まって、交流がしやすくなるような様々な機能を用意しています。<br /><br />
+            コンテンツについて<br />
+            Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。</p>
+
+          </article>
+
+        </main>
+      );
+
+    }
+
+
+    // --------------------------------------------------
+    //   スマートフォン・タブレット
+    // --------------------------------------------------
+
     return (
-      <main className="main">
+      <main className="main-s" id="pageWrap">
 
-        <MainMenu {...this.props} />
+        <div className="wrapper-s">
 
-        <article className="content">
+          <MainMenu {...this.props} />
 
-          <strong>Main / App / Share Buttons</strong>
+          <article className="content">
 
-          <p>Game Usersとは？2<br />
-          Game Users（ゲームユーザーズ）はゲームユーザーのためのSNS・コミュニティサイトです。ゲームに興味のある人たちが集まって、交流がしやすくなるような様々な機能を用意しています。<br /><br />
-          コンテンツについて<br />
-          Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。</p>
+            <strong>Main / App / Share Buttons</strong>
 
-        </article>
+            <p>{this.props.urlDirectory1} / {this.props.urlDirectory2}<br /><br />
+            Game Usersとは？2<br />
+            Game Users（ゲームユーザーズ）はゲームユーザーのためのSNS・コミュニティサイトです。ゲームに興味のある人たちが集まって、交流がしやすくなるような様々な機能を用意しています。<br /><br />
+            コンテンツについて<br />
+            Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。<br /><br />
+            コンテンツについて<br />
+            Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。<br /><br />
+            コンテンツについて<br />
+            Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。<br /><br />
+            コンテンツについて<br />
+            Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。<br /><br />
+            コンテンツについて<br />
+            Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。<br /><br />
+            コンテンツについて<br />
+            Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。</p>
+
+          </article>
+
+          <div className="menu-s">
+
+            <div className="slide">
+
+              <div className="icon-box">
+                <div className="icon"><span className="glyphicon glyphicon-triangle-top icon_arrow" aria-hidden="true" /></div>
+                <div
+                  className="icon"
+                  onClick={() => this.props.funcDrawerMenuActive()}
+                  role="button"
+                  tabIndex="0"
+                >
+                  <span className="glyphicon glyphicon-list-alt icon_menu" aria-hidden="true" />
+                </div>
+                <div className="icon"><span className="glyphicon glyphicon-triangle-bottom icon_arrow" aria-hidden="true" /></div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
 
       </main>
     );
+
+
   }
 
 }
@@ -199,6 +172,7 @@ MainAppShareButtons.propTypes = {
 
   stateModel: PropTypes.instanceOf(Model).isRequired,
 
+  deviceType: PropTypes.string.isRequired,
   urlDirectory1: PropTypes.string,
   urlDirectory2: PropTypes.string,
 
@@ -215,7 +189,11 @@ MainAppShareButtons.propTypes = {
   footerCardUserCommunityAccessList: PropTypes.instanceOf(List),
 
 
+  // --------------------------------------------------
+  //   ドロワーメニュー / スマートフォン・タブレット用
+  // --------------------------------------------------
 
+  drawerMenuActive: PropTypes.bool.isRequired,
 
 
   // --------------------------------------------------
@@ -225,6 +203,7 @@ MainAppShareButtons.propTypes = {
   funcUrlDirectory: PropTypes.func.isRequired,
 
   funcSelectFooterCardType: PropTypes.func.isRequired,
+  funcDrawerMenuActive: PropTypes.func.isRequired,
 
 
 };

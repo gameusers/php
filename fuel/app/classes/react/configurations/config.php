@@ -190,13 +190,17 @@ define('CSS_LADDA_BOOTSTRAP_CDN_ARR', [
     'href' => 'https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda-themeless.min.css'
 ]);
 
-define('CSS_JQUERY_MAGNIFIC_POPUP_ARR', [
+define('CSS_JQUERY_MAGNIFIC_POPUP_CDN_ARR', [
     'href' => 'https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css'
 ]);
 
-define('CSS_REACT_CONTEXTMENU_ARR', [
-    'href' => URL_BASE . 'react/lib/react-contextmenu/react-contextmenu.css'
-]);
+// define('CSS_JQUERY_LAST_SIDEBAR_ARR', [
+//     'href' => URL_BASE . 'react/lib/last-sidebar/last-sidebar.css'
+// ]);
+
+// define('CSS_REACT_CONTEXTMENU_ARR', [
+//     'href' => URL_BASE . 'react/lib/react-contextmenu/react-contextmenu.css'
+// ]);
 
 
 
@@ -216,14 +220,22 @@ define('JS_JQUERY_AUTO_HIDING_NAVIGATION_ARR', [
     'src' => URL_BASE . 'react/lib/auto-hiding-navigation/auto-hiding-navigation.js'
 ]);
 
-define('JS_JQUERY_MAGNIFIC_POPUP_ARR', [
+define('JS_JQUERY_MAGNIFIC_POPUP_CDN_ARR', [
     'src' => 'https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js'
 ]);
 
-define('JS_LADDA_BOOTSTRAP_SPIN_ARR', [
+// define('JS_JQUERY_LAST_SIDEBAR_MOBILE_EVENTS_ARR', [
+//     'src' => URL_BASE . 'react/lib/last-sidebar/jquery.mobile.events.js'
+// ]);
+
+// define('JS_JQUERY_LAST_SIDEBAR_ARR', [
+//     'src' => URL_BASE . 'react/lib/last-sidebar/jquery.last-sidebar.min.js'
+// ]);
+
+define('JS_LADDA_BOOTSTRAP_SPIN_CDN_ARR', [
     'src' => 'https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/spin.min.js'
 ]);
 
-define('JS_LADDA_BOOTSTRAP_ARR', [
+define('JS_LADDA_BOOTSTRAP_CDN_ARR', [
     'src' => 'https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda.min.js'
 ]);

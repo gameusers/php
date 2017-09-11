@@ -33,7 +33,14 @@ const reducer = (state = new Model(), action) => {
     // --------------------------------------------------
 
     case 'URL_DIRECTORY': {
+      // $('#slideMenu').unbind();
+      // return state
+      //   .set('urlDirectory1', action.urlDirectory1)
+      //   .set('urlDirectory2', action.urlDirectory2)
+      //   .set('urlDirectory3', action.urlDirectory3);
+
       return state
+        .set('drawerMenuActive', false)
         .set('urlDirectory1', action.urlDirectory1)
         .set('urlDirectory2', action.urlDirectory2)
         .set('urlDirectory3', action.urlDirectory3);
@@ -92,6 +99,27 @@ const reducer = (state = new Model(), action) => {
       };
 
       return state.set('footerObj', fromJSOrdered(footerObj));
+
+    }
+
+
+
+    // --------------------------------------------------
+    //   ドロワーメニュー / スマートフォン・タブレット用
+    //   boolean のトグルになっている
+    // --------------------------------------------------
+
+    case 'DRAWER_MENU_ACTIVE': {
+
+      let drawerMenuActive = true;
+
+      if (state.get('drawerMenuActive')) {
+        drawerMenuActive = false;
+      }
+
+      // console.log('reducer / DRAWER_MENU_ACTIVE = ', drawerMenuActive);
+
+      return state.set('drawerMenuActive', drawerMenuActive);
 
     }
 

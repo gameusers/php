@@ -109,6 +109,15 @@ initialStateObj.modalObj = {
 };
 
 
+
+// --------------------------------------------------
+//   スライドメニュー / スマートフォン・タブレット用
+// --------------------------------------------------
+
+initialStateObj.drawerMenuActive = false;
+
+
+
 console.log('initialStateObj = ', initialStateObj);
 console.log('Cookies.get() = ', Cookies.get());
 

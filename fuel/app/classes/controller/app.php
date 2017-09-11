@@ -179,9 +179,9 @@ class Controller_App extends Controller
 			CSS_RESET_CDN_ARR,
             CSS_BOOTSTRAP_CDN_ARR,
 			CSS_LADDA_BOOTSTRAP_CDN_ARR,
-            CSS_JQUERY_MAGNIFIC_POPUP_ARR,
-            // CSS_JQUERY_CONTEXT_MENU_ARR
-            CSS_REACT_CONTEXTMENU_ARR
+            CSS_JQUERY_MAGNIFIC_POPUP_CDN_ARR,
+            // CSS_JQUERY_LAST_SIDEBAR_ARR
+            // CSS_REACT_CONTEXTMENU_ARR
             // CSS_JQUERY_AUTO_HIDING_NAVIGATION
             // URL_BASE . CSS_JQUERY_AUTO_HIDING_NAVIGATION,
 
@@ -225,9 +225,11 @@ class Controller_App extends Controller
 		$jsArr = array(
             JS_JQUERY_CDN_ARR,
             JS_JQUERY_AUTO_HIDING_NAVIGATION_ARR,
-            JS_JQUERY_MAGNIFIC_POPUP_ARR,
-            JS_LADDA_BOOTSTRAP_SPIN_ARR,
-            JS_LADDA_BOOTSTRAP_ARR
+            JS_JQUERY_MAGNIFIC_POPUP_CDN_ARR,
+            // JS_JQUERY_LAST_SIDEBAR_MOBILE_EVENTS_ARR,
+            // JS_JQUERY_LAST_SIDEBAR_ARR,
+            JS_LADDA_BOOTSTRAP_SPIN_CDN_ARR,
+            JS_LADDA_BOOTSTRAP_CDN_ARR
             // JS_JQUERY_CONTEXT_MENU_UI_POSITION_ARR,
             // JS_JQUERY_CONTEXT_MENU_ARR
 			// Config::get('js_jquery'),

@@ -4,9 +4,11 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 // import { FormGroup, FormControl } from 'react-bootstrap';
 import { List } from 'immutable';
+import { CSSTransitionGroup } from 'react-transition-group'
+// import { slide as Menu } from 'react-burger-menu';
 // import Masonry from 'react-masonry-component';
 import { Model } from '../../models/model';
 // import ModalNotification from './modal/notification';
@@ -138,13 +140,39 @@ export default class MainMenu extends React.Component {
       const value = e[1];
 
 
+      // codeArr.push(
+      //   <a id="home" className="menu-item" href="/">{value.text}</a>
+      // );
+
+
+      // codeArr.push(
+      //   <div
+      //     className="card-link"
+      //     // style={{ outline: 'none' }}
+      //     // push
+      //     // to={`/${value.group}/${value.content}`}
+      //     // onClick={() => this.props.funcDrawerMenuActive()}
+      //     onClick={() => this.props.funcUrlDirectory(value.group, value.content, null)}
+      //     role="button"
+      //     tabIndex="0"
+      //     key={key}
+      //   >
+      //     <div className="box">
+      //       <div className="left"><i className="material-icons">{value.materialIcon}</i></div>
+      //       <div className="right"><span className="selected">{value.text}</span></div>
+      //     </div>
+      //   </div>
+      // );
+
       codeArr.push(
         <Link
           className="card-link"
           to={`/${value.group}/${value.content}`}
+          // onClick={() => this.props.funcDrawerMenuActive()}
           onClick={() => this.props.funcUrlDirectory(value.group, value.content, null)}
           key={key}
         >
+          {/* <div className="box" onClick={() => this.props.funcDrawerMenuActive()} role="button" tabIndex="0"> */}
           <div className="box">
             <div className="left"><i className="material-icons">{value.materialIcon}</i></div>
             <div className="right"><span className="selected">{value.text}</span></div>
@@ -179,17 +207,92 @@ export default class MainMenu extends React.Component {
 
     }
 
-
     // --------------------------------------------------
     //   スマートフォン・タブレット
     // --------------------------------------------------
 
+    // console.log('this.props.drawerMenuActive = ', this.props.drawerMenuActive);
+
     return (
-      <nav className="slideMenu" id="slideMenu">
-        <div className="title">Menu</div>
-        {this.codeMobile()}
+      <nav>
+
+        <CSSTransitionGroup
+          transitionName="drawer-menu"
+          // transitionAppear
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}
+          // transitionAppearTimeout={300}
+          component="div"
+        >
+          {this.props.drawerMenuActive &&
+            <div className="drawer-menu" key="drawer-menu">
+              <div className="title">Menu</div>
+              {this.codeMobile()}
+            </div>
+          }
+        </CSSTransitionGroup>
+
+        <CSSTransitionGroup
+          transitionName="drawer-overlay"
+          // transitionAppear
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}
+          // transitionAppearTimeout={300}
+          component="div"
+        >
+          {this.props.drawerMenuActive &&
+            <div
+              className="drawer-overlay"
+              onClick={() => this.props.funcDrawerMenuActive()}
+              role="menuitem"
+              tabIndex="0"
+              key="drawer-overlay"
+            />
+          }
+        </CSSTransitionGroup>
+
       </nav>
     );
+
+
+    // {this.props.drawerMenuActive &&
+    //   <div key="drawer-menu">
+    //     <div className="title">Menu</div>
+    //     {this.codeMobile()}
+    //   </div>
+    // }
+
+    // return (
+    //   // <div />
+    //   <Menu isOpen>
+    //     <a id="home" className="menu-item" href="/">Home</a>
+    //     <a id="about" className="menu-item" href="/about">About</a>
+    //     <a id="contact" className="menu-item" href="/contact">Contact</a>
+    //     {this.codeMobile()}
+    //   </Menu>
+    // );
+
+    // return (
+    //   <nav className="slideMenu" id="slideMenu">
+    //     <div className="title">Menu</div>
+    //     {this.codeMobile()}
+    //   </nav>
+    // );
+
+    // return (
+    //   <nav>
+    //     <div className="drawer-menu">
+    //       <div className="title">Menu</div>
+    //       {this.codeMobile()}
+    //     </div>
+    //     <div
+    //       className="drawer-overlay"
+    //       onClick={() => this.props.funcDrawerMenuActive()}
+    //       role="menuitem"
+    //       tabIndex="0"
+    //     />
+    //   </nav>
+    // );
 
   }
 
@@ -207,19 +310,19 @@ MainMenu.propTypes = {
   deviceType: PropTypes.string.isRequired,
   urlDirectory1: PropTypes.string,
   urlDirectory2: PropTypes.string,
-  urlBase: PropTypes.string.isRequired,
+  // urlBase: PropTypes.string.isRequired,
 
   // csrfToken: PropTypes.string.isRequired,
 
 
   // --------------------------------------------------
-  //   フッター
+  //   ドロワーメニュー
   // --------------------------------------------------
 
-  footerCardType: PropTypes.string.isRequired,
-  footerCardGameCommunityRenewalList: PropTypes.instanceOf(List),
-  footerCardGameCommunityAccessList: PropTypes.instanceOf(List),
-  footerCardUserCommunityAccessList: PropTypes.instanceOf(List),
+  drawerMenuActive: PropTypes.bool.isRequired,
+  // footerCardGameCommunityRenewalList: PropTypes.instanceOf(List),
+  // footerCardGameCommunityAccessList: PropTypes.instanceOf(List),
+  // footerCardUserCommunityAccessList: PropTypes.instanceOf(List),
 
 
 
@@ -231,7 +334,8 @@ MainMenu.propTypes = {
 
   funcUrlDirectory: PropTypes.func.isRequired,
 
-  funcSelectFooterCardType: PropTypes.func.isRequired,
+  funcDrawerMenuActive: PropTypes.func.isRequired,
+  // funcSelectFooterCardType: PropTypes.func.isRequired,
 
 
 };

@@ -65,3 +65,13 @@ export const funcSelectFooterCardType = (cardType, gameCommunityRenewalArr, game
   gameCommunityAccessArr,
   userCommunityAccessArr
 });
+
+
+
+// --------------------------------------------------
+//   ドロワーメニュー / スマートフォン・タブレット用
+// --------------------------------------------------
+
+export const funcDrawerMenuActive = () => ({
+  type: 'DRAWER_MENU_ACTIVE'
+});
