@@ -78,25 +78,42 @@ export default class MainAppShareButtons extends React.Component {
     if (this.props.deviceType === 'other') {
 
       return (
-        <main className="main">
+        <article className="content">
 
-          <MainMenu {...this.props} />
+          <strong>Main / App / Share Buttons</strong>
 
-          <article className="content">
+          <p>Game Usersとは？2<br />
+          Game Users（ゲームユーザーズ）はゲームユーザーのためのSNS・コミュニティサイトです。ゲームに興味のある人たちが集まって、交流がしやすくなるような様々な機能を用意しています。<br /><br />
+          コンテンツについて<br />
+          Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。</p>
 
-            <strong>Main / App / Share Buttons</strong>
-
-            <p>Game Usersとは？2<br />
-            Game Users（ゲームユーザーズ）はゲームユーザーのためのSNS・コミュニティサイトです。ゲームに興味のある人たちが集まって、交流がしやすくなるような様々な機能を用意しています。<br /><br />
-            コンテンツについて<br />
-            Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。</p>
-
-          </article>
-
-        </main>
+        </article>
       );
 
     }
+
+    // if (this.props.deviceType === 'other') {
+    //
+    //   return (
+    //     <main className="main">
+    //
+    //       <MainMenu {...this.props} />
+    //
+    //       <article className="content">
+    //
+    //         <strong>Main / App / Share Buttons</strong>
+    //
+    //         <p>Game Usersとは？2<br />
+    //         Game Users（ゲームユーザーズ）はゲームユーザーのためのSNS・コミュニティサイトです。ゲームに興味のある人たちが集まって、交流がしやすくなるような様々な機能を用意しています。<br /><br />
+    //         コンテンツについて<br />
+    //         Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。</p>
+    //
+    //       </article>
+    //
+    //     </main>
+    //   );
+    //
+    // }
 
 
     // --------------------------------------------------
@@ -104,59 +121,86 @@ export default class MainAppShareButtons extends React.Component {
     // --------------------------------------------------
 
     return (
-      <main className="main-s" id="pageWrap">
+      <article className="content">
 
-        <div className="wrapper-s">
+        <strong>Main / App / Share Buttons</strong>
 
-          <MainMenu {...this.props} />
+        <p>{this.props.urlDirectory1} / {this.props.urlDirectory2}<br /><br />
+        Game Usersとは？2<br />
+        Game Users（ゲームユーザーズ）はゲームユーザーのためのSNS・コミュニティサイトです。ゲームに興味のある人たちが集まって、交流がしやすくなるような様々な機能を用意しています。<br /><br /><br /><br />
+          <a href="https://gameusers.org/dev/blog/">リンク</a><br /><br /><br /><br />
+        コンテンツについて<br />
+        Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。<br /><br />
+        コンテンツについて<br />
+        Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。<br /><br />
+        コンテンツについて<br />
+        Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。<br /><br />
+        コンテンツについて<br />
+        Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。<br /><br />
+        コンテンツについて<br />
+        Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。<br /><br />
+        コンテンツについて<br />
+        Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。</p>
 
-          <article className="content">
-
-            <strong>Main / App / Share Buttons</strong>
-
-            <p>{this.props.urlDirectory1} / {this.props.urlDirectory2}<br /><br />
-            Game Usersとは？2<br />
-            Game Users（ゲームユーザーズ）はゲームユーザーのためのSNS・コミュニティサイトです。ゲームに興味のある人たちが集まって、交流がしやすくなるような様々な機能を用意しています。<br /><br />
-            コンテンツについて<br />
-            Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。<br /><br />
-            コンテンツについて<br />
-            Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。<br /><br />
-            コンテンツについて<br />
-            Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。<br /><br />
-            コンテンツについて<br />
-            Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。<br /><br />
-            コンテンツについて<br />
-            Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。<br /><br />
-            コンテンツについて<br />
-            Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。</p>
-
-          </article>
-
-          <div className="menu-s">
-
-            <div className="slide">
-
-              <div className="icon-box">
-                <div className="icon"><span className="glyphicon glyphicon-triangle-top icon_arrow" aria-hidden="true" /></div>
-                <div
-                  className="icon"
-                  onClick={() => this.props.funcDrawerMenuActive()}
-                  role="button"
-                  tabIndex="0"
-                >
-                  <span className="glyphicon glyphicon-list-alt icon_menu" aria-hidden="true" />
-                </div>
-                <div className="icon"><span className="glyphicon glyphicon-triangle-bottom icon_arrow" aria-hidden="true" /></div>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </main>
+      </article>
     );
+
+
+    // return (
+    //   <main className="main-s">
+    //
+    //     <div className="wrapper-s">
+    //
+    //       <MainMenu {...this.props} />
+    //
+    //       <article className="content">
+    //
+    //         <strong>Main / App / Share Buttons</strong>
+    //
+    //         <p>{this.props.urlDirectory1} / {this.props.urlDirectory2}<br /><br />
+    //         Game Usersとは？2<br />
+    //         Game Users（ゲームユーザーズ）はゲームユーザーのためのSNS・コミュニティサイトです。ゲームに興味のある人たちが集まって、交流がしやすくなるような様々な機能を用意しています。<br /><br /><br /><br />
+    //           <a href="https://gameusers.org/dev/blog/">リンク</a><br /><br /><br /><br />
+    //         コンテンツについて<br />
+    //         Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。<br /><br />
+    //         コンテンツについて<br />
+    //         Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。<br /><br />
+    //         コンテンツについて<br />
+    //         Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。<br /><br />
+    //         コンテンツについて<br />
+    //         Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。<br /><br />
+    //         コンテンツについて<br />
+    //         Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。<br /><br />
+    //         コンテンツについて<br />
+    //         Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。</p>
+    //
+    //       </article>
+    //
+    //       <div className="menu-s">
+    //
+    //         <div className="slide">
+    //
+    //           <div className="icon-box">
+    //             <div className="icon"><span className="glyphicon glyphicon-triangle-top icon_arrow" aria-hidden="true" /></div>
+    //             <div
+    //               className="icon"
+    //               onClick={() => this.props.funcDrawerMenuActive()}
+    //               role="button"
+    //               tabIndex="0"
+    //             >
+    //               <span className="glyphicon glyphicon-list-alt icon_menu" aria-hidden="true" />
+    //             </div>
+    //             <div className="icon"><span className="glyphicon glyphicon-triangle-bottom icon_arrow" aria-hidden="true" /></div>
+    //           </div>
+    //
+    //         </div>
+    //
+    //       </div>
+    //
+    //     </div>
+    //
+    //   </main>
+    // );
 
 
   }

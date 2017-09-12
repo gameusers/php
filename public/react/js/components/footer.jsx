@@ -8,7 +8,7 @@ import { FormGroup, FormControl } from 'react-bootstrap';
 import { List } from 'immutable';
 import Masonry from 'react-masonry-component';
 import { Model } from '../models/model';
-import ModalNotification from './modal/notification';
+// import ModalNotification from './modal/notification';
 
 import '../../css/style.css';
 
@@ -177,7 +177,7 @@ export default class Footer extends React.Component {
 
         <div className="copyright"><span className="glyphicon glyphicon-copyright-mark" aria-hidden="true" /> Game Users All Rights Reserved.</div>
 
-        <ModalNotification {...this.props} />
+        {/* <ModalNotification {...this.props} /> */}
 
       </footer>
     );
@@ -187,14 +187,15 @@ export default class Footer extends React.Component {
 
 Footer.propTypes = {
 
+
   // --------------------------------------------------
   //   共通
   // --------------------------------------------------
 
   stateModel: PropTypes.instanceOf(Model).isRequired,
 
-  urlDirectory1: PropTypes.string,
-  urlDirectory2: PropTypes.string,
+  // urlDirectory1: PropTypes.string,
+  // urlDirectory2: PropTypes.string,
 
   urlBase: PropTypes.string.isRequired,
 
@@ -218,9 +219,10 @@ Footer.propTypes = {
   //   関数
   // --------------------------------------------------
 
-  funcUrlDirectory: PropTypes.func.isRequired,
+  // funcUrlDirectory: PropTypes.func.isRequired,
 
   funcSelectFooterCardType: PropTypes.func.isRequired,
+
 
 };
 

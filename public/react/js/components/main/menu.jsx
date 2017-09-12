@@ -7,7 +7,10 @@ import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 // import { FormGroup, FormControl } from 'react-bootstrap';
 import { List } from 'immutable';
-import { CSSTransitionGroup } from 'react-transition-group'
+// import { CSSTransitionGroup } from 'react-transition-group'
+// import Transition from 'react-transition-group/Transition';
+// import CSSTransition from 'react-transition-group/CSSTransition';
+import { VelocityComponent, VelocityTransitionGroup } from 'velocity-react';
 // import { slide as Menu } from 'react-burger-menu';
 // import Masonry from 'react-masonry-component';
 import { Model } from '../../models/model';
@@ -20,7 +23,7 @@ import '../../../css/style.css';
 export default class MainMenu extends React.Component {
 
   constructor() {
-
+    // console.log('constructor');
     super();
 
     this.list = List([
@@ -51,6 +54,7 @@ export default class MainMenu extends React.Component {
     ]);
 
   }
+
 
 
   /**
@@ -125,6 +129,7 @@ export default class MainMenu extends React.Component {
   }
 
 
+
   /**
    * スマートフォン・タブレット用
    * @return {string} コード
@@ -172,7 +177,6 @@ export default class MainMenu extends React.Component {
           onClick={() => this.props.funcUrlDirectory(value.group, value.content, null)}
           key={key}
         >
-          {/* <div className="box" onClick={() => this.props.funcDrawerMenuActive()} role="button" tabIndex="0"> */}
           <div className="box">
             <div className="left"><i className="material-icons">{value.materialIcon}</i></div>
             <div className="right"><span className="selected">{value.text}</span></div>
@@ -185,6 +189,7 @@ export default class MainMenu extends React.Component {
     return codeArr;
 
   }
+
 
 
   render() {
@@ -211,36 +216,24 @@ export default class MainMenu extends React.Component {
     //   スマートフォン・タブレット
     // --------------------------------------------------
 
-    // console.log('this.props.drawerMenuActive = ', this.props.drawerMenuActive);
-
     return (
       <nav>
 
-        <CSSTransitionGroup
-          transitionName="drawer-menu"
-          // transitionAppear
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={300}
-          // transitionAppearTimeout={300}
-          component="div"
+        <VelocityComponent
+          animation={{ translateX: this.props.drawerMenuActive ? 0 : -250 }}
+          duration={300}
         >
-          {this.props.drawerMenuActive &&
-            <div className="drawer-menu" key="drawer-menu">
-              <div className="title">Menu</div>
-              {this.codeMobile()}
-            </div>
-          }
-        </CSSTransitionGroup>
+          <div className="drawer-menu" key="drawer-menu">
+            <div className="title">Menu</div>
+            {this.codeMobile()}
+          </div>
+        </VelocityComponent>
 
-        <CSSTransitionGroup
-          transitionName="drawer-overlay"
-          // transitionAppear
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={300}
-          // transitionAppearTimeout={300}
-          component="div"
+        <VelocityTransitionGroup
+          enter={{ animation: 'fadeIn', duration: 300 }}
+          leave={{ animation: 'fadeOut', duration: 300 }}
         >
-          {this.props.drawerMenuActive &&
+          {this.props.drawerMenuActive ?
             <div
               className="drawer-overlay"
               onClick={() => this.props.funcDrawerMenuActive()}
@@ -248,11 +241,99 @@ export default class MainMenu extends React.Component {
               tabIndex="0"
               key="drawer-overlay"
             />
-          }
-        </CSSTransitionGroup>
+            : undefined}
+        </VelocityTransitionGroup>
+
+        {/* <VelocityComponent
+          animation={this.props.drawerMenuActive ? {
+            opacity: 1,
+            // visibility: 'visible',
+            display: 'block',
+            // 'pointer-events': 'auto',
+            // 'z-index': 9998
+          } : {
+            opacity: 0,
+            // visibility: 'hidden',
+            display: 'none',
+            // display: null,
+            // 'pointer-events': 'none',
+            // 'z-index': 0
+          }}
+          duration={500}
+        >
+          <div
+            className="drawer-overlay"
+            onClick={() => this.props.funcDrawerMenuActive()}
+            role="menuitem"
+            tabIndex="0"
+            // key="drawer-overlay"
+          />
+        </VelocityComponent> */}
 
       </nav>
     );
+
+
+    // {this.props.drawerMenuActive ?
+    //   <div
+    //     className="drawer-overlay"
+    //     onClick={() => this.props.funcDrawerMenuActive()}
+    //     role="menuitem"
+    //     tabIndex="0"
+    //     key="drawer-overlay"
+    //   />
+    //   : <div />}
+
+    // {this.props.drawerMenuActive ?
+    //   <div
+    //     className="drawer-overlay"
+    //     onClick={() => this.props.funcDrawerMenuActive()}
+    //     role="menuitem"
+    //     tabIndex="0"
+    //     key="drawer-overlay"
+    //   />
+    //   : undefined}
+
+    // return (
+    //   <nav>
+    //
+    //     <CSSTransitionGroup
+    //       transitionName="drawer-menu"
+    //       // transitionAppear
+    //       transitionEnterTimeout={500}
+    //       transitionLeaveTimeout={300}
+    //       // transitionAppearTimeout={300}
+    //       component="div"
+    //     >
+    //       {this.props.drawerMenuActive &&
+    //         <div className="drawer-menu" key="drawer-menu">
+    //           <div className="title">Menu</div>
+    //           {this.codeMobile()}
+    //         </div>
+    //       }
+    //     </CSSTransitionGroup>
+    //
+    //     <CSSTransitionGroup
+    //       transitionName="drawer-overlay"
+    //       // transitionAppear
+    //       transitionEnterTimeout={500}
+    //       transitionLeaveTimeout={300}
+    //       // transitionAppearTimeout={300}
+    //       component="div"
+    //     >
+    //       {this.props.drawerMenuActive &&
+    //         <div
+    //           className="drawer-overlay"
+    //           onClick={() => this.props.funcDrawerMenuActive()}
+    //           role="menuitem"
+    //           tabIndex="0"
+    //           key="drawer-overlay"
+    //         />
+    //       }
+    //     </CSSTransitionGroup>
+    //
+    //   </nav>
+    // );
 
 
     // {this.props.drawerMenuActive &&
@@ -320,11 +401,6 @@ MainMenu.propTypes = {
   // --------------------------------------------------
 
   drawerMenuActive: PropTypes.bool.isRequired,
-  // footerCardGameCommunityRenewalList: PropTypes.instanceOf(List),
-  // footerCardGameCommunityAccessList: PropTypes.instanceOf(List),
-  // footerCardUserCommunityAccessList: PropTypes.instanceOf(List),
-
-
 
 
 
@@ -335,7 +411,6 @@ MainMenu.propTypes = {
   funcUrlDirectory: PropTypes.func.isRequired,
 
   funcDrawerMenuActive: PropTypes.func.isRequired,
-  // funcSelectFooterCardType: PropTypes.func.isRequired,
 
 
 };

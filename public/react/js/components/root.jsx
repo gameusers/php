@@ -8,7 +8,9 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import ReactGA from 'react-ga';
 // import { slide as Menu } from 'react-burger-menu';
 import Header from './header';
+import MainMenu from './main/menu';
 import MainAppShareButtons from './main/app/share-buttons';
+import ModalNotification from './modal/notification';
 import Footer from './footer';
 import { Model } from '../models/model';
 
@@ -70,6 +72,10 @@ export default class Root extends React.Component {
   }
 
 
+
+
+
+
   render() {
     return (
       <BrowserRouter basename={this.props.baseName} onUpdate={this.googleAnalytics()}>
@@ -77,8 +83,35 @@ export default class Root extends React.Component {
 
           <Header {...this.props} />
 
-          <Route path="/app/share-buttons" render={() => <MainAppShareButtons {...this.props} />} />
-          <Route path="/app/test1" render={() => <MainAppShareButtons {...this.props} />} />
+          <main className={this.props.deviceType === 'other' ? 'main' : 'main-s'}>
+
+            <MainMenu {...this.props} />
+
+            <Route path="/app/share-buttons" render={() => <MainAppShareButtons {...this.props} />} />
+            <Route path="/app/test1" render={() => <MainAppShareButtons {...this.props} />} />
+
+            {this.props.deviceType !== 'other' &&
+              <div className="menu-s">
+                <div className="slide">
+                  <div className="icon-box">
+                    <div className="icon"><span className="glyphicon glyphicon-triangle-top icon-arrow" aria-hidden="true" /></div>
+                    <div
+                      className="icon"
+                      onClick={() => this.props.funcDrawerMenuActive()}
+                      role="button"
+                      tabIndex="0"
+                    >
+                      <span className="glyphicon glyphicon-list-alt icon-menu" aria-hidden="true" />
+                    </div>
+                    <div className="icon"><span className="glyphicon glyphicon-triangle-bottom icon-arrow" aria-hidden="true" /></div>
+                  </div>
+                </div>
+              </div>
+            }
+
+            <ModalNotification {...this.props} />
+
+          </main>
 
           <Footer {...this.props} />
 
@@ -86,6 +119,23 @@ export default class Root extends React.Component {
       </BrowserRouter>
     );
   }
+
+  // render() {
+  //   return (
+  //     <BrowserRouter basename={this.props.baseName} onUpdate={this.googleAnalytics()}>
+  //       <div>
+  //
+  //         <Header {...this.props} />
+  //
+  //         <Route path="/app/share-buttons" render={() => <MainAppShareButtons {...this.props} />} />
+  //         <Route path="/app/test1" render={() => <MainAppShareButtons {...this.props} />} />
+  //
+  //         <Footer {...this.props} />
+  //
+  //       </div>
+  //     </BrowserRouter>
+  //   );
+  // }
 
 }
 
@@ -96,12 +146,16 @@ export default class Root extends React.Component {
 
 Root.propTypes = {
 
+
   // --------------------------------------------------
   //   共通
   // --------------------------------------------------
 
   stateModel: PropTypes.instanceOf(Model).isRequired,
+
   baseName: PropTypes.string,
+
+  deviceType: PropTypes.string.isRequired,
   userNo: PropTypes.number,
   adBlock: PropTypes.bool.isRequired,
 
@@ -111,6 +165,8 @@ Root.propTypes = {
   // --------------------------------------------------
 
   funcInitialAsynchronous: PropTypes.func.isRequired,
+  funcDrawerMenuActive: PropTypes.func.isRequired,
+
 
 };
 
