@@ -364,7 +364,7 @@ main .menu .box .right {
   border-left: #c7c7c7 solid 1px;
 }
 
-main .menu .box .selected-icon {
+main .menu .box .active-icon {
   margin: 0 0 0 auto;
   padding: 0 10px 0 0;
 }
@@ -1279,8 +1279,8 @@ footer .btn-group .btn-group .active {
   color: #337ab7;
 }
 
-.drawer-menu .box .right .selected {
-  color: #0000;
+.drawer-menu .box .right .active {
+  color: #000;
 }
 
 

@@ -37,6 +37,7 @@ desktop.ini
 # 制作補助用で不要なファイル
 _test.js
 _test.php
+_testform.php
 .atomignore
 /fuel/app/classes/controller/test.php
 /fuel/app/views/test_view.php

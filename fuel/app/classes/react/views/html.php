@@ -35,12 +35,17 @@ echo '  </script>' . "\n";
 ?>
 </head>
 <body>
-
+  <!-- <br><br><br><br>
+  <div id="gameusers-share-buttons-option">AAA</div> -->
   <div id="gameusers-root"></div>
+
 
 <?php foreach ($jsArr as $key => $valueArr): ?>
   <script type="text/javascript"<?php foreach ($valueArr as $key => $value): ?> <?=$key?>="<?=$value?>"<?php endforeach; ?>></script>
 <?php endforeach; ?>
+
+  <!-- <script type="text/javascript" src="https://localhost/gameusers/public/dev/blog/wp-content/plugins/gameusers-share-buttons/js/test.js"></script> -->
+  <!-- <script type="text/javascript" src="https://localhost/gameusers/public/dev/blog/wp-content/plugins/gameusers-share-buttons/js/option-bundle.min.js?ver=1.0.0"></script> -->
 
 </body>
 </html>

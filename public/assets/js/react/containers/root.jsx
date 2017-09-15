@@ -5,7 +5,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import 'whatwg-fetch';
-import 'babel-polyfill';
+// import 'babel-polyfill';
 import Root from '../components/root';
 import * as actions from '../actions/action';
 // import { GAMEUSERS_API_URL, THEME_DESIGN_URL, THEME_ICON_URL, instanceGameUsersShareButtonsOption, fromJSOrdered } from '../models/model';

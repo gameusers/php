@@ -16,6 +16,14 @@ import { Model } from '../models/model';
 
 
 
+// const Test = () => (
+//   <div>
+//     <h2>Test</h2>
+//   </div>
+// );
+
+
+
 export default class Root extends React.Component {
 
   constructor() {
@@ -76,6 +84,7 @@ export default class Root extends React.Component {
 
 
 
+
   render() {
     return (
       <BrowserRouter basename={this.props.baseName} onUpdate={this.googleAnalytics()}>
@@ -87,8 +96,10 @@ export default class Root extends React.Component {
 
             <MainMenu {...this.props} />
 
-            <Route path="/app/share-buttons" render={() => <MainAppShareButtons {...this.props} />} />
-            <Route path="/app/test1" render={() => <MainAppShareButtons {...this.props} />} />
+            <Route exact path="/app/share-buttons" render={() => <MainAppShareButtons {...this.props} />} />
+            <Route exact path="/app/share-buttons/test1" render={() => <MainAppShareButtons {...this.props} />} />
+
+            {/* <div id="gameusers-share-buttons-option">AAA</div> */}
 
             {this.props.deviceType !== 'other' &&
               <div className="menu-s">
@@ -97,7 +108,7 @@ export default class Root extends React.Component {
                     <div className="icon"><span className="glyphicon glyphicon-triangle-top icon-arrow" aria-hidden="true" /></div>
                     <div
                       className="icon"
-                      onClick={() => this.props.funcDrawerMenuActive()}
+                      onClick={() => this.props.funcMenuDrawerActive()}
                       role="button"
                       tabIndex="0"
                     >
@@ -165,7 +176,7 @@ Root.propTypes = {
   // --------------------------------------------------
 
   funcInitialAsynchronous: PropTypes.func.isRequired,
-  funcDrawerMenuActive: PropTypes.func.isRequired,
+  funcMenuDrawerActive: PropTypes.func.isRequired,
 
 
 };

@@ -1,12 +1,14 @@
 const webpack = require('webpack');
 const path = require('path');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 // 環境を記述 development or production
 const env = 'development';
 
 const config = {
   entry: {
-    root: ['babel-polyfill', './public/react/js/entry-root.jsx']
+    root: './public/react/js/entry-root.jsx'
+    // root: ['babel-polyfill', './public/react/js/entry-root.jsx']
   },
   output: {
     path: path.join(__dirname, '/public/react/js'),
@@ -17,10 +19,10 @@ const config = {
       {
         test: /\.jsx$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
-        options: {
-          presets: ['react', 'es2015', 'es2016', 'es2017']
-        }
+        loader: 'babel-loader'
+        // options: {
+        //   presets: ['react', 'es2015', 'es2016', 'es2017']
+        // }
       },
       {
         test: /\.css$/,
@@ -46,11 +48,19 @@ const config = {
 // Production ビルドの場合は圧縮する
 if (env === 'production') {
   config.plugins.push(
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
+    new UglifyJSPlugin({
+      uglifyOptions: {
+        ie8: false,
+        ecma: 8,
         warnings: false
       }
     })
+
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: {
+    //     warnings: false
+    //   }
+    // })
   );
 }
 

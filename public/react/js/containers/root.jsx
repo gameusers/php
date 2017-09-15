@@ -5,7 +5,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import 'whatwg-fetch';
-import 'babel-polyfill';
+// import 'babel-polyfill';
 import Cookies from 'js-cookie';
 // import 'magnific-popup';
 import Root from '../components/root';
@@ -44,7 +44,6 @@ const mapStateToProps = state => ({
 
 
 
-
   // --------------------------------------------------
   //   通知
   // --------------------------------------------------
@@ -58,6 +57,7 @@ const mapStateToProps = state => ({
   notificationAlreadyReadList: state.getIn(['notificationObj', 'alreadyReadArr']),
   notificationAlreadyReadActivePage: state.getIn(['notificationObj', 'alreadyReadActivePage']),
   notificationLimitNotification: state.getIn(['notificationObj', 'limitNotification']),
+
 
 
   // --------------------------------------------------
@@ -89,6 +89,35 @@ const mapStateToProps = state => ({
   headerGameDeveloperList: state.getIn(['headerObj', 'gameDeveloperArr']),
   headerGameLinkList: state.getIn(['headerObj', 'gameLinkArr']),
 
+  headerMenuMap: state.getIn(['headerObj', 'menuObj']),
+
+
+
+  // --------------------------------------------------
+  //   メニュー
+  // --------------------------------------------------
+
+  menuMap: state.get('menuObj'),
+  // menuMap: state.get('menuObj'),
+  menuDrawerActive: state.getIn(['menuObj', 'drawerActive']),
+
+
+
+  // --------------------------------------------------
+  //   メニュー / ドロワー / スマートフォン・タブレット用
+  // --------------------------------------------------
+
+
+
+
+
+  // --------------------------------------------------
+  //   モーダル
+  // --------------------------------------------------
+
+  modalNotificationShow: state.getIn(['modalObj', 'notification', 'show']),
+
+
 
   // --------------------------------------------------
   //   フッター
@@ -99,19 +128,6 @@ const mapStateToProps = state => ({
   footerCardGameCommunityAccessList: state.getIn(['footerObj', 'gameCommunityAccessArr']),
   footerCardUserCommunityAccessList: state.getIn(['footerObj', 'userCommunityAccessArr']),
 
-
-  // --------------------------------------------------
-  //   フッター / モーダル
-  // --------------------------------------------------
-
-  modalNotificationShow: state.getIn(['modalObj', 'notification', 'show']),
-
-
-  // --------------------------------------------------
-  //   ドロワーメニュー / スマートフォン・タブレット用
-  // --------------------------------------------------
-
-  drawerMenuActive: state.get('drawerMenuActive'),
 
 
 });
@@ -179,136 +195,6 @@ const mapDispatchToProps = (dispatch) => {
   // };
 
 
-
-  // bindActionObj.funcDrawerMenuActive = (stateModel) => {
-  //
-  //
-  //   // --------------------------------------------------
-  //   //   Get Data
-  //   // --------------------------------------------------
-  //
-  //   const drawerMenuActive = stateModel.get('drawerMenuActive');
-  //
-  //
-  //
-  //
-  // }
-
-
-
-  bindActionObj.funcDrawerMenu = () => {
-
-    // console.log('funcDrawerMenu');
-
-
-    // --------------------------------------------------
-    //   Get Data
-    // --------------------------------------------------
-
-    // const slideMenu = stateModel.get('slideMenu');
-
-
-    // $('.drawer-menu').animate({ width: 'toggle' });
-    // $('.drawer-menu').toggleClass('active');
-
-    // document.querySelector('.drawer-menu').classList.toggle('active');
-    // document.querySelector('.drawer-overlay').classList.toggle('active');
-
-
-
-
-
-    // $('#slideMenu').css('display', 'block');
-    //
-    // $('#slideMenu').lastSidebar({
-    //   align: 'left',
-    // });
-
-
-    // if ($('#slideMenu')[0]) {
-    //
-    //
-    //
-    //   if ($('#lastOverlay').is(':visible')) {
-    //
-    //     console.log('lastOverlay');
-    //
-    //     // $('#lastOverlay').trigger('click');
-    //     // $('#slideMenu').unbind();
-    //     //
-    //     // //
-    //     // // // $('#slideMenu').css('display', 'block');
-    //     // // //
-    //     // // $('#slideMenu').lastSidebar({
-    //     // //   align: 'left',
-    //     // // });
-    //     //
-    //     // $('#slideMenu').css('display', 'none');
-    //     //
-    //     // $('#slideMenu').lastSidebar({
-    //     //   align: 'left',
-    //     // });
-    //
-    //
-    //   } else {
-    //
-    //     console.log('slideMenu on');
-    //
-    //     // 初期状態ではdisplay: noneになっているので、DOM読み込み後、表示する 最初に隠さないと読み込み時に一瞬表示されてしまうため
-    //     $('#slideMenu').css('display', 'block');
-    //
-    //     $('#slideMenu').lastSidebar({
-    //       align: 'left',
-    //     });
-    //
-    //   }
-    //
-    // }
-
-
-
-    // if (boolean === true && $('#slideMenu')[0]) {
-    //
-    //   // 初期状態ではdisplay: noneになっているので、DOM読み込み後、表示する 最初に隠さないと読み込み時に一瞬表示されてしまうため
-    //   $('#slideMenu').css('display', 'block');
-    //
-    //   $('#slideMenu').lastSidebar({
-    //     align: 'left',
-    //   });
-    //
-    //   // $('#slideMenu').unbind();
-    //
-    //
-    //   // --------------------------------------------------
-    //   //   Slide Menu を true にする / 2度処理されるのを禁止するため
-    //   // --------------------------------------------------
-    //
-    //   dispatch(actions.funcSlideMenu(true));
-    //
-    //   console.log('funcSlideMenu2 on');
-    //
-    // } else if (boolean === false && $('#slideMenu')[0]) {
-    //
-    //   if ($('#lastOverlay').is(':visible')) {
-    //     console.log('lastOverlay');
-    //     $('#lastOverlay').trigger('click');
-    //   }
-    //
-    //   // $('#slideMenu').click();
-    //   // $('#slideMenu').unbind();
-    //
-    //
-    //   // --------------------------------------------------
-    //   //   Slide Menu を true にする / 2度処理されるのを禁止するため
-    //   // --------------------------------------------------
-    //
-    //   // dispatch(actions.funcSlideMenu(false));
-    //
-    //   console.log('funcSlideMenu2 off');
-    //
-    // }
-
-  };
 
 
 

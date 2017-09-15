@@ -180,18 +180,6 @@ class Controller_App extends Controller
             CSS_BOOTSTRAP_CDN_ARR,
 			CSS_LADDA_BOOTSTRAP_CDN_ARR,
             CSS_JQUERY_MAGNIFIC_POPUP_CDN_ARR,
-            // CSS_JQUERY_LAST_SIDEBAR_ARR
-            // CSS_REACT_CONTEXTMENU_ARR
-            // CSS_JQUERY_AUTO_HIDING_NAVIGATION
-            // URL_BASE . CSS_JQUERY_AUTO_HIDING_NAVIGATION,
-
-			// Config::get('css_bootstrap'),
-			// Config::get('css_ladda'),
-			// Config::get('css_typeahead'),
-			// Config::get('css_jquery_magnific_popup'),
-			// Config::get('css_jquery_swiper'),
-			// Config::get('css_jquery_pnotify'),
-			// Config::get('css_jquery_contextMenu')
 		);
 
 		// ---------------------------------------------
@@ -226,30 +214,8 @@ class Controller_App extends Controller
             JS_JQUERY_CDN_ARR,
             JS_JQUERY_AUTO_HIDING_NAVIGATION_ARR,
             JS_JQUERY_MAGNIFIC_POPUP_CDN_ARR,
-            // JS_JQUERY_LAST_SIDEBAR_MOBILE_EVENTS_ARR,
-            // JS_JQUERY_LAST_SIDEBAR_ARR,
             JS_LADDA_BOOTSTRAP_SPIN_CDN_ARR,
             JS_LADDA_BOOTSTRAP_CDN_ARR
-            // JS_JQUERY_CONTEXT_MENU_UI_POSITION_ARR,
-            // JS_JQUERY_CONTEXT_MENU_ARR
-			// Config::get('js_jquery'),
-			// Config::get('js_jquery_cookie'),
-			// // Config::get('js_bootstrap'),
-			// Config::get('js_jquery_autosize'),
-			// Config::get('js_jquery_fastclick'),
-			// Config::get('js_jquery_magnific_popup'),
-			// Config::get('js_jquery_imagesloaded'),
-			// Config::get('js_ladda_spin'),
-			// Config::get('js_ladda'),
-			// Config::get('js_typeahead'),
-			// Config::get('js_jquery_swiper'),
-			// Config::get('js_jquery_auto_hiding_navigation'),
-			// Config::get('js_jquery_jrumble'),
-			// Config::get('js_jquery_sticky-kit'),
-			// Config::get('js_jquery_pnotify'),
-			// Config::get('js_masonry'),
-			// Config::get('js_jquery_contextMenu'),
-			// Config::get('js_jquery_ui_position')
 		);
 
 		// ---------------------------------------------
@@ -281,10 +247,9 @@ class Controller_App extends Controller
 		// ---------------------------------------------
 
 		if (Fuel::$env == 'development') {
-			// array_push($cssArr, URL_BASE . 'react/css/style.css');
-            // array_push($jsArr, JS_JQUERY_CDN_ARR);
-            // array_push($jsArr, JS_JQUERY_AUTO_HIDING_NAVIGATION);
+
 			array_push($jsArr, ['src' => URL_BASE . 'react/js/root-bundle.min.js']);
+
 		} else {
 			// array_push($cssArr, Config::get('css_basic_min'), 'style.min.css', 'new.min.css');
 			// array_push($jsArr, Config::get('js_basic_min'), 'sc.min.js');

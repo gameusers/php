@@ -6,7 +6,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 // import { Button, FormGroup, Radio } from 'react-bootstrap';
-import { List } from 'immutable';
+import { List, Map } from 'immutable';
 import { Model } from '../models/model';
 import { getDeviceType, formatDateTime } from '../modules/common';
 
@@ -339,43 +339,54 @@ export default class Header extends React.Component {
   //   参考：http://qiita.com/endam/items/1bde821c4b29f9b663da
   // --------------------------------------------------
 
-  codeTab() {
+  codeMenuBottom() {
 
     // console.log('this.props.envDevelopment = ', this.props.envDevelopment);
     // console.log('this.props.urlDirectory1 = ', this.props.urlDirectory1);
     // console.log('this.props.urlDirectory2 = ', this.props.urlDirectory2);
 
-    let codeArr = [];
+    let map = this.props.headerMenuMap.get(this.props.urlDirectory1);
 
-    if (this.props.urlDirectory1 === 'app') {
+    if (this.props.headerMenuMap.getIn([this.props.urlDirectory1])) {
+      // console.log('this.props.headerMenuMap.get(this.props.urlDirectory1) = ', this.props.headerMenuMap.get(this.props.urlDirectory1));
+      map = this.props.headerMenuMap.getIn([this.props.urlDirectory1]);
+    }
 
-      codeArr = (
-        <nav className="cd-secondary-nav">
-          <ul>
 
-            <li className={this.props.urlDirectory2 === 'share-buttons' && 'active'}>
-              <Link
-                to="/app/share-buttons"
-                onClick={() => this.props.funcUrlDirectory('app', 'share-buttons', null)}
-              >
-                アプリケーション
-              </Link>
-            </li>
+    const codeArr = [];
 
-            <li className={this.props.urlDirectory2 === 'buy' && 'active'}>
-              <Link
-                to="/app/buy"
-                onClick={() => this.props.funcUrlDirectory('app', 'buy', null)}
-              >
-                購入
-              </Link>
-            </li>
+    // if (this.props.urlDirectory1 === 'app') {
 
-          </ul>
-        </nav>
+    map.entrySeq().forEach((e) => {
+
+      const key = e[0];
+      const value = e[1];
+
+
+      // --------------------------------------------------
+      //   リンク
+      // --------------------------------------------------
+
+      let linkTo = '';
+      if (value.get('urlDirectory1')) linkTo += `/${value.get('urlDirectory1')}`;
+      if (value.get('urlDirectory2')) linkTo += `/${value.get('urlDirectory2')}`;
+      if (value.get('urlDirectory3')) linkTo += `/${value.get('urlDirectory3')}`;
+
+
+      codeArr.push(
+        <li className={value.get('urlDirectory2') === this.props.urlDirectory2 && 'active'} key={key}>
+          <Link
+            to={linkTo}
+            onClick={() => this.props.funcUrlDirectory(value.get('urlDirectory1'), value.get('urlDirectory2'), value.get('urlDirectory3'))}
+          >
+            {value.get('text')}
+          </Link>
+        </li>
       );
 
-    }
+    // }
+
+    });
 
     return codeArr;
 
@@ -425,7 +436,11 @@ export default class Header extends React.Component {
 
         {this.codeHeroImage()}
 
-        {this.codeTab()}
+        <nav className="cd-secondary-nav">
+          <ul>
+            {this.codeMenuBottom()}
+          </ul>
+        </nav>
 
       </header>
     );
@@ -434,6 +449,7 @@ export default class Header extends React.Component {
 }
 
 Header.propTypes = {
+
 
   // --------------------------------------------------
   //   共通
@@ -487,6 +503,8 @@ Header.propTypes = {
   headerGameDeveloperList: PropTypes.instanceOf(List),
   headerGameLinkList: PropTypes.instanceOf(List),
 
+  headerMenuMap: PropTypes.instanceOf(Map).isRequired,
+
 
   // --------------------------------------------------
   //   関数
@@ -495,6 +513,7 @@ Header.propTypes = {
   funcUrlDirectory: PropTypes.func.isRequired,
 
   funcShowModalNotification: PropTypes.func.isRequired
+
 
 };
 

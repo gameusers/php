@@ -55,6 +55,16 @@ export const funcNotificationObj = (unreadTotal, unreadArr, alreadyReadTotal, al
 
 
 // --------------------------------------------------
+//   ドロワーメニュー / スマートフォン・タブレット用
+// --------------------------------------------------
+
+export const funcMenuDrawerActive = () => ({
+  type: 'MENU_DRAWER_ACTIVE'
+});
+
+
+
+// --------------------------------------------------
 //   フッター
 // --------------------------------------------------
 
@@ -64,14 +74,4 @@ export const funcSelectFooterCardType = (cardType, gameCommunityRenewalArr, game
   gameCommunityRenewalArr,
   gameCommunityAccessArr,
   userCommunityAccessArr
-});
-
-
-
-// --------------------------------------------------
-//   ドロワーメニュー / スマートフォン・タブレット用
-// --------------------------------------------------
-
-export const funcDrawerMenuActive = () => ({
-  type: 'DRAWER_MENU_ACTIVE'
 });

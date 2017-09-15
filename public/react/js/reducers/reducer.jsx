@@ -40,7 +40,7 @@ const reducer = (state = new Model(), action) => {
       //   .set('urlDirectory3', action.urlDirectory3);
 
       return state
-        .set('drawerMenuActive', false)
+        .setIn(['menuObj', 'drawerActive'], false)
         .set('urlDirectory1', action.urlDirectory1)
         .set('urlDirectory2', action.urlDirectory2)
         .set('urlDirectory3', action.urlDirectory3);
@@ -86,6 +86,28 @@ const reducer = (state = new Model(), action) => {
 
 
     // --------------------------------------------------
+    //   ドロワーメニュー / スマートフォン・タブレット用
+    //   boolean のトグルになっている
+    // --------------------------------------------------
+
+    case 'MENU_DRAWER_ACTIVE': {
+
+      let menuDrawerActive = true;
+
+      if (state.getIn(['menuObj', 'drawerActive'])) {
+        menuDrawerActive = false;
+      }
+
+      // console.log('reducer / DRAWER_MENU_ACTIVE = ', menuDrawerActive);
+
+      return state.setIn(['menuObj', 'drawerActive'], menuDrawerActive);
+
+    }
+
+
+
+
+    // --------------------------------------------------
     //   フッター
     // --------------------------------------------------
 
@@ -104,24 +126,7 @@ const reducer = (state = new Model(), action) => {
 
 
 
-    // --------------------------------------------------
-    //   ドロワーメニュー / スマートフォン・タブレット用
-    //   boolean のトグルになっている
-    // --------------------------------------------------
 
-    case 'DRAWER_MENU_ACTIVE': {
-
-      let drawerMenuActive = true;
-
-      if (state.get('drawerMenuActive')) {
-        drawerMenuActive = false;
-      }
-
-      // console.log('reducer / DRAWER_MENU_ACTIVE = ', drawerMenuActive);
-
-      return state.set('drawerMenuActive', drawerMenuActive);
-
-    }
 
 
 

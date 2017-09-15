@@ -82,19 +82,112 @@ initialStateObj.notificationObj.alreadyReadActivePage = 1;
 
 
 // --------------------------------------------------
-//   フッターに表示するカードの種類を指定
-//   gameCommunityRenewal / 最近更新されたゲームコミュニティ
-//   gameCommunityAccess / 最近アクセスしたゲームコミュニティ
-//   userCommunityAccess / 最近アクセスしたユーザーコミュニティ
+//   メイン / メニュー
 // --------------------------------------------------
 
-if (initialStateObj.footerObj.gameCommunityAccessArr) {
-  initialStateObj.footerObj.cardType = 'gameCommunityAccess';
-} else if (initialStateObj.footerObj.userCommunityAccessArr) {
-  initialStateObj.footerObj.cardType = 'userCommunityAccess';
-} else {
-  initialStateObj.footerObj.cardType = 'gameCommunityRenewal';
-}
+initialStateObj.headerObj.menuObj = {
+
+  app: {
+    'share-buttons': {
+      urlDirectory1: 'app',
+      urlDirectory2: 'share-buttons',
+      activeUrlDirectory3: null,
+      text: 'シェアボタン'
+    },
+    buy: {
+      urlDirectory1: 'app',
+      urlDirectory2: 'buy',
+      activeUrlDirectory3: null,
+      text: '購入'
+    }
+  }
+
+};
+
+
+
+// --------------------------------------------------
+//   メイン / メニュー
+// --------------------------------------------------
+
+initialStateObj.menuObj = {
+
+  app: {
+    'share-buttons': [
+      {
+        urlDirectory1: 'app',
+        urlDirectory2: 'share-buttons',
+        urlDirectory3: null,
+        materialIcon: 'cloud_queue',
+        text: 'シェアボタン'
+      },
+      {
+        urlDirectory1: 'app',
+        urlDirectory2: 'share-buttons',
+        urlDirectory3: 'test1',
+        materialIcon: 'forum',
+        text: 'テスト1'
+      },
+      {
+        urlDirectory1: 'app',
+        urlDirectory2: 'share-buttons',
+        urlDirectory3: 'test2',
+        materialIcon: 'priority_high',
+        text: 'テスト2'
+      },
+      {
+        urlDirectory1: 'app',
+        urlDirectory2: 'share-buttons',
+        urlDirectory3: 'test3',
+        materialIcon: 'group',
+        text: 'テスト3'
+      }
+    ],
+    buy: [
+      {
+        urlDirectory1: 'app',
+        urlDirectory2: 'buy',
+        urlDirectory3: null,
+        materialIcon: 'cloud_queue',
+        text: '購入'
+      },
+      {
+        urlDirectory1: 'app',
+        urlDirectory2: 'buy',
+        urlDirectory3: 'test1',
+        materialIcon: 'forum',
+        text: 'テスト1'
+      },
+      {
+        urlDirectory1: 'app',
+        urlDirectory2: 'buy',
+        urlDirectory3: 'test2',
+        materialIcon: 'priority_high',
+        text: 'テスト2'
+      },
+      {
+        urlDirectory1: 'app',
+        urlDirectory2: 'buy',
+        urlDirectory3: 'test3',
+        materialIcon: 'group',
+        text: 'テスト3'
+      }
+    ]
+  },
+
+  drawerActive: false
+
+};
+
+
+
+
+
+// --------------------------------------------------
+//   メイン / ドロワーメニュー / スマートフォン・タブレット用
+// --------------------------------------------------
+
+// initialStateObj.drawerMenuActive = false;
 
 
 
@@ -111,10 +204,20 @@ initialStateObj.modalObj = {
 
 
 // --------------------------------------------------
-//   スライドメニュー / スマートフォン・タブレット用
+//   フッターに表示するカードの種類を指定
+//   gameCommunityRenewal / 最近更新されたゲームコミュニティ
+//   gameCommunityAccess / 最近アクセスしたゲームコミュニティ
+//   userCommunityAccess / 最近アクセスしたユーザーコミュニティ
 // --------------------------------------------------
 
-initialStateObj.drawerMenuActive = false;
+if (initialStateObj.footerObj.gameCommunityAccessArr) {
+  initialStateObj.footerObj.cardType = 'gameCommunityAccess';
+} else if (initialStateObj.footerObj.userCommunityAccessArr) {
+  initialStateObj.footerObj.cardType = 'userCommunityAccess';
+} else {
+  initialStateObj.footerObj.cardType = 'gameCommunityRenewal';
+}
+
 
 
 
