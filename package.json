@@ -66,7 +66,8 @@
       "consistent-return": 0,
       "no-undef": 0,
       "padded-blocks": 0,
-      "react/no-danger": 0
+      "react/no-danger": 0,
+      "react/prefer-stateless-function": 0
     }
   },
   "stylelint": {
@@ -75,6 +76,11 @@
       "comment-whitespace-inside": null,
       "comment-empty-line-before": null,
       "max-empty-lines": null
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
     }
   },
   "dependencies": {
@@ -91,6 +97,7 @@
     "react-masonry-component": "^5.0.7",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
+    "react-sticky-state": "^2.1.6",
     "redux": "^3.7.2",
     "velocity-react": "^1.3.3",
     "whatwg-fetch": "^2.0.3"

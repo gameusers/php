@@ -304,25 +304,57 @@ header .hero-image-data .link .icon {
    メイン / メニュー
 -------------------------------------------------- */
 
-main .menu {
-  width: 300px;
-  padding: 0 15px 0 0;
-  /*background-color: red;*/
-}
-
-main .menu .slide .visible {
-  display: block;
-}
-
-main .menu .slide .hidden {
-  display: none;
-}
-
-main .menu .slide {
+.menu {
   position: relative;
+  width: 300px;
+  margin: 0 15px 0 0;
+  /*background-color: red;*/
+  /*overflow: hidden;*/
 }
 
-main .menu .ad {
+.menu .google-adsense-rectangle {
+  padding: 0 0 20px;
+}
+
+.menu .sticky {
+  position: sticky;
+  top: 20px;
+  left: 0;
+  /*width: 100%;*/
+  /*background-color: yellow;*/
+  /*width: 300px;
+  padding: 0 0 0 20px;*/
+}
+
+.menu .sticky.sticky-fixed.is-sticky {
+  margin-top: 0;
+  margin-bottom: 0;
+  position: fixed;
+  /*top: 20px;*/
+  left: 20px;
+  backface-visibility: hidden;
+  /*width: 100%;*/
+  /*width: 305px;
+  padding: 0 0 0 20px;*/
+}
+
+.menu .sticky.sticky-fixed.is-sticky:not([style*="margin-top"]) {
+  margin-top: 0 !important;
+}
+
+.menu .sticky.sticky-fixed.is-sticky:not([style*="margin-bottom"]) {
+  margin-bottom: 0 !important;
+}
+
+.menu .sticky.sticky-fixed.is-absolute {
+  position: absolute;
+  /*background-color: green;*/
+  /*width: 285px;*/
+  /*padding: 0;*/
+}
+
+
+/*main .menu .ad {
   margin: 0 0 30px;
 }
 
@@ -331,7 +363,7 @@ main .menu .ad_thumbnail_box {
   flex-flow: row wrap;
   flex-wrap: wrap;
   justify-content: space-between;
-}
+}*/
 
 main .menu .box {
   display: flex;
@@ -339,6 +371,7 @@ main .menu .box {
   align-items: center;
   border-radius: 4px;
   box-shadow: 2px 2px 5px #bababa;
+  width: 300px;
   margin: 0 0 14px;
   background-color: #fff;
   cursor: pointer;
@@ -414,31 +447,6 @@ main .menu .border-right-11 {
 }
 
 
-/*.menu_margin_feed {
-  margin: 0 0 25px;
-}
-
-.menu_margin_community {
-  margin: 0 0 10px;
-}
-
-.menu_margin_wiki {
-  margin: 0 0 10px;
-}
-
-.menu_margin_bbs {
-  margin: 0 0 10px;
-}
-
-.menu_margin_rec {
-  margin: 0 0 15px;
-}
-
-.menu_margin_config {
-  margin: 0 0 10px;
-}*/
-
-
 /* スマートフォン・タブレット版 */
 
 main .menu-s {
@@ -446,14 +454,6 @@ main .menu-s {
   /*background-color: pink;*/
   /*margin: 0 0 15px 0;*/
 }
-
-/*main .menu-s .visible {
-  visibility: visible;
-}
-
-main .menu-s .hidden {
-  visibility: hidden;
-}*/
 
 main .menu-s .icon-box {
   display: flex;
@@ -825,7 +825,7 @@ footer .btn-group .btn-group .active {
 
 
 /* --------------------------------------------------
-  カード / モバイル用 / ノーマルサイズ
+   カード / モバイル用 / ノーマルサイズ
 -------------------------------------------------- */
 
 .card-s {
@@ -954,7 +954,7 @@ footer .btn-group .btn-group .active {
 
 
 /* --------------------------------------------------
-  カード / 中サイズ
+   カード / 中サイズ
 -------------------------------------------------- */
 
 .card-medium-box {

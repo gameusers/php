@@ -341,26 +341,22 @@ export default class Header extends React.Component {
 
   codeMenuBottom() {
 
-    // console.log('this.props.envDevelopment = ', this.props.envDevelopment);
-    // console.log('this.props.urlDirectory1 = ', this.props.urlDirectory1);
-    // console.log('this.props.urlDirectory2 = ', this.props.urlDirectory2);
-
-    let map = this.props.headerMenuMap.get(this.props.urlDirectory1);
+    let map = Map();
 
     if (this.props.headerMenuMap.getIn([this.props.urlDirectory1])) {
-      // console.log('this.props.headerMenuMap.get(this.props.urlDirectory1) = ', this.props.headerMenuMap.get(this.props.urlDirectory1));
       map = this.props.headerMenuMap.getIn([this.props.urlDirectory1]);
     }
 
 
     const codeArr = [];
 
-    // if (this.props.urlDirectory1 === 'app') {
-
     map.entrySeq().forEach((e) => {
 
       const key = e[0];
       const value = e[1];
+
+
+      // console.log('value.get("activeUrlDirectory3") = ', value.get('activeUrlDirectory3'));
 
 
       // --------------------------------------------------
@@ -370,21 +366,19 @@ export default class Header extends React.Component {
       let linkTo = '';
       if (value.get('urlDirectory1')) linkTo += `/${value.get('urlDirectory1')}`;
       if (value.get('urlDirectory2')) linkTo += `/${value.get('urlDirectory2')}`;
-      if (value.get('urlDirectory3')) linkTo += `/${value.get('urlDirectory3')}`;
+      if (value.get('activeUrlDirectory3')) linkTo += `/${value.get('activeUrlDirectory3')}`;
 
 
       codeArr.push(
         <li className={value.get('urlDirectory2') === this.props.urlDirectory2 && 'active'} key={key}>
           <Link
             to={linkTo}
-            onClick={() => this.props.funcUrlDirectory(value.get('urlDirectory1'), value.get('urlDirectory2'), value.get('urlDirectory3'))}
+            onClick={() => this.props.funcUrlDirectory(value.get('urlDirectory1'), value.get('urlDirectory2'), value.get('activeUrlDirectory3'))}
           >
             {value.get('text')}
           </Link>
         </li>
       );
-
-    // }
 
     });
 

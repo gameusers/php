@@ -96,7 +96,7 @@ export default class MainAppShareButtons extends React.Component {
           コンテンツについて<br />
           Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。<br /><br />
           コンテンツについて<br />
-          Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。<br /><br /></p>
+          Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。</p>
 
           {/* <div className="game-users-share-buttons-option" id="gameusers-share-buttons-option">ABC</div> */}
           {/* <script type="text/javascript" src="https://localhost/gameusers/public/dev/blog/wp-content/plugins/gameusers-share-buttons/js/option-bundle.min.js?ver=1.0.0" /> */}

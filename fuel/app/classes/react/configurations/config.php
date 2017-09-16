@@ -89,7 +89,7 @@ define('URL_CURRENT', Uri::current());
 //   誤クリック防止
 // --------------------------------------------------
 
-if (USER_NO === 1 or Auth::member(100)) {
+if (USER_NO === 1 || Auth::member(100) || \Fuel::$env === 'development') {
     define('AD_BLOCK', true);
 } else {
     define('AD_BLOCK', false);
@@ -223,6 +223,10 @@ define('JS_JQUERY_AUTO_HIDING_NAVIGATION_ARR', [
 define('JS_JQUERY_MAGNIFIC_POPUP_CDN_ARR', [
     'src' => 'https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js'
 ]);
+
+// define('JS_JQUERY_STICKY_CDN_ARR', [
+//     'src' => 'https://cdn.jsdelivr.net/jquery.sticky/1.0.1/jquery.sticky.min.js'
+// ]);
 
 // define('JS_JQUERY_LAST_SIDEBAR_MOBILE_EVENTS_ARR', [
 //     'src' => URL_BASE . 'react/lib/last-sidebar/jquery.mobile.events.js'

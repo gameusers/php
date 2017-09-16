@@ -43,7 +43,8 @@ const reducer = (state = new Model(), action) => {
         .setIn(['menuObj', 'drawerActive'], false)
         .set('urlDirectory1', action.urlDirectory1)
         .set('urlDirectory2', action.urlDirectory2)
-        .set('urlDirectory3', action.urlDirectory3);
+        .set('urlDirectory3', action.urlDirectory3)
+        .setIn(['headerObj', 'menuObj', action.urlDirectory1, action.urlDirectory2, 'activeUrlDirectory3'], action.urlDirectory3);
     }
 
 

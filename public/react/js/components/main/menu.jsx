@@ -11,10 +11,12 @@ import { List, Map } from 'immutable';
 // import Transition from 'react-transition-group/Transition';
 // import CSSTransition from 'react-transition-group/CSSTransition';
 import { VelocityComponent, VelocityTransitionGroup } from 'velocity-react';
+import Sticky from 'react-sticky-state';
+// import { StickyState } from 'sticky-state';
 // import { slide as Menu } from 'react-burger-menu';
 // import Masonry from 'react-masonry-component';
 // import { Model } from '../../models/model';
-// import ModalNotification from './modal/notification';
+import AdGoogleAdsenseRectangle from '../advertisement/google-adsense-rectangle';
 
 import '../../../css/style.css';
 
@@ -33,14 +35,31 @@ export default class MainMenu extends React.Component {
 
 
 
-  // componentDidMount() {
-  //
-  //   // console.log('componentDidMount');
-  //
-  //   // console.log(this.props.menuMap.has(this.props.urlDirectory1));
-  //
-  //
-  // }
+  componentDidMount() {
+
+    // console.log('componentDidMount');
+
+    // $('.slide').sticky({
+    //   topSpacing: 20,
+    //   widthFromWrapper: false
+    // });
+    //
+
+
+    // --------------------------------------------------
+    //   position: sticky が使えない場合は、polyfill を利用する
+    //   https://mae.chab.in/archives/59690
+    //   https://github.com/soenkekluth/sticky-state
+    // --------------------------------------------------
+
+    // const div = document.createElement('div');
+    // div.style.position = 'sticky';
+    //
+    // if (div.style.position.indexOf('sticky') !== -1) {
+    //   StickyState(document.querySelectorAll('.sticky'));
+    // }
+
+  }
 
   // componentWillUpdate() {
   //
@@ -239,10 +258,12 @@ export default class MainMenu extends React.Component {
 
       return (
         <nav className="menu">
-          <div className="slide">
-            {/* <div className="ad" /> */}
-            {this.codeOther()}
-          </div>
+          <AdGoogleAdsenseRectangle {...this.props} />
+          <Sticky stickyClass="sticky">
+            <div>
+              {this.codeOther()}
+            </div>
+          </Sticky>
         </nav>
       );
 

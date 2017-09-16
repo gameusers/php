@@ -84,20 +84,32 @@ class Controller_App extends Controller
 
 
         // --------------------------------------------------
-        //   通知 / 予約IDを既読IDにする
+        //   ログインしている場合の処理
         // --------------------------------------------------
 
-        $modelsNotification = new \React\Models\Notification();
-        $modelsNotification->updateReservationIdToAlreadyReadId([]);
+        if (USER_NO) {
 
 
-        // --------------------------------------------------
-		//   通知のデータ取得
-		// --------------------------------------------------
+            // --------------------------------------------------
+            //   通知 / 予約IDを既読IDにする
+            // --------------------------------------------------
 
-        $tempArr = [];
-        $modelsNotification = new \React\Models\Notification();
-        $this->initialStateArr['notificationObj']['unreadCount'] = $modelsNotification->selectUnreadCount($tempArr)['unreadCount'];
+            $modelsNotification = new \React\Models\Notification();
+            $modelsNotification->updateReservationIdToAlreadyReadId([]);
+
+
+            // --------------------------------------------------
+            //   通知のデータ取得
+            // --------------------------------------------------
+
+            $tempArr = [];
+            $modelsNotification = new \React\Models\Notification();
+            $this->initialStateArr['notificationObj']['unreadCount'] = $modelsNotification->selectUnreadCount($tempArr)['unreadCount'];
+
+
+        }
+
+
 
 
 		// --------------------------------------------------
@@ -214,6 +226,7 @@ class Controller_App extends Controller
             JS_JQUERY_CDN_ARR,
             JS_JQUERY_AUTO_HIDING_NAVIGATION_ARR,
             JS_JQUERY_MAGNIFIC_POPUP_CDN_ARR,
+			// JS_JQUERY_STICKY_CDN_ARR,
             JS_LADDA_BOOTSTRAP_SPIN_CDN_ARR,
             JS_LADDA_BOOTSTRAP_CDN_ARR
 		);
