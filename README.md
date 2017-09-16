@@ -5,9 +5,13 @@
 [![PHP](https://img.shields.io/badge/PHP-v7.1-red.svg)](http://php.net/manual/ja/langref.php)
 [![FuelPHP](https://img.shields.io/badge/FuelPHP-v1.8.0-AC58FA.svg)](https://fuelphp.com/)
 [![Apache](https://img.shields.io/badge/Apache-v2.4-green.svg)](https://httpd.apache.org/)
-[![MySQL/MariaDB](https://img.shields.io/badge/MySQL / MariaDB-v5.4 / v10.1-5882FA.svg)](https://www.mysql.com/jp/)
+[![MySQL](https://img.shields.io/badge/MySQL-v5.4-5882FA.svg)](https://mariadb.org/)
+[![MariaDB](https://img.shields.io/badge/MariaDB-v10.1-5882FA.svg)](https://mariadb.org/)
 [![node](https://img.shields.io/badge/node-v8.5.0-lightgrey.svg)](https://nodejs.org/ja/)
 [![npm](https://img.shields.io/badge/npm-v5.0.4-blue.svg)](https://www.npmjs.com/)
+[![David](https://img.shields.io/david/expressjs/express.svg)]()
+[![David](https://img.shields.io/david/dev/expressjs/express.svg)]()
+[![license](https://img.shields.io/badge/license-Game Users Project-blue.svg)](https://github.com/gameusers/web/blob/master/LICENSE.txt)
 
 ゲームユーザーズはゲームユーザーのためのコミュニティサイトです。現在、開発者を広く募集しています。初心者でもWebを触ったことのないプログラマーでもOK！ゲーム関係でこういう機能があったらいいのにな、というアイデアがあれば、ぜひこの場所を使って実装してください。
 
