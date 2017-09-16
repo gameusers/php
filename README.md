@@ -1,20 +1,28 @@
 # [Game Users](https://gameusers.org/)
 ![Game Users Banner](https://gameusers.org/assets/img/social/ogp_image.jpg)
 
+
+[![PHP](https://img.shields.io/badge/PHP-v7.1-red.svg)](http://php.net/manual/ja/langref.php)
+[![FuelPHP](https://img.shields.io/badge/FuelPHP-v1.8.0-AC58FA.svg)](https://fuelphp.com/)
+[![Apache](https://img.shields.io/badge/Apache-v2.4-green.svg)](https://httpd.apache.org/)
+[![MySQL/MariaDB](https://img.shields.io/badge/MySQL / MariaDB-v5.4 / v10.1-5882FA.svg)](https://www.mysql.com/jp/)
+[![node](https://img.shields.io/badge/node-v8.5.0-lightgrey.svg)](https://nodejs.org/ja/)
+[![npm](https://img.shields.io/badge/npm-v5.0.4-blue.svg)](https://www.npmjs.com/)
+
 ゲームユーザーズはゲームユーザーのためのコミュニティサイトです。現在、開発者を広く募集しています。初心者でもWebを触ったことのないプログラマーでもOK！ゲーム関係でこういう機能があったらいいのにな、というアイデアがあれば、ぜひこの場所を使って実装してください。
 
 ゲームを好きな開発者がなんでも作れる砂場のような場所にしたい！
 
-## 現在更新している内容 2017/9/9
+## 現在更新している内容 2017/9/16
 Game UsersをReactで書き直しています。React化するに当たってファイルをひとところにまとめようと思い、reactというディレクトリー内に必要なファイルを集めています。現在はサイトを構成するファイルがあちこちに散在しているのですが、これからは以下のファイル、ディレクトリーだけで動作するようにしたいです。
 
 #### PHP部分
-- fuel/app/classes/controller/app.php（アプリケーションページのコントローラー）
-- fuel/app/classes/controller/api.php（Rest API）
-- fuel/app/classes/react/（React関連ディレクトリー）
+- [fuel/app/classes/controller/app.php](https://github.com/gameusers/web/blob/master/fuel/app/classes/controller/app.php)（アプリケーションページのコントローラー）
+- [fuel/app/classes/controller/api.php](https://github.com/gameusers/web/blob/master/fuel/app/classes/controller/api.php)（Rest API）
+- [fuel/app/classes/react/](https://github.com/gameusers/web/tree/master/fuel/app/classes/react)（React関連ディレクトリー）
 
 #### Javascript / CSS / Image / ライブラリー部分
-- public/react/（React関連ディレクトリー）
+- [public/react/](https://github.com/gameusers/web/tree/master/public/react)（React関連ディレクトリー）
 
 #### 編集中のページ
 現在、オリジナルのシェアボタン（ソーシャルボタン）を作成しており、そのシェアボタンの公式ページをGame Users内のアプリケーションページ（関連アプリを紹介するページ）に設置しようと考えています。ゲームには直接関係のないコンテンツなのですが、せっかくなのでみなさんに使ってもらえるようにしようと思っています。
@@ -46,6 +54,9 @@ cdコマンドでgameusersディレクトリに移動してから、上記コマ
 
 - [Node.jsをイントールしよう！](https://gameusers.org/dev/blog/environment/node-js-install)
 - [npmの基本的な使い方](https://gameusers.org/dev/blog/environment/npm-tutorial)
+
+2017/9/16 現在、パッケージ関連で把握している問題
+- [React関連パッケージのバージョンによって起こる問題](https://gameusers.org/dev/blog/notes/20170916-1)
 
 ### php.iniの変更（XAMPPの場合 C:\xampp\php\php.ini）
 
