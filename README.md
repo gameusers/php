@@ -9,14 +9,13 @@
 [![node](https://img.shields.io/badge/node-v8.5.0-lightgrey.svg)](https://nodejs.org/ja/)
 [![npm](https://img.shields.io/badge/npm-v5.0.4-blue.svg)](https://www.npmjs.com/)
 [![David](https://img.shields.io/david/expressjs/express.svg)]()
-[![David](https://img.shields.io/david/dev/expressjs/express.svg)]()
 [![license](https://img.shields.io/badge/license-Game%20Users%20Project-blue.svg)](https://github.com/gameusers/web/blob/master/LICENSE.txt)
 
 ゲームユーザーズはゲームユーザーのためのコミュニティサイトです。現在、開発者を広く募集しています。初心者でもWebを触ったことのないプログラマーでもOK！ゲーム関係でこういう機能があったらいいのにな、というアイデアがあれば、ぜひこの場所を使って実装してください。
 
 ゲームを好きな開発者がなんでも作れる砂場のような場所にしたい！
 
-## 現在更新している内容 2017/9/16
+## 現在更新している内容 2017/10/08
 Game UsersをReactで書き直しています。React化するに当たってファイルをひとところにまとめようと思い、reactというディレクトリー内に必要なファイルを集めています。現在はサイトを構成するファイルがあちこちに散在しているのですが、これからは以下のファイル、ディレクトリーだけで動作するようにしたいです。
 
 #### PHP部分
@@ -32,6 +31,7 @@ Game UsersをReactで書き直しています。React化するに当たってフ
 
 https://localhost/gameusers/public/app/share-buttons
 
+※ シェアボタン部分のコードはライセンスがGPLのため、このリポジトリに含めて公開することができません（ライセンス汚染が発生するため）現在は上記URLにアクセスしてもファイルが足りないため、エラーが起こります。完成したら別リポジトリで公開する予定で、そのファイルを特定の場所に設置することで動作するようになります。ややこしくて申し訳ありません。
 
 ## 必要な開発環境
 
