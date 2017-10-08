@@ -10,7 +10,7 @@ import Masonry from 'react-masonry-component';
 import { Model } from '../models/model';
 // import ModalNotification from './modal/notification';
 
-import '../../css/style.css';
+// import '../../css/style.css';
 
 
 
@@ -57,11 +57,21 @@ export default class Footer extends React.Component {
 
 
 
+  /**
+   * サムネイルカードのコードを返す
+   * @return {array} コードの配列
+   */
   codeCard() {
 
     const codeArr = [];
-    let thumbnailMap = {};
 
+
+
+    // --------------------------------------------------
+    //   ループする Map を設定
+    // --------------------------------------------------
+
+    let thumbnailMap = {};
 
     if (this.props.footerCardType === 'gameCommunityAccess') {
       thumbnailMap = this.props.footerCardGameCommunityAccessList;
@@ -78,11 +88,14 @@ export default class Footer extends React.Component {
     // console.log('thumbnailMap = ', thumbnailMap.toJS());
 
 
+    // --------------------------------------------------
+    //   Loop
+    // --------------------------------------------------
+
     thumbnailMap.entrySeq().forEach((e) => {
 
       const key = e[0];
       const value = e[1];
-      // console.log("value.get('gameNo')", value.get('gameNo'));
 
 
       // --------------------------------------------------
@@ -171,13 +184,11 @@ export default class Footer extends React.Component {
 
   render() {
     return (
-      <footer>
+      <footer className={this.props.deviceType !== 'other' && 'footer-mobile'}>
 
         {this.codeCard()}
 
         <div className="copyright"><span className="glyphicon glyphicon-copyright-mark" aria-hidden="true" /> Game Users All Rights Reserved.</div>
-
-        {/* <ModalNotification {...this.props} /> */}
 
       </footer>
     );
@@ -194,6 +205,7 @@ Footer.propTypes = {
 
   stateModel: PropTypes.instanceOf(Model).isRequired,
 
+  deviceType: PropTypes.string.isRequired,
   // urlDirectory1: PropTypes.string,
   // urlDirectory2: PropTypes.string,
 
@@ -210,8 +222,6 @@ Footer.propTypes = {
   footerCardGameCommunityRenewalList: PropTypes.instanceOf(List),
   footerCardGameCommunityAccessList: PropTypes.instanceOf(List),
   footerCardUserCommunityAccessList: PropTypes.instanceOf(List),
-
-
 
 
 

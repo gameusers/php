@@ -152,7 +152,7 @@ class Controller_Api extends Controller_Rest
 	/**
 	* API 外部公開用
 	*
-	* @return string HTMLコード
+	* @return array 配列
 	*/
 	public function post_public()
     {
@@ -166,7 +166,7 @@ class Controller_Api extends Controller_Rest
 		if (isset($test)) {
 			Debug::$js_toggle_open = true;
 
-			$_POST['api_type'] = 'share_buttons_design_icon_themes';
+			$_POST['apiType'] = 'shareButtonsDesignIconThemes';
 			// // $_POST['game_no'] = 1;
 			// $_POST['bbs_id'] = 'lnntfuztqvqbqwqb';
 			// $_POST['game_no'] = 1;
@@ -192,10 +192,12 @@ class Controller_Api extends Controller_Rest
 			//  designThemes & iconThemes のデータをJSONで返す
 			// --------------------------------------------------
 
-			if (Input::post('api_type') === 'share_buttons_design_icon_themes')
+			if (Input::post('apiType') === 'shareButtonsDesignIconThemes')
 			{
-                $instance = new \Model_Sharebuttons();
-                $arr = $instance->select_design_icon_themes(Input::post());
+                // $instance = new \Model_Sharebuttons();
+                // $arr = $instance->select_design_icon_themes(Input::post());
+                $instance = new \React\Models\ShareButtons();
+                $arr = $instance->selectDesignIconThemes(Input::post());
                 header('Access-Control-Allow-Origin: *');
 			}
 
@@ -204,9 +206,8 @@ class Controller_Api extends Controller_Rest
 
 			if (isset($test)) \Debug::dump($e);
 
-			$arr['alert_color'] = 'warning';
-			$arr['alert_title'] = 'エラー';
-			$arr['alert_message'] = 'Error: ' . $e->getMessage();
+            $arr['error'] = true;
+            $arr['errorMessage'] = $e->getMessage();
 
 		}
 

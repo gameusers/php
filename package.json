@@ -66,6 +66,7 @@
       "consistent-return": 0,
       "no-undef": 0,
       "padded-blocks": 0,
+      "no-unneeded-ternary": 0,
       "react/no-danger": 0,
       "react/prefer-stateless-function": 0
     }
@@ -88,12 +89,12 @@
     "immutable": "^3.8.1",
     "js-cookie": "^2.1.4",
     "moment": "^2.18.1",
-    "prop-types": "^15.5.10",
-    "react": "^15.6.1",
+    "prop-types": "^15.6.0",
+    "react": "^15.6.2",
     "react-bootstrap": "^0.31.3",
     "react-color": "^2.13.8",
-    "react-dom": "^15.6.1",
-    "react-ga": "^2.2.0",
+    "react-dom": "^15.6.2",
+    "react-ga": "^2.3.4",
     "react-masonry-component": "^5.0.7",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
@@ -111,17 +112,17 @@
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.7",
-    "eslint": "^4.6.1",
+    "eslint": "^4.7.2",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
-    "eslint-plugin-react": "^7.3.0",
+    "eslint-plugin-react": "^7.4.0",
     "postcss-loader": "^2.0.6",
     "style-loader": "^0.18.2",
     "stylelint": "^8.1.1",
     "stylelint-config-standard": "^17.0.0",
     "uglify-js": "^2.8.29",
     "uglifyjs-webpack-plugin": "^1.0.0-beta.2",
-    "webpack": "^3.5.6"
+    "webpack": "^3.6.0"
   }
 }

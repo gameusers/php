@@ -5,11 +5,11 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import 'whatwg-fetch';
-// import 'babel-polyfill';
 import Cookies from 'js-cookie';
-// import 'magnific-popup';
+
 import Root from '../components/root';
 import * as actions from '../actions/action';
+
 
 
 // --------------------------------------------------
@@ -48,15 +48,15 @@ const mapStateToProps = state => ({
   //   通知
   // --------------------------------------------------
 
-  notificationActiveType: state.getIn(['notificationObj', 'activeType']),
-  notificationUnreadCount: state.getIn(['notificationObj', 'unreadCount']),
-  notificationUnreadTotal: state.getIn(['notificationObj', 'unreadTotal']),
-  notificationUnreadList: state.getIn(['notificationObj', 'unreadArr']),
-  notificationUnreadActivePage: state.getIn(['notificationObj', 'unreadActivePage']),
-  notificationAlreadyReadTotal: state.getIn(['notificationObj', 'alreadyReadTotal']),
-  notificationAlreadyReadList: state.getIn(['notificationObj', 'alreadyReadArr']),
-  notificationAlreadyReadActivePage: state.getIn(['notificationObj', 'alreadyReadActivePage']),
-  notificationLimitNotification: state.getIn(['notificationObj', 'limitNotification']),
+  notificationActiveType: state.getIn(['notificationMap', 'activeType']),
+  notificationUnreadCount: state.getIn(['notificationMap', 'unreadCount']),
+  notificationUnreadTotal: state.getIn(['notificationMap', 'unreadTotal']),
+  notificationUnreadList: state.getIn(['notificationMap', 'unreadArr']),
+  notificationUnreadActivePage: state.getIn(['notificationMap', 'unreadActivePage']),
+  notificationAlreadyReadTotal: state.getIn(['notificationMap', 'alreadyReadTotal']),
+  notificationAlreadyReadList: state.getIn(['notificationMap', 'alreadyReadArr']),
+  notificationAlreadyReadActivePage: state.getIn(['notificationMap', 'alreadyReadActivePage']),
+  notificationLimitNotification: state.getIn(['notificationMap', 'limitNotification']),
 
 
 
@@ -64,32 +64,32 @@ const mapStateToProps = state => ({
   //   ヘッダー
   // --------------------------------------------------
 
-  headerHeroImageId: state.getIn(['headerObj', 'heroImageId']),
-  headerHeroImageRenewalDate: state.getIn(['headerObj', 'heroImageRenewalDate']),
+  headerHeroImageId: state.getIn(['headerMap', 'heroImageId']),
+  headerHeroImageRenewalDate: state.getIn(['headerMap', 'heroImageRenewalDate']),
 
-  headerCommunityNo: state.getIn(['headerObj', 'communityNo']),
-  headerCommunityRenewalDate: state.getIn(['headerObj', 'communityRenewalDate']),
-  headerCommunityId: state.getIn(['headerObj', 'communityId']),
-  headerCommunityName: state.getIn(['headerObj', 'communityName']),
+  headerCommunityNo: state.getIn(['headerMap', 'communityNo']),
+  headerCommunityRenewalDate: state.getIn(['headerMap', 'communityRenewalDate']),
+  headerCommunityId: state.getIn(['headerMap', 'communityId']),
+  headerCommunityName: state.getIn(['headerMap', 'communityName']),
 
-  headerGameNo: state.getIn(['headerObj', 'gameNo']),
-  headerGameRenewalDate: state.getIn(['headerObj', 'gameRenewalDate']),
-  headerGameId: state.getIn(['headerObj', 'gameId']),
-  headerGameName: state.getIn(['headerObj', 'gameName']),
-  headerGameSubtitle: state.getIn(['headerObj', 'gameSubtitle']),
-  headerGameThumbnail: state.getIn(['headerObj', 'gameThumbnail']),
-  headerGameReleaseDate1: state.getIn(['headerObj', 'gameReleaseDate1']),
-  headerGameReleaseDate2: state.getIn(['headerObj', 'gameReleaseDate2']),
-  headerGameReleaseDate3: state.getIn(['headerObj', 'gameReleaseDate3']),
-  headerGameReleaseDate4: state.getIn(['headerObj', 'gameReleaseDate4']),
-  headerGameReleaseDate5: state.getIn(['headerObj', 'gameReleaseDate5']),
-  headerGamePlayersMax: state.getIn(['headerObj', 'gamePlayersMax']),
-  headerGameHardwareList: state.getIn(['headerObj', 'gameHardwareArr']),
-  headerGameGenreList: state.getIn(['headerObj', 'gameGenreArr']),
-  headerGameDeveloperList: state.getIn(['headerObj', 'gameDeveloperArr']),
-  headerGameLinkList: state.getIn(['headerObj', 'gameLinkArr']),
+  headerGameNo: state.getIn(['headerMap', 'gameNo']),
+  headerGameRenewalDate: state.getIn(['headerMap', 'gameRenewalDate']),
+  headerGameId: state.getIn(['headerMap', 'gameId']),
+  headerGameName: state.getIn(['headerMap', 'gameName']),
+  headerGameSubtitle: state.getIn(['headerMap', 'gameSubtitle']),
+  headerGameThumbnail: state.getIn(['headerMap', 'gameThumbnail']),
+  headerGameReleaseDate1: state.getIn(['headerMap', 'gameReleaseDate1']),
+  headerGameReleaseDate2: state.getIn(['headerMap', 'gameReleaseDate2']),
+  headerGameReleaseDate3: state.getIn(['headerMap', 'gameReleaseDate3']),
+  headerGameReleaseDate4: state.getIn(['headerMap', 'gameReleaseDate4']),
+  headerGameReleaseDate5: state.getIn(['headerMap', 'gameReleaseDate5']),
+  headerGamePlayersMax: state.getIn(['headerMap', 'gamePlayersMax']),
+  headerGameHardwareList: state.getIn(['headerMap', 'gameHardwareList']),
+  headerGameGenreList: state.getIn(['headerMap', 'gameGenreList']),
+  headerGameDeveloperList: state.getIn(['headerMap', 'gameDeveloperList']),
+  headerGameLinkList: state.getIn(['headerMap', 'gameLinkList']),
 
-  headerMenuMap: state.getIn(['headerObj', 'menuObj']),
+  headerMenuMap: state.getIn(['headerMap', 'menuMap']),
 
 
 
@@ -97,17 +97,8 @@ const mapStateToProps = state => ({
   //   メニュー
   // --------------------------------------------------
 
-  menuMap: state.get('menuObj'),
-  // menuMap: state.get('menuObj'),
-  menuDrawerActive: state.getIn(['menuObj', 'drawerActive']),
-
-
-
-  // --------------------------------------------------
-  //   メニュー / ドロワー / スマートフォン・タブレット用
-  // --------------------------------------------------
-
-
+  menuMap: state.get('menuMap'),
+  menuDrawerActive: state.getIn(['menuMap', 'drawerActive']),
 
 
 
@@ -115,7 +106,7 @@ const mapStateToProps = state => ({
   //   モーダル
   // --------------------------------------------------
 
-  modalNotificationShow: state.getIn(['modalObj', 'notification', 'show']),
+  modalNotificationShow: state.getIn(['modalMap', 'notification', 'show']),
 
 
 
@@ -123,10 +114,10 @@ const mapStateToProps = state => ({
   //   フッター
   // --------------------------------------------------
 
-  footerCardType: state.getIn(['footerObj', 'cardType']),
-  footerCardGameCommunityRenewalList: state.getIn(['footerObj', 'gameCommunityRenewalArr']),
-  footerCardGameCommunityAccessList: state.getIn(['footerObj', 'gameCommunityAccessArr']),
-  footerCardUserCommunityAccessList: state.getIn(['footerObj', 'userCommunityAccessArr']),
+  footerCardType: state.getIn(['footerMap', 'cardType']),
+  footerCardGameCommunityRenewalList: state.getIn(['footerMap', 'gameCommunityRenewalList']),
+  footerCardGameCommunityAccessList: state.getIn(['footerMap', 'gameCommunityAccessList']),
+  footerCardUserCommunityAccessList: state.getIn(['footerMap', 'userCommunityAccessList']),
 
 
 
@@ -141,61 +132,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => {
 
   const bindActionObj = bindActionCreators(actions, dispatch);
-
-
-  // $(document).on('click', '#jslink', function(e) {
-  //
-  //   e.preventDefault();
-  //
-  //   var target = '_self';
-  //   var address = $(this).data('jslink');
-  //
-  //   window.open(address, target);
-  //
-  // });
-
-
-  // bindActionObj.funcJavascriptLink = () => {
-  //
-  //   // e.preventDefault();
-  //   console.log('funcJavascriptLink');
-  //   // console.log('e = ', e);
-  //
-  //   // window.open(url, '_self');
-  //
-  // };
-
-
-  // bindActionObj.funcLightbox = (url) => {
-  //
-  //   console.log('funcLightbox');
-  //   // console.log('stateModel = ', stateModel);
-  //
-  //   $.magnificPopup.open({
-  //     items: {
-  //       src: url
-  //     },
-  //     type: 'image'
-  //   });
-  //
-  //   // $.magnificPopup.open({
-  //   //   items: {
-  //   //     src: url
-  //   //   },
-  //   //   type: 'iframe'
-  //   // });
-  //
-  // };
-
-
-  // bindActionObj.funcUrlDirectory = () => {
-  //   console.log('funcUrlDirectory');
-  //   this.props.history.push('/');
-  //   // return false;
-  // };
-
-
-
 
 
 
@@ -238,14 +174,14 @@ const mapDispatchToProps = (dispatch) => {
     // --------------------------------------------------
 
     const urlBase = stateModel.get('urlBase');
-    const activeType = stateModel.getIn(['notificationObj', 'activeType']);
+    const activeType = stateModel.getIn(['notificationMap', 'activeType']);
 
     let activePage = 1;
 
     if (activeType === 'unread') {
-      activePage = stateModel.getIn(['notificationObj', 'unreadActivePage']);
+      activePage = stateModel.getIn(['notificationMap', 'unreadActivePage']);
     } else {
-      activePage = stateModel.getIn(['notificationObj', 'alreadyReadActivePage']);
+      activePage = stateModel.getIn(['notificationMap', 'alreadyReadActivePage']);
     }
 
 
@@ -293,14 +229,14 @@ const mapDispatchToProps = (dispatch) => {
         alreadyReadArr = returnObj.dataArr;
       }
 
-      dispatch(actions.funcNotificationObj(unreadTotal, unreadArr, alreadyReadTotal, alreadyReadArr, activePage));
+      dispatch(actions.funcNotificationMap(unreadTotal, unreadArr, alreadyReadTotal, alreadyReadArr, activePage));
 
 
       // --------------------------------------------------
       //   モーダルを開く
       // --------------------------------------------------
 
-      dispatch(actions.funcModalObjNotificationShow(true));
+      dispatch(actions.funcModalMapNotificationShow(true));
 
 
     } catch (e) {
@@ -356,14 +292,14 @@ const mapDispatchToProps = (dispatch) => {
       //   モーダルを閉じる
       // --------------------------------------------------
 
-      dispatch(actions.funcModalObjNotificationShow(false));
+      dispatch(actions.funcModalMapNotificationShow(false));
 
 
       // --------------------------------------------------
       //   unreadActivePage & alreadyReadActivePage を 1 にする
       // --------------------------------------------------
 
-      dispatch(actions.funcNotificationObjResetActivePage());
+      dispatch(actions.funcNotificationMapResetActivePage());
 
 
       // --------------------------------------------------
@@ -387,7 +323,7 @@ const mapDispatchToProps = (dispatch) => {
         throw new Error();
       }
 
-      dispatch(actions.funcNotificationObjUnreadCount(returnObj2.unreadCount));
+      dispatch(actions.funcNotificationMapUnreadCount(returnObj2.unreadCount));
 
 
     } catch (e) {
@@ -439,7 +375,7 @@ const mapDispatchToProps = (dispatch) => {
       }
 
 
-      dispatch(actions.funcNotificationObjUnreadCount(returnObj.unreadCount));
+      dispatch(actions.funcNotificationMapUnreadCount(returnObj.unreadCount));
 
 
     } catch (e) {
@@ -481,7 +417,7 @@ const mapDispatchToProps = (dispatch) => {
     // --------------------------------------------------
 
     const urlBase = stateModel.get('urlBase');
-    // const activeType = stateModel.getIn(['notificationObj', 'activeType']);
+    // const activeType = stateModel.getIn(['notificationMap', 'activeType']);
     // console.log('activeType = ', activeType);
 
 
@@ -525,7 +461,7 @@ const mapDispatchToProps = (dispatch) => {
         alreadyReadArr = returnObj.dataArr;
       }
 
-      dispatch(actions.funcNotificationObj(unreadTotal, unreadArr, alreadyReadTotal, alreadyReadArr, activePage));
+      dispatch(actions.funcNotificationMap(unreadTotal, unreadArr, alreadyReadTotal, alreadyReadArr, activePage));
 
 
     } catch (e) {
@@ -587,7 +523,7 @@ const mapDispatchToProps = (dispatch) => {
       }
 
 
-      dispatch(actions.funcNotificationObj(0, [], null, null, 1));
+      dispatch(actions.funcNotificationMap(0, [], null, null, 1));
 
 
     } catch (e) {
@@ -651,7 +587,7 @@ const mapDispatchToProps = (dispatch) => {
       }
 
 
-      dispatch(actions.funcNotificationObj(0, [], null, null, 1));
+      dispatch(actions.funcNotificationMap(0, [], null, null, 1));
 
 
     } catch (e) {
@@ -721,30 +657,30 @@ const mapDispatchToProps = (dispatch) => {
       }
 
 
-      let gameCommunityRenewalArr = null;
+      let gameCommunityRenewalList = null;
 
-      if (returnObj.gameCommunityRenewalArr) {
-        gameCommunityRenewalArr = returnObj.gameCommunityRenewalArr;
+      if (returnObj.gameCommunityRenewalList) {
+        gameCommunityRenewalList = returnObj.gameCommunityRenewalList;
       }
 
-      let gameCommunityAccessArr = null;
+      let gameCommunityAccessList = null;
 
-      if (returnObj.gameCommunityAccessArr) {
-        gameCommunityAccessArr = returnObj.gameCommunityAccessArr;
+      if (returnObj.gameCommunityAccessList) {
+        gameCommunityAccessList = returnObj.gameCommunityAccessList;
       }
 
-      let userCommunityAccessArr = null;
+      let userCommunityAccessList = null;
 
-      if (returnObj.userCommunityAccessArr) {
-        userCommunityAccessArr = returnObj.userCommunityAccessArr;
+      if (returnObj.userCommunityAccessList) {
+        userCommunityAccessList = returnObj.userCommunityAccessList;
       }
 
-      // console.log('gameCommunityRenewalArr = ', gameCommunityRenewalArr);
-      // console.log('gameCommunityAccessArr = ', gameCommunityAccessArr);
-      // console.log('userCommunityAccessArr = ', userCommunityAccessArr);
+      // console.log('gameCommunityRenewalList = ', gameCommunityRenewalList);
+      // console.log('gameCommunityAccessList = ', gameCommunityAccessList);
+      // console.log('userCommunityAccessList = ', userCommunityAccessList);
 
 
-      dispatch(actions.funcSelectFooterCardType(cardType, gameCommunityRenewalArr, gameCommunityAccessArr, userCommunityAccessArr));
+      dispatch(actions.funcSelectFooterCardType(cardType, gameCommunityRenewalList, gameCommunityAccessList, userCommunityAccessList));
 
 
     } catch (e) {

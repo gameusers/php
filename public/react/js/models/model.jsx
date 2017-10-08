@@ -2,23 +2,8 @@
 //   Import
 // --------------------------------------------------
 
-import { fromJS, Map, OrderedMap, Seq, Record } from 'immutable';
+import { Seq, Record } from 'immutable';
 import Cookies from 'js-cookie';
-
-
-
-// --------------------------------------------------
-//   Constant
-// --------------------------------------------------
-
-// export const GAMEUSERS_API_URL = 'https://localhost/gameusers/public/rest/api/public.json';
-// export const THEME_DESIGN_URL = 'https://localhost/gameusers/public/dev/blog/wp-content/plugins/gameusers-share-buttons/themes-design';
-// export const THEME_ICON_URL = 'https://localhost/gameusers/public/dev/blog/wp-content/plugins/gameusers-share-buttons/themes-icon';
-// 'https://gameusers.org/app/share-buttons/themes/';
-// 'https://gameusers.org/app/share-buttons/icon-themes/';
-
-
-
 
 
 
@@ -71,13 +56,13 @@ if (tempArr[2]) {
 //   通知
 // --------------------------------------------------
 
-initialStateObj.notificationObj.activeType = 'unread';
-initialStateObj.notificationObj.unreadTotal = 10;
-initialStateObj.notificationObj.unreadArr = [];
-initialStateObj.notificationObj.unreadActivePage = 1;
-initialStateObj.notificationObj.alreadyReadTotal = 10;
-initialStateObj.notificationObj.alreadyReadArr = [];
-initialStateObj.notificationObj.alreadyReadActivePage = 1;
+initialStateObj.notificationMap.activeType = 'unread';
+initialStateObj.notificationMap.unreadTotal = 10;
+initialStateObj.notificationMap.unreadArr = [];
+initialStateObj.notificationMap.unreadActivePage = 1;
+initialStateObj.notificationMap.alreadyReadTotal = 10;
+initialStateObj.notificationMap.alreadyReadArr = [];
+initialStateObj.notificationMap.alreadyReadActivePage = 1;
 
 
 
@@ -86,7 +71,7 @@ initialStateObj.notificationObj.alreadyReadActivePage = 1;
 //   新ページ・新コンテンツを追加する場合はここを編集すること
 // --------------------------------------------------
 
-initialStateObj.headerObj.menuObj = {
+initialStateObj.headerMap.menuMap = {
 
   app: {
     'share-buttons': {
@@ -112,7 +97,7 @@ initialStateObj.headerObj.menuObj = {
 //   新ページ・新コンテンツを追加する場合はここを編集すること
 // --------------------------------------------------
 
-initialStateObj.menuObj = {
+initialStateObj.menuMap = {
 
   app: {
     'share-buttons': [
@@ -187,7 +172,7 @@ initialStateObj.menuObj = {
 //   モーダル
 // --------------------------------------------------
 
-initialStateObj.modalObj = {
+initialStateObj.modalMap = {
   notification: {
     show: false
   }
@@ -202,12 +187,12 @@ initialStateObj.modalObj = {
 //   userCommunityAccess / 最近アクセスしたユーザーコミュニティ
 // --------------------------------------------------
 
-if (initialStateObj.footerObj.gameCommunityAccessArr) {
-  initialStateObj.footerObj.cardType = 'gameCommunityAccess';
-} else if (initialStateObj.footerObj.userCommunityAccessArr) {
-  initialStateObj.footerObj.cardType = 'userCommunityAccess';
+if (initialStateObj.footerMap.gameCommunityAccessList) {
+  initialStateObj.footerMap.cardType = 'gameCommunityAccess';
+} else if (initialStateObj.footerMap.userCommunityAccessList) {
+  initialStateObj.footerMap.cardType = 'userCommunityAccess';
 } else {
-  initialStateObj.footerObj.cardType = 'gameCommunityRenewal';
+  initialStateObj.footerMap.cardType = 'gameCommunityRenewal';
 }
 
 
@@ -244,6 +229,8 @@ export const fromJSOrdered = (data) => {
 
 // --------------------------------------------------
 //   Class Model
+//   Immutable.js の Reacord クラスを継承して Model クラスを作成する
+//   アプリケーションの State を担う
 // --------------------------------------------------
 
 const ModelRecord = Record(initialStateObj);
@@ -253,11 +240,6 @@ export class Model extends ModelRecord {
   constructor() {
 
     const map = fromJSOrdered(initialStateObj);
-    // const map = fromJS(initialStateObj);
-
-
-
-    // console.log()
 
     // console.log('map = ', map.toJS());
 
@@ -269,13 +251,13 @@ export class Model extends ModelRecord {
 
   /**
    * 通知を切り替える
-   * @param {number} unreadTotal      [description]
-   * @param {array} unreadArr        [description]
-   * @param {number} alreadyReadTotal [description]
-   * @param {array} alreadyReadArr   [description]
-   * @param {number} activePage       [description]
+   * @param {number} unreadTotal      未読数
+   * @param {array}  unreadArr        未読の配列
+   * @param {number} alreadyReadTotal 既読数
+   * @param {array}  alreadyReadArr   既読の配列
+   * @param {number} activePage       アクティブページ
    */
-  setNotificationObj(unreadTotal, unreadArr, alreadyReadTotal, alreadyReadArr, activePage) {
+  setNotificationMap(unreadTotal, unreadArr, alreadyReadTotal, alreadyReadArr, activePage) {
 
     // console.log('setModalNotificationShow');
     // console.log('unreadTotal = ', unreadTotal);
@@ -295,17 +277,17 @@ export class Model extends ModelRecord {
     // --------------------------------------------------
 
     if (unreadArr) {
-      map = map.setIn(['notificationObj', 'activeType'], 'unread');
-      map = map.setIn(['notificationObj', 'unreadTotal'], unreadTotal);
-      map = map.setIn(['notificationObj', 'unreadArr'], fromJSOrdered(unreadArr));
-      map = map.setIn(['notificationObj', 'unreadActivePage'], activePage);
+      map = map.setIn(['notificationMap', 'activeType'], 'unread');
+      map = map.setIn(['notificationMap', 'unreadTotal'], unreadTotal);
+      map = map.setIn(['notificationMap', 'unreadArr'], fromJSOrdered(unreadArr));
+      map = map.setIn(['notificationMap', 'unreadActivePage'], activePage);
     }
 
     if (alreadyReadArr) {
-      map = map.setIn(['notificationObj', 'activeType'], 'alreadyRead');
-      map = map.setIn(['notificationObj', 'alreadyReadTotal'], alreadyReadTotal);
-      map = map.setIn(['notificationObj', 'alreadyReadArr'], fromJSOrdered(alreadyReadArr));
-      map = map.setIn(['notificationObj', 'alreadyReadActivePage'], activePage);
+      map = map.setIn(['notificationMap', 'activeType'], 'alreadyRead');
+      map = map.setIn(['notificationMap', 'alreadyReadTotal'], alreadyReadTotal);
+      map = map.setIn(['notificationMap', 'alreadyReadArr'], fromJSOrdered(alreadyReadArr));
+      map = map.setIn(['notificationMap', 'alreadyReadActivePage'], activePage);
     }
 
     // console.log('setSelectNotification map = ', map.toJS());

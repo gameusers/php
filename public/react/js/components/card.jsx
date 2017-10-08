@@ -9,7 +9,7 @@ import moment from 'moment';
 import { List } from 'immutable';
 import { Model } from '../models/model';
 
-import '../../css/style.css';
+// import '../../css/style.css';
 
 
 

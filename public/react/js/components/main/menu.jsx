@@ -18,7 +18,7 @@ import Sticky from 'react-sticky-state';
 // import { Model } from '../../models/model';
 import AdGoogleAdsenseRectangle from '../advertisement/google-adsense-rectangle';
 
-import '../../../css/style.css';
+// import '../../../css/style.css';
 
 
 
@@ -35,31 +35,31 @@ export default class MainMenu extends React.Component {
 
 
 
-  componentDidMount() {
-
-    // console.log('componentDidMount');
-
-    // $('.slide').sticky({
-    //   topSpacing: 20,
-    //   widthFromWrapper: false
-    // });
-    //
-
-
-    // --------------------------------------------------
-    //   position: sticky が使えない場合は、polyfill を利用する
-    //   https://mae.chab.in/archives/59690
-    //   https://github.com/soenkekluth/sticky-state
-    // --------------------------------------------------
-
-    // const div = document.createElement('div');
-    // div.style.position = 'sticky';
-    //
-    // if (div.style.position.indexOf('sticky') !== -1) {
-    //   StickyState(document.querySelectorAll('.sticky'));
-    // }
-
-  }
+  // componentDidMount() {
+  //
+  //   // console.log('componentDidMount');
+  //
+  //   // $('.slide').sticky({
+  //   //   topSpacing: 20,
+  //   //   widthFromWrapper: false
+  //   // });
+  //   //
+  //
+  //
+  //   // --------------------------------------------------
+  //   //   position: sticky が使えない場合は、polyfill を利用する
+  //   //   https://mae.chab.in/archives/59690
+  //   //   https://github.com/soenkekluth/sticky-state
+  //   // --------------------------------------------------
+  //
+  //   // const div = document.createElement('div');
+  //   // div.style.position = 'sticky';
+  //   //
+  //   // if (div.style.position.indexOf('sticky') !== -1) {
+  //   //   StickyState(document.querySelectorAll('.sticky'));
+  //   // }
+  //
+  // }
 
   // componentWillUpdate() {
   //
@@ -259,7 +259,7 @@ export default class MainMenu extends React.Component {
       return (
         <nav className="menu">
           <AdGoogleAdsenseRectangle {...this.props} />
-          <Sticky stickyClass="sticky">
+          <Sticky>
             <div>
               {this.codeOther()}
             </div>
@@ -280,7 +280,7 @@ export default class MainMenu extends React.Component {
           animation={{ translateX: this.props.menuDrawerActive ? 0 : -250 }}
           duration={300}
         >
-          <div className="drawer-menu" key="drawer-menu">
+          <div className="drawer-menu">
             <div className="title">Menu</div>
             {this.codeMobile()}
           </div>
@@ -294,9 +294,8 @@ export default class MainMenu extends React.Component {
             <div
               className="drawer-overlay"
               onClick={() => this.props.funcMenuDrawerActive()}
-              role="menuitem"
+              role="button"
               tabIndex="0"
-              key="drawer-overlay"
             />
             : undefined}
         </VelocityTransitionGroup>
@@ -350,9 +349,5 @@ MainMenu.defaultProps = {
   urlDirectory1: null,
   urlDirectory2: null,
   urlDirectory3: null,
-
-  // footerCardGameCommunityRenewalList: null,
-  // footerCardGameCommunityAccessList: null,
-  // footerCardUserCommunityAccessList: null
 
 };

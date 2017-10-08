@@ -41,7 +41,6 @@ _testform.php
 .atomignore
 /fuel/app/classes/controller/test.php
 /fuel/app/views/test_view.php
-/public/assets/js/react/_*.jsx
 
 # 公開できないデータを含むファイル
 /fuel/app/classes/original/file/*
@@ -49,7 +48,15 @@ _testform.php
 /fuel/app/config/production/*.php
 
 # 公開しなくてもいいファイル
-/public/dev/
+/public/dev/*
+# !/public/dev/blog/
+# /public/dev/blog/*
+# !/public/dev/blog/wp-content/
+# /public/dev/blog/wp-content/*
+# !/public/dev/blog/wp-content/plugins/
+# /public/dev/blog/wp-content/plugins/*
+# !/public/dev/blog/wp-content/plugins/gameusers-share-buttons/
+
 /public/google*html
 
 # 開発環境で使用している画像

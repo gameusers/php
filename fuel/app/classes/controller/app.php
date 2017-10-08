@@ -37,13 +37,6 @@ class Controller_App extends Controller
 		}
 
 
-		// $tempArr = unserialize('a:3:{i:0;a:2:{s:2:"id";s:15:"8rodcn2jtuvmcar";s:9:"regi_date";s:19:"2017-09-02 18:15:59";}i:1;a:2:{s:2:"id";s:15:"awh591nracwnu7b";s:9:"regi_date";s:19:"2017-09-02 21:52:22";}i:2;a:2:{s:2:"id";s:15:"iihcen9c28dhjoi";s:9:"regi_date";s:19:"2017-08-29 15:41:40";}}');
-        // $tempArr = unserialize('a:1:{i:0;a:1:{s:7:"youtube";s:11:"M8-vje-bq9c";}}');
-        // $json = json_encode($tempArr, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
-        //
-        // \Debug::dump($tempArr);
-        // \Debug::dump($json);
-
 		// --------------------------------------------------
 		//   アクセスしたURLをチェック
         //   規定のURL以外にアクセスした場合、404 / Not Found を表示する
@@ -104,7 +97,7 @@ class Controller_App extends Controller
 
             $tempArr = [];
             $modelsNotification = new \React\Models\Notification();
-            $this->initialStateArr['notificationObj']['unreadCount'] = $modelsNotification->selectUnreadCount($tempArr)['unreadCount'];
+            $this->initialStateArr['notificationMap']['unreadCount'] = $modelsNotification->selectUnreadCount($tempArr)['unreadCount'];
 
 
         }
@@ -129,7 +122,7 @@ class Controller_App extends Controller
 
         $modelsHeader = new \React\Models\Header();
 		$headerArr = $modelsHeader->selectHeader($tempArr);
-		$this->initialStateArr['headerObj'] = $headerArr;
+		$this->initialStateArr['headerMap'] = $headerArr;
 
 
         // --------------------------------------------------
@@ -140,7 +133,7 @@ class Controller_App extends Controller
 
         $modelsFooter = new \React\Models\Footer();
 		$footerArr = $modelsFooter->selectCard($tempArr);
-		$this->initialStateArr['footerObj'] = $footerArr;
+		$this->initialStateArr['footerMap'] = $footerArr;
 
 
 
@@ -174,7 +167,6 @@ class Controller_App extends Controller
 			echo "<br><br><br><br>";
 
             \Debug::dump($this->initialStateArr);
-
 		}
 		//exit();
 
@@ -189,6 +181,8 @@ class Controller_App extends Controller
 
 		$cssArr = array(
 			CSS_RESET_CDN_ARR,
+            CSS_JQEURY_UI_CDN_ARR,
+            CSS_JQEURY_CONFIRM_CDN_ARR,
             CSS_BOOTSTRAP_CDN_ARR,
 			CSS_LADDA_BOOTSTRAP_CDN_ARR,
             CSS_JQUERY_MAGNIFIC_POPUP_CDN_ARR,
@@ -224,9 +218,10 @@ class Controller_App extends Controller
 
 		$jsArr = array(
             JS_JQUERY_CDN_ARR,
+            JS_JQUERY_UI_CDN_ARR,
+            JS_JQUERY_CONFIRM_CDN_ARR,
             JS_JQUERY_AUTO_HIDING_NAVIGATION_ARR,
             JS_JQUERY_MAGNIFIC_POPUP_CDN_ARR,
-			// JS_JQUERY_STICKY_CDN_ARR,
             JS_LADDA_BOOTSTRAP_SPIN_CDN_ARR,
             JS_LADDA_BOOTSTRAP_CDN_ARR
 		);

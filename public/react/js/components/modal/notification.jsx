@@ -9,7 +9,7 @@ import Pagination from '../pagination';
 import { Model } from '../../models/model';
 import Card from '../card';
 
-import '../../../css/style.css';
+// import '../../../css/style.css';
 
 
 

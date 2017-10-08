@@ -93,13 +93,10 @@ class Footer extends \Model_Crud
 
 			foreach ($gcAccessGameNoArr as $key => $value)
 			{
-                // if (isset($dbArr[$value])) $tempArr[(string)$value . 'a'] = $dbArr[$value];
 				if (isset($dbArr[$value])) array_push($tempArr, $dbArr[$value]);
 			}
 
-            // $type = 'gameCommunityAccess';
-			$returnArr[$cardType . 'Arr'] = $tempArr;
-            // $returnArr[$cardType . 'Arr'] = $dbArr;
+			$returnArr['gameCommunityAccessList'] = $tempArr;
 
 		}
 
@@ -136,8 +133,7 @@ class Footer extends \Model_Crud
 				if (isset($dbArr[$value])) array_push($tempArr, $dbArr[$value]);
 			}
 
-            // $type = 'userCommunityAccess';
-			$returnArr[$cardType . 'Arr'] = $tempArr;
+			$returnArr['userCommunityAccessList'] = $tempArr;
 
 		}
 
@@ -159,16 +155,13 @@ class Footer extends \Model_Crud
     		$query->join('game_community', 'LEFT');
     		$query->on('game_data.game_no', '=', 'game_community.game_no');
 
-            // $query->where('game_data.game_no', 'in', $gcAccessGameNoArr);
-
             $query->order_by('game_community.sort_date','desc');
             $query->limit($limit);
     		$query->offset(0);
 
     		$dbArr = $query->execute()->as_array();
 
-            // $type = 'gameCommunityRenewal';
-			$returnArr[$cardType . 'Arr'] = $dbArr;
+			$returnArr['gameCommunityRenewalList'] = $dbArr;
 
 		}
 
@@ -177,7 +170,7 @@ class Footer extends \Model_Crud
         //   型変換
         // --------------------------------------------------
 
-        foreach ($returnArr[$cardType . 'Arr'] as $key => &$value) {
+        foreach ($returnArr[$cardType . 'List'] as $key => &$value) {
             if (isset($value['gameNo'])) $value['gameNo'] = (int) $value['gameNo'];
             if (isset($value['thumbnail'])) $value['thumbnail'] = (int) $value['thumbnail'];
             if (isset($value['communityNo'])) $value['communityNo'] = (int) $value['communityNo'];

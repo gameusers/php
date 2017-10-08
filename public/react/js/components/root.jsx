@@ -6,14 +6,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { BrowserRouter, Route } from 'react-router-dom';
 import ReactGA from 'react-ga';
-// import { slide as Menu } from 'react-burger-menu';
+
+import { Model } from '../models/model';
 import Header from './header';
 import MainMenu from './main/menu';
+import MainMenuButtons from './main/menu-buttons';
 import MainAppShareButtons from './main/app/share-buttons';
 import ModalNotification from './modal/notification';
 import Footer from './footer';
-import { Model } from '../models/model';
 
+import '../../css/style.css';
 
 
 // const Test = () => (
@@ -99,28 +101,9 @@ export default class Root extends React.Component {
             <Route exact path="/app/share-buttons" render={() => <MainAppShareButtons {...this.props} />} />
             <Route exact path="/app/share-buttons/test1" render={() => <MainAppShareButtons {...this.props} />} />
 
-            {/* <div id="gameusers-share-buttons-option">AAA</div> */}
-
-            {this.props.deviceType !== 'other' &&
-              <div className="menu-s">
-                <div className="slide">
-                  <div className="icon-box">
-                    <div className="icon"><span className="glyphicon glyphicon-triangle-top icon-arrow" aria-hidden="true" /></div>
-                    <div
-                      className="icon"
-                      onClick={() => this.props.funcMenuDrawerActive()}
-                      role="button"
-                      tabIndex="0"
-                    >
-                      <span className="glyphicon glyphicon-list-alt icon-menu" aria-hidden="true" />
-                    </div>
-                    <div className="icon"><span className="glyphicon glyphicon-triangle-bottom icon-arrow" aria-hidden="true" /></div>
-                  </div>
-                </div>
-              </div>
-            }
-
             <ModalNotification {...this.props} />
+
+            <MainMenuButtons {...this.props} />
 
           </main>
 

@@ -18,81 +18,81 @@ class Controller_Rest_Api extends Controller_Rest_Base
 	*
 	* @return string HTMLコード
 	*/
-	public function post_public()
-	{
-
-		// --------------------------------------------------
-		//   テスト変数
-		// --------------------------------------------------
-
-		// $test = true;
-
-		if (isset($test))
-		{
-			Debug::$js_toggle_open = true;
-
-			$_POST['api_type'] = 'share_buttons_design_icon_themes';
-			// // $_POST['game_no'] = 1;
-			// $_POST['bbs_id'] = 'lnntfuztqvqbqwqb';
-			// $_POST['game_no'] = 1;
-
-			//$_POST['page'] = 1;
-
-			//$_POST['keyword'] = '';
-			//$_POST['game_no'] = 386;
-			//$_POST['history_no'] = 0;
-
-			// $_POST['keyword'] = '';
-			// $_POST['page'] = 1;
-		}
-
-
-		$arr = array();
-
-		try
-		{
-
-
-            // --------------------------------------------------
-			//   シェアボタンのテーマを返す
-			//  designThemes & iconThemes のデータをJSONで返す
-			// --------------------------------------------------
-
-			if (Input::post('api_type') === 'share_buttons_design_icon_themes')
-			{
-                $instance = new \Model_Sharebuttons();
-                $arr = $instance->select_design_icon_themes(Input::post());
-                header('Access-Control-Allow-Origin: *');
-			}
-
-
-		}
-		catch (Exception $e)
-		{
-			if (isset($test)) \Debug::dump($e);
-
-			$arr['alert_color'] = 'warning';
-			$arr['alert_title'] = 'エラー';
-			$arr['alert_message'] = 'Error: ' . $e->getMessage();
-		}
-
-
-		// --------------------------------------------------
-		//   出力
-		// --------------------------------------------------
-
-		if (isset($test))
-		{
-			\Debug::dump($arr);
-
-			if (isset($arr['code'])) echo $arr['code'];
-		}
-		else
-		{
-			return $this->response($arr);
-		}
-
-	}
+	// public function post_public()
+	// {
+    //
+	// 	// --------------------------------------------------
+	// 	//   テスト変数
+	// 	// --------------------------------------------------
+    //
+	// 	// $test = true;
+    //
+	// 	if (isset($test))
+	// 	{
+	// 		Debug::$js_toggle_open = true;
+    //
+	// 		$_POST['api_type'] = 'share_buttons_design_icon_themes';
+	// 		// // $_POST['game_no'] = 1;
+	// 		// $_POST['bbs_id'] = 'lnntfuztqvqbqwqb';
+	// 		// $_POST['game_no'] = 1;
+    //
+	// 		//$_POST['page'] = 1;
+    //
+	// 		//$_POST['keyword'] = '';
+	// 		//$_POST['game_no'] = 386;
+	// 		//$_POST['history_no'] = 0;
+    //
+	// 		// $_POST['keyword'] = '';
+	// 		// $_POST['page'] = 1;
+	// 	}
+    //
+    //
+	// 	$arr = array();
+    //
+	// 	try
+	// 	{
+    //
+    //
+    //         // --------------------------------------------------
+	// 		//   シェアボタンのテーマを返す
+	// 		//  designThemes & iconThemes のデータをJSONで返す
+	// 		// --------------------------------------------------
+    //
+	// 		if (Input::post('api_type') === 'share_buttons_design_icon_themes')
+	// 		{
+    //             $instance = new \Model_Sharebuttons();
+    //             $arr = $instance->select_design_icon_themes(Input::post());
+    //             header('Access-Control-Allow-Origin: *');
+	// 		}
+    //
+    //
+	// 	}
+	// 	catch (Exception $e)
+	// 	{
+	// 		if (isset($test)) \Debug::dump($e);
+    //
+	// 		$arr['alert_color'] = 'warning';
+	// 		$arr['alert_title'] = 'エラー';
+	// 		$arr['alert_message'] = 'Error: ' . $e->getMessage();
+	// 	}
+    //
+    //
+	// 	// --------------------------------------------------
+	// 	//   出力
+	// 	// --------------------------------------------------
+    //
+	// 	if (isset($test))
+	// 	{
+	// 		\Debug::dump($arr);
+    //
+	// 		if (isset($arr['code'])) echo $arr['code'];
+	// 	}
+	// 	else
+	// 	{
+	// 		return $this->response($arr);
+	// 	}
+    //
+	// }
 
 
 

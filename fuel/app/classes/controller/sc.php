@@ -177,7 +177,7 @@ class Controller_Sc extends Controller_Base
 		];
 
 		$header_arr = $model_header->select_header($temp_arr);
-		$this->initial_state_arr['headerObj'] = $header_arr;
+		$this->initial_state_arr['headerMap'] = $header_arr;
 // \Debug::dump($header_arr);
 // echo $header_arr['gameName'];
 //

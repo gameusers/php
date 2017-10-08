@@ -8,10 +8,10 @@ import { Link } from 'react-router-dom';
 // import { Button, FormGroup, Radio } from 'react-bootstrap';
 import { List, Map } from 'immutable';
 import { Model } from '../models/model';
-import { getDeviceType, formatDateTime } from '../modules/common';
+import { formatDateTime } from '../modules/common';
 
 import '../../lib/auto-hiding-navigation/auto-hiding-navigation.css';
-import '../../css/style.css';
+// import '../../css/style.css';
 
 
 

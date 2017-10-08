@@ -5,7 +5,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import '../../../css/style.css';
+// import '../../../css/style.css';
 
 
 

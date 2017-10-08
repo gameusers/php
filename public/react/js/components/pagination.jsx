@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { Pagination as ReactBootstrapPagination } from 'react-bootstrap';
 import { Model } from '../models/model';
 
-import '../../css/style.css';
+// import '../../css/style.css';
 
 
 

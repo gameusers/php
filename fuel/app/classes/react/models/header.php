@@ -135,15 +135,15 @@ class Header extends \Model_Crud
 				['name_' . $language, 'gameName'],// ゲーム名
 				['subtitle', 'gameSubtitle'],// ゲームのサブタイトル
 				['thumbnail', 'gameThumbnail'],// サムネイルの有無 / 1 or null
-				['hardware', 'gameHardwareArr'],// このゲームがで発売されたハードウェア / ハードウェアNoがこの形式で保存されている /,1,2,3,4,5,/
-				['genre', 'gameGenreArr'],// ゲームのジャンル / ジャンルNoがこの形式で保存されている /,1,2,3,4,5,/
+				['hardware', 'gameHardwareList'],// このゲームがで発売されたハードウェア / ハードウェアNoがこの形式で保存されている /,1,2,3,4,5,/
+				['genre', 'gameGenreList'],// ゲームのジャンル / ジャンルNoがこの形式で保存されている /,1,2,3,4,5,/
 				['release_date_1', 'gameReleaseDate1'],// ゲームの発売日時 1　　ハードウェアNoの順番と各発売日が連動
 				['release_date_2', 'gameReleaseDate2'],// ゲームの発売日時 2
 				['release_date_3', 'gameReleaseDate3'],// ゲームの発売日時 3
 				['release_date_4', 'gameReleaseDate4'],// ゲームの発売日時 4
 				['release_date_5', 'gameReleaseDate5'],// ゲームの発売日時 5
 				['players_max', 'gamePlayersMax'],// プレイヤー最大数　1～○○人
-				['developer', 'gameDeveloperArr']// 開発会社（メーカー） / ディベロッパーNoがこの形式で保存されている /,1,2,3,4,5,/
+				['developer', 'gameDeveloperList']// 開発会社（メーカー） / ディベロッパーNoがこの形式で保存されている /,1,2,3,4,5,/
 			)->from('game_data');
 
 			$query->where('game_no', '=', $gameNo);
@@ -175,9 +175,9 @@ class Header extends \Model_Crud
 			// --------------------------------------------------
 
 			$original_func_common = new \Original\Func\Common();
-			$gameHardwareNoArr = $original_func_common->return_db_array('db_php', $headerArr['gameHardwareArr']);
-			$gameGenreNoArr = $original_func_common->return_db_array('db_php', $headerArr['gameGenreArr']);
-			$gameDeveloperNoArr = $original_func_common->return_db_array('db_php', $headerArr['gameDeveloperArr']);
+			$gameHardwareNoArr = $original_func_common->return_db_array('db_php', $headerArr['gameHardwareList']);
+			$gameGenreNoArr = $original_func_common->return_db_array('db_php', $headerArr['gameGenreList']);
+			$gameDeveloperNoArr = $original_func_common->return_db_array('db_php', $headerArr['gameDeveloperList']);
 
 
 			// --------------------------------------------------
@@ -211,7 +211,7 @@ class Header extends \Model_Crud
                     }
                 }
 
-				$headerArr['gameHardwareArr'] = $tempArr;
+				$headerArr['gameHardwareList'] = $tempArr;
 
 			}
 
@@ -245,7 +245,7 @@ class Header extends \Model_Crud
                     }
                 }
 
-				$headerArr['gameGenreArr'] = $tempArr;
+				$headerArr['gameGenreList'] = $tempArr;
 
 			}
 
@@ -285,7 +285,7 @@ class Header extends \Model_Crud
                     }
                 }
 
-				$headerArr['gameDeveloperArr'] = $tempArr;
+				$headerArr['gameDeveloperList'] = $tempArr;
 
 			}
 
@@ -297,10 +297,10 @@ class Header extends \Model_Crud
 			$query = \DB::select('type', 'name', 'url')->from('data_link');
 			$query->where('game_no', '=', $gameNo);
 			$dbLinkArr = $query->execute()->as_array();
-			$headerArr['gameLinkArr'] = $dbLinkArr;
+			$headerArr['gameLinkList'] = $dbLinkArr;
 
-            if (count($headerArr['gameLinkArr']) === 0) {
-                $headerArr['gameLinkArr'] = null;
+            if (count($headerArr['gameLinkList']) === 0) {
+                $headerArr['gameLinkList'] = null;
             }
 
 		}

@@ -68,12 +68,6 @@ p {
 
 
 /* --------------------------------------------------
-   通知
--------------------------------------------------- */
-
-
-
-/* --------------------------------------------------
    ヘッダー / 通知ベル
 -------------------------------------------------- */
 
@@ -282,11 +276,21 @@ header .hero-image-data .link .icon {
 
 /* スマートフォン・タブレット版 */
 .main-s {
+  /*display: flex;
+  flex-direction: column;
+  justify-content: center;*/
+  /*height: auto !important;
+  height: 100%;
+  min-height: 100%;*/
+  /*position: relative;*/
+  padding: 10px 0;
+}
+/*.main-s {
   display: flex;
   flex-direction: row;
   justify-content: center;
   padding: 10px 0 10px 10px;
-}
+}*/
 /*.main-s {
   display: flex;
   flex-direction: column;
@@ -299,9 +303,46 @@ header .hero-image-data .link .icon {
 }*/
 
 
+/* --------------------------------------------------
+   コンテンツ
+-------------------------------------------------- */
+
+main .content {
+  flex: 1;
+  min-width: 1em;
+  padding: 0;
+  /*background-color: #0d6330;*/
+}
+
+/*main .content .feed_card_box {
+  margin: 0 0 0 5px;
+}*/
+
+
+/* スモール版 */
+
+/*main .content-s {
+  flex: 1;
+  min-width: 1em;
+}
+
+main .content-s .visible {
+  display: block;
+}
+
+main .content-s .hidden {
+  display: none;
+}
+
+main .content-s .feed_card_box {
+  margin: 0 0 0 5px;
+}*/
+
+
+
 
 /* --------------------------------------------------
-   メイン / メニュー
+   メニュー
 -------------------------------------------------- */
 
 .menu {
@@ -317,8 +358,9 @@ header .hero-image-data .link .icon {
 }
 
 .menu .sticky {
+  position: -webkit-sticky;
   position: sticky;
-  top: 20px;
+  top: 65px;
   left: 0;
   /*width: 100%;*/
   /*background-color: yellow;*/
@@ -365,7 +407,7 @@ main .menu .ad_thumbnail_box {
   justify-content: space-between;
 }*/
 
-main .menu .box {
+.menu .box {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -377,7 +419,7 @@ main .menu .box {
   cursor: pointer;
 }
 
-main .menu .box .left {
+.menu .box .left {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -387,115 +429,72 @@ main .menu .box .left {
   background-color: #fff;
 }
 
-main .menu .box .left i {
+.menu .box .left i {
   border-radius: 4px 0  0 4px;
   font-size: 30px;
 }
 
-main .menu .box .right {
+.menu .box .right {
   padding: 0 0 0 16px;
   border-left: #c7c7c7 solid 1px;
 }
 
-main .menu .box .active-icon {
+.menu .box .active-icon {
   margin: 0 0 0 auto;
   padding: 0 10px 0 0;
 }
 
-main .menu .border-right-1 {
+.menu .border-right-1 {
   border-right: #ff5252 solid 10px;
 }
 
-main .menu .border-right-2 {
+.menu .border-right-2 {
   border-right: #ff4081 solid 10px;
 }
 
-main .menu .border-right-3 {
+.menu .border-right-3 {
   border-right: #e040fb solid 10px;
 }
 
-main .menu .border-right-4 {
+.menu .border-right-4 {
   border-right: #7c4dff solid 10px;
 }
 
-main .menu .border-right-5 {
+.menu .border-right-5 {
   border-right: #536dfe solid 10px;
 }
 
-main .menu .border-right-6 {
+.menu .border-right-6 {
   border-right: #448aff solid 10px;
 }
 
-main .menu .border-right-7 {
+.menu .border-right-7 {
   border-right: #40c4ff solid 10px;
 }
 
-main .menu .border-right-8 {
+.menu .border-right-8 {
   border-right: #18ffff solid 10px;
 }
 
-main .menu .border-right-9 {
+.menu .border-right-9 {
   border-right: #64ffda solid 10px;
 }
 
-main .menu .border-right-10 {
+.menu .border-right-10 {
   border-right: #69f0ae solid 10px;
 }
 
-main .menu .border-right-11 {
+.menu .border-right-11 {
   border-right: #b2ff59 solid 10px;
-}
-
-
-/* スマートフォン・タブレット版 */
-
-main .menu-s {
-  width: 40px;
-  /*background-color: pink;*/
-  /*margin: 0 0 15px 0;*/
-}
-
-main .menu-s .icon-box {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  height: 200px;
-  /*background-color: orange;*/
-}
-
-main .menu-s .icon {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 3px;
-  background-color: #fff;
-  box-shadow: 1px 1px 3px #bababa;
-  border: #dbdeff solid 1px;
-}
-
-main .menu-s .icon i {
-  font-size: 28px;
-}
-
-main .menu-s .icon .icon-arrow {
-  padding: 5px;
-  font-size: 20px;
-}
-
-main .menu-s .icon .icon-menu {
-  padding: 4px 6px 6px 4px;
-  font-size: 20px;
 }
 
 
 
 /* --------------------------------------------------
-   メイン / メニュー / ウェーブアイコン
+   メニュー / ウェーブアイコン
 -------------------------------------------------- */
 
-.spinner {
+.menu .spinner {
   margin: 5px auto;
   width: 50px;
   height: 40px;
@@ -503,7 +502,7 @@ main .menu-s .icon .icon-menu {
   font-size: 10px;
 }
 
-.spinner > div {
+.menu .spinner > div {
   background-color: #333;
   height: 100%;
   width: 6px;
@@ -512,19 +511,19 @@ main .menu-s .icon .icon-menu {
   margin: 0 2px 0 0;
 }
 
-.spinner .rect2 {
+.menu .spinner .rect2 {
   animation-delay: -1.1s;
 }
 
-.spinner .rect3 {
+.menu .spinner .rect3 {
   animation-delay: -1s;
 }
 
-.spinner .rect4 {
+.menu .spinner .rect4 {
   animation-delay: -0.9s;
 }
 
-.spinner .rect5 {
+.menu .spinner .rect5 {
   animation-delay: -0.8s;
 }
 
@@ -555,39 +554,176 @@ main .menu-s .icon .icon-menu {
 
 
 /* --------------------------------------------------
-   コンテンツ
+   ドロワーメニュー起動用ボタン / スマートフォン・タブレット版
 -------------------------------------------------- */
 
-main .content {
-  flex: 1;
-  min-width: 1em;
-  padding: 0;
-  /*background-color: #0d6330;*/
+.menu-s {
+  /*width: 40px;*/
+  /*position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  top: 0;
+  z-index: 1;*/
+
+  /*position: fixed;*/
+  /*right: 0;*/
+  /*bottom: 0;*/
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 5px;
+  /*border-top: #BDBDBD 1px solid;*/
+  /*box-shadow: 0 0 3px #000;*/
+  background-color: #fff;
+  z-index: 2;
 }
 
-/*main .content .feed_card_box {
-  margin: 0 0 0 5px;
-}*/
-
-
-/* スモール版 */
-
-/*main .content-s {
-  flex: 1;
-  min-width: 1em;
+.menu-s .icon-box {
+  display: flex;
+  flex-direction: row;
+  /*justify-content: space-between;*/
+  /*align-items: center;*/
+  /*height: 200px;*/
+  /*background-color: orange;*/
 }
 
-main .content-s .visible {
-  display: block;
+.menu-s .icon-arrow-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
-main .content-s .hidden {
-  display: none;
+.menu-s .icon-menu-box {
+  display: flex;
+  flex-direction: row;
+  /*justify-content: center;*/
+  align-items: center;
+  /*margin-left: auto;*/
+  margin: 0 10px 0 auto;
 }
 
-main .content-s .feed_card_box {
-  margin: 0 0 0 5px;
-}*/
+.menu-s .icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 3px;
+  background-color: #fff;
+  box-shadow: 1px 1px 3px #bababa;
+  border: #dbdeff solid 1px;
+  margin: 0 5px 0 0;
+}
+
+.menu-s .icon i {
+  font-size: 28px;
+}
+
+.menu-s .icon .icon-arrow {
+  font-size: 20px;
+  padding: 5px;
+}
+
+.menu-s .icon .icon-menu {
+  font-size: 20px;
+  padding: 4px 6px 6px 4px;
+}
+
+
+
+/* -------------------------------------------------
+   ドロワーメニュー / スマートフォン・タブレット用
+-------------------------------------------------- */
+
+.drawer-menu {
+  width: 250px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background: #fff;
+  box-shadow: 8px 0 8px -8px #666 inset;
+  padding: 24px 16px;
+}
+
+.drawer-menu .title {
+  margin: 0;
+  overflow: hidden;
+}
+
+.drawer-menu .box {
+  display: flex;
+  flex-direction: row;
+  border-bottom: dotted 1px #333;
+  padding: 16px 0 0;
+}
+
+.drawer-menu .box .left {
+  color: #000;
+  padding: 0 10px 0 0;
+}
+
+.drawer-menu .box .right {
+  color: #337ab7;
+  padding: 2px 0 0;
+}
+
+.drawer-menu .box .right .active {
+  color: #000;
+}
+
+.drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+}
+
+
+
+
+
+
+
+/* --------------------------------------------------
+   モーダル / 通知用
+-------------------------------------------------- */
+
+.modal-notification-box {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.modal-notification-buttons {
+  margin: 0;
+  padding: 10px;
+  /*background-color: black;*/
+}
+
+.modal-body {
+  background-color: #ecf0f1;
+}
+
+.modal-notification-footer {
+  display: flex;
+  flex-flow: row nowrap;
+  text-align: left;
+  border-top: 1px solid #e5e5e5;
+  margin: 0;
+  padding: 10px;
+  /*margin-right: auto;*/
+  /*margin-left: auto;*/
+}
+
+.modal-notification-footer .close-button {
+  /*text-align: left;*/
+  /*margin-right: auto;*/
+  margin-left: auto;
+}
+
 
 
 
@@ -601,6 +737,10 @@ footer {
   align-items: flex-start;
   padding: 20px 0 20px 20px;
   background-color: #000;
+}
+
+.footer-mobile {
+  padding-bottom: 60px;
 }
 
 footer .contents-type {
@@ -649,41 +789,7 @@ footer .btn-group .btn-group .active {
 
 
 
-/* --------------------------------------------------
-   フッター / モーダル / 通知用
--------------------------------------------------- */
 
-.modal-notification-box {
-  display: flex;
-  flex-flow: row nowrap;
-}
-
-.modal-notification-buttons {
-  margin: 0;
-  padding: 10px;
-  /*background-color: black;*/
-}
-
-.modal-body {
-  background-color: #ecf0f1;
-}
-
-.modal-notification-footer {
-  display: flex;
-  flex-flow: row nowrap;
-  text-align: left;
-  border-top: 1px solid #e5e5e5;
-  margin: 0;
-  padding: 10px;
-  /*margin-right: auto;*/
-  /*margin-left: auto;*/
-}
-
-.modal-notification-footer .close-button {
-  /*text-align: left;*/
-  /*margin-right: auto;*/
-  margin-left: auto;
-}
 
 
 
@@ -1113,7 +1219,7 @@ footer .btn-group .btn-group .active {
 
 
 /* --------------------------------------------------
-   カード　小　フッター
+   カード　小 / フッター用
 -------------------------------------------------- */
 
 .card-game {
@@ -1146,6 +1252,7 @@ footer .btn-group .btn-group .active {
 }
 
 
+
 /* --------------------------------------------------
    ページネーション
 -------------------------------------------------- */
@@ -1154,6 +1261,7 @@ footer .btn-group .btn-group .active {
   box-shadow: 2px 2px 5px #bababa;
   margin: 20px 0 0;
 }
+
 
 
 /* --------------------------------------------------
@@ -1174,182 +1282,4 @@ footer .btn-group .btn-group .active {
 
 .margin-left-5px {
   margin-left: 5px;
-}
-
-
-
-/* -------------------------------------------------
-   ドロワーメニュー / スマートフォン・タブレット用
--------------------------------------------------- */
-
-.drawer-menu {
-  width: 250px;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9999;
-  background: #fff;
-  box-shadow: 8px 0 8px -8px #666 inset;
-  padding: 24px 16px;
-}
-
-.drawer-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  /*visibility: visible;*/
-  /*visibility: hidden;*/
-  /*display: none;*/
-  /*display: block;*/
-  z-index: 9998;
-}
-
-/*.drawer-menu-enter {
-  transform: translateX(-250px);
-  transition: ease 0.5s;
-}
-
-.drawer-menu-enter.drawer-menu-enter-active {
-  transform: translateX(0);
-  overflow-y: auto;
-}
-
-.drawer-menu-leave {
-  transform: translateX(0);
-  transition: ease 0.3s;
-  overflow-y: auto;
-}
-
-.drawer-menu-leave.drawer-menu-leave-active {
-  transform: translateX(-250px);
-}*/
-
-/*.drawer-menu-appear {
-  transform: translateX(0);
-  transition: ease 0.3s;
-  overflow-y: auto;
-}
-
-.drawer-menu-appear.drawer-menu-appear-active {
-  transform: translateX(-250px);
-}*/
-
-
-/*.drawer-menu {
-  width: 250px;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  transform: translateX(-250px);
-  transition: ease 0.5s;
-  z-index: 9999;
-  background: #fff;
-  box-shadow: 8px 0 8px -8px #666 inset;
-  padding: 24px 16px;
-}*/
-
-/*.drawer-menu.active {
-  transform: translateX(0);
-  overflow-y: auto;
-}*/
-
-.drawer-menu .title {
-  margin: 0;
-  overflow: hidden;
-}
-
-.drawer-menu .box {
-  display: flex;
-  flex-direction: row;
-  border-bottom: dotted 1px #333;
-  padding: 16px 0 0;
-}
-
-.drawer-menu .box .left {
-  padding: 0 10px 0 0;
-}
-
-.drawer-menu .box .right {
-  padding: 2px 0 0;
-  color: #337ab7;
-}
-
-.drawer-menu .box .right .active {
-  color: #000;
-}
-
-
-/*
-.drawer-overlay.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-.drawer-overlay-enter {
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.5s linear;
-}
-
-.drawer-overlay-enter.drawer-overlay-enter-active {
-  opacity: 1;
-  visibility: visible;
-}
-
-.drawer-overlay-leave {
-  opacity: 1;
-  visibility: visible;
-  transition: 0.3s linear;
-}
-
-.drawer-overlay-leave.drawer-overlay-leave-active {
-  opacity: 0;
-  visibility: hidden;
-}*/
-
-
-
-
-
-
-/* -------------------------------------------------
-   Last Sidebar User Style:
--------------------------------------------------- */
-
-.slideMenu {
-  display: none;
-}
-
-.slideMenu .title {
-  margin: 0;
-  padding: 24px 16px 16px;
-  overflow: hidden;
-}
-
-.slideMenu .box {
-  display: flex;
-  flex-direction: row;
-  border-bottom: dotted 1px #333;
-  margin: 16px 16px 0;
-}
-
-.slideMenu .box .left {
-  padding: 0 10px 0 0;
-  /*background-color: #e45d5b;*/
-}
-
-.slideMenu .box .right {
-  padding: 2px 0 0;
-  color: #337ab7;
-  /*background-color: #a8e45b;*/
-}
-
-.slideMenu .box .right .selected {
-  color: #0000;
-  /*font-weight: bold;*/
 }

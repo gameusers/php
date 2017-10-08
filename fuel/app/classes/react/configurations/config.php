@@ -23,6 +23,7 @@ if ($movileDetect->isMobile()) {
 } else {
     define('DEVICE_TYPE', 'other');
 }
+// define('DEVICE_TYPE', 'smartphone');
 
 if ($movileDetect->isiOS()) {
     define('DEVICE_OS', 'iOS');
@@ -112,16 +113,13 @@ if (DEVICE_TYPE === 'smartphone') {
 
 
 
-
-
-
 // --------------------------------------------------
 //   設定値を定数で記述する
 // --------------------------------------------------
 
-// --------------------------------------------------
-//   通知
-// --------------------------------------------------
+// ---------------------------------------------
+//   - 通知
+// ---------------------------------------------
 
 // 通知の保存期間　$datetime->modify($string)の形式で指定 / default = '-3 months'
 // define('LIMIT_NOTIFICATION_PRESERVATION_TERM', '-3 months');
@@ -135,9 +133,9 @@ define('LIMIT_NOTIFICATION_ARR', [
 ]);
 
 
-// --------------------------------------------------
-//   フッター
-// --------------------------------------------------
+// ---------------------------------------------
+//   - フッター
+// ---------------------------------------------
 
 // 画面に表示するサムネイルカードの数
 define('LIMIT_FOOTER_THUMBNAIL_CARDS_ARR', [
@@ -145,6 +143,84 @@ define('LIMIT_FOOTER_THUMBNAIL_CARDS_ARR', [
     'tablet' => 30,
     'other' => 30
 ]);
+
+
+
+
+
+// --------------------------------------------------
+//   ライブラリーのパス
+//   CDN の場合は CDN の URL
+//   ローカルファイルの場合はファイルへの絶対パス
+// --------------------------------------------------
+
+
+// ---------------------------------------------
+//   - スタイルシート
+// ---------------------------------------------
+
+define('CSS_RESET_CDN_ARR', [
+    'href' => 'https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'
+]);
+
+define('CSS_JQEURY_UI_CDN_ARR', [
+    'href' => 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css'
+]);
+
+define('CSS_JQEURY_CONFIRM_CDN_ARR', [
+    'href' => 'https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.css'
+]);
+
+define('CSS_BOOTSTRAP_CDN_ARR', [
+    'href' => 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
+]);
+
+define('CSS_LADDA_BOOTSTRAP_CDN_ARR', [
+    'href' => 'https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda-themeless.min.css'
+]);
+
+define('CSS_JQUERY_MAGNIFIC_POPUP_CDN_ARR', [
+    'href' => 'https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css'
+]);
+
+
+
+// ---------------------------------------------
+//   - Javascript
+//   CDN に integrity（改ざん検知用）の値が用意されている場合は入力すること
+//   その他、表示したい値がある場合は、配列形式（key => value）で入力すると <script> タグ内に追加で表示されます
+// ---------------------------------------------
+
+define('JS_JQUERY_CDN_ARR', [
+    'src' => 'https://code.jquery.com/jquery-3.2.1.min.js',
+    'integrity' => 'sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=',
+    'crossorigin' => 'anonymous'
+]);
+
+define('JS_JQUERY_UI_CDN_ARR', [
+    'src' => 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'
+]);
+
+define('JS_JQUERY_CONFIRM_CDN_ARR', [
+    'src' => 'https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.js'
+]);
+
+define('JS_JQUERY_AUTO_HIDING_NAVIGATION_ARR', [
+    'src' => URL_BASE . 'react/lib/auto-hiding-navigation/auto-hiding-navigation.js'
+]);
+
+define('JS_JQUERY_MAGNIFIC_POPUP_CDN_ARR', [
+    'src' => 'https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js'
+]);
+
+define('JS_LADDA_BOOTSTRAP_SPIN_CDN_ARR', [
+    'src' => 'https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/spin.min.js'
+]);
+
+define('JS_LADDA_BOOTSTRAP_CDN_ARR', [
+    'src' => 'https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda.min.js'
+]);
+
 
 
 
@@ -163,83 +239,4 @@ $this->initialStateArr['urlBase'] = URL_BASE;
 $this->initialStateArr['adBlock'] = AD_BLOCK;
 $this->initialStateArr['paginationColumn'] = PAGINATION_COLUMN;
 
-$this->initialStateArr['notificationObj']['limitNotification'] = LIMIT_NOTIFICATION_ARR[DEVICE_TYPE];
-
-
-
-// --------------------------------------------------
-//   ライブラリーのパス
-//   CDN の場合は CDN の URL
-//   ローカルファイルの場合はファイルへの絶対パス
-// --------------------------------------------------
-
-
-// ---------------------------------------------
-//   スタイルシート
-// ---------------------------------------------
-
-define('CSS_RESET_CDN_ARR', [
-    'href' => 'https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'
-]);
-
-define('CSS_BOOTSTRAP_CDN_ARR', [
-    'href' => 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
-]);
-
-define('CSS_LADDA_BOOTSTRAP_CDN_ARR', [
-    'href' => 'https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda-themeless.min.css'
-]);
-
-define('CSS_JQUERY_MAGNIFIC_POPUP_CDN_ARR', [
-    'href' => 'https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css'
-]);
-
-// define('CSS_JQUERY_LAST_SIDEBAR_ARR', [
-//     'href' => URL_BASE . 'react/lib/last-sidebar/last-sidebar.css'
-// ]);
-
-// define('CSS_REACT_CONTEXTMENU_ARR', [
-//     'href' => URL_BASE . 'react/lib/react-contextmenu/react-contextmenu.css'
-// ]);
-
-
-
-// ---------------------------------------------
-//   Javascript
-//   CDN に integrity（改ざん検知用）の値が用意されている場合は入力すること
-//   その他、表示したい値がある場合は、配列形式（key => value）で入力すると <script> タグ内に追加で表示されます
-// ---------------------------------------------
-
-define('JS_JQUERY_CDN_ARR', [
-    'src' => 'https://code.jquery.com/jquery-3.2.1.min.js',
-    'integrity' => 'sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=',
-    'crossorigin' => 'anonymous'
-]);
-
-define('JS_JQUERY_AUTO_HIDING_NAVIGATION_ARR', [
-    'src' => URL_BASE . 'react/lib/auto-hiding-navigation/auto-hiding-navigation.js'
-]);
-
-define('JS_JQUERY_MAGNIFIC_POPUP_CDN_ARR', [
-    'src' => 'https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js'
-]);
-
-// define('JS_JQUERY_STICKY_CDN_ARR', [
-//     'src' => 'https://cdn.jsdelivr.net/jquery.sticky/1.0.1/jquery.sticky.min.js'
-// ]);
-
-// define('JS_JQUERY_LAST_SIDEBAR_MOBILE_EVENTS_ARR', [
-//     'src' => URL_BASE . 'react/lib/last-sidebar/jquery.mobile.events.js'
-// ]);
-
-// define('JS_JQUERY_LAST_SIDEBAR_ARR', [
-//     'src' => URL_BASE . 'react/lib/last-sidebar/jquery.last-sidebar.min.js'
-// ]);
-
-define('JS_LADDA_BOOTSTRAP_SPIN_CDN_ARR', [
-    'src' => 'https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/spin.min.js'
-]);
-
-define('JS_LADDA_BOOTSTRAP_CDN_ARR', [
-    'src' => 'https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda.min.js'
-]);
+$this->initialStateArr['notificationMap']['limitNotification'] = LIMIT_NOTIFICATION_ARR[DEVICE_TYPE];

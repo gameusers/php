@@ -15,8 +15,8 @@ export const funcUrlDirectory = (urlDirectory1, urlDirectory2, urlDirectory3) =>
 //   モーダル
 // --------------------------------------------------
 
-export const funcModalObjNotificationShow = value => ({
-  type: 'MODAL_OBJ_NOTIFICATION_SHOW',
+export const funcModalMapNotificationShow = value => ({
+  type: 'MODAL_MAP_NOTIFICATION_SHOW',
   value
 });
 
@@ -26,31 +26,25 @@ export const funcModalObjNotificationShow = value => ({
 //   通知
 // --------------------------------------------------
 
-export const funcNotificationObjUnreadCount = value => ({
-  type: 'NOTIFICATION_OBJ_UNREAD_COUNT',
+export const funcNotificationMapUnreadCount = value => ({
+  type: 'NOTIFICATION_MAP_UNREAD_COUNT',
   value
 });
 
 
-export const funcNotificationObjResetActivePage = () => ({
-  type: 'NOTIFICATION_OBJ_RESET_ACTIVE_PAGE'
+export const funcNotificationMapResetActivePage = () => ({
+  type: 'NOTIFICATION_MAP_RESET_ACTIVE_PAGE'
 });
 
 
-export const funcNotificationObj = (unreadTotal, unreadArr, alreadyReadTotal, alreadyReadArr, activePage) => ({
-  type: 'NOTIFICATION_OBJ',
+export const funcNotificationMap = (unreadTotal, unreadArr, alreadyReadTotal, alreadyReadArr, activePage) => ({
+  type: 'NOTIFICATION_MAP',
   unreadTotal,
   unreadArr,
   alreadyReadTotal,
   alreadyReadArr,
   activePage
 });
-
-
-// export const funcSelectNotificationUnreadCount = value => ({
-//   type: 'NOTIFICATION_UNREAD_COUNT',
-//   value
-// });
 
 
 
@@ -68,10 +62,10 @@ export const funcMenuDrawerActive = () => ({
 //   フッター
 // --------------------------------------------------
 
-export const funcSelectFooterCardType = (cardType, gameCommunityRenewalArr, gameCommunityAccessArr, userCommunityAccessArr) => ({
+export const funcSelectFooterCardType = (cardType, gameCommunityRenewalList, gameCommunityAccessList, userCommunityAccessList) => ({
   type: 'FOOTER_CARD_TYPE',
   cardType,
-  gameCommunityRenewalArr,
-  gameCommunityAccessArr,
-  userCommunityAccessArr
+  gameCommunityRenewalList,
+  gameCommunityAccessList,
+  userCommunityAccessList
 });

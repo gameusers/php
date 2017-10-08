@@ -9,23 +9,8 @@ import { Model, fromJSOrdered } from '../models/model';
 
 const reducer = (state = new Model(), action) => {
 
-  // const currentThemeNameId = state.getIn(['formObj', 'currentThemeNameId']);
-  // const currentThemeType = state.getIn(['formObj', 'currentThemeType']);
-  // const shareType = state.getIn(['formObj', 'shareType']);
 
   switch (action.type) {
-
-    // case 'INITIAL_ASYNCHRONOUS': {
-    //   return state
-    //     .set('designThemesMap', action.designThemesMap)
-    //     .set('iconThemesMap', action.iconThemesMap)
-    //     .setDataObj('editThemes', action.loadedDataEditThemesObj)
-    //     .setDataObj('designThemes', action.loadedDataDesignThemesObj)
-    //     .setDataObj('iconThemes', action.loadedDataIconThemesObj)
-    //     .set('randomDesignThemesList', List(action.randomDesignThemesArr))
-    //     .set('randomIconThemesList', List(action.randomIconThemesArr));
-    // }
-
 
 
     // --------------------------------------------------
@@ -33,18 +18,12 @@ const reducer = (state = new Model(), action) => {
     // --------------------------------------------------
 
     case 'URL_DIRECTORY': {
-      // $('#slideMenu').unbind();
-      // return state
-      //   .set('urlDirectory1', action.urlDirectory1)
-      //   .set('urlDirectory2', action.urlDirectory2)
-      //   .set('urlDirectory3', action.urlDirectory3);
-
       return state
-        .setIn(['menuObj', 'drawerActive'], false)
+        .setIn(['menuMap', 'drawerActive'], false)
         .set('urlDirectory1', action.urlDirectory1)
         .set('urlDirectory2', action.urlDirectory2)
         .set('urlDirectory3', action.urlDirectory3)
-        .setIn(['headerObj', 'menuObj', action.urlDirectory1, action.urlDirectory2, 'activeUrlDirectory3'], action.urlDirectory3);
+        .setIn(['headerMap', 'menuMap', action.urlDirectory1, action.urlDirectory2, 'activeUrlDirectory3'], action.urlDirectory3);
     }
 
 
@@ -53,8 +32,8 @@ const reducer = (state = new Model(), action) => {
     //   モーダル
     // --------------------------------------------------
 
-    case 'MODAL_OBJ_NOTIFICATION_SHOW': {
-      return state.setIn(['modalObj', 'notification', 'show'], action.value);
+    case 'MODAL_MAP_NOTIFICATION_SHOW': {
+      return state.setIn(['modalMap', 'notification', 'show'], action.value);
     }
 
 
@@ -63,26 +42,21 @@ const reducer = (state = new Model(), action) => {
     //   通知
     // --------------------------------------------------
 
-    case 'NOTIFICATION_OBJ_UNREAD_COUNT': {
-      return state.setIn(['notificationObj', 'unreadCount'], action.value);
+    case 'NOTIFICATION_MAP_UNREAD_COUNT': {
+      return state.setIn(['notificationMap', 'unreadCount'], action.value);
     }
 
 
-    case 'NOTIFICATION_OBJ_RESET_ACTIVE_PAGE': {
+    case 'NOTIFICATION_MAP_RESET_ACTIVE_PAGE': {
       return state
-        .setIn(['notificationObj', 'unreadActivePage'], 1)
-        .setIn(['notificationObj', 'alreadyReadActivePage'], 1);
+        .setIn(['notificationMap', 'unreadActivePage'], 1)
+        .setIn(['notificationMap', 'alreadyReadActivePage'], 1);
     }
 
 
-    case 'NOTIFICATION_OBJ': {
-      return state.setNotificationObj(action.unreadTotal, action.unreadArr, action.alreadyReadTotal, action.alreadyReadArr, action.activePage);
+    case 'NOTIFICATION_MAP': {
+      return state.setNotificationMap(action.unreadTotal, action.unreadArr, action.alreadyReadTotal, action.alreadyReadArr, action.activePage);
     }
-
-
-    // case 'NOTIFICATION_UNREAD_COUNT': {
-    //   return state.setIn(['notificationObj', 'unreadCount'], action.value);
-    // }
 
 
 
@@ -95,13 +69,13 @@ const reducer = (state = new Model(), action) => {
 
       let menuDrawerActive = true;
 
-      if (state.getIn(['menuObj', 'drawerActive'])) {
+      if (state.getIn(['menuMap', 'drawerActive'])) {
         menuDrawerActive = false;
       }
 
       // console.log('reducer / DRAWER_MENU_ACTIVE = ', menuDrawerActive);
 
-      return state.setIn(['menuObj', 'drawerActive'], menuDrawerActive);
+      return state.setIn(['menuMap', 'drawerActive'], menuDrawerActive);
 
     }
 
@@ -114,19 +88,16 @@ const reducer = (state = new Model(), action) => {
 
     case 'FOOTER_CARD_TYPE': {
 
-      const footerObj = {
+      const footerMap = {
         cardType: action.cardType,
-        gameCommunityRenewalArr: action.gameCommunityRenewalArr,
-        gameCommunityAccessArr: action.gameCommunityAccessArr,
-        userCommunityAccessArr: action.userCommunityAccessArr
+        gameCommunityRenewalList: action.gameCommunityRenewalList,
+        gameCommunityAccessList: action.gameCommunityAccessList,
+        userCommunityAccessList: action.userCommunityAccessList
       };
 
-      return state.set('footerObj', fromJSOrdered(footerObj));
+      return state.set('footerMap', fromJSOrdered(footerMap));
 
     }
-
-
-
 
 
 
