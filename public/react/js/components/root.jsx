@@ -98,8 +98,8 @@ export default class Root extends React.Component {
 
             <MainMenu {...this.props} />
 
-            <Route exact path="/app/share-buttons" render={() => <MainAppShareButtons {...this.props} />} />
-            <Route exact path="/app/share-buttons/test1" render={() => <MainAppShareButtons {...this.props} />} />
+            {/* <Route exact path="/app/share-buttons" render={() => <MainAppShareButtons {...this.props} />} />
+            <Route exact path="/app/share-buttons/test1" render={() => <MainAppShareButtons {...this.props} />} /> */}
 
             <ModalNotification {...this.props} />
 
