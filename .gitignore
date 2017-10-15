@@ -42,6 +42,9 @@ _testform.php
 /fuel/app/classes/controller/test.php
 /fuel/app/views/test_view.php
 
+# PHPのパッケージ
+/fuel/app/classes/react/vendor/
+
 # 公開できないデータを含むファイル
 /fuel/app/classes/original/file/*
 /fuel/app/config/development/*.php

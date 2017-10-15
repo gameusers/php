@@ -65,109 +65,6 @@ initialStateObj.notificationMap.alreadyReadArr = [];
 initialStateObj.notificationMap.alreadyReadActivePage = 1;
 
 
-
-// --------------------------------------------------
-//   ヘッダー / メニュー
-//   新ページ・新コンテンツを追加する場合はここを編集すること
-// --------------------------------------------------
-
-initialStateObj.headerMap.menuMap = {
-
-  app: {
-    'share-buttons': {
-      urlDirectory1: 'app',
-      urlDirectory2: 'share-buttons',
-      activeUrlDirectory3: null,
-      text: 'シェアボタン'
-    },
-    buy: {
-      urlDirectory1: 'app',
-      urlDirectory2: 'buy',
-      activeUrlDirectory3: null,
-      text: '購入'
-    }
-  }
-
-};
-
-
-
-// --------------------------------------------------
-//   メイン / メニュー
-//   新ページ・新コンテンツを追加する場合はここを編集すること
-// --------------------------------------------------
-
-initialStateObj.menuMap = {
-
-  app: {
-    'share-buttons': [
-      {
-        urlDirectory1: 'app',
-        urlDirectory2: 'share-buttons',
-        urlDirectory3: null,
-        materialIcon: 'cloud_queue',
-        text: 'シェアボタン'
-      },
-      {
-        urlDirectory1: 'app',
-        urlDirectory2: 'share-buttons',
-        urlDirectory3: 'test1',
-        materialIcon: 'forum',
-        text: 'テスト1'
-      },
-      {
-        urlDirectory1: 'app',
-        urlDirectory2: 'share-buttons',
-        urlDirectory3: 'test2',
-        materialIcon: 'priority_high',
-        text: 'テスト2'
-      },
-      {
-        urlDirectory1: 'app',
-        urlDirectory2: 'share-buttons',
-        urlDirectory3: 'test3',
-        materialIcon: 'group',
-        text: 'テスト3'
-      }
-    ],
-    buy: [
-      {
-        urlDirectory1: 'app',
-        urlDirectory2: 'buy',
-        urlDirectory3: null,
-        materialIcon: 'cloud_queue',
-        text: '購入'
-      },
-      {
-        urlDirectory1: 'app',
-        urlDirectory2: 'buy',
-        urlDirectory3: 'test1',
-        materialIcon: 'forum',
-        text: 'テスト1'
-      },
-      {
-        urlDirectory1: 'app',
-        urlDirectory2: 'buy',
-        urlDirectory3: 'test2',
-        materialIcon: 'priority_high',
-        text: 'テスト2'
-      },
-      {
-        urlDirectory1: 'app',
-        urlDirectory2: 'buy',
-        urlDirectory3: 'test3',
-        materialIcon: 'group',
-        text: 'テスト3'
-      }
-    ]
-  },
-
-  drawerActive: false
-
-};
-
-
-
 // --------------------------------------------------
 //   モーダル
 // --------------------------------------------------
@@ -177,7 +74,6 @@ initialStateObj.modalMap = {
     show: false
   }
 };
-
 
 
 // --------------------------------------------------
@@ -195,6 +91,119 @@ if (initialStateObj.footerMap.gameCommunityAccessList) {
   initialStateObj.footerMap.cardType = 'gameCommunityRenewal';
 }
 
+
+
+
+
+// --------------------------------------------------
+//   ヘッダー / メニュー
+//   新ページ・新コンテンツを追加する場合はここを編集すること
+// --------------------------------------------------
+
+initialStateObj.headerMap.menuMap = {
+
+  app: {
+    'share-buttons': {
+      urlDirectory1: 'app',
+      urlDirectory2: 'share-buttons',
+      activeUrlDirectory3: null,
+      text: 'シェアボタン'
+    },
+    pay: {
+      urlDirectory1: 'app',
+      urlDirectory2: 'pay',
+      activeUrlDirectory3: null,
+      text: '購入'
+    }
+  }
+
+};
+
+
+// --------------------------------------------------
+//   メイン / メニュー
+//   新ページ・新コンテンツを追加する場合はここを編集すること
+//   Material Icons はこちらから選択 / https://material.io/icons/
+//   <i class="material-icons">assignment_ind</i>
+//   ICON FONT のタグの中身を入力すること
+// --------------------------------------------------
+
+initialStateObj.menuMap = {
+
+  app: {
+    'share-buttons': [
+      {
+        urlDirectory1: 'app',
+        urlDirectory2: 'share-buttons',
+        urlDirectory3: null,
+        materialIcon: 'share',
+        text: 'シェアボタン'
+      },
+    ],
+    pay: [
+      {
+        urlDirectory1: 'app',
+        urlDirectory2: 'pay',
+        urlDirectory3: null,
+        materialIcon: 'payment',
+        text: '購入'
+      },
+      {
+        urlDirectory1: 'app',
+        urlDirectory2: 'pay',
+        urlDirectory3: 'info',
+        materialIcon: 'announcement',
+        text: '特定商取引法に基づく表記'
+      },
+    ]
+  },
+
+  drawerActive: false
+
+};
+
+
+
+// --------------------------------------------------
+//   コンテンツ
+// --------------------------------------------------
+
+initialStateObj.contentsMap = {};
+
+
+// --------------------------------------------------
+//   コンテンツ / アプリ
+// --------------------------------------------------
+
+initialStateObj.contentsMap.appMap = {
+
+  payMap: {
+    formShareButtonsMap: {
+      webSiteNameMap: {
+        value: 'AAA',
+        validationState: 'error',
+        required: true,
+        error: true
+      },
+      webSiteUrlMap: {
+        value: '',
+        validationState: 'error',
+        required: true,
+        error: true
+      },
+      agreementMap: {
+        value: false,
+        validationState: 'error',
+        required: true,
+        error: true
+      }
+    },
+    shareButtonsWebSiteName: '',
+    shareButtonsWebSiteUrl: '',
+    shareButtonsAgreement: false
+  }
+
+};
 
 
 

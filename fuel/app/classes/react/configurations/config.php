@@ -221,6 +221,10 @@ define('JS_LADDA_BOOTSTRAP_CDN_ARR', [
     'src' => 'https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda.min.js'
 ]);
 
+// define('JS_STRIPE_CHECKOUT_CDN_ARR', [
+//     'src' => 'https://checkout.stripe.com/checkout.js'
+// ]);
+
 
 
 

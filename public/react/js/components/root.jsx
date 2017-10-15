@@ -4,25 +4,25 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import ReactGA from 'react-ga';
 
 import { Model } from '../models/model';
 import Header from './header';
 import MainMenu from './main/menu';
 import MainMenuButtons from './main/menu-buttons';
-import MainAppShareButtons from './main/app/share-buttons';
 import ModalNotification from './modal/notification';
 import Footer from './footer';
 
+import ContainerContentsApp from '../../contents/app/js/containers/app';
+
+// import ContentsAppShareButtons from '../../contents/app/js/components/share-buttons';
+// import ContentsAppPay from '../../contents/app/js/components/pay';
+
+// import MainAppShareButtons from './main/app/share-buttons';
+// import MainAppPay from './main/app/pay';
+
 import '../../css/style.css';
-
-
-// const Test = () => (
-//   <div>
-//     <h2>Test</h2>
-//   </div>
-// );
 
 
 
@@ -37,13 +37,14 @@ export default class Root extends React.Component {
     //   Google Anarytics
     // ---------------------------------------------
 
-    if (process.env.NODE_ENV === 'production') {
-      ReactGA.initialize('UA-65903811-1');
-    } else {
-      ReactGA.initialize('UA-65903811-1', {
-        debug: false,
-      });
-    }
+    ReactGA.initialize('UA-65903811-1');
+    // if (process.env.NODE_ENV === 'production') {
+    //   ReactGA.initialize('UA-65903811-1');
+    // } else {
+    //   ReactGA.initialize('UA-65903811-1', {
+    //     debug: true,
+    //   });
+    // }
 
   }
 
@@ -83,10 +84,6 @@ export default class Root extends React.Component {
 
 
 
-
-
-
-
   render() {
     return (
       <BrowserRouter basename={this.props.baseName} onUpdate={this.googleAnalytics()}>
@@ -98,8 +95,14 @@ export default class Root extends React.Component {
 
             <MainMenu {...this.props} />
 
-            {/* <Route exact path="/app/share-buttons" render={() => <MainAppShareButtons {...this.props} />} />
-            <Route exact path="/app/share-buttons/test1" render={() => <MainAppShareButtons {...this.props} />} /> */}
+            <ContainerContentsApp {...this.props} />
+
+            {/* <Route exact path="/app/share-buttons" render={() => <ContainerContentsApp {...this.props} />} /> */}
+            {/* <div>
+              <Route exact path="/app/share-buttons" render={() => <ContentsAppShareButtons {...this.props} />} />
+              <Route exact path="/app/pay" render={() => <ContentsAppPay {...this.props} />} />
+            </div> */}
+            {/* <Route exact path="/app/pay" render={() => <ContainerContentsApp {...this.props} />} /> */}
 
             <ModalNotification {...this.props} />
 
@@ -113,23 +116,6 @@ export default class Root extends React.Component {
       </BrowserRouter>
     );
   }
-
-  // render() {
-  //   return (
-  //     <BrowserRouter basename={this.props.baseName} onUpdate={this.googleAnalytics()}>
-  //       <div>
-  //
-  //         <Header {...this.props} />
-  //
-  //         <Route path="/app/share-buttons" render={() => <MainAppShareButtons {...this.props} />} />
-  //         <Route path="/app/test1" render={() => <MainAppShareButtons {...this.props} />} />
-  //
-  //         <Footer {...this.props} />
-  //
-  //       </div>
-  //     </BrowserRouter>
-  //   );
-  // }
 
 }
 

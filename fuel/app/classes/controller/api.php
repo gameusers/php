@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 class Controller_Api extends Controller_Rest
 {
 
@@ -33,7 +35,7 @@ class Controller_Api extends Controller_Rest
 		//   テスト変数
 		// --------------------------------------------------
 
-		// $test = true;
+		$test = true;
 
 		if (isset($test)) {
 
@@ -48,8 +50,7 @@ class Controller_Api extends Controller_Rest
 
 
             // $_POST['apiType'] = 'updateAllUnreadToAlreadyRead';
-
-            $_POST['apiType'] = 'updateReservationIdToAlreadyReadId';
+            $_POST['apiType'] = 'insertShareButtonsPaidPlan';
 
 		}
 
@@ -70,7 +71,7 @@ class Controller_Api extends Controller_Rest
 
 
             // --------------------------------------------------
-            //   通知の未読数を取得 / ヘッダーのベルの数字
+            //   通知 / 未読数を取得 / ヘッダーのベルの数字
             // --------------------------------------------------
 
             if (Input::post('apiType') === 'selectNotificationUnreadCount') {
@@ -81,7 +82,7 @@ class Controller_Api extends Controller_Rest
 
 
             // --------------------------------------------------
-            //   通知を取得
+            //   通知 / 取得
             // --------------------------------------------------
 
             if (Input::post('apiType') === 'selectNotification') {
@@ -112,7 +113,7 @@ class Controller_Api extends Controller_Rest
 
 
 			// --------------------------------------------------
-			//   フッターのコンテンツ カードのデータを取得
+			//   フッター / カードのデータを取得
 			//   gameCommunityRenewal / 最近更新されたゲームコミュニティ
             //   gameCommunityAccess / 最近アクセスしたゲームコミュニティ
             //   userCommunityAccess / 最近アクセスしたユーザーコミュニティ
@@ -122,6 +123,18 @@ class Controller_Api extends Controller_Rest
                 $instance = new \React\Models\Footer();
         		$arr = $instance->selectCard(Input::post());
 			}
+
+
+
+            // --------------------------------------------------
+            //   アプリ / シェアボタン / 有料プラン申し込み
+            // --------------------------------------------------
+
+            if (Input::post('apiType') === 'insertShareButtonsPaidPlan') {
+                $instance = new \React\Models\ShareButtons();
+                $arr = $instance->insertPaidPlan(Input::post());
+            }
+
 
 
 		} catch (Exception $e) {
@@ -194,8 +207,6 @@ class Controller_Api extends Controller_Rest
 
 			if (Input::post('apiType') === 'shareButtonsDesignIconThemes')
 			{
-                // $instance = new \Model_Sharebuttons();
-                // $arr = $instance->select_design_icon_themes(Input::post());
                 $instance = new \React\Models\ShareButtons();
                 $arr = $instance->selectDesignIconThemes(Input::post());
                 header('Access-Control-Allow-Origin: *');

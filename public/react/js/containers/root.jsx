@@ -8,6 +8,7 @@ import 'whatwg-fetch';
 import Cookies from 'js-cookie';
 
 import Root from '../components/root';
+
 import * as actions from '../actions/action';
 
 
@@ -16,112 +17,139 @@ import * as actions from '../actions/action';
 //   mapStateToProps
 // --------------------------------------------------
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => {
+
+  const reducerRootMap = state.reducerRoot;
+  // const reducerAppMap = state.reducerApp;
+
+  // console.log('state = ', state);
+  // console.log('reducerRootMap = ', reducerRootMap.toJS());
+  // console.log('reducerAppMap = ', reducerAppMap.toJS());
 
 
-  // --------------------------------------------------
-  //   共通
-  // --------------------------------------------------
-
-  stateModel: state,
-
-  baseName: state.get('baseName'),
-  urlDirectory1: state.get('urlDirectory1'),
-  urlDirectory2: state.get('urlDirectory2'),
-  urlDirectory3: state.get('urlDirectory3'),
-
-  deviceType: state.get('deviceType'),
-  deviceOs: state.get('deviceOs'),
-  host: state.get('host'),
-  userAgent: state.get('userAgent'),
-  userNo: state.get('userNo'),
-  playerId: state.get('playerId'),
-  language: state.get('language'),
-  urlBase: state.get('urlBase'),
-  adBlock: state.get('adBlock'),
-  paginationColumn: state.get('paginationColumn'),
-  csrfToken: state.get('csrfToken'),
+  return ({
 
 
+    // --------------------------------------------------
+    //   共通
+    // --------------------------------------------------
 
-  // --------------------------------------------------
-  //   通知
-  // --------------------------------------------------
+    stateModel: reducerRootMap,
 
-  notificationActiveType: state.getIn(['notificationMap', 'activeType']),
-  notificationUnreadCount: state.getIn(['notificationMap', 'unreadCount']),
-  notificationUnreadTotal: state.getIn(['notificationMap', 'unreadTotal']),
-  notificationUnreadList: state.getIn(['notificationMap', 'unreadArr']),
-  notificationUnreadActivePage: state.getIn(['notificationMap', 'unreadActivePage']),
-  notificationAlreadyReadTotal: state.getIn(['notificationMap', 'alreadyReadTotal']),
-  notificationAlreadyReadList: state.getIn(['notificationMap', 'alreadyReadArr']),
-  notificationAlreadyReadActivePage: state.getIn(['notificationMap', 'alreadyReadActivePage']),
-  notificationLimitNotification: state.getIn(['notificationMap', 'limitNotification']),
+    baseName: reducerRootMap.get('baseName'),
+    urlDirectory1: reducerRootMap.get('urlDirectory1'),
+    urlDirectory2: reducerRootMap.get('urlDirectory2'),
+    urlDirectory3: reducerRootMap.get('urlDirectory3'),
+
+    deviceType: reducerRootMap.get('deviceType'),
+    deviceOs: reducerRootMap.get('deviceOs'),
+    host: reducerRootMap.get('host'),
+    userAgent: reducerRootMap.get('userAgent'),
+    userNo: reducerRootMap.get('userNo'),
+    playerId: reducerRootMap.get('playerId'),
+    language: reducerRootMap.get('language'),
+    urlBase: reducerRootMap.get('urlBase'),
+    adBlock: reducerRootMap.get('adBlock'),
+    paginationColumn: reducerRootMap.get('paginationColumn'),
+    csrfToken: reducerRootMap.get('csrfToken'),
 
 
 
-  // --------------------------------------------------
-  //   ヘッダー
-  // --------------------------------------------------
+    // --------------------------------------------------
+    //   通知
+    // --------------------------------------------------
 
-  headerHeroImageId: state.getIn(['headerMap', 'heroImageId']),
-  headerHeroImageRenewalDate: state.getIn(['headerMap', 'heroImageRenewalDate']),
-
-  headerCommunityNo: state.getIn(['headerMap', 'communityNo']),
-  headerCommunityRenewalDate: state.getIn(['headerMap', 'communityRenewalDate']),
-  headerCommunityId: state.getIn(['headerMap', 'communityId']),
-  headerCommunityName: state.getIn(['headerMap', 'communityName']),
-
-  headerGameNo: state.getIn(['headerMap', 'gameNo']),
-  headerGameRenewalDate: state.getIn(['headerMap', 'gameRenewalDate']),
-  headerGameId: state.getIn(['headerMap', 'gameId']),
-  headerGameName: state.getIn(['headerMap', 'gameName']),
-  headerGameSubtitle: state.getIn(['headerMap', 'gameSubtitle']),
-  headerGameThumbnail: state.getIn(['headerMap', 'gameThumbnail']),
-  headerGameReleaseDate1: state.getIn(['headerMap', 'gameReleaseDate1']),
-  headerGameReleaseDate2: state.getIn(['headerMap', 'gameReleaseDate2']),
-  headerGameReleaseDate3: state.getIn(['headerMap', 'gameReleaseDate3']),
-  headerGameReleaseDate4: state.getIn(['headerMap', 'gameReleaseDate4']),
-  headerGameReleaseDate5: state.getIn(['headerMap', 'gameReleaseDate5']),
-  headerGamePlayersMax: state.getIn(['headerMap', 'gamePlayersMax']),
-  headerGameHardwareList: state.getIn(['headerMap', 'gameHardwareList']),
-  headerGameGenreList: state.getIn(['headerMap', 'gameGenreList']),
-  headerGameDeveloperList: state.getIn(['headerMap', 'gameDeveloperList']),
-  headerGameLinkList: state.getIn(['headerMap', 'gameLinkList']),
-
-  headerMenuMap: state.getIn(['headerMap', 'menuMap']),
+    notificationActiveType: reducerRootMap.getIn(['notificationMap', 'activeType']),
+    notificationUnreadCount: reducerRootMap.getIn(['notificationMap', 'unreadCount']),
+    notificationUnreadTotal: reducerRootMap.getIn(['notificationMap', 'unreadTotal']),
+    notificationUnreadList: reducerRootMap.getIn(['notificationMap', 'unreadArr']),
+    notificationUnreadActivePage: reducerRootMap.getIn(['notificationMap', 'unreadActivePage']),
+    notificationAlreadyReadTotal: reducerRootMap.getIn(['notificationMap', 'alreadyReadTotal']),
+    notificationAlreadyReadList: reducerRootMap.getIn(['notificationMap', 'alreadyReadArr']),
+    notificationAlreadyReadActivePage: reducerRootMap.getIn(['notificationMap', 'alreadyReadActivePage']),
+    notificationLimitNotification: reducerRootMap.getIn(['notificationMap', 'limitNotification']),
 
 
 
-  // --------------------------------------------------
-  //   メニュー
-  // --------------------------------------------------
+    // --------------------------------------------------
+    //   ヘッダー
+    // --------------------------------------------------
 
-  menuMap: state.get('menuMap'),
-  menuDrawerActive: state.getIn(['menuMap', 'drawerActive']),
+    headerHeroImageId: reducerRootMap.getIn(['headerMap', 'heroImageId']),
+    headerHeroImageRenewalDate: reducerRootMap.getIn(['headerMap', 'heroImageRenewalDate']),
+
+    headerCommunityNo: reducerRootMap.getIn(['headerMap', 'communityNo']),
+    headerCommunityRenewalDate: reducerRootMap.getIn(['headerMap', 'communityRenewalDate']),
+    headerCommunityId: reducerRootMap.getIn(['headerMap', 'communityId']),
+    headerCommunityName: reducerRootMap.getIn(['headerMap', 'communityName']),
+
+    headerGameNo: reducerRootMap.getIn(['headerMap', 'gameNo']),
+    headerGameRenewalDate: reducerRootMap.getIn(['headerMap', 'gameRenewalDate']),
+    headerGameId: reducerRootMap.getIn(['headerMap', 'gameId']),
+    headerGameName: reducerRootMap.getIn(['headerMap', 'gameName']),
+    headerGameSubtitle: reducerRootMap.getIn(['headerMap', 'gameSubtitle']),
+    headerGameThumbnail: reducerRootMap.getIn(['headerMap', 'gameThumbnail']),
+    headerGameReleaseDate1: reducerRootMap.getIn(['headerMap', 'gameReleaseDate1']),
+    headerGameReleaseDate2: reducerRootMap.getIn(['headerMap', 'gameReleaseDate2']),
+    headerGameReleaseDate3: reducerRootMap.getIn(['headerMap', 'gameReleaseDate3']),
+    headerGameReleaseDate4: reducerRootMap.getIn(['headerMap', 'gameReleaseDate4']),
+    headerGameReleaseDate5: reducerRootMap.getIn(['headerMap', 'gameReleaseDate5']),
+    headerGamePlayersMax: reducerRootMap.getIn(['headerMap', 'gamePlayersMax']),
+    headerGameHardwareList: reducerRootMap.getIn(['headerMap', 'gameHardwareList']),
+    headerGameGenreList: reducerRootMap.getIn(['headerMap', 'gameGenreList']),
+    headerGameDeveloperList: reducerRootMap.getIn(['headerMap', 'gameDeveloperList']),
+    headerGameLinkList: reducerRootMap.getIn(['headerMap', 'gameLinkList']),
+
+    headerMenuMap: reducerRootMap.getIn(['headerMap', 'menuMap']),
 
 
 
-  // --------------------------------------------------
-  //   モーダル
-  // --------------------------------------------------
+    // --------------------------------------------------
+    //   メニュー
+    // --------------------------------------------------
 
-  modalNotificationShow: state.getIn(['modalMap', 'notification', 'show']),
-
-
-
-  // --------------------------------------------------
-  //   フッター
-  // --------------------------------------------------
-
-  footerCardType: state.getIn(['footerMap', 'cardType']),
-  footerCardGameCommunityRenewalList: state.getIn(['footerMap', 'gameCommunityRenewalList']),
-  footerCardGameCommunityAccessList: state.getIn(['footerMap', 'gameCommunityAccessList']),
-  footerCardUserCommunityAccessList: state.getIn(['footerMap', 'userCommunityAccessList']),
+    menuMap: reducerRootMap.get('menuMap'),
+    menuDrawerActive: reducerRootMap.getIn(['menuMap', 'drawerActive']),
 
 
 
-});
+    // --------------------------------------------------
+    //   モーダル
+    // --------------------------------------------------
+
+    modalNotificationShow: reducerRootMap.getIn(['modalMap', 'notification', 'show']),
+
+
+
+    // --------------------------------------------------
+    //   フッター
+    // --------------------------------------------------
+
+    footerCardType: reducerRootMap.getIn(['footerMap', 'cardType']),
+    footerCardGameCommunityRenewalList: reducerRootMap.getIn(['footerMap', 'gameCommunityRenewalList']),
+    footerCardGameCommunityAccessList: reducerRootMap.getIn(['footerMap', 'gameCommunityAccessList']),
+    footerCardUserCommunityAccessList: reducerRootMap.getIn(['footerMap', 'userCommunityAccessList']),
+
+
+
+    // --------------------------------------------------
+    //   コンテンツ / アプリ / 購入
+    // --------------------------------------------------
+
+    // contentsAppPayFormShareButtonsWebSiteName: state.getIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'webSiteNameMap', 'value']),
+    // contentsAppPayFormShareButtonsWebSiteNameValidationState: state.getIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'webSiteNameMap', 'validationState']),
+    // contentsAppPayFormShareButtonsWebSiteUrl: state.getIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'webSiteUrlMap', 'value']),
+    // contentsAppPayFormShareButtonsWebSiteUrlValidationState: state.getIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'webSiteUrlMap', 'validationState']),
+    // contentsAppPayFormShareButtonsAgreement: state.getIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'agreementMap', 'value']),
+    // contentsAppPayFormShareButtonsAgreementValidationState: state.getIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'agreementMap', 'validationState']),
+
+    // appPayShareButtonsWebSiteName: state.getIn(['appMap', 'payMap', 'shareButtonsWebSiteName']),
+    // appPayShareButtonsWebSiteUrl: state.getIn(['appMap', 'payMap', 'shareButtonsWebSiteUrl']),
+    // appPayShareButtonsAgreement: state.getIn(['appMap', 'payMap', 'shareButtonsAgreement']),
+
+  });
+
+};
 
 
 
@@ -162,9 +190,13 @@ const mapDispatchToProps = (dispatch) => {
 
 
 
+  // --------------------------------------------------
+  //   通知
+  // --------------------------------------------------
+
   /**
-   * モーダルを開く / 通知データを読み込む
-   * @param  {Model}  stateModel State
+   * 通知のモーダルを開く / 通知データを読み込む
+   * @param  {Model}  stateModel Modelクラスのインスタンス
    */
   bindActionObj.funcShowModalNotification = async (stateModel) => {
 
@@ -248,8 +280,8 @@ const mapDispatchToProps = (dispatch) => {
 
 
   /**
-   * モーダルを閉じる / 予約IDを既読IDにする / 未読の総数を取得する
-   * @param  {Model}  stateModel State
+   * 通知のモーダルを閉じる / 予約IDを既読IDにする / 未読の総数を取得する
+   * @param  {Model}  stateModel Modelクラスのインスタンス
    */
   bindActionObj.funcHideModalNotification = async (stateModel) => {
 
@@ -336,7 +368,7 @@ const mapDispatchToProps = (dispatch) => {
 
   /**
    * 通知の未読数を取得
-   * @param  {Model}  stateModel State
+   * @param  {Model}  stateModel Modelクラスのインスタンス
    */
   bindActionObj.funcSelectNotificationUnreadCount = async (stateModel) => {
 
@@ -388,10 +420,10 @@ const mapDispatchToProps = (dispatch) => {
 
   /**
    * 通知を取得してページを切り替える
-   * @param  {Model}  stateModel State
+   * @param  {Model}    stateModel    Modelクラスのインスタンス
    * @param  {element}  currentTarget エレメント
-   * @param  {string}  readType unread / alreadyRead
-   * @param  {number}  activePage 表示するページ
+   * @param  {string}   readType      unread / alreadyRead
+   * @param  {number}   activePage    表示するページ
    */
   bindActionObj.funcSelectNotification = async (stateModel, currentTarget, readType, activePage) => {
 
@@ -484,7 +516,7 @@ const mapDispatchToProps = (dispatch) => {
 
   /**
    * 通知 / 予約通知を既読通知にする / 未読通知の総数も取得
-   * @param  {Model}  stateModel State
+   * @param  {Model}  stateModel Modelクラスのインスタンス
    */
   bindActionObj.funcUpdateReservationIdToAlreadyReadId = async (stateModel) => {
 
@@ -536,7 +568,7 @@ const mapDispatchToProps = (dispatch) => {
 
   /**
    * 通知 / 未読をすべて既読にする
-   * @param  {Model}  stateModel State
+   * @param  {Model}    stateModel    Modelクラスのインスタンス
    * @param  {element}  currentTarget エレメント
    */
   bindActionObj.funcUpdateAllUnreadToAlreadyRead = async (stateModel, currentTarget) => {
@@ -608,11 +640,16 @@ const mapDispatchToProps = (dispatch) => {
 
 
 
+
+  // --------------------------------------------------
+  //   フッター
+  // --------------------------------------------------
+
   /**
    * フッターのカードを切り替える
    * 最近更新されたゲームコミュニティ / 最近アクセスしたゲームコミュニティ / 最近アクセスしたユーザーコミュニティ
-   * @param  {Model}  stateModel State
-   * @param  {string}  cardType gameCommunityRenewal / gameCommunityAccess / userCommunityAccess
+   * @param  {Model}   stateModel Modelクラスのインスタンス
+   * @param  {string}  cardType   gameCommunityRenewal / gameCommunityAccess / userCommunityAccess
    */
   bindActionObj.funcSelectFooterCardType = async (stateModel, cardType) => {
 
@@ -693,9 +730,77 @@ const mapDispatchToProps = (dispatch) => {
 
   bindActionObj.funcInitialAsynchronous = async (stateModel) => {
 
-    // bindActionObj.funcSelectNotificationUnreadCount(stateModel);
-
   };
+
+
+
+  // --------------------------------------------------
+  //   アプリ
+  // --------------------------------------------------
+
+  /**
+   * [funcSelectFooterCardType description]
+   * @param  {[type]}  stateModel [description]
+   * @param  {object}  stripeObj      [description]
+   * @return {Promise}            [description]
+   */
+  // bindActionObj.funcInsertShareButtonsPaidPlan = async (stateModel, stripeObj) => {
+  //
+  //   console.log('funcInsertShareButtonsPay');
+  //   console.log('stripeObj = ', stripeObj);
+  //   console.log('stripeToken = ', stripeObj.id);
+  //   console.log('stripeTokenType = ', stripeObj.type);
+  //   console.log('stripeEmail = ', stripeObj.email);
+  //
+  //   // --------------------------------------------------
+  //   //   Get Data
+  //   // --------------------------------------------------
+  //
+  //   const urlBase = stateModel.get('urlBase');
+  //
+  //
+  //   // --------------------------------------------------
+  //   //   FormData
+  //   // --------------------------------------------------
+  //
+  //   const formData = new FormData();
+  //
+  //   formData.append('apiType', 'insertShareButtonsPaidPlan');
+  //   formData.append('stripeToken', stripeObj.id);
+  //   formData.append('stripeTokenType', stripeObj.type);
+  //   formData.append('stripeEmail', stripeObj.email);
+  //
+  //
+  //   // --------------------------------------------------
+  //   //   Await & Dispatch
+  //   // --------------------------------------------------
+  //
+  //   try {
+  //
+  //
+  //     const returnObj = await funcPromise(urlBase, formData);
+  //
+  //     // console.log('returnObj = ', returnObj);
+  //
+  //     if (returnObj.error) {
+  //       throw new Error();
+  //     }
+  //
+  //
+  //     // console.log('gameCommunityRenewalList = ', gameCommunityRenewalList);
+  //     // console.log('gameCommunityAccessList = ', gameCommunityAccessList);
+  //     // console.log('userCommunityAccessList = ', userCommunityAccessList);
+  //
+  //
+  //     // dispatch(actions.funcSelectFooterCardType(cardType, gameCommunityRenewalList, gameCommunityAccessList, userCommunityAccessList));
+  //
+  //
+  //   } catch (e) {
+  //     // continue regardless of error
+  //   }
+  //
+  // };
+
 
 
 

@@ -99,6 +99,7 @@
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-sticky-state": "^2.1.6",
+    "react-stripe-checkout": "^2.6.3",
     "redux": "^3.7.2",
     "velocity-react": "^1.3.3",
     "whatwg-fetch": "^2.0.3"

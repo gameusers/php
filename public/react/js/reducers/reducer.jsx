@@ -2,12 +2,11 @@
 //   Import
 // --------------------------------------------------
 
-// import { List } from 'immutable';
 import { Model, fromJSOrdered } from '../models/model';
 
 
 
-const reducer = (state = new Model(), action) => {
+const reducerRoot = (state = new Model(), action) => {
 
 
   switch (action.type) {
@@ -61,7 +60,7 @@ const reducer = (state = new Model(), action) => {
 
 
     // --------------------------------------------------
-    //   ドロワーメニュー / スマートフォン・タブレット用
+    //   ドロワーメニュー / モバイル用
     //   boolean のトグルになっている
     // --------------------------------------------------
 
@@ -78,7 +77,6 @@ const reducer = (state = new Model(), action) => {
       return state.setIn(['menuMap', 'drawerActive'], menuDrawerActive);
 
     }
-
 
 
 
@@ -101,6 +99,36 @@ const reducer = (state = new Model(), action) => {
 
 
 
+    // --------------------------------------------------
+    //   コンテンツ / アプリ / 購入
+    // --------------------------------------------------
+
+    case 'CONTENTS_APP_PAY_FORM_SHARE_BUTTONS_WEB_SITE_NAME': {
+      return state.setIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'webSiteNameMap', 'value'], action.value);
+    }
+
+    case 'CONTENTS_APP_PAY_FORM_SHARE_BUTTONS_WEB_SITE_URL': {
+      return state.setIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'webSiteUrlMap', 'value'], action.value);
+    }
+
+    case 'CONTENTS_APP_PAY_FORM_SHARE_BUTTONS_AGREEMENT': {
+
+      let validationState = 'error';
+      let error = true;
+
+      if (action.value) {
+        validationState = 'success';
+        error = false;
+      }
+
+      return state
+        .setIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'agreementMap', 'value'], action.value)
+        .setIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'agreementMap', 'validationState'], validationState)
+        .setIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'agreementMap', 'error'], error);
+    }
+
+
+
 
     default: {
       return state;
@@ -112,4 +140,4 @@ const reducer = (state = new Model(), action) => {
 
 
 
-export default reducer;
+export default reducerRoot;

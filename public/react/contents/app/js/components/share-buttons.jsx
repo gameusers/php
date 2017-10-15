@@ -11,7 +11,7 @@ import '../../../../../dev/blog/wp-content/plugins/gameusers-share-buttons/css/o
 
 
 
-export default class MainAppShareButtons extends React.Component {
+export default class ContentsAppShareButtons extends React.Component {
 
 
   // --------------------------------------------------
@@ -56,7 +56,7 @@ export default class MainAppShareButtons extends React.Component {
 
 }
 
-MainAppShareButtons.propTypes = {
+ContentsAppShareButtons.propTypes = {
 
 
   // --------------------------------------------------
@@ -68,6 +68,6 @@ MainAppShareButtons.propTypes = {
 
 };
 
-MainAppShareButtons.defaultProps = {
+ContentsAppShareButtons.defaultProps = {
 
 };

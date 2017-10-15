@@ -494,6 +494,19 @@ return array(
 	'gcm_api_key' => '',
 
 	// 暗号化キー
-	'crypter_key' => '7iicaYODGE5omMxKiQlwM0AunuoleKfo'
+	'crypter_key' => '7iicaYODGE5omMxKiQlwM0AunuoleKfo',
+
+
+	// Stripe Publishable key / Test Mode
+	'stripe_publishable_key_test_mode' => 'pk_test_njyv70ZdCeEbK0nHEcF8YqDz',
+
+    // Stripe Secret key / Test Mode
+	'stripe_secret_key_test_mode' => '',
+
+    // Stripe Publishable key
+	'stripe_publishable_key' => '',
+
+    // Stripe Publishable key
+	'stripe_secret_key' => ''
 
 );
