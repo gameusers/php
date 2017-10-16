@@ -5,15 +5,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-// import { Button, FormGroup, Radio } from 'react-bootstrap';
 import { List, Map } from 'immutable';
+
 import { Model } from '../models/model';
 import { formatDateTime } from '../modules/common';
 
 import '../../lib/auto-hiding-navigation/auto-hiding-navigation.css';
-// import '../../css/style.css';
-
-
 
 
 
@@ -403,6 +400,7 @@ export default class Header extends React.Component {
               <div
                 className="bell-box"
                 onClick={() => this.props.funcShowModalNotification(this.props.stateModel)}
+                onKeyPress={() => this.props.funcShowModalNotification(this.props.stateModel)}
                 role="menuitem"
                 tabIndex="0"
               >

@@ -4,7 +4,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, FormGroup, ControlLabel, FormControl, Checkbox, HelpBlock } from 'react-bootstrap';
+import { Glyphicon, Button, FormGroup, ControlLabel, FormControl, Checkbox, HelpBlock } from 'react-bootstrap';
 import StripeCheckout from 'react-stripe-checkout';
 
 // import { Model } from '../models/model';
@@ -32,30 +32,30 @@ export default class ContentsAppPay extends React.Component {
   //   間違っている場合は error（赤色）
   // --------------------------------------------------
 
-  validationStateShareButtonsWebSiteName() {
-    let state = 'error';
-    if (this.props.appPayShareButtonsWebSiteName !== '' && this.props.appPayShareButtonsWebSiteName.length <= 100) {
-      state = 'success';
-    }
-    // console.log('this.props.appPayShareButtonsWebSiteName.length = ', this.props.appPayShareButtonsWebSiteName.length);
-    return state;
-  }
-
-  validationStateShareButtonsWebSiteUrl() {
-    let state = 'error';
-    if (this.props.appPayShareButtonsWebSiteUrl.match(/^(https?)(:\/\/[-_.!~*'()a-zA-Z0-9;/?:@&=+$,%#]+)$/)) {
-      state = 'success';
-    }
-    return state;
-  }
-
-  validationStateShareButtonsAgreement() {
-    let state = 'error';
-    if (this.props.appPayShareButtonsAgreement) {
-      state = 'success';
-    }
-    return state;
-  }
+  // validationStateShareButtonsWebSiteName() {
+  //   let state = 'error';
+  //   if (this.props.appPayShareButtonsWebSiteName !== '' && this.props.appPayShareButtonsWebSiteName.length <= 100) {
+  //     state = 'success';
+  //   }
+  //   // console.log('this.props.appPayShareButtonsWebSiteName.length = ', this.props.appPayShareButtonsWebSiteName.length);
+  //   return state;
+  // }
+  //
+  // validationStateShareButtonsWebSiteUrl() {
+  //   let state = 'error';
+  //   if (this.props.appPayShareButtonsWebSiteUrl.match(/^(https?)(:\/\/[-_.!~*'()a-zA-Z0-9;/?:@&=+$,%#]+)$/)) {
+  //     state = 'success';
+  //   }
+  //   return state;
+  // }
+  //
+  // validationStateShareButtonsAgreement() {
+  //   let state = 'error';
+  //   if (this.props.appPayShareButtonsAgreement) {
+  //     state = 'success';
+  //   }
+  //   return state;
+  // }
 
 
 
@@ -130,6 +130,8 @@ export default class ContentsAppPay extends React.Component {
           </table>
         </div>
 
+
+
         <div className="panel panel-danger">
           <div className="panel-heading">有料プランの注意事項</div>
           <div className="panel-body">
@@ -146,12 +148,13 @@ export default class ContentsAppPay extends React.Component {
           </div>
         </div>
 
+
+
         <div className="panel panel-info">
           <div className="panel-heading">有料プランに申し込む</div>
           <div className="panel-body">
 
             <div className="pay-form-group-margin">
-              {/* <FormGroup controlId="free-upload-image-url" bsSize="sm" validationState={this.validationStateShareButtonsWebSiteName()}> */}
               <FormGroup controlId="free-upload-image-url" bsSize="sm" validationState={this.props.contentsAppPayFormShareButtonsWebSiteNameValidationState}>
                 <ControlLabel>ウェブサイトの名前</ControlLabel>
                 <FormControl
@@ -177,7 +180,7 @@ export default class ContentsAppPay extends React.Component {
               </FormGroup>
             </div>
 
-            <div className="pay-form-group-margin">
+            <div className="pay-form-group-margin-bottom">
               <FormGroup controlId="share-button" validationState={this.props.contentsAppPayFormShareButtonsAgreementValidationState}>
                 <Checkbox
                   checked={this.props.contentsAppPayFormShareButtonsAgreement}
@@ -191,6 +194,7 @@ export default class ContentsAppPay extends React.Component {
             <StripeCheckout
               token={e => this.props.funcInsertShareButtonsPaidPlan(
                 this.props.stateModel,
+                'premium',
                 e
               )}
               stripeKey="pk_test_njyv70ZdCeEbK0nHEcF8YqDz"
@@ -202,7 +206,25 @@ export default class ContentsAppPay extends React.Component {
               amount={1000}
               currency="JPY"
             >
-              <Button className="btn btn-success btn-sm">プレミアムプランに申し込む</Button>
+              <Button className="btn btn-info btn-sm stripe-button-margin"><Glyphicon glyph="leaf" /> プレミアムプランに申し込む</Button>
+            </StripeCheckout>
+
+            <StripeCheckout
+              token={e => this.props.funcInsertShareButtonsPaidPlan(
+                this.props.stateModel,
+                'business',
+                e
+              )}
+              stripeKey="pk_test_njyv70ZdCeEbK0nHEcF8YqDz"
+              name="Game Users Share Buttons"
+              description="ビジネスプラン申し込み"
+              image={`${this.props.urlBase}dev/blog/wp-content/plugins/gameusers-share-buttons/img/free.png`}
+              zipCode
+              locale="auto"
+              amount={3000}
+              currency="JPY"
+            >
+              <Button className="btn btn-success btn-sm stripe-button-margin"><Glyphicon glyph="euro" /> ビジネスプランに申し込む</Button>
             </StripeCheckout>
 
           </div>

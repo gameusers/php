@@ -8,94 +8,8 @@ import { fromJSOrdered } from '../../../../js/models/model';
 
 
 const initialStateObj = {};
-
-
-// --------------------------------------------------
-//   モーダル
-// --------------------------------------------------
-
-initialStateObj.testMap = {
-  aaa: {
-    bbb: false
-  }
-};
-
-
-
-// --------------------------------------------------
-//   ヘッダー / メニュー
-//   新ページ・新コンテンツを追加する場合はここを編集すること
-// --------------------------------------------------
-
-// initialStateObj.headerMap.menuMap = {
-//
-//   app: {
-//     'share-buttons': {
-//       urlDirectory1: 'app',
-//       urlDirectory2: 'share-buttons',
-//       activeUrlDirectory3: null,
-//       text: 'シェアボタン'
-//     },
-//     pay: {
-//       urlDirectory1: 'app',
-//       urlDirectory2: 'pay',
-//       activeUrlDirectory3: null,
-//       text: '購入'
-//     }
-//   }
-//
-// };
-
-
-// --------------------------------------------------
-//   メイン / メニュー
-//   新ページ・新コンテンツを追加する場合はここを編集すること
-//   Material Icons はこちらから選択 / https://material.io/icons/
-//   <i class="material-icons">assignment_ind</i>
-//   ICON FONT のタグの中身を入力すること
-// --------------------------------------------------
-
-// initialStateObj.menuMap = {
-//
-//   app: {
-//     'share-buttons': [
-//       {
-//         urlDirectory1: 'app',
-//         urlDirectory2: 'share-buttons',
-//         urlDirectory3: null,
-//         materialIcon: 'share',
-//         text: 'シェアボタン'
-//       },
-//     ],
-//     pay: [
-//       {
-//         urlDirectory1: 'app',
-//         urlDirectory2: 'pay',
-//         urlDirectory3: null,
-//         materialIcon: 'payment',
-//         text: '購入'
-//       },
-//       {
-//         urlDirectory1: 'app',
-//         urlDirectory2: 'pay',
-//         urlDirectory3: 'info',
-//         materialIcon: 'announcement',
-//         text: '特定商取引法に基づく表記'
-//       },
-//     ]
-//   },
-//
-//   drawerActive: false
-//
-// };
-
-
-
-// --------------------------------------------------
-//   コンテンツ
-// --------------------------------------------------
-
 initialStateObj.contentsMap = {};
+
 
 
 // --------------------------------------------------
@@ -107,7 +21,7 @@ initialStateObj.contentsMap.appMap = {
   payMap: {
     formShareButtonsMap: {
       webSiteNameMap: {
-        value: 'AAA',
+        value: '',
         validationState: 'error',
         required: true,
         error: true
@@ -159,6 +73,152 @@ export class Model extends ModelRecord {
     super(map);
 
   }
+
+
+
+  /**
+   * ウェブサイトの名前
+   * @param {string} webSiteName ウェブサイトの名前
+   */
+  setContentsAppPayFormShareButtonsWebSiteName(webSiteName) {
+
+
+    // --------------------------------------------------
+    //   Copy State
+    // --------------------------------------------------
+
+    let map = this;
+
+
+    // --------------------------------------------------
+    //   Validation State & Error
+    // --------------------------------------------------
+
+    let validationState = 'error';
+    let error = true;
+
+    if (webSiteName !== '' && webSiteName.length <= 100) {
+      validationState = 'success';
+      error = false;
+    }
+
+
+    // --------------------------------------------------
+    //   Set Value
+    // --------------------------------------------------
+
+    map = map.setIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'webSiteNameMap', 'value'], webSiteName);
+    map = map.setIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'webSiteNameMap', 'validationState'], validationState);
+    map = map.setIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'webSiteNameMap', 'error'], error);
+
+
+    // console.log('setContentsAppPayFormShareButtonsWebSiteName');
+    // console.log('webSiteName = ', webSiteName);
+    // console.log('validationState = ', validationState);
+    // console.log('error = ', error);
+    // console.log('setContentsAppPayFormShareButtonsWebSiteName map = ', map.toJS());
+
+    return map;
+
+  }
+
+
+
+  /**
+   * ウェブサイトのURL
+   * @param {string} webSiteUrl ウェブサイトのURL
+   */
+  setContentsAppPayFormShareButtonsWebSiteUrl(webSiteUrl) {
+
+
+    // --------------------------------------------------
+    //   Copy State
+    // --------------------------------------------------
+
+    let map = this;
+
+
+    // --------------------------------------------------
+    //   Validation State & Error
+    // --------------------------------------------------
+
+    let validationState = 'error';
+    let error = true;
+
+    if (webSiteUrl.match(/^(https?)(:\/\/[-_.!~*'()a-zA-Z0-9;/?:@&=+$,%#]+)$/)) {
+      validationState = 'success';
+      error = false;
+    }
+
+
+    // --------------------------------------------------
+    //   Set Value
+    // --------------------------------------------------
+
+    map = map.setIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'webSiteUrlMap', 'value'], webSiteUrl);
+    map = map.setIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'webSiteUrlMap', 'validationState'], validationState);
+    map = map.setIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'webSiteUrlMap', 'error'], error);
+
+
+    // console.log('setContentsAppPayFormShareButtonsWebSiteUrl');
+    // console.log('webSiteUrl = ', webSiteUrl);
+    // console.log('validationState = ', validationState);
+    // console.log('error = ', error);
+    // console.log('setContentsAppPayFormShareButtonsWebSiteUrl map = ', map.toJS());
+
+    return map;
+
+  }
+
+
+
+  /**
+   * 「有料プランの注意事項」を読んで了承しましたチェックボックス
+   * @param {boolean} agreement 注意事項の了承
+   */
+  setContentsAppPayFormShareButtonsAgreement(agreement) {
+
+
+    // --------------------------------------------------
+    //   Copy State
+    // --------------------------------------------------
+
+    let map = this;
+
+
+    // --------------------------------------------------
+    //   Validation State & Error
+    // --------------------------------------------------
+
+    let validationState = 'error';
+    let error = true;
+
+    if (agreement) {
+      validationState = 'success';
+      error = false;
+    }
+
+
+    // --------------------------------------------------
+    //   Set Value
+    // --------------------------------------------------
+
+    map = map.setIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'agreementMap', 'value'], agreement);
+    map = map.setIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'agreementMap', 'validationState'], validationState);
+    map = map.setIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'agreementMap', 'error'], error);
+
+
+    // console.log('setContentsAppPayFormShareButtonsAgreement');
+    // console.log('agreement = ', agreement);
+    // console.log('validationState = ', validationState);
+    // console.log('error = ', error);
+    // console.log('setContentsAppPayFormShareButtonsAgreement map = ', map.toJS());
+
+    return map;
+
+  }
+
+
 
 }
 

@@ -26,8 +26,6 @@ Game UsersをReactで書き直しています。React化するに当たってフ
 - [fuel/app/classes/controller/app.php](https://github.com/gameusers/web/blob/master/fuel/app/classes/controller/app.php)（アプリケーションページのコントローラー）
 - [fuel/app/classes/controller/api.php](https://github.com/gameusers/web/blob/master/fuel/app/classes/controller/api.php)（Rest API）
 - [fuel/app/classes/react/](https://github.com/gameusers/web/tree/master/fuel/app/classes/react)（React関連ディレクトリー）
-<br /><br />
-
 
 #### Javascript / CSS / Image / ライブラリー部分
 - [public/react/](https://github.com/gameusers/web/tree/master/public/react)（React関連ディレクトリー）

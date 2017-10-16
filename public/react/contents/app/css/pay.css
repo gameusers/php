@@ -2,13 +2,21 @@
    基本
 -------------------------------------------------- */
 
-.content-container {
+/*.content-container {
   border-radius: 6px;
   box-shadow: 1px 1px 1px #bababa;
   background-color: #fff;
   padding: 20px;
+}*/
+
+.stripe-button-margin {
+  margin: 10px 10px 0 0;
 }
 
 .pay-form-group-margin {
   margin: 0 0 30px;
+}
+
+.pay-form-group-margin-bottom {
+  margin: 0 0 20px;
 }

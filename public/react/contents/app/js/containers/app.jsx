@@ -40,12 +40,12 @@ const ContentsApp = props => (
 
 const mapStateToProps = (state) => {
 
-  const reducerRootMap = state.reducerRoot;
+  // const reducerRootMap = state.reducerRoot;
   const reducerAppMap = state.reducerApp;
 
-  console.log('state = ', state);
-  console.log('reducerRootMap = ', reducerRootMap.toJS());
-  console.log('reducerAppMap = ', reducerAppMap.toJS());
+  // console.log('state = ', state);
+  // console.log('reducerRootMap = ', reducerRootMap.toJS());
+  // console.log('reducerAppMap = ', reducerAppMap.toJS());
 
 
   return ({
@@ -88,7 +88,7 @@ const mapDispatchToProps = (dispatch) => {
    * @param  {Model}  stateModel Modelクラスのインスタンス
    * @param  {object}  stripeObj  Stripeのオブジェクト
    */
-  bindActionObj.funcInsertShareButtonsPaidPlan = async (stateModel, stripeObj) => {
+  bindActionObj.funcInsertShareButtonsPaidPlan = async (stateModel, plan, stripeObj) => {
 
     console.log('funcInsertShareButtonsPay');
     console.log('stripeObj = ', stripeObj);
@@ -110,6 +110,7 @@ const mapDispatchToProps = (dispatch) => {
     const formData = new FormData();
 
     formData.append('apiType', 'insertShareButtonsPaidPlan');
+    formData.append('plan', plan);
     formData.append('stripeToken', stripeObj.id);
     formData.append('stripeTokenType', stripeObj.type);
     formData.append('stripeEmail', stripeObj.email);

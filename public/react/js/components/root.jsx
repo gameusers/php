@@ -13,14 +13,7 @@ import MainMenu from './main/menu';
 import MainMenuButtons from './main/menu-buttons';
 import ModalNotification from './modal/notification';
 import Footer from './footer';
-
-import ContainerContentsApp from '../../contents/app/js/containers/app';
-
-// import ContentsAppShareButtons from '../../contents/app/js/components/share-buttons';
-// import ContentsAppPay from '../../contents/app/js/components/pay';
-
-// import MainAppShareButtons from './main/app/share-buttons';
-// import MainAppPay from './main/app/pay';
+import Contents from '../../contents/contents';
 
 import '../../css/style.css';
 
@@ -95,14 +88,7 @@ export default class Root extends React.Component {
 
             <MainMenu {...this.props} />
 
-            <ContainerContentsApp {...this.props} />
-
-            {/* <Route exact path="/app/share-buttons" render={() => <ContainerContentsApp {...this.props} />} /> */}
-            {/* <div>
-              <Route exact path="/app/share-buttons" render={() => <ContentsAppShareButtons {...this.props} />} />
-              <Route exact path="/app/pay" render={() => <ContentsAppPay {...this.props} />} />
-            </div> */}
-            {/* <Route exact path="/app/pay" render={() => <ContainerContentsApp {...this.props} />} /> */}
+            <Contents {...this.props} />
 
             <ModalNotification {...this.props} />
 

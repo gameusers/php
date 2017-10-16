@@ -35,7 +35,7 @@ class Controller_Api extends Controller_Rest
 		//   テスト変数
 		// --------------------------------------------------
 
-		$test = true;
+		// $test = true;
 
 		if (isset($test)) {
 

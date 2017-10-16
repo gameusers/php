@@ -27,6 +27,9 @@ const mapStateToProps = (state) => {
   // console.log('reducerAppMap = ', reducerAppMap.toJS());
 
 
+  // const reducerCurrentMap = state.reducerApp;
+
+
   return ({
 
 
@@ -100,7 +103,7 @@ const mapStateToProps = (state) => {
     headerGameDeveloperList: reducerRootMap.getIn(['headerMap', 'gameDeveloperList']),
     headerGameLinkList: reducerRootMap.getIn(['headerMap', 'gameLinkList']),
 
-    headerMenuMap: reducerRootMap.getIn(['headerMap', 'menuMap']),
+    headerMenuMap: reducerRootMap.getIn(['menuMap', 'headerMap']),
 
 
 
@@ -108,7 +111,7 @@ const mapStateToProps = (state) => {
     //   メニュー
     // --------------------------------------------------
 
-    menuMap: reducerRootMap.get('menuMap'),
+    menuMap: reducerRootMap.getIn(['menuMap', 'mainMap']),
     menuDrawerActive: reducerRootMap.getIn(['menuMap', 'drawerActive']),
 
 
@@ -130,22 +133,6 @@ const mapStateToProps = (state) => {
     footerCardGameCommunityAccessList: reducerRootMap.getIn(['footerMap', 'gameCommunityAccessList']),
     footerCardUserCommunityAccessList: reducerRootMap.getIn(['footerMap', 'userCommunityAccessList']),
 
-
-
-    // --------------------------------------------------
-    //   コンテンツ / アプリ / 購入
-    // --------------------------------------------------
-
-    // contentsAppPayFormShareButtonsWebSiteName: state.getIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'webSiteNameMap', 'value']),
-    // contentsAppPayFormShareButtonsWebSiteNameValidationState: state.getIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'webSiteNameMap', 'validationState']),
-    // contentsAppPayFormShareButtonsWebSiteUrl: state.getIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'webSiteUrlMap', 'value']),
-    // contentsAppPayFormShareButtonsWebSiteUrlValidationState: state.getIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'webSiteUrlMap', 'validationState']),
-    // contentsAppPayFormShareButtonsAgreement: state.getIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'agreementMap', 'value']),
-    // contentsAppPayFormShareButtonsAgreementValidationState: state.getIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'agreementMap', 'validationState']),
-
-    // appPayShareButtonsWebSiteName: state.getIn(['appMap', 'payMap', 'shareButtonsWebSiteName']),
-    // appPayShareButtonsWebSiteUrl: state.getIn(['appMap', 'payMap', 'shareButtonsWebSiteUrl']),
-    // appPayShareButtonsAgreement: state.getIn(['appMap', 'payMap', 'shareButtonsAgreement']),
 
   });
 
