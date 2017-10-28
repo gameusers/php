@@ -278,6 +278,19 @@ header .hero-image-data .link .icon {
   /*position: relative;*/
   padding: 10px 0;
 }
+
+.main-s .share-buttons {
+  border-radius: 6px;
+  box-shadow: 1px 1px 1px #bababa;
+  background-color: #fff;
+  /*border-right: #f2f2f2 solid 10px;*/
+  margin: 20px 0 0;
+  /*padding: 0 0 0 14px;*/
+
+  padding: 10px 0 0 14px;
+  /*background-color: yellow;*/
+}
+
 /*.main-s {
   display: flex;
   flex-direction: row;
@@ -349,6 +362,23 @@ main .content-s .feed_card_box {
 .menu .google-adsense-rectangle {
   padding: 0 0 20px;
 }
+
+.menu .share-buttons {
+  border-radius: 6px;
+  box-shadow: 1px 1px 1px #bababa;
+  background-color: #fff;
+  border-right: #f2f2f2 solid 10px;
+  margin: 20px 0 0;
+  /*padding: 0 0 0 14px;*/
+
+  padding: 10px 0 0 10px;
+  /*background-color: yellow;*/
+}
+
+.menu .pc-twitter-timeline {
+  margin: 14px 0 0;
+}
+
 
 .menu .sticky {
   position: -webkit-sticky;

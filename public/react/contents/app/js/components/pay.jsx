@@ -4,11 +4,11 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Glyphicon, Button, FormGroup, ControlLabel, FormControl, Checkbox, HelpBlock } from 'react-bootstrap';
+import { Glyphicon, Button, FormGroup, ControlLabel, FormControl, Checkbox, HelpBlock, Alert } from 'react-bootstrap';
 import StripeCheckout from 'react-stripe-checkout';
 
-// import { Model } from '../models/model';
 import { Model } from '../../../../js/models/model';
+import { ModelApp } from '../models/model';
 
 import '../../css/pay.css';
 
@@ -26,36 +26,17 @@ export default class ContentsAppPay extends React.Component {
   // }
 
 
-  // --------------------------------------------------
-  //   Validation State
-  //   フォームの入力値ガ正しい場合は success（緑色）
-  //   間違っている場合は error（赤色）
-  // --------------------------------------------------
+  buttonDisabled() {
 
-  // validationStateShareButtonsWebSiteName() {
-  //   let state = 'error';
-  //   if (this.props.appPayShareButtonsWebSiteName !== '' && this.props.appPayShareButtonsWebSiteName.length <= 100) {
-  //     state = 'success';
-  //   }
-  //   // console.log('this.props.appPayShareButtonsWebSiteName.length = ', this.props.appPayShareButtonsWebSiteName.length);
-  //   return state;
-  // }
-  //
-  // validationStateShareButtonsWebSiteUrl() {
-  //   let state = 'error';
-  //   if (this.props.appPayShareButtonsWebSiteUrl.match(/^(https?)(:\/\/[-_.!~*'()a-zA-Z0-9;/?:@&=+$,%#]+)$/)) {
-  //     state = 'success';
-  //   }
-  //   return state;
-  // }
-  //
-  // validationStateShareButtonsAgreement() {
-  //   let state = 'error';
-  //   if (this.props.appPayShareButtonsAgreement) {
-  //     state = 'success';
-  //   }
-  //   return state;
-  // }
+    let disabled = false;
+
+    if (this.props.contentsAppPayFormShareButtonsWebSiteNameError || this.props.contentsAppPayFormShareButtonsWebSiteUrlError || this.props.contentsAppPayFormShareButtonsAgreementError) {
+      disabled = true;
+    }
+
+    return disabled;
+
+  }
 
 
 
@@ -76,7 +57,7 @@ export default class ContentsAppPay extends React.Component {
               <strong>2.</strong> 完全オリジナルのシェアボタンを作る予定でフリー画像も他の画像に差し替えたい<br />
               <strong>3.</strong> フリー画像がブログのデザインに馴染まないので非表示にしたい<br /><br />
 
-              有料プランは上記のようなケースで利用できます。{this.props.urlBase}
+              有料プランは上記のようなケースで利用できます。
             </p>
           </div>
 
@@ -92,7 +73,7 @@ export default class ContentsAppPay extends React.Component {
             <tbody>
               <tr>
                 <th scope="row" style={{ verticalAlign: 'middle' }}>
-                  <img src={`${this.props.urlBase}dev/blog/wp-content/plugins/gameusers-share-buttons/img/free.png`} width="30" height="33" alt="フリー画像" /> 非表示
+                  <img src={`${this.props.urlBase}react/contents/app/img/free.png`} width="30" height="33" alt="フリー画像" /> 非表示
                 </th>
                 <td style={{ verticalAlign: 'middle' }}>-</td>
                 <td style={{ verticalAlign: 'middle' }}>○</td>
@@ -100,7 +81,7 @@ export default class ContentsAppPay extends React.Component {
               </tr>
               <tr>
                 <th scope="row" style={{ verticalAlign: 'middle' }}>
-                  <img src={`${this.props.urlBase}dev/blog/wp-content/plugins/gameusers-share-buttons/img/free.png`} width="30" height="33" alt="フリー画像" /> 画像入れ替え
+                  <img src={`${this.props.urlBase}react/contents/app/img/free.png`} width="30" height="33" alt="フリー画像" /> 画像入れ替え
                 </th>
                 <td style={{ verticalAlign: 'middle' }}>-</td>
                 <td style={{ verticalAlign: 'middle' }}>○</td>
@@ -108,7 +89,7 @@ export default class ContentsAppPay extends React.Component {
               </tr>
               <tr>
                 <th scope="row" style={{ verticalAlign: 'middle' }}>
-                  <img src={`${this.props.urlBase}dev/blog/wp-content/plugins/gameusers-share-buttons/img/free.png`} width="30" height="33" alt="フリー画像" /> URL変更
+                  <img src={`${this.props.urlBase}react/contents/app/img/free.png`} width="30" height="33" alt="フリー画像" /> URL変更
                 </th>
                 <td style={{ verticalAlign: 'middle' }}>-</td>
                 <td style={{ verticalAlign: 'middle' }}>○</td>
@@ -142,8 +123,9 @@ export default class ContentsAppPay extends React.Component {
               <strong>4.</strong> 有料プランの権利は購入時に入力するウェブサイトに属します。他のウェブサイトに移行・転用することはできません。<br /><br />
               <strong>5.</strong> 有料プランの権利を購入者以外の方に利用させることはできません。禁止例）ブログサービスを運営して、各ユーザーに有料プランの権利を利用させる。<br /><br />
               <strong>6.</strong> 非商用なサイトで利用する場合はプレミアムプラン、規模の大小に関わらず収益を得るチャンスがあるサイト（広告を貼っているブログなど）で利用する場合はビジネスプランを申し込んでください。<br /><br />
-              <strong>7.</strong> 有料プランの権利は一度購入すると購入したサイトが続く限り、購入者が永続的に所有します。月間契約や年間契約ではありません。<br /><br />
-              <strong>8.</strong> お支払いの決済は実績のある <a href="https://stripe.com/" target="_blank" rel="noopener noreferrer">Stripe（アメリカの大手オンライン決済企業）</a> を利用して行っており、入力した情報はすべて暗号化されて送信されるので安全です。
+              <strong>7.</strong> 有料プランは WordPress のプラグイン、公式サイトの両方で利用することができます。<br /><br />
+              <strong>8.</strong> 有料プランの権利は一度購入すると購入したサイトが続く限り、購入者が永続的に所有します。月間契約や年間契約ではありません。<br /><br />
+              <strong>9.</strong> お支払いの決済は実績のある <a href="https://stripe.com/" target="_blank" rel="noopener noreferrer">Stripe（アメリカの大手オンライン決済企業）</a> を利用して行っており、入力した情報はすべて暗号化されて送信されます。
             </p>
           </div>
         </div>
@@ -154,7 +136,7 @@ export default class ContentsAppPay extends React.Component {
           <div className="panel-heading">有料プランに申し込む</div>
           <div className="panel-body">
 
-            <div className="pay-form-group-margin">
+            <div className="app-pay-form-group-margin">
               <FormGroup controlId="free-upload-image-url" bsSize="sm" validationState={this.props.contentsAppPayFormShareButtonsWebSiteNameValidationState}>
                 <ControlLabel>ウェブサイトの名前</ControlLabel>
                 <FormControl
@@ -167,7 +149,7 @@ export default class ContentsAppPay extends React.Component {
               </FormGroup>
             </div>
 
-            <div className="pay-form-group-margin">
+            <div className="app-pay-form-group-margin">
               <FormGroup controlId="free-upload-image-url" bsSize="sm" validationState={this.props.contentsAppPayFormShareButtonsWebSiteUrlValidationState}>
                 <ControlLabel>ウェブサイトのURL</ControlLabel>
                 <FormControl
@@ -180,7 +162,7 @@ export default class ContentsAppPay extends React.Component {
               </FormGroup>
             </div>
 
-            <div className="pay-form-group-margin-bottom">
+            <div className="app-pay-form-group-margin-bottom">
               <FormGroup controlId="share-button" validationState={this.props.contentsAppPayFormShareButtonsAgreementValidationState}>
                 <Checkbox
                   checked={this.props.contentsAppPayFormShareButtonsAgreement}
@@ -194,38 +176,51 @@ export default class ContentsAppPay extends React.Component {
             <StripeCheckout
               token={e => this.props.funcInsertShareButtonsPaidPlan(
                 this.props.stateModel,
+                this.props.stateAppModel,
                 'premium',
                 e
               )}
-              stripeKey="pk_test_njyv70ZdCeEbK0nHEcF8YqDz"
+              stripeKey={this.props.stripePublishableKey}
               name="Game Users Share Buttons"
               description="プレミアムプラン申し込み"
-              image={`${this.props.urlBase}dev/blog/wp-content/plugins/gameusers-share-buttons/img/free.png`}
+              image={`${this.props.urlBase}react/contents/app/img/free.png`}
               zipCode
               locale="auto"
               amount={1000}
               currency="JPY"
             >
-              <Button className="btn btn-info btn-sm stripe-button-margin"><Glyphicon glyph="leaf" /> プレミアムプランに申し込む</Button>
+              <Button className="btn btn-info btn-sm app-pay-form-stripe-button-margin" disabled={this.buttonDisabled()}>
+                <Glyphicon glyph="leaf" /> プレミアムプランに申し込む
+              </Button>
             </StripeCheckout>
 
             <StripeCheckout
               token={e => this.props.funcInsertShareButtonsPaidPlan(
                 this.props.stateModel,
+                this.props.stateAppModel,
                 'business',
                 e
               )}
-              stripeKey="pk_test_njyv70ZdCeEbK0nHEcF8YqDz"
+              stripeKey={this.props.stripePublishableKey}
               name="Game Users Share Buttons"
               description="ビジネスプラン申し込み"
-              image={`${this.props.urlBase}dev/blog/wp-content/plugins/gameusers-share-buttons/img/free.png`}
+              image={`${this.props.urlBase}react/contents/app/img/free.png`}
               zipCode
               locale="auto"
               amount={3000}
               currency="JPY"
             >
-              <Button className="btn btn-success btn-sm stripe-button-margin"><Glyphicon glyph="euro" /> ビジネスプランに申し込む</Button>
+              <Button className="btn btn-success btn-sm app-pay-form-stripe-button-margin" disabled={this.buttonDisabled()}>
+                <Glyphicon glyph="euro" /> ビジネスプランに申し込む
+              </Button>
             </StripeCheckout>
+
+
+            {this.props.contentsAppPayFormShareButtonsPurchased &&
+              <Alert bsStyle="success" className="app-pay-form-alert">
+                <strong>有料プランが利用可能です：</strong> ありがとうございます。有料プランへのお申し込みが完了しました。WordPressのプラグイン、または公式ページでシェアボタンを作成する際に有料プランを選択できます。プランタブでお申し込みのプランを選択してからシェアボタンを作成してみてください。<br /><br />今後とも Game Users Share Buttons をよろしくお願い致します。
+              </Alert>
+            }
 
           </div>
         </div>
@@ -245,15 +240,24 @@ ContentsAppPay.propTypes = {
   // --------------------------------------------------
 
   stateModel: PropTypes.instanceOf(Model).isRequired,
+  stateAppModel: PropTypes.instanceOf(ModelApp).isRequired,
 
   urlBase: PropTypes.string.isRequired,
+  stripePublishableKey: PropTypes.string.isRequired,
 
   contentsAppPayFormShareButtonsWebSiteName: PropTypes.string.isRequired,
   contentsAppPayFormShareButtonsWebSiteNameValidationState: PropTypes.string.isRequired,
+  contentsAppPayFormShareButtonsWebSiteNameError: PropTypes.bool.isRequired,
+
   contentsAppPayFormShareButtonsWebSiteUrl: PropTypes.string.isRequired,
   contentsAppPayFormShareButtonsWebSiteUrlValidationState: PropTypes.string.isRequired,
+  contentsAppPayFormShareButtonsWebSiteUrlError: PropTypes.bool.isRequired,
+
   contentsAppPayFormShareButtonsAgreement: PropTypes.bool.isRequired,
   contentsAppPayFormShareButtonsAgreementValidationState: PropTypes.string.isRequired,
+  contentsAppPayFormShareButtonsAgreementError: PropTypes.bool.isRequired,
+
+  contentsAppPayFormShareButtonsPurchased: PropTypes.bool.isRequired,
 
 
   // --------------------------------------------------

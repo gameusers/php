@@ -5,73 +5,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-// import { FormGroup, FormControl } from 'react-bootstrap';
 import { List, Map } from 'immutable';
-// import { CSSTransitionGroup } from 'react-transition-group'
-// import Transition from 'react-transition-group/Transition';
-// import CSSTransition from 'react-transition-group/CSSTransition';
 import { VelocityComponent, VelocityTransitionGroup } from 'velocity-react';
 import Sticky from 'react-sticky-state';
-// import { StickyState } from 'sticky-state';
-// import { slide as Menu } from 'react-burger-menu';
-// import Masonry from 'react-masonry-component';
-// import { Model } from '../../models/model';
-import AdGoogleAdsenseRectangle from '../advertisement/google-adsense-rectangle';
 
-// import '../../../css/style.css';
+import AdGoogleAdsenseRectangle from '../advertisement/google-adsense-rectangle';
 
 
 
 export default class MainMenu extends React.Component {
 
   constructor() {
-    // console.log('constructor');
     super();
 
-
     this.list = List();
-
   }
-
-
-
-  // componentDidMount() {
-  //
-  //   // console.log('componentDidMount');
-  //
-  //   // $('.slide').sticky({
-  //   //   topSpacing: 20,
-  //   //   widthFromWrapper: false
-  //   // });
-  //   //
-  //
-  //
-  //   // --------------------------------------------------
-  //   //   position: sticky が使えない場合は、polyfill を利用する
-  //   //   https://mae.chab.in/archives/59690
-  //   //   https://github.com/soenkekluth/sticky-state
-  //   // --------------------------------------------------
-  //
-  //   // const div = document.createElement('div');
-  //   // div.style.position = 'sticky';
-  //   //
-  //   // if (div.style.position.indexOf('sticky') !== -1) {
-  //   //   StickyState(document.querySelectorAll('.sticky'));
-  //   // }
-  //
-  // }
-
-  // componentWillUpdate() {
-  //
-  //   console.log('componentWillUpdate');
-  //
-  //   if (this.props.menuMap.hasIn([this.props.urlDirectory1, this.props.urlDirectory2])) {
-  //     this.list = this.props.menuMap.getIn([this.props.urlDirectory1, this.props.urlDirectory2]);
-  //     // console.log('this.props.menuMap = ', this.props.menuMap.toJS());
-  //     // console.log('this.list = ', this.list.toJS());
-  //   }
-  //
-  // }
 
 
 
@@ -258,12 +206,25 @@ export default class MainMenu extends React.Component {
 
       return (
         <nav className="menu">
+
           <AdGoogleAdsenseRectangle {...this.props} />
+
           <Sticky>
             <div>
+
               {this.codeOther()}
+
+              <div className="share-buttons" id="gameusers-share-buttons-official">
+                <div id="gameusers-share-buttons" data-theme="gameusers1-m2a4oi43" />
+              </div>
+
+              <div className="pc-twitter-timeline">
+                <a className="twitter-timeline" height="400px" href="https://twitter.com/gameusersorg?ref_src=twsrc%5Etfw">Tweets by gameusersorg</a>
+              </div>
+
             </div>
           </Sticky>
+
         </nav>
       );
 
@@ -294,6 +255,7 @@ export default class MainMenu extends React.Component {
             <div
               className="drawer-overlay"
               onClick={() => this.props.funcMenuDrawerActive()}
+              onKeyPress={() => this.props.funcMenuDrawerActive()}
               role="button"
               tabIndex="0"
             />
@@ -314,15 +276,10 @@ MainMenu.propTypes = {
   //   共通
   // --------------------------------------------------
 
-  // stateModel: PropTypes.instanceOf(Model).isRequired,
-
   deviceType: PropTypes.string.isRequired,
   urlDirectory1: PropTypes.string,
   urlDirectory2: PropTypes.string,
   urlDirectory3: PropTypes.string,
-  // urlBase: PropTypes.string.isRequired,
-
-  // csrfToken: PropTypes.string.isRequired,
 
 
   // --------------------------------------------------

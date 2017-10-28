@@ -496,6 +496,9 @@ return array(
 	// 暗号化キー
 	'crypter_key' => '7iicaYODGE5omMxKiQlwM0AunuoleKfo',
 
+	// Open SSL 暗号化キー
+	'openssl_encryption_key' => 'Fk9W4y2jwCEJ6mWkUq11gkuo25DFgpr3',
+
 
 	// Stripe Publishable key / Test Mode
 	'stripe_publishable_key_test_mode' => 'pk_test_njyv70ZdCeEbK0nHEcF8YqDz',

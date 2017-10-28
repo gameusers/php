@@ -50,7 +50,11 @@ class Controller_Api extends Controller_Rest
 
 
             // $_POST['apiType'] = 'updateAllUnreadToAlreadyRead';
+
             $_POST['apiType'] = 'insertShareButtonsPaidPlan';
+            $_POST['plan'] = 'business';
+            $_POST['webSiteName'] = 'Test Site';
+            $_POST['webSiteUrl'] = 'https://www.example.com/';
 
 		}
 
@@ -63,10 +67,10 @@ class Controller_Api extends Controller_Rest
 			//   CSRF対策 トークンチェック
 			// --------------------------------------------------
 
-            // $instance = new \React\Modules\Security();
-            // if ( ! $instance->ckeckCsrfToken()) {
-            //     throw new Exception('csrf');
-            // }
+            $instance = new \React\Modules\Security();
+            if ( ! $instance->ckeckCsrfToken()) {
+                throw new Exception('csrf');
+            }
 
 
 
@@ -77,7 +81,6 @@ class Controller_Api extends Controller_Rest
             if (Input::post('apiType') === 'selectNotificationUnreadCount') {
                 $instance = new \React\Models\Notification();
                 $arr = $instance->selectUnreadCount(Input::post());
-                // $arr['unreadTotal'] = 50;
             }
 
 
@@ -85,7 +88,7 @@ class Controller_Api extends Controller_Rest
             //   通知 / 取得
             // --------------------------------------------------
 
-            if (Input::post('apiType') === 'selectNotification') {
+            else if (Input::post('apiType') === 'selectNotification') {
                 $instance = new \React\Models\Notification();
                 $arr = $instance->selectNotification(Input::post());
             }
@@ -95,7 +98,7 @@ class Controller_Api extends Controller_Rest
             //   通知 / 予約IDを既読IDにする
             // --------------------------------------------------
 
-            if (Input::post('apiType') === 'updateReservationIdToAlreadyReadId') {
+            else if (Input::post('apiType') === 'updateReservationIdToAlreadyReadId') {
                 $instance = new \React\Models\Notification();
                 $arr = $instance->updateReservationIdToAlreadyReadId(Input::post());
             }
@@ -105,7 +108,7 @@ class Controller_Api extends Controller_Rest
             //   通知 / すべて既読にする
             // --------------------------------------------------
 
-            if (Input::post('apiType') === 'updateAllUnreadToAlreadyRead') {
+            else if (Input::post('apiType') === 'updateAllUnreadToAlreadyRead') {
                 $instance = new \React\Models\Notification();
                 $arr = $instance->updateAllUnreadToAlreadyRead(Input::post());
             }
@@ -119,7 +122,7 @@ class Controller_Api extends Controller_Rest
             //   userCommunityAccess / 最近アクセスしたユーザーコミュニティ
 			// --------------------------------------------------
 
-			if (Input::post('apiType') === 'selectFooterCard') {
+			else if (Input::post('apiType') === 'selectFooterCard') {
                 $instance = new \React\Models\Footer();
         		$arr = $instance->selectCard(Input::post());
 			}
@@ -130,7 +133,7 @@ class Controller_Api extends Controller_Rest
             //   アプリ / シェアボタン / 有料プラン申し込み
             // --------------------------------------------------
 
-            if (Input::post('apiType') === 'insertShareButtonsPaidPlan') {
+            else if (Input::post('apiType') === 'insertShareButtonsPaidPlan') {
                 $instance = new \React\Models\ShareButtons();
                 $arr = $instance->insertPaidPlan(Input::post());
             }
@@ -179,7 +182,12 @@ class Controller_Api extends Controller_Rest
 		if (isset($test)) {
 			Debug::$js_toggle_open = true;
 
-			$_POST['apiType'] = 'shareButtonsDesignIconThemes';
+			// $_POST['apiType'] = 'shareButtonsFirstThemes';
+            // $_POST['apiType'] = 'shareButtonsDesignThemes';
+            $_POST['apiType'] = 'shareButtonsIconThemes';
+            $_POST['page'] = 2;
+
+
 			// // $_POST['game_no'] = 1;
 			// $_POST['bbs_id'] = 'lnntfuztqvqbqwqb';
 			// $_POST['game_no'] = 1;
@@ -201,14 +209,37 @@ class Controller_Api extends Controller_Rest
 
 
             // --------------------------------------------------
-			//   シェアボタンのテーマを返す
-			//  designThemes & iconThemes のデータをJSONで返す
+			//   シェアボタンのテーマを返す / 最初のテーマを読み込む
 			// --------------------------------------------------
 
-			if (Input::post('apiType') === 'shareButtonsDesignIconThemes')
+			if (Input::post('apiType') === 'shareButtonsFirstThemes')
 			{
                 $instance = new \React\Models\ShareButtons();
-                $arr = $instance->selectDesignIconThemes(Input::post());
+                $arr = $instance->selectFirstThemes(Input::post());
+                header('Access-Control-Allow-Origin: *');
+			}
+
+
+            // --------------------------------------------------
+			//   シェアボタンのテーマを返す / designThemes のデータをJSONで返す
+			// --------------------------------------------------
+
+            else if (Input::post('apiType') === 'shareButtonsDesignThemes')
+			{
+                $instance = new \React\Models\ShareButtons();
+                $arr = $instance->selectDesignThemes(Input::post());
+                header('Access-Control-Allow-Origin: *');
+			}
+
+
+            // --------------------------------------------------
+			//   シェアボタンのテーマを返す / iconThemes のデータをJSONで返す
+			// --------------------------------------------------
+
+            else if (Input::post('apiType') === 'shareButtonsIconThemes')
+			{
+                $instance = new \React\Models\ShareButtons();
+                $arr = $instance->selectIconThemes(Input::post());
                 header('Access-Control-Allow-Origin: *');
 			}
 

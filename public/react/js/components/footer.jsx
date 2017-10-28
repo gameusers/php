@@ -7,12 +7,8 @@ import PropTypes from 'prop-types';
 import { FormGroup, FormControl } from 'react-bootstrap';
 import { List } from 'immutable';
 import Masonry from 'react-masonry-component';
+
 import { Model } from '../models/model';
-// import ModalNotification from './modal/notification';
-
-// import '../../css/style.css';
-
-
 
 
 
@@ -206,12 +202,7 @@ Footer.propTypes = {
   stateModel: PropTypes.instanceOf(Model).isRequired,
 
   deviceType: PropTypes.string.isRequired,
-  // urlDirectory1: PropTypes.string,
-  // urlDirectory2: PropTypes.string,
-
   urlBase: PropTypes.string.isRequired,
-
-  // csrfToken: PropTypes.string.isRequired,
 
 
   // --------------------------------------------------
@@ -229,17 +220,12 @@ Footer.propTypes = {
   //   関数
   // --------------------------------------------------
 
-  // funcUrlDirectory: PropTypes.func.isRequired,
-
   funcSelectFooterCardType: PropTypes.func.isRequired,
 
 
 };
 
 Footer.defaultProps = {
-
-  urlDirectory1: null,
-  urlDirectory2: null,
 
   footerCardGameCommunityRenewalList: null,
   footerCardGameCommunityAccessList: null,

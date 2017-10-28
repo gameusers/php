@@ -3,9 +3,13 @@
 // --------------------------------------------------
 
 import { Record } from 'immutable';
-import { fromJSOrdered } from '../../../../js/models/model';
+import { fromJSOrdered } from '../../../../js/modules/package';
 
 
+
+// --------------------------------------------------
+//   初期ステート
+// --------------------------------------------------
 
 const initialStateObj = {};
 initialStateObj.contentsMap = {};
@@ -37,7 +41,8 @@ initialStateObj.contentsMap.appMap = {
         validationState: 'error',
         required: true,
         error: true
-      }
+      },
+      purchased: false
     },
     shareButtonsWebSiteName: '',
     shareButtonsWebSiteUrl: '',
@@ -62,7 +67,7 @@ initialStateObj.contentsMap.appMap = {
 
 const ModelRecord = Record(initialStateObj);
 
-export class Model extends ModelRecord {
+export class ModelApp extends ModelRecord {
 
   constructor() {
 
@@ -222,4 +227,4 @@ export class Model extends ModelRecord {
 
 }
 
-export default Model;
+export default ModelApp;

@@ -42,10 +42,98 @@ export default class Root extends React.Component {
   }
 
 
+  // --------------------------------------------------
+  //   Lifecycle Methods
+  // --------------------------------------------------
+
   // componentWillMount() {
   //   // console.log('Content / componentWillMount');
   //   this.props.funcInitialAsynchronous(this.props.stateModel);
   // }
+
+
+  componentDidUpdate() {
+
+
+    // --------------------------------------------------
+    //   タイトル変更
+    // --------------------------------------------------
+
+    const title =
+      this.props.stateModel.getIn(['metaMap', 'ja', this.props.urlDirectory1, this.props.urlDirectory2, this.props.urlDirectory3, 'title']) ||
+      this.props.stateModel.getIn(['metaMap', 'ja', this.props.urlDirectory1, this.props.urlDirectory2, 'title']) ||
+      this.props.stateModel.getIn(['metaMap', 'ja', this.props.urlDirectory1, 'title']);
+
+    // console.log('title = ', title);
+    document.title = title;
+
+
+    // --------------------------------------------------
+    //   Meta 変更
+    // --------------------------------------------------
+
+    const keywords =
+      this.props.stateModel.getIn(['metaMap', 'ja', this.props.urlDirectory1, this.props.urlDirectory2, this.props.urlDirectory3, 'keywords']) ||
+      this.props.stateModel.getIn(['metaMap', 'ja', this.props.urlDirectory1, this.props.urlDirectory2, 'keywords']) ||
+      this.props.stateModel.getIn(['metaMap', 'ja', this.props.urlDirectory1, 'keywords']);
+
+    const description =
+      this.props.stateModel.getIn(['metaMap', 'ja', this.props.urlDirectory1, this.props.urlDirectory2, this.props.urlDirectory3, 'description']) ||
+      this.props.stateModel.getIn(['metaMap', 'ja', this.props.urlDirectory1, this.props.urlDirectory2, 'description']) ||
+      this.props.stateModel.getIn(['metaMap', 'ja', this.props.urlDirectory1, 'description']);
+
+    const ogType =
+      this.props.stateModel.getIn(['metaMap', 'ja', this.props.urlDirectory1, this.props.urlDirectory2, this.props.urlDirectory3, 'ogType']) ||
+      this.props.stateModel.getIn(['metaMap', 'ja', this.props.urlDirectory1, this.props.urlDirectory2, 'ogType']) ||
+      this.props.stateModel.getIn(['metaMap', 'ja', this.props.urlDirectory1, 'ogType']);
+
+
+    const metaArr = document.head.children;
+    const metaLength = metaArr.length;
+
+    for (let i = 0; i < metaLength; i += 1) {
+
+      const name = metaArr[i].getAttribute('name');
+      const property = metaArr[i].getAttribute('property');
+      // console.log('name = ', name);
+      // console.log('property = ', property);
+
+
+      if (name === 'keywords') {
+        const dis = metaArr[i];
+        dis.setAttribute('content', keywords);
+      }
+
+      if (name === 'description') {
+        const dis = metaArr[i];
+        dis.setAttribute('content', description);
+      }
+
+      if (property === 'og:title') {
+        const dis = metaArr[i];
+        dis.setAttribute('content', title);
+      }
+
+      if (property === 'og:description') {
+        const dis = metaArr[i];
+        dis.setAttribute('content', description);
+      }
+
+      if (property === 'og:type') {
+        const dis = metaArr[i];
+        dis.setAttribute('content', ogType);
+      }
+
+      if (property === 'og:url') {
+        const dis = metaArr[i];
+        dis.setAttribute('content', window.location.href);
+      }
+
+    }
+
+    // console.log(window.location.href);
+
+  }
 
 
 
@@ -90,6 +178,12 @@ export default class Root extends React.Component {
 
             <Contents {...this.props} />
 
+            {this.props.deviceType !== 'other' &&
+              <div className="share-buttons" id="gameusers-share-buttons-official">
+                <div id="gameusers-share-buttons" data-theme="gameusers1-m2a4oi43" />
+              </div>
+            }
+
             <ModalNotification {...this.props} />
 
             <MainMenuButtons {...this.props} />
@@ -119,6 +213,10 @@ Root.propTypes = {
 
   stateModel: PropTypes.instanceOf(Model).isRequired,
 
+  urlDirectory1: PropTypes.string,
+  urlDirectory2: PropTypes.string,
+  urlDirectory3: PropTypes.string,
+
   baseName: PropTypes.string,
 
   deviceType: PropTypes.string.isRequired,
@@ -137,6 +235,10 @@ Root.propTypes = {
 };
 
 Root.defaultProps = {
+
+  urlDirectory1: null,
+  urlDirectory2: null,
+  urlDirectory3: null,
 
   baseName: null,
   userNo: null,

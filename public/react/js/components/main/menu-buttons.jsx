@@ -4,7 +4,6 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-// import Sticky from 'react-sticky-state';
 
 
 
@@ -26,9 +25,9 @@ const MainMenuButtons = (props) => {
   const funcMoveTop = () => {
     const selector = document.querySelector('.main-s');
     const clientRect = selector.getBoundingClientRect();
-    const top = clientRect.top;
+    const { top } = clientRect;
     const pageY = window.pageYOffset + top;
-    scrollTo(0, pageY - 50);
+    window.scrollTo(0, pageY - 50);
   };
 
 
@@ -39,9 +38,9 @@ const MainMenuButtons = (props) => {
   const funcMoveBottom = () => {
     const selector = document.querySelector('footer');
     const clientRect = selector.getBoundingClientRect();
-    const top = clientRect.top;
+    const { top } = clientRect;
     const pageY = window.pageYOffset + top;
-    scrollTo(0, pageY);
+    window.scrollTo(0, pageY);
   };
 
 
@@ -55,6 +54,7 @@ const MainMenuButtons = (props) => {
           <div
             className="icon"
             onClick={() => funcMoveTop()}
+            onKeyPress={() => funcMoveTop()}
             role="button"
             tabIndex="0"
           >
@@ -64,6 +64,7 @@ const MainMenuButtons = (props) => {
           <div
             className="icon"
             onClick={() => funcMoveBottom()}
+            onKeyPress={() => funcMoveBottom()}
             role="button"
             tabIndex="0"
           >
@@ -79,6 +80,7 @@ const MainMenuButtons = (props) => {
           <div
             className="icon"
             onClick={() => props.funcMenuDrawerActive()}
+            onKeyPress={() => props.funcMenuDrawerActive()}
             role="button"
             tabIndex="0"
           >
@@ -118,5 +120,6 @@ MainMenuButtons.propTypes = {
 MainMenuButtons.defaultProps = {
 
 };
+
 
 export default MainMenuButtons;

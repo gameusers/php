@@ -69,7 +69,7 @@ const menuObj = {
         {
           urlDirectory1: 'app',
           urlDirectory2: 'pay',
-          urlDirectory3: 'info',
+          urlDirectory3: 'vendor',
           materialIcon: 'announcement',
           text: '特定商取引法に基づく表記'
         },

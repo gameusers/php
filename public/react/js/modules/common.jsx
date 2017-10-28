@@ -2,21 +2,21 @@
  * アクセスしたデバイスの種類を返す
  * @return {string} デバイスのタイプ / smartphone / tablet / other
  */
-export const getDeviceType = () => {
-
-  const ua = navigator.userAgent;
-
-  let type = 'other';
-
-  if (ua.indexOf('iPhone') > 0 || ua.indexOf('iPod') > 0 || (ua.indexOf('Android') > 0 && ua.indexOf('Mobile') > 0) || ua.indexOf('Windows Phone') > 0) {
-    type = 'smartphone';
-  } else if (ua.indexOf('iPad') > 0 || ua.indexOf('Android') > 0) {
-    type = 'tablet';
-  }
-
-  return type;
-
-};
+// export const getDeviceType = () => {
+//
+//   const ua = navigator.userAgent;
+//
+//   let type = 'other';
+//
+//   if (ua.indexOf('iPhone') > 0 || ua.indexOf('iPod') > 0 || (ua.indexOf('Android') > 0 && ua.indexOf('Mobile') > 0) || ua.indexOf('Windows Phone') > 0) {
+//     type = 'smartphone';
+//   } else if (ua.indexOf('iPad') > 0 || ua.indexOf('Android') > 0) {
+//     type = 'tablet';
+//   }
+//
+//   return type;
+//
+// };
 
 
 

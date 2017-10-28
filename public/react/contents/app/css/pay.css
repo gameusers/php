@@ -9,14 +9,18 @@
   padding: 20px;
 }*/
 
-.stripe-button-margin {
+.app-pay-form-stripe-button-margin {
   margin: 10px 10px 0 0;
 }
 
-.pay-form-group-margin {
+.app-pay-form-group-margin {
   margin: 0 0 30px;
 }
 
-.pay-form-group-margin-bottom {
+.app-pay-form-group-margin-bottom {
   margin: 0 0 20px;
+}
+
+.app-pay-form-alert {
+  margin: 20px 0 0;
 }

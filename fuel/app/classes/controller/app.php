@@ -19,6 +19,7 @@ class Controller_App extends Controller
 	public function action_index($urlDirectory1 = null, $urlDirectory2 = null, $urlDirectory3 = null)
 	{
 
+
         // --------------------------------------------------
 		//   設定読み込み
 		// --------------------------------------------------
@@ -42,11 +43,17 @@ class Controller_App extends Controller
         //   規定のURL以外にアクセスした場合、404 / Not Found を表示する
 		// --------------------------------------------------
 
-        // $pattern = '/^(share-buttons)$/';
-        //
-        // if ( ! preg_match($pattern, $urlDirectory1)) {
-        //     throw new HttpNotFoundException;
-        // }
+        $pattern = '/^(share-buttons|pay)$/';
+
+        if ( ! preg_match($pattern, $urlDirectory1)) {
+            throw new HttpNotFoundException;
+        }
+
+        $pattern = '/^(vendor)$/';
+
+        if ($urlDirectory2 && ! preg_match($pattern, $urlDirectory2)) {
+            throw new HttpNotFoundException;
+        }
 
 
 		// --------------------------------------------------
@@ -114,7 +121,7 @@ class Controller_App extends Controller
 			// 'game_no_arr' => [1,11,306,554]
 			// 'game_no_arr' => [597]
 			// 'game_no_arr' => [604]
-			'gameNoArr' => [3]
+			// 'gameNoArr' => [3]
             // 'gameNoArr' => [426]
             // 'gameNoArr' => [1]
             // 'gameNoArr' => [1,11,306,554]
@@ -142,20 +149,46 @@ class Controller_App extends Controller
 		//    Meta
 		// ----------------------------------------
 
-		if ($urlDirectory1 === 'share-buttons') {
-			$title = 'Game Users Share Buttons';
-			$metaKeywords = 'ゲームユーザーズ,シェアボタン';
-			$metaDescription = 'Game UsersはゲームユーザーのためのSNS・コミュニティサイトです。';
-            $metaOgType = 'article';
+        $title =
+            $this->initialStateArr['metaMap']['ja']['app'][$urlDirectory1][$urlDirectory2][$urlDirectory3]['title'] ?? $this->initialStateArr['metaMap']['ja']['app'][$urlDirectory1][$urlDirectory2]['title'] ??
+            $this->initialStateArr['metaMap']['ja']['app'][$urlDirectory1]['title'];
 
-            // $description = str_replace(array("\r\n","\r","\n"), ' ', $description);
-            // $description = (mb_strlen($description) > 120) ? mb_substr($description, 0, 119, 'UTF-8') . '…' : $description;
-		}
+        $metaKeywords =
+            $this->initialStateArr['metaMap']['ja']['app'][$urlDirectory1][$urlDirectory2][$urlDirectory3]['keywords'] ?? $this->initialStateArr['metaMap']['ja']['app'][$urlDirectory1][$urlDirectory2]['keywords'] ??
+            $this->initialStateArr['metaMap']['ja']['app'][$urlDirectory1]['keywords'];
 
-        $title = 'Game Users Share Buttons';
-        $metaKeywords = 'ゲームユーザーズ,シェアボタン';
-        $metaDescription = 'Game UsersはゲームユーザーのためのSNS・コミュニティサイトです。';
-        $metaOgType = 'article';
+        $metaDescription =
+            $this->initialStateArr['metaMap']['ja']['app'][$urlDirectory1][$urlDirectory2][$urlDirectory3]['description'] ?? $this->initialStateArr['metaMap']['ja']['app'][$urlDirectory1][$urlDirectory2]['description'] ??
+            $this->initialStateArr['metaMap']['ja']['app'][$urlDirectory1]['description'];
+
+        $metaOgType =
+            $this->initialStateArr['metaMap']['ja']['app'][$urlDirectory1][$urlDirectory2][$urlDirectory3]['ogType'] ?? $this->initialStateArr['metaMap']['ja']['app'][$urlDirectory1][$urlDirectory2]['ogType'] ??
+            $this->initialStateArr['metaMap']['ja']['app'][$urlDirectory1]['ogType'];
+
+
+		// if ($urlDirectory1 === 'share-buttons') {
+        //
+		// 	$title = 'Game Users Share Buttons';
+		// 	$metaKeywords = 'ゲームユーザーズ,シェアボタン';
+		// 	$metaDescription = 'Game UsersはゲームユーザーのためのSNS・コミュニティサイトです。';
+        //     $metaOgType = 'article';
+        //
+        //     // $description = str_replace(array("\r\n","\r","\n"), ' ', $description);
+        //     // $description = (mb_strlen($description) > 120) ? mb_substr($description, 0, 119, 'UTF-8') . '…' : $description;
+        //
+		// } else if ($urlDirectory1 === 'pay') {
+        //
+        //     $title = 'Game Users 購入ページ';
+        //     $metaKeywords = 'ゲームユーザーズ,購入,お支払い';
+        //     $metaDescription = 'Game Usersの購入ページ';
+        //     $metaOgType = 'article';
+        //
+        // }
+
+        // $metaKeywords = 'ゲームユーザーズ,購入,お支払い';
+        // $metaDescription = 'Game Usersの購入ページ';
+        // $metaOgType = 'article';
+
 
 
 
@@ -223,7 +256,10 @@ class Controller_App extends Controller
             JS_JQUERY_AUTO_HIDING_NAVIGATION_ARR,
             JS_JQUERY_MAGNIFIC_POPUP_CDN_ARR,
             JS_LADDA_BOOTSTRAP_SPIN_CDN_ARR,
-            JS_LADDA_BOOTSTRAP_CDN_ARR
+            JS_LADDA_BOOTSTRAP_CDN_ARR,
+            JS_GOOGLE_ADSENSE_ARR,
+			JS_TWITTER_WIDGETS_ARR
+            // JS_GAMEUSERS_SHARE_BUTTONS_ARR
 		);
 
 		// ---------------------------------------------
@@ -251,18 +287,11 @@ class Controller_App extends Controller
 
 
 		// ---------------------------------------------
-		//    本番環境では軽量バージョンを読み込む
+		//    root-bundle.min.js
 		// ---------------------------------------------
 
-		if (Fuel::$env == 'development') {
-
-			array_push($jsArr, ['src' => URL_BASE . 'react/js/root-bundle.min.js']);
-
-		} else {
-			// array_push($cssArr, Config::get('css_basic_min'), 'style.min.css', 'new.min.css');
-			// array_push($jsArr, Config::get('js_basic_min'), 'sc.min.js');
-		}
-
+		array_push($jsArr, ['src' => URL_BASE . 'react/js/root-bundle.min.js?ver=1.0.0']);
+        array_push($jsArr, ['src' => URL_BASE . 'react/lib/gameusers-share-buttons/js/share-bundle.min.js']);
 
 
 

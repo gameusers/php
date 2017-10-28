@@ -122,8 +122,8 @@ if (DEVICE_TYPE === 'smartphone') {
 // ---------------------------------------------
 
 // 通知の保存期間　$datetime->modify($string)の形式で指定 / default = '-3 months'
-// define('LIMIT_NOTIFICATION_PRESERVATION_TERM', '-3 months');
-define('LIMIT_NOTIFICATION_PRESERVATION_TERM', '-5 years');
+define('LIMIT_NOTIFICATION_PRESERVATION_TERM', '-3 months');
+// define('LIMIT_NOTIFICATION_PRESERVATION_TERM', '-5 years');
 
 // 通知の表示件数
 define('LIMIT_NOTIFICATION_ARR', [
@@ -221,6 +221,18 @@ define('JS_LADDA_BOOTSTRAP_CDN_ARR', [
     'src' => 'https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda.min.js'
 ]);
 
+define('JS_GOOGLE_ADSENSE_ARR', [
+    'src' => 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'
+]);
+
+define('JS_GAMEUSERS_SHARE_BUTTONS_ARR', [
+    'src' => URL_BASE . 'react/lib/gameusers-share-buttons/js/share-bundle.min.js'
+]);
+
+define('JS_TWITTER_WIDGETS_ARR', [
+    'src' => 'https://platform.twitter.com/widgets.js'
+]);
+
 // define('JS_STRIPE_CHECKOUT_CDN_ARR', [
 //     'src' => 'https://checkout.stripe.com/checkout.js'
 // ]);
@@ -244,3 +256,53 @@ $this->initialStateArr['adBlock'] = AD_BLOCK;
 $this->initialStateArr['paginationColumn'] = PAGINATION_COLUMN;
 
 $this->initialStateArr['notificationMap']['limitNotification'] = LIMIT_NOTIFICATION_ARR[DEVICE_TYPE];
+
+
+
+// --------------------------------------------------
+//   Stripe
+// --------------------------------------------------
+
+if (Fuel::$env === 'production') {
+    $this->initialStateArr['stripePublishableKey'] = \Config::get('stripe_publishable_key');
+} else {
+    $this->initialStateArr['stripePublishableKey'] = \Config::get('stripe_publishable_key_test_mode');
+}
+
+
+
+// --------------------------------------------------
+//   タイトル・メタ情報
+// --------------------------------------------------
+
+// ---------------------------------------------
+//   - アプリケーション / シェアボタン
+//   https://gameusers.org/app/share-buttons
+// ---------------------------------------------
+
+$this->initialStateArr['metaMap']['ja']['app']['share-buttons']['title'] = 'Game Users Share Buttons';
+$this->initialStateArr['metaMap']['ja']['app']['share-buttons']['keywords'] = 'シェアボタン,ソーシャルボタン';
+$this->initialStateArr['metaMap']['ja']['app']['share-buttons']['description'] = 'Twitter、Facebook、Google+など（全10サイト）をシェアすることが可能です。自由度の高いカスタマイズが行え、他にないオリジナルのシェアボタンを作成できます。';
+$this->initialStateArr['metaMap']['ja']['app']['share-buttons']['ogType'] = 'article';
+
+
+// ---------------------------------------------
+//   - アプリケーション / 購入
+//   https://gameusers.org/app/pay
+// ---------------------------------------------
+
+$this->initialStateArr['metaMap']['ja']['app']['pay']['title'] = '購入 - Game Users';
+$this->initialStateArr['metaMap']['ja']['app']['pay']['keywords'] = '購入,お支払い,有料プラン';
+$this->initialStateArr['metaMap']['ja']['app']['pay']['description'] = 'Game Users の購入ページ。';
+$this->initialStateArr['metaMap']['ja']['app']['pay']['ogType'] = 'article';
+
+
+// ---------------------------------------------
+//   - アプリケーション / 購入 / 特定商取引法に基づく表記
+//   https://gameusers.org/app/pay/vendor
+// ---------------------------------------------
+
+$this->initialStateArr['metaMap']['ja']['app']['pay']['vendor']['title'] = '特定商取引法に基づく表記 - Game Users';
+$this->initialStateArr['metaMap']['ja']['app']['pay']['vendor']['keywords'] = '特定商取引法に基づく表記,販売者情報';
+$this->initialStateArr['metaMap']['ja']['app']['pay']['vendor']['description'] = '特定商取引法に基づく表記。';
+$this->initialStateArr['metaMap']['ja']['app']['pay']['vendor']['ogType'] = 'article';

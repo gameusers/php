@@ -9,10 +9,6 @@ import Pagination from '../pagination';
 import { Model } from '../../models/model';
 import Card from '../card';
 
-// import '../../../css/style.css';
-
-
-
 
 
 export default class ModalNotification extends React.Component {

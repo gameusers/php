@@ -60,6 +60,10 @@ _testform.php
 # /public/dev/blog/wp-content/plugins/*
 # !/public/dev/blog/wp-content/plugins/gameusers-share-buttons/
 
+# Game Users Share Buttons のファイルを除外する
+/public/react/contents/app/share-buttons/*
+/public/react/lib/gameusers-share-buttons/*
+
 /public/google*html
 
 # 開発環境で使用している画像

@@ -16,3 +16,8 @@ export const funcContentsAppPayFormShareButtonsAgreement = value => ({
   type: 'CONTENTS_APP_PAY_FORM_SHARE_BUTTONS_AGREEMENT',
   value
 });
+
+export const funcContentsAppPayFormShareButtonsPurchased = value => ({
+  type: 'CONTENTS_APP_PAY_FORM_SHARE_BUTTONS_PURCHASED',
+  value
+});

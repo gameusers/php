@@ -4,8 +4,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-
-// import '../../../css/style.css';
+import AdSense from 'react-adsense';
 
 
 
@@ -34,16 +33,12 @@ export default class AdGoogleAdsenseRectangle extends React.Component {
 
     return (
       <aside className="google-adsense-rectangle">
-        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" />
-        <ins
-          className="adsbygoogle"
+        <AdSense.Google
+          client="ca-pub-8883929243875711"
+          slot="1930071119"
           style={{ display: 'inline-block', width: 300, height: 250 }}
-          data-ad-client="ca-pub-8883929243875711"
-          data-ad-slot="1930071119"
+          format=""
         />
-        <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
       </aside>
     );
 

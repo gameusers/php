@@ -2,9 +2,9 @@
 //   Import
 // --------------------------------------------------
 
-import { Seq, Record } from 'immutable';
-import Cookies from 'js-cookie';
+import { Record } from 'immutable';
 
+import { fromJSOrdered } from '../modules/package';
 import menuObj from '../../contents/menu';
 
 
@@ -40,23 +40,6 @@ tempArr = tempArr[1].split('/');
 initialStateObj.urlDirectory1 = tempArr[0] || null;
 initialStateObj.urlDirectory2 = tempArr[1] || null;
 initialStateObj.urlDirectory3 = tempArr[2] || null;
-
-// initialStateObj.urlDirectory1 = null;
-// initialStateObj.urlDirectory2 = null;
-// initialStateObj.urlDirectory3 = null;
-//
-// if (tempArr[0]) {
-//   // initialStateObj.urlDirectory1 = tempArr[0];
-//   [initialStateObj.urlDirectory1] = [tempArr[0]];
-// }
-//
-// if (tempArr[1]) {
-//   initialStateObj.urlDirectory2 = tempArr[1];
-// }
-//
-// if (tempArr[2]) {
-//   initialStateObj.urlDirectory3 = tempArr[2];
-// }
 
 
 // --------------------------------------------------
@@ -108,146 +91,22 @@ initialStateObj.menuMap = menuObj;
 initialStateObj.menuMap.drawerActive = false;
 
 
+// ---------------------------------------------
+//   - urlDirectory3 のあるページに最初にアクセスした場合
+//   （例：https://localhost/gameusers/public/app/pay/vendor）
+//   ヘッダーの activeUrlDirectory3 を代入する。現在開いてるページを保存しておくため
+//   ヘッダーのリンクを切り替えても保存されたページがまた開くように
+// ---------------------------------------------
 
-
-// --------------------------------------------------
-//   ヘッダー / メニュー
-//   新ページ・新コンテンツを追加する場合はここを編集すること
-// --------------------------------------------------
-
-// initialStateObj.headerMap.menuMap = {
-//
-//   app: {
-//     'share-buttons': {
-//       urlDirectory1: 'app',
-//       urlDirectory2: 'share-buttons',
-//       activeUrlDirectory3: null,
-//       text: 'シェアボタン'
-//     },
-//     pay: {
-//       urlDirectory1: 'app',
-//       urlDirectory2: 'pay',
-//       activeUrlDirectory3: null,
-//       text: '購入'
-//     }
-//   }
-//
-// };
-
-
-// --------------------------------------------------
-//   メイン / メニュー
-//   新ページ・新コンテンツを追加する場合はここを編集すること
-//   Material Icons はこちらから選択 / https://material.io/icons/
-//   <i class="material-icons">assignment_ind</i>
-//   ICON FONT のタグの中身を入力すること
-// --------------------------------------------------
-
-// initialStateObj.menuMap = {
-//
-//   app: {
-//     'share-buttons': [
-//       {
-//         urlDirectory1: 'app',
-//         urlDirectory2: 'share-buttons',
-//         urlDirectory3: null,
-//         materialIcon: 'share',
-//         text: 'シェアボタン'
-//       },
-//     ],
-//     pay: [
-//       {
-//         urlDirectory1: 'app',
-//         urlDirectory2: 'pay',
-//         urlDirectory3: null,
-//         materialIcon: 'payment',
-//         text: '購入'
-//       },
-//       {
-//         urlDirectory1: 'app',
-//         urlDirectory2: 'pay',
-//         urlDirectory3: 'info',
-//         materialIcon: 'announcement',
-//         text: '特定商取引法に基づく表記'
-//       },
-//     ]
-//   },
-//
-//   drawerActive: false
-//
-// };
+if (initialStateObj.urlDirectory3) {
+  initialStateObj.menuMap.headerMap[initialStateObj.urlDirectory1][initialStateObj.urlDirectory2].activeUrlDirectory3 = initialStateObj.urlDirectory3;
+}
 
 
 
-// --------------------------------------------------
-//   コンテンツ
-// --------------------------------------------------
+// console.log('initialStateObj = ', initialStateObj);
+// console.log('Cookies.get() = ', Cookies.get());
 
-// initialStateObj.contentsMap = {};
-
-
-// --------------------------------------------------
-//   コンテンツ / アプリ
-// --------------------------------------------------
-
-// initialStateObj.contentsMap.appMap = {
-//
-//   payMap: {
-//     formShareButtonsMap: {
-//       webSiteNameMap: {
-//         value: 'AAA',
-//         validationState: 'error',
-//         required: true,
-//         error: true
-//       },
-//       webSiteUrlMap: {
-//         value: '',
-//         validationState: 'error',
-//         required: true,
-//         error: true
-//       },
-//       agreementMap: {
-//         value: false,
-//         validationState: 'error',
-//         required: true,
-//         error: true
-//       }
-//     },
-//     shareButtonsWebSiteName: '',
-//     shareButtonsWebSiteUrl: '',
-//     shareButtonsAgreement: false
-//   }
-//
-// };
-
-
-
-console.log('initialStateObj = ', initialStateObj);
-console.log('Cookies.get() = ', Cookies.get());
-
-
-
-
-
-// --------------------------------------------------
-//   Immutable fromJSOrdered
-//   Immutable.js ではオブジェクトの並び順を維持したまま
-//   Immutable.js の Map型に変換する関数がないため、オリジナルで作成
-// --------------------------------------------------
-
-export const fromJSOrdered = (data) => {
-
-  if (typeof data !== 'object' || data === null) {
-    return data;
-  }
-
-  if (Array.isArray(data)) {
-    return Seq(data).map(fromJSOrdered).toList();
-  }
-
-  return Seq(data).map(fromJSOrdered).toOrderedMap();
-
-};
 
 
 
@@ -323,4 +182,4 @@ export class Model extends ModelRecord {
 
 }
 
-// export default Model;
+export default Model;

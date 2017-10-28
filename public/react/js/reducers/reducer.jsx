@@ -2,7 +2,8 @@
 //   Import
 // --------------------------------------------------
 
-import { Model, fromJSOrdered } from '../models/model';
+import { Model } from '../models/model';
+import { fromJSOrdered } from '../modules/package';
 
 
 
@@ -22,7 +23,7 @@ const reducerRoot = (state = new Model(), action) => {
         .set('urlDirectory1', action.urlDirectory1)
         .set('urlDirectory2', action.urlDirectory2)
         .set('urlDirectory3', action.urlDirectory3)
-        .setIn(['headerMap', 'menuMap', action.urlDirectory1, action.urlDirectory2, 'activeUrlDirectory3'], action.urlDirectory3);
+        .setIn(['menuMap', 'headerMap', action.urlDirectory1, action.urlDirectory2, 'activeUrlDirectory3'], action.urlDirectory3);
     }
 
 

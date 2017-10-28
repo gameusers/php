@@ -7,9 +7,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Switch, Route } from 'react-router-dom';
 import 'whatwg-fetch';
+import iziToast from 'izitoast';
+
+import fetchApi from '../../../../js/modules/api';
 
 // import ContentsAppShareButtons from '../components/share-buttons';
 import ContentsAppPay from '../components/pay';
+import ContentsAppPayVendor from '../components/pay-vendor';
 
 import * as actions from '../actions/action';
 
@@ -24,12 +28,11 @@ import * as actions from '../actions/action';
  * @param {object} props props
  */
 const ContentsApp = props => (
-  // <div style={{ width: '100%' }}>
   <Switch>
     {/* <Route exact path="/app/share-buttons" render={() => <ContentsAppShareButtons {...props} />} /> */}
     <Route exact path="/app/pay" render={() => <ContentsAppPay {...props} />} />
+    <Route exact path="/app/pay/vendor" render={() => <ContentsAppPayVendor {...props} />} />
   </Switch>
-  // </div>
 );
 
 
@@ -52,15 +55,29 @@ const mapStateToProps = (state) => {
 
 
     // --------------------------------------------------
+    //   共通
+    // --------------------------------------------------
+
+    stateAppModel: reducerAppMap,
+
+
+    // --------------------------------------------------
     //   コンテンツ / アプリ / 購入
     // --------------------------------------------------
 
     contentsAppPayFormShareButtonsWebSiteName: reducerAppMap.getIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'webSiteNameMap', 'value']),
     contentsAppPayFormShareButtonsWebSiteNameValidationState: reducerAppMap.getIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'webSiteNameMap', 'validationState']),
+    contentsAppPayFormShareButtonsWebSiteNameError: reducerAppMap.getIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'webSiteNameMap', 'error']),
+
     contentsAppPayFormShareButtonsWebSiteUrl: reducerAppMap.getIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'webSiteUrlMap', 'value']),
     contentsAppPayFormShareButtonsWebSiteUrlValidationState: reducerAppMap.getIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'webSiteUrlMap', 'validationState']),
+    contentsAppPayFormShareButtonsWebSiteUrlError: reducerAppMap.getIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'webSiteUrlMap', 'error']),
+
     contentsAppPayFormShareButtonsAgreement: reducerAppMap.getIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'agreementMap', 'value']),
     contentsAppPayFormShareButtonsAgreementValidationState: reducerAppMap.getIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'agreementMap', 'validationState']),
+    contentsAppPayFormShareButtonsAgreementError: reducerAppMap.getIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'agreementMap', 'error']),
+
+    contentsAppPayFormShareButtonsPurchased: reducerAppMap.getIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'purchased']),
 
 
   });
@@ -85,22 +102,36 @@ const mapDispatchToProps = (dispatch) => {
 
   /**
    * 有料プランに申し込む
-   * @param  {Model}  stateModel Modelクラスのインスタンス
-   * @param  {object}  stripeObj  Stripeのオブジェクト
+   * @param  {Model}   stateAppModel Modelクラスのインスタンス
+   * @param  {string}  plan          プラン - premium / business
+   * @param  {object}  stripeObj     Stripeのオブジェクト
    */
-  bindActionObj.funcInsertShareButtonsPaidPlan = async (stateModel, plan, stripeObj) => {
+  bindActionObj.funcInsertShareButtonsPaidPlan = async (stateModel, stateAppModel, plan, stripeObj) => {
 
-    console.log('funcInsertShareButtonsPay');
-    console.log('stripeObj = ', stripeObj);
-    console.log('stripeToken = ', stripeObj.id);
-    console.log('stripeTokenType = ', stripeObj.type);
-    console.log('stripeEmail = ', stripeObj.email);
 
     // --------------------------------------------------
     //   Get Data
     // --------------------------------------------------
 
     const urlBase = stateModel.get('urlBase');
+
+    const webSiteName = stateAppModel.getIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'webSiteNameMap', 'value']);
+    const webSiteUrl = stateAppModel.getIn(['contentsMap', 'appMap', 'payMap', 'formShareButtonsMap', 'webSiteUrlMap', 'value']);
+
+
+    // console.log('funcInsertShareButtonsPay');
+    // console.log('urlBase = ', urlBase);
+    // console.log('plan = ', plan);
+    // console.log('webSiteName = ', webSiteName);
+    // console.log('webSiteUrl = ', webSiteUrl);
+    // console.log('stripeObj = ', stripeObj);
+    // console.log('stripeToken = ', stripeObj.id);
+    // console.log('stripeTokenType = ', stripeObj.type);
+    // console.log('stripeEmail = ', stripeObj.email);
+    // console.log('webSiteNameError = ', webSiteNameError);
+    // console.log('webSiteUrlError = ', webSiteUrlError);
+    // console.log('agreementError = ', agreementError);
+    // return;
 
 
     // --------------------------------------------------
@@ -110,7 +141,10 @@ const mapDispatchToProps = (dispatch) => {
     const formData = new FormData();
 
     formData.append('apiType', 'insertShareButtonsPaidPlan');
+
     formData.append('plan', plan);
+    formData.append('webSiteName', webSiteName);
+    formData.append('webSiteUrl', webSiteUrl);
     formData.append('stripeToken', stripeObj.id);
     formData.append('stripeTokenType', stripeObj.type);
     formData.append('stripeEmail', stripeObj.email);
@@ -123,8 +157,9 @@ const mapDispatchToProps = (dispatch) => {
     try {
 
 
-      const returnObj = await funcPromise(urlBase, formData);
+      // const returnObj = await promiseReactJsonPost(urlBase, formData);
 
+      const returnObj = await fetchApi(`${urlBase}api/react.json`, 'POST', 'same-origin', 'same-origin', formData);
       // console.log('returnObj = ', returnObj);
 
       if (returnObj.error) {
@@ -132,16 +167,22 @@ const mapDispatchToProps = (dispatch) => {
       }
 
 
-      // console.log('gameCommunityRenewalList = ', gameCommunityRenewalList);
-      // console.log('gameCommunityAccessList = ', gameCommunityAccessList);
-      // console.log('userCommunityAccessList = ', userCommunityAccessList);
+      dispatch(actions.funcContentsAppPayFormShareButtonsPurchased(true));
 
 
-      // dispatch(actions.funcSelectFooterCardType(cardType, gameCommunityRenewalList, gameCommunityAccessList, userCommunityAccessList));
-
+      iziToast.success({
+        title: 'OK',
+        message: '有料プランの申し込みが完了しました。'
+      });
 
     } catch (e) {
-      // continue regardless of error
+      // console.log('e = ', e);
+
+      iziToast.error({
+        title: 'Error',
+        message: '有料プランの申し込みに失敗しました。'
+      });
+
     }
 
   };

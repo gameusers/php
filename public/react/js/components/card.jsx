@@ -4,14 +4,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { Pagination } from 'react-bootstrap';
 import moment from 'moment';
 import { List } from 'immutable';
-import { Model } from '../models/model';
-
-// import '../../css/style.css';
-
-
 
 
 
@@ -614,10 +608,10 @@ Card.propTypes = {
   //   共通
   // --------------------------------------------------
 
-  stateModel: PropTypes.instanceOf(Model).isRequired,
+  // stateModel: PropTypes.instanceOf(Model).isRequired,
   deviceType: PropTypes.string.isRequired,
   urlBase: PropTypes.string.isRequired,
-  paginationColumn: PropTypes.number.isRequired,
+  // paginationColumn: PropTypes.number.isRequired,
 
 
   // --------------------------------------------------
@@ -632,13 +626,13 @@ Card.propTypes = {
   // --------------------------------------------------
 
   notificationActiveType: PropTypes.string.isRequired,
-  notificationUnreadTotal: PropTypes.number.isRequired,
+  // notificationUnreadTotal: PropTypes.number.isRequired,
   notificationUnreadList: PropTypes.instanceOf(List).isRequired,
-  notificationUnreadActivePage: PropTypes.number.isRequired,
-  notificationAlreadyReadTotal: PropTypes.number.isRequired,
+  // notificationUnreadActivePage: PropTypes.number.isRequired,
+  // notificationAlreadyReadTotal: PropTypes.number.isRequired,
   notificationAlreadyReadList: PropTypes.instanceOf(List).isRequired,
-  notificationAlreadyReadActivePage: PropTypes.number.isRequired,
-  notificationLimitNotification: PropTypes.number.isRequired,
+  // notificationAlreadyReadActivePage: PropTypes.number.isRequired,
+  // notificationLimitNotification: PropTypes.number.isRequired,
 
 
   // --------------------------------------------------

@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 import 'whatwg-fetch';
 import Cookies from 'js-cookie';
 
+import fetchApi from '../modules/api';
 import Root from '../components/root';
 
 import * as actions from '../actions/action';
@@ -55,6 +56,14 @@ const mapStateToProps = (state) => {
     adBlock: reducerRootMap.get('adBlock'),
     paginationColumn: reducerRootMap.get('paginationColumn'),
     csrfToken: reducerRootMap.get('csrfToken'),
+
+
+
+    // --------------------------------------------------
+    //   Stripe
+    // --------------------------------------------------
+
+    stripePublishableKey: reducerRootMap.get('stripePublishableKey'),
 
 
 
@@ -150,30 +159,50 @@ const mapDispatchToProps = (dispatch) => {
 
 
 
+  // --------------------------------------------------
+  //   URL 変更
+  // --------------------------------------------------
+
   /**
-   * Promise / APIにアクセスしてJSONで取得したオブジェクトを返す
-   * @param  {string} urlBase    基本のURL
-   * @param  {FormData} formData new FormData()で作成したインスタンス
-   * @return {Object}            オブジェクト
+   * URL を変更する
+   * https://gameusers.org/urlDirectory1/urlDirectory2/urlDirectory3
+   * @param  {string}  urlDirectory1 URL1
+   * @param  {string}  urlDirectory2 URL2
+   * @param  {string}  urlDirectory3 URL3
    */
-  const funcPromise = (urlBase, formData) => new Promise((resolve) => {
+  bindActionObj.funcUrlDirectory = async (urlDirectory1, urlDirectory2, urlDirectory3) => {
 
-    fetch(`${urlBase}api/react.json`, {
-      method: 'POST',
-      credentials: 'include',
-      mode: 'same-origin',
-      body: formData
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-      })
-      .then((jsonObj) => {
-        resolve(jsonObj);
-      });
 
-  });
+    // --------------------------------------------------
+    //   Await & Dispatch
+    // --------------------------------------------------
+
+    try {
+
+
+      dispatch(actions.funcUrlDirectory(urlDirectory1, urlDirectory2, urlDirectory3));
+
+
+
+      // --------------------------------------------------
+      //   ページ上部に移動
+      // --------------------------------------------------
+
+      const selector = document.querySelector('main');
+      const clientRect = selector.getBoundingClientRect();
+      const { top } = clientRect;
+      const pageY = window.pageYOffset + top;
+      // const margin = this.props.deviceType === 'other' ? 70 : 50;
+      // console.log('margin = ', margin);
+      window.scrollTo(0, pageY - 70);
+
+
+    } catch (e) {
+      // continue regardless of error
+    }
+
+  };
+
 
 
 
@@ -226,7 +255,10 @@ const mapDispatchToProps = (dispatch) => {
       //   通知データ更新
       // --------------------------------------------------
 
-      const returnObj = await funcPromise(urlBase, formData);
+      // console.log('urlBase = ', `${urlBase}api/react.json`);
+      // const returnObj = await promiseReactJsonPost(urlBase, formData);
+
+      const returnObj = await fetchApi(`${urlBase}api/react.json`, 'POST', 'same-origin', 'same-origin', formData);
 
       // console.log('returnObj = ', returnObj);
 
@@ -325,7 +357,8 @@ const mapDispatchToProps = (dispatch) => {
       //   未読の総数変更
       // --------------------------------------------------
 
-      const returnObj1 = await funcPromise(urlBase, formData1);
+      // const returnObj1 = await promiseReactJsonPost(urlBase, formData1);
+      const returnObj1 = await fetchApi(`${urlBase}api/react.json`, 'POST', 'same-origin', 'same-origin', formData1);
 
       // console.log('returnObj1 = ', returnObj1);
 
@@ -334,7 +367,8 @@ const mapDispatchToProps = (dispatch) => {
       }
 
 
-      const returnObj2 = await funcPromise(urlBase, formData2);
+      // const returnObj2 = await promiseReactJsonPost(urlBase, formData2);
+      const returnObj2 = await fetchApi(`${urlBase}api/react.json`, 'POST', 'same-origin', 'same-origin', formData2);
 
       // console.log('returnObj2 = ', returnObj2);
 
@@ -385,7 +419,8 @@ const mapDispatchToProps = (dispatch) => {
 
     try {
 
-      const returnObj = await funcPromise(urlBase, formData);
+      // const returnObj = await promiseReactJsonPost(urlBase, formData);
+      const returnObj = await fetchApi(`${urlBase}api/react.json`, 'POST', 'same-origin', 'same-origin', formData);
 
       // console.log('returnObj = ', returnObj);
 
@@ -458,7 +493,8 @@ const mapDispatchToProps = (dispatch) => {
     try {
 
 
-      const returnObj = await funcPromise(urlBase, formData);
+      // const returnObj = await promiseReactJsonPost(urlBase, formData);
+      const returnObj = await fetchApi(`${urlBase}api/react.json`, 'POST', 'same-origin', 'same-origin', formData);
 
       // console.log('returnObj = ', returnObj);
 
@@ -533,7 +569,8 @@ const mapDispatchToProps = (dispatch) => {
     try {
 
 
-      const returnObj = await funcPromise(urlBase, formData);
+      // const returnObj = await promiseReactJsonPost(urlBase, formData);
+      const returnObj = await fetchApi(`${urlBase}api/react.json`, 'POST', 'same-origin', 'same-origin', formData);
 
       // console.log('returnObj = ', returnObj);
 
@@ -597,7 +634,8 @@ const mapDispatchToProps = (dispatch) => {
 
     try {
 
-      const returnObj = await funcPromise(urlBase, formData);
+      // const returnObj = await promiseReactJsonPost(urlBase, formData);
+      const returnObj = await fetchApi(`${urlBase}api/react.json`, 'POST', 'same-origin', 'same-origin', formData);
 
       // console.log('returnObj = ', returnObj);
 
@@ -662,7 +700,14 @@ const mapDispatchToProps = (dispatch) => {
     //   クッキー
     // --------------------------------------------------
 
-    Cookies.set('footerCardType', cardType, { expires: 1, path: '', domain: location.hostname, secure: true });
+    Cookies.set('footerCardType', cardType,
+      {
+        expires: 1,
+        path: '',
+        domain: window.location.hostname,
+        secure: true
+      }
+    );
 
 
     // --------------------------------------------------
@@ -672,7 +717,8 @@ const mapDispatchToProps = (dispatch) => {
     try {
 
 
-      const returnObj = await funcPromise(urlBase, formData);
+      // const returnObj = await promiseReactJsonPost(urlBase, formData);
+      const returnObj = await fetchApi(`${urlBase}api/react.json`, 'POST', 'same-origin', 'same-origin', formData);
 
       // console.log('returnObj = ', returnObj);
 
@@ -684,19 +730,19 @@ const mapDispatchToProps = (dispatch) => {
       let gameCommunityRenewalList = null;
 
       if (returnObj.gameCommunityRenewalList) {
-        gameCommunityRenewalList = returnObj.gameCommunityRenewalList;
+        ({ gameCommunityRenewalList } = returnObj);
       }
 
       let gameCommunityAccessList = null;
 
       if (returnObj.gameCommunityAccessList) {
-        gameCommunityAccessList = returnObj.gameCommunityAccessList;
+        ({ gameCommunityAccessList } = returnObj);
       }
 
       let userCommunityAccessList = null;
 
       if (returnObj.userCommunityAccessList) {
-        userCommunityAccessList = returnObj.userCommunityAccessList;
+        ({ userCommunityAccessList } = returnObj);
       }
 
       // console.log('gameCommunityRenewalList = ', gameCommunityRenewalList);
@@ -715,79 +761,9 @@ const mapDispatchToProps = (dispatch) => {
 
 
 
-  bindActionObj.funcInitialAsynchronous = async (stateModel) => {
+  bindActionObj.funcInitialAsynchronous = async () => {
 
   };
-
-
-
-  // --------------------------------------------------
-  //   アプリ
-  // --------------------------------------------------
-
-  /**
-   * [funcSelectFooterCardType description]
-   * @param  {[type]}  stateModel [description]
-   * @param  {object}  stripeObj      [description]
-   * @return {Promise}            [description]
-   */
-  // bindActionObj.funcInsertShareButtonsPaidPlan = async (stateModel, stripeObj) => {
-  //
-  //   console.log('funcInsertShareButtonsPay');
-  //   console.log('stripeObj = ', stripeObj);
-  //   console.log('stripeToken = ', stripeObj.id);
-  //   console.log('stripeTokenType = ', stripeObj.type);
-  //   console.log('stripeEmail = ', stripeObj.email);
-  //
-  //   // --------------------------------------------------
-  //   //   Get Data
-  //   // --------------------------------------------------
-  //
-  //   const urlBase = stateModel.get('urlBase');
-  //
-  //
-  //   // --------------------------------------------------
-  //   //   FormData
-  //   // --------------------------------------------------
-  //
-  //   const formData = new FormData();
-  //
-  //   formData.append('apiType', 'insertShareButtonsPaidPlan');
-  //   formData.append('stripeToken', stripeObj.id);
-  //   formData.append('stripeTokenType', stripeObj.type);
-  //   formData.append('stripeEmail', stripeObj.email);
-  //
-  //
-  //   // --------------------------------------------------
-  //   //   Await & Dispatch
-  //   // --------------------------------------------------
-  //
-  //   try {
-  //
-  //
-  //     const returnObj = await funcPromise(urlBase, formData);
-  //
-  //     // console.log('returnObj = ', returnObj);
-  //
-  //     if (returnObj.error) {
-  //       throw new Error();
-  //     }
-  //
-  //
-  //     // console.log('gameCommunityRenewalList = ', gameCommunityRenewalList);
-  //     // console.log('gameCommunityAccessList = ', gameCommunityAccessList);
-  //     // console.log('userCommunityAccessList = ', userCommunityAccessList);
-  //
-  //
-  //     // dispatch(actions.funcSelectFooterCardType(cardType, gameCommunityRenewalList, gameCommunityAccessList, userCommunityAccessList));
-  //
-  //
-  //   } catch (e) {
-  //     // continue regardless of error
-  //   }
-  //
-  // };
-
 
 
 
