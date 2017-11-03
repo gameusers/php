@@ -9,6 +9,7 @@ class Controller_Admin extends Controller_Base
 	*/
 	public function before()
 	{
+
 		parent::before();
 
 
@@ -21,6 +22,7 @@ class Controller_Admin extends Controller_Base
 			throw new HttpNotFoundException;
 		}
 
+
 	}
 
 
@@ -29,7 +31,6 @@ class Controller_Admin extends Controller_Base
 	*/
 	public function action_index($community_id = null)
 	{
-
 
 
 		// --------------------------------------------------
@@ -41,7 +42,8 @@ class Controller_Admin extends Controller_Base
 		// 	if ( ! Auth::member(100)) return Response::forge(View::forge('maintenance_view'), 503);
 		// }
 
-// \Debug::dump(PHP_INT_SIZE);
+
+
 		// --------------------------------------------------
 		//   共通処理
 		// --------------------------------------------------
@@ -820,6 +822,17 @@ class Controller_Admin extends Controller_Base
 	public function action_phpinfo()
 	{
 		phpinfo();
+	}
+
+
+
+	/**
+	* data.json を読み込んで テーブル share_buttons_themes の data に入力する
+	*/
+	public function action_sharebuttonsdatajson()
+	{
+        $modelsShareButtons = new \React\Models\ShareButtons();
+        $arr = $modelsShareButtons->updateThemesData([]);
 	}
 
 

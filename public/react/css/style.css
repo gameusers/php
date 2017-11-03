@@ -368,6 +368,7 @@ main .content-s .feed_card_box {
   box-shadow: 1px 1px 1px #bababa;
   background-color: #fff;
   border-right: #f2f2f2 solid 10px;
+  width: 300px;
   margin: 20px 0 0;
   /*padding: 0 0 0 14px;*/
 
@@ -376,6 +377,7 @@ main .content-s .feed_card_box {
 }
 
 .menu .pc-twitter-timeline {
+  width: 300px;
   margin: 14px 0 0;
 }
 

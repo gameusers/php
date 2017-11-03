@@ -5,34 +5,6 @@
 
 
 /**
- * Promise / APIにアクセスしてJSONで取得したオブジェクトを返す
- * @param  {string}   urlBase  基本のURL
- * @param  {FormData} formData new FormData()で作成したインスタンス
- * @return {object}            オブジェクト
- */
-// export const promiseReactJsonPost = (urlBase, formData) => new Promise((resolve) => {
-//
-//   fetch(`${urlBase}api/react.json`, {
-//     method: 'POST',
-//     credentials: 'include',
-//     mode: 'same-origin',
-//     body: formData
-//   })
-//     .then((response) => {
-//       if (response.ok) {
-//         return response.json();
-//       }
-//     })
-//     .then((jsonObj) => {
-//       resolve(jsonObj);
-//     });
-//
-// });
-
-
-
-
-/**
  * APIにアクセスしてJSONで取得したオブジェクトを返す
  * @param  {string} url         API の URL
  * @param  {string} method      POST / GET

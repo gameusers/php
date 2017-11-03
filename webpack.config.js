@@ -37,6 +37,9 @@ const config = {
     new webpack.EnvironmentPlugin({
       NODE_ENV: env
     }),
+    new webpack.ProvidePlugin({
+      Promise: 'es6-promise-promise'
+    })
   ],
   devtool: 'source-map'
 };

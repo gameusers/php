@@ -27,7 +27,6 @@ class Controller_App extends Controller
         require_once(APPPATH . 'classes/react/configurations/config.php');
 
 
-
 		// --------------------------------------------------
 		//   メンテナンス中の場合、503 / メンテナンスビューを表示する
         //   メンテナンス中であっても管理者の場合は通常通りページを表示する
@@ -111,7 +110,6 @@ class Controller_App extends Controller
 
 
 
-
 		// --------------------------------------------------
 		//   ヘッダーのデータ取得
 		// --------------------------------------------------
@@ -141,7 +139,6 @@ class Controller_App extends Controller
         $modelsFooter = new \React\Models\Footer();
 		$footerArr = $modelsFooter->selectCard($tempArr);
 		$this->initialStateArr['footerMap'] = $footerArr;
-
 
 
 
@@ -202,9 +199,6 @@ class Controller_App extends Controller
             \Debug::dump($this->initialStateArr);
 		}
 		//exit();
-
-
-
 
 
 

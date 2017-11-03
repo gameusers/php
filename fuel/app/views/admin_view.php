@@ -48,3 +48,5 @@
 
 
 <p><a href="<?php echo URI_BASE . 'admin/phpinfo'?>">phpinfo</a></p>
+
+<p><a href="<?php echo URI_BASE . 'admin/sharebuttonsdatajson'?>">Share Buttons Update data.json</a></p>

@@ -319,11 +319,11 @@ class ShareButtons extends \Model_Crud
 
 
     // --------------------------------------------------
-    //   挿入
+    //   更新
     // --------------------------------------------------
 
 	/**
-	* data.json を読み込んで data に入力する
+	* data.json を読み込んで テーブル share_buttons_themes の data に入力する
 	* @param array $arr
 	* @return array
 	*/
@@ -394,7 +394,7 @@ class ShareButtons extends \Model_Crud
         // --------------------------------------------------
 
         foreach ($designArr as $key => $value) {
-            $url = "https://gameusers.org/react/contents/app/share-buttons/themes-design/{$value['name']}-{$value['id']}/data.json";
+            $url = "http://localhost/gameusers/public/react/contents/app/share-buttons/themes-design/{$value['name']}-{$value['id']}/data.json";
             $json = file_get_contents($url);
 
             $query = \DB::update('share_buttons_themes');
@@ -404,7 +404,7 @@ class ShareButtons extends \Model_Crud
         }
 
         foreach ($iconArr as $key => $value) {
-            $url = "https://gameusers.org/react/contents/app/share-buttons/themes-icon/{$value['name']}-{$value['id']}/data.json";
+            $url = "http://localhost/gameusers/public/react/contents/app/share-buttons/themes-icon/{$value['name']}-{$value['id']}/data.json";
             $json = file_get_contents($url);
 
             $query = \DB::update('share_buttons_themes');
@@ -428,7 +428,9 @@ class ShareButtons extends \Model_Crud
 
 
 
-
+    // --------------------------------------------------
+    //   挿入
+    // --------------------------------------------------
 
     /**
     * アプリ / シェアボタン / 有料プラン申し込み

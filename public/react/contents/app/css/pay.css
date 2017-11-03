@@ -2,12 +2,27 @@
    基本
 -------------------------------------------------- */
 
-/*.content-container {
-  border-radius: 6px;
-  box-shadow: 1px 1px 1px #bababa;
-  background-color: #fff;
-  padding: 20px;
-}*/
+.app-pay-list-1 {
+  list-style: disc;
+  margin: 30px 0 30px 25px;
+}
+
+.app-pay-list-1 li {
+  margin: 0 0 6px;
+}
+
+.app-pay-list-2 {
+  list-style: decimal;
+  margin: 0 0 0 15px;
+}
+
+.app-pay-list-2 li {
+  margin: 0 0 20px;
+}
+
+.app-pay-list-2 .li-bottom {
+  margin-bottom: 0;
+}
 
 .app-pay-form-stripe-button-margin {
   margin: 10px 10px 0 0;
