@@ -5,7 +5,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Switch, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import 'whatwg-fetch';
 import iziToast from 'izitoast';
 
@@ -21,19 +21,31 @@ import * as actions from '../actions/action';
 
 /**
  * 表示するコンテンツを Route で指定
+ * React v16 からの配列を返す方法を用いている
+ * コンテンツを追加した場合は最後にコンマをつけることを忘れないように
+ * @param {object} props props
+ */
+const ContentsApp = props => [
+  // <Route key={0} exact path="/app/share-buttons" render={() => <ContentsAppShareButtons {...props} />} />,
+  <Route key={1} exact path="/app/pay" render={() => <ContentsAppPay {...props} />} />,
+  <Route key={2} exact path="/app/pay/vendor" render={() => <ContentsAppPayVendor {...props} />} />
+];
+
+/**
+ * 表示するコンテンツを Route で指定
  * Switchを使っているのはなにかで囲わないといけないため
  * divを利用するとなぜか横幅がおかしくなる
  * React v16になると囲い不要で配列を返すことができるのでそちらを利用すること
  * https://stackoverflow.com/questions/43225239/error-adjacent-jsx-elements-must-be-wrapped-in-an-enclosing-tag
  * @param {object} props props
  */
-const ContentsApp = props => (
-  <Switch>
-    {/* <Route exact path="/app/share-buttons" render={() => <ContentsAppShareButtons {...props} />} /> */}
-    <Route exact path="/app/pay" render={() => <ContentsAppPay {...props} />} />
-    <Route exact path="/app/pay/vendor" render={() => <ContentsAppPayVendor {...props} />} />
-  </Switch>
-);
+// const ContentsApp = props => (
+//   <Switch>
+//     <Route exact path="/app/share-buttons" render={() => <ContentsAppShareButtons {...props} />} />
+//     <Route exact path="/app/pay" render={() => <ContentsAppPay {...props} />} />
+//     <Route exact path="/app/pay/vendor" render={() => <ContentsAppPayVendor {...props} />} />
+//   </Switch>
+// );
 
 
 

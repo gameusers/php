@@ -180,7 +180,7 @@ class Controller_Login extends Controller_Base
 			Config::get('js_bootstrap'),
 			Config::get('js_jquery_easing'),
 			Config::get('js_jquery_autosize'),
-			Config::get('js_jquery_fastclick'),
+			// Config::get('js_jquery_fastclick'),
 			Config::get('js_jquery_magnific_popup'),
 			Config::get('js_ladda_spin'),
 			Config::get('js_ladda'),

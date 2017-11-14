@@ -49,6 +49,23 @@ const MainMenuButtons = (props) => {
 
       <div className="icon-box">
 
+        <div className="icon-menu-box">
+
+          <div
+            className="icon"
+            onClick={() => props.funcMenuDrawerActive()}
+            onKeyPress={() => props.funcMenuDrawerActive()}
+            role="button"
+            tabIndex="0"
+          >
+            <span className="glyphicon glyphicon-list-alt icon-menu" aria-hidden="true" />
+          </div>
+
+          <div>メニュー</div>
+
+        </div>
+
+
         <div className="icon-arrow-box">
 
           <div
@@ -72,22 +89,6 @@ const MainMenuButtons = (props) => {
           </div>
 
           <div>ページ内移動</div>
-
-        </div>
-
-        <div className="icon-menu-box">
-
-          <div
-            className="icon"
-            onClick={() => props.funcMenuDrawerActive()}
-            onKeyPress={() => props.funcMenuDrawerActive()}
-            role="button"
-            tabIndex="0"
-          >
-            <span className="glyphicon glyphicon-list-alt icon-menu" aria-hidden="true" />
-          </div>
-
-          <div>メニュー</div>
 
         </div>
 

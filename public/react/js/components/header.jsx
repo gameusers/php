@@ -367,7 +367,7 @@ export default class Header extends React.Component {
 
 
       codeArr.push(
-        <li className={value.get('urlDirectory2') === this.props.urlDirectory2 && 'active'} key={key}>
+        <li className={value.get('urlDirectory2') === this.props.urlDirectory2 ? 'active' : ''} key={key}>
           <Link
             to={linkTo}
             onClick={() => this.props.funcUrlDirectory(value.get('urlDirectory1'), value.get('urlDirectory2'), value.get('activeUrlDirectory3'))}
@@ -519,6 +519,8 @@ Header.defaultProps = {
   userNo: null,
   playerId: null,
 
+
+  // notificationUnreadCount: null,
 
 
   headerHeroImageId: null,

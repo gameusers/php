@@ -106,6 +106,10 @@ class Controller_App extends Controller
             $this->initialStateArr['notificationMap']['unreadCount'] = $modelsNotification->selectUnreadCount($tempArr)['unreadCount'];
 
 
+        } else {
+
+            $this->initialStateArr['notificationMap']['unreadCount'] = 0;
+
         }
 
 
@@ -284,8 +288,8 @@ class Controller_App extends Controller
 		//    root-bundle.min.js
 		// ---------------------------------------------
 
-		array_push($jsArr, ['src' => URL_BASE . 'react/js/root-bundle.min.js?ver=1.0.0']);
-        array_push($jsArr, ['src' => URL_BASE . 'react/lib/gameusers-share-buttons/js/share-bundle.min.js']);
+		array_push($jsArr, ['src' => URL_BASE . 'react/js/root-bundle.min.js?ver=1.0.9']);
+        array_push($jsArr, ['src' => URL_BASE . 'react/lib/game-users-share-buttons/js/share-bundle.min.js?ver=1.0.9']);
 
 
 

@@ -716,8 +716,6 @@ const mapDispatchToProps = (dispatch) => {
 
     try {
 
-
-      // const returnObj = await promiseReactJsonPost(urlBase, formData);
       const returnObj = await fetchApi(`${urlBase}api/react.json`, 'POST', 'same-origin', 'same-origin', formData);
 
       // console.log('returnObj = ', returnObj);

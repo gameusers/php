@@ -202,7 +202,7 @@ define('JS_JQUERY_UI_CDN_ARR', [
 ]);
 
 define('JS_JQUERY_CONFIRM_CDN_ARR', [
-    'src' => 'https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.js'
+    'src' => 'https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js'
 ]);
 
 define('JS_JQUERY_AUTO_HIDING_NAVIGATION_ARR', [
@@ -226,7 +226,7 @@ define('JS_GOOGLE_ADSENSE_ARR', [
 ]);
 
 define('JS_GAMEUSERS_SHARE_BUTTONS_ARR', [
-    'src' => URL_BASE . 'react/lib/gameusers-share-buttons/js/share-bundle.min.js'
+    'src' => URL_BASE . 'react/lib/game-users-share-buttons/js/share-bundle.min.js'
 ]);
 
 define('JS_TWITTER_WIDGETS_ARR', [

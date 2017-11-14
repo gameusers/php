@@ -324,6 +324,7 @@ class ShareButtons extends \Model_Crud
 
 	/**
 	* data.json を読み込んで テーブル share_buttons_themes の data に入力する
+	* ローカル用
 	* @param array $arr
 	* @return array
 	*/

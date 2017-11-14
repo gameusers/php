@@ -3,7 +3,7 @@ const path = require('path');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 // 環境を記述 development or production
-const env = 'development';
+const env = 'production';
 
 const config = {
   entry: {
@@ -39,7 +39,13 @@ const config = {
     }),
     new webpack.ProvidePlugin({
       Promise: 'es6-promise-promise'
-    })
+    }),
+    // new webpack.IgnorePlugin(
+    //   /^\.\/locale$/, /moment$/
+    // ),
+    new webpack.ContextReplacementPlugin(
+      /moment[/\\]locale$/, /ja/
+    ),
   ],
   devtool: 'source-map'
 };

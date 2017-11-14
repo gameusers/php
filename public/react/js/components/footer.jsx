@@ -4,7 +4,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormGroup, FormControl } from 'react-bootstrap';
+import FormGroup from 'react-bootstrap/lib/FormGroup';
+import FormControl from 'react-bootstrap/lib/FormControl';
 import { List } from 'immutable';
 import Masonry from 'react-masonry-component';
 
@@ -55,7 +56,7 @@ export default class Footer extends React.Component {
 
   /**
    * サムネイルカードのコードを返す
-   * @return {array} コードの配列
+   * @return {string} コード
    */
   codeCard() {
 
@@ -67,28 +68,33 @@ export default class Footer extends React.Component {
     //   ループする Map を設定
     // --------------------------------------------------
 
-    let thumbnailMap = {};
+    let thumbnailList = [];
 
     if (this.props.footerCardType === 'gameCommunityAccess') {
-      thumbnailMap = this.props.footerCardGameCommunityAccessList;
+      thumbnailList = this.props.footerCardGameCommunityAccessList;
     } else if (this.props.footerCardType === 'userCommunityAccess') {
-      thumbnailMap = this.props.footerCardUserCommunityAccessList;
+      thumbnailList = this.props.footerCardUserCommunityAccessList;
     } else {
-      thumbnailMap = this.props.footerCardGameCommunityRenewalList;
+      thumbnailList = this.props.footerCardGameCommunityRenewalList;
     }
 
     // console.log('this.props.footerCardType = ', this.props.footerCardType);
     // console.log('this.props.footerCardGameCommunityAccessList = ', this.props.footerCardGameCommunityAccessList);
     // console.log('this.props.footerCardUserCommunityAccessList = ', this.props.footerCardUserCommunityAccessList);
     // console.log('this.props.footerCardGameCommunityRenewalList = ', this.props.footerCardGameCommunityRenewalList);
-    // console.log('thumbnailMap = ', thumbnailMap.toJS());
+    // console.log('thumbnailList = ', thumbnailList);
+
+    if (!thumbnailList) {
+      thumbnailList = List();
+    }
+
 
 
     // --------------------------------------------------
     //   Loop
     // --------------------------------------------------
 
-    thumbnailMap.entrySeq().forEach((e) => {
+    thumbnailList.entrySeq().forEach((e) => {
 
       const key = e[0];
       const value = e[1];
@@ -180,7 +186,7 @@ export default class Footer extends React.Component {
 
   render() {
     return (
-      <footer className={this.props.deviceType !== 'other' && 'footer-mobile'}>
+      <footer className={this.props.deviceType !== 'other' ? 'footer-mobile' : ''}>
 
         {this.codeCard()}
 

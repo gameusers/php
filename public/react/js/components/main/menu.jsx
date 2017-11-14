@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { List, Map } from 'immutable';
 import { VelocityComponent, VelocityTransitionGroup } from 'velocity-react';
-import Sticky from 'react-sticky-state';
 
 import AdGoogleAdsenseRectangle from '../advertisement/google-adsense-rectangle';
 
@@ -209,21 +208,19 @@ export default class MainMenu extends React.Component {
 
           <AdGoogleAdsenseRectangle {...this.props} />
 
-          <Sticky>
-            <div>
+          <div className="sticky">
 
-              {this.codeOther()}
+            {this.codeOther()}
 
-              <div className="share-buttons" id="gameusers-share-buttons-official">
-                <div id="gameusers-share-buttons" data-theme="gameusers1-m2a4oi43" />
-              </div>
-
-              <div className="pc-twitter-timeline">
-                <a className="twitter-timeline" height="400px" href="https://twitter.com/gameusersorg?ref_src=twsrc%5Etfw">Tweets by gameusersorg</a>
-              </div>
-
+            <div className="share-buttons" id="game-users-share-buttons-official">
+              <div id="game-users-share-buttons" data-theme="gameusers1-m2a4oi43" />
             </div>
-          </Sticky>
+
+            <div className="pc-twitter-timeline">
+              <a className="twitter-timeline" height="400px" href="https://twitter.com/gameusersorg?ref_src=twsrc%5Etfw">Tweets by gameusersorg</a>
+            </div>
+
+          </div>
 
         </nav>
       );

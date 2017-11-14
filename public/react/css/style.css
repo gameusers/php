@@ -4,7 +4,7 @@
 
 /* 参考： http://qiita.com/RinoTsuka/items/4181efd43d072e246519 2020年まで使えるfont-familyのベストプラクティス */
 
-@font-face {
+/*@font-face {
   font-family: "Original Yu Gothic";
   src: local("Yu Gothic");
   font-weight: 300;
@@ -32,16 +32,17 @@
   font-family: "Helvetica Neue";
   src: local("Helvetica Neue Regular");
   font-weight: 200;
-}
+}*/
 
 body {
   background-color: #ecf0f1;
   word-wrap: break-word;
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Original Yu Gothic", "Yu Gothic", YuGothic, Verdana, Meiryo, "M+ 1p", sans-serif;
+  /*font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Original Yu Gothic", "Yu Gothic", YuGothic, Verdana, Meiryo, "M+ 1p", sans-serif;*/
+  font-family: "游ゴシック Medium", "游ゴシック体", "Yu Gothic Medium", YuGothic, "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
 }
 
 /* IE10以上 */
-@media all and (-ms-high-contrast: none) {
+/*@media all and (-ms-high-contrast: none) {
   body {
     font-family: Verdana, Meiryo, sans-serif;
   }
@@ -51,7 +52,7 @@ body {
   body {
     font-family: Verdana, Meiryo, sans-serif;
   }
-}
+}*/
 
 p {
   margin: 0;
@@ -355,8 +356,6 @@ main .content-s .feed_card_box {
   position: relative;
   width: 300px;
   margin: 0 15px 0 0;
-  /*background-color: red;*/
-  /*overflow: hidden;*/
 }
 
 .menu .google-adsense-rectangle {
@@ -370,10 +369,7 @@ main .content-s .feed_card_box {
   border-right: #f2f2f2 solid 10px;
   width: 300px;
   margin: 20px 0 0;
-  /*padding: 0 0 0 14px;*/
-
   padding: 10px 0 0 10px;
-  /*background-color: yellow;*/
 }
 
 .menu .pc-twitter-timeline {
@@ -387,50 +383,8 @@ main .content-s .feed_card_box {
   position: sticky;
   top: 65px;
   left: 0;
-  /*width: 100%;*/
-  /*background-color: yellow;*/
-  /*width: 300px;
-  padding: 0 0 0 20px;*/
 }
 
-.menu .sticky.sticky-fixed.is-sticky {
-  margin-top: 0;
-  margin-bottom: 0;
-  position: fixed;
-  /*top: 20px;*/
-  left: 20px;
-  backface-visibility: hidden;
-  /*width: 100%;*/
-  /*width: 305px;
-  padding: 0 0 0 20px;*/
-}
-
-.menu .sticky.sticky-fixed.is-sticky:not([style*="margin-top"]) {
-  margin-top: 0 !important;
-}
-
-.menu .sticky.sticky-fixed.is-sticky:not([style*="margin-bottom"]) {
-  margin-bottom: 0 !important;
-}
-
-.menu .sticky.sticky-fixed.is-absolute {
-  position: absolute;
-  /*background-color: green;*/
-  /*width: 285px;*/
-  /*padding: 0;*/
-}
-
-
-/*main .menu .ad {
-  margin: 0 0 30px;
-}
-
-main .menu .ad_thumbnail_box {
-  display: flex;
-  flex-flow: row wrap;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}*/
 
 .menu .box {
   display: flex;
@@ -583,22 +537,10 @@ main .menu .ad_thumbnail_box {
 -------------------------------------------------- */
 
 .menu-s {
-  /*width: 40px;*/
-  /*position: -webkit-sticky;
-  position: sticky;
-  left: 0;
-  top: 0;
-  z-index: 1;*/
-
-  /*position: fixed;*/
-  /*right: 0;*/
-  /*bottom: 0;*/
   position: fixed;
   bottom: 0;
   width: 100%;
   padding: 5px;
-  /*border-top: #BDBDBD 1px solid;*/
-  /*box-shadow: 0 0 3px #000;*/
   background-color: #fff;
   z-index: 2;
 }
@@ -606,24 +548,18 @@ main .menu .ad_thumbnail_box {
 .menu-s .icon-box {
   display: flex;
   flex-direction: row;
-  /*justify-content: space-between;*/
-  /*align-items: center;*/
-  /*height: 200px;*/
-  /*background-color: orange;*/
+}
+
+.menu-s .icon-menu-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .menu-s .icon-arrow-box {
   display: flex;
   flex-direction: row;
   align-items: center;
-}
-
-.menu-s .icon-menu-box {
-  display: flex;
-  flex-direction: row;
-  /*justify-content: center;*/
-  align-items: center;
-  /*margin-left: auto;*/
   margin: 0 10px 0 auto;
 }
 

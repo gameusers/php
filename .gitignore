@@ -58,11 +58,11 @@ _testform.php
 # /public/dev/blog/wp-content/*
 # !/public/dev/blog/wp-content/plugins/
 # /public/dev/blog/wp-content/plugins/*
-# !/public/dev/blog/wp-content/plugins/gameusers-share-buttons/
+# !/public/dev/blog/wp-content/plugins/game-users-share-buttons/
 
 # Game Users Share Buttons のファイルを除外する
 /public/react/contents/app/share-buttons/*
-/public/react/lib/gameusers-share-buttons/*
+/public/react/lib/game-users-share-buttons/*
 
 /public/google*html
 

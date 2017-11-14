@@ -327,7 +327,7 @@ return array(
 	'css_jquery_perfect_scrollbar' => 'jquery/perfect-scrollbar.min.css',
 
 	// CSS Auto-Hiding Navigation / タブ
-	'css_jquery_auto_hiding_navigation' => 'jquery/auto-hiding-navigation.css',
+	'css_jquery_auto_hiding_navigation' => 'jquery/auto-hiding-navigation.min.css',
 
 	// CSS contextMenu / コンテキストメニュー
 	'css_jquery_contextMenu' => 'jquery/jquery.contextMenu.min.css',
@@ -359,7 +359,7 @@ return array(
 	'js_jquery' => 'jquery/jquery-3.1.1.min.js',
 
 	// Javascript jQuery Cookie
-	'js_jquery_cookie' => 'jquery/jquery.cookie.js',
+	'js_jquery_cookie' => 'jquery/jquery.cookie.min.js',
 
 	// Javascript Bootstrap デザイン
 	'js_bootstrap' => 'bootstrap/bootstrap-3.3.7.min.js',

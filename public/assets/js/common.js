@@ -104,7 +104,7 @@ $(function() {
 	//   FastClick適用
 	// --------------------------------------------------
 
-	FastClick.attach(document.body);
+	// FastClick.attach(document.body);
 
 
 	// --------------------------------------------------
