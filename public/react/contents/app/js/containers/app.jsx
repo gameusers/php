@@ -26,9 +26,9 @@ import * as actions from '../actions/action';
  * @param {object} props props
  */
 const ContentsApp = props => [
-  // <Route key={0} exact path="/app/share-buttons" render={() => <ContentsAppShareButtons {...props} />} />,
-  <Route key={1} exact path="/app/pay" render={() => <ContentsAppPay {...props} />} />,
-  <Route key={2} exact path="/app/pay/vendor" render={() => <ContentsAppPayVendor {...props} />} />
+  // <Route key="/app/share-buttons" exact path="/app/share-buttons" render={() => <ContentsAppShareButtons {...props} />} />,
+  <Route key="/app/pay" exact path="/app/pay" render={() => <ContentsAppPay {...props} />} />,
+  <Route key="/app/pay/vendor" exact path="/app/pay/vendor" render={() => <ContentsAppPayVendor {...props} />} />
 ];
 
 /**

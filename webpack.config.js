@@ -45,7 +45,7 @@ const config = {
     // ),
     new webpack.ContextReplacementPlugin(
       /moment[/\\]locale$/, /ja/
-    ),
+    )
   ],
   devtool: 'source-map'
 };
