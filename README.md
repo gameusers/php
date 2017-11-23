@@ -2,7 +2,7 @@
 ![Game Users Banner](https://gameusers.org/assets/img/social/ogp_image.jpg)
 
 
-[![PHP](https://img.shields.io/badge/PHP-v7.1-red.svg)](http://php.net/manual/ja/langref.php)
+[![PHP](https://img.shields.io/badge/PHP-v7.0-red.svg)](http://php.net/manual/ja/langref.php)
 [![FuelPHP](https://img.shields.io/badge/FuelPHP-v1.8.0-AC58FA.svg)](https://fuelphp.com/)
 [![Apache](https://img.shields.io/badge/Apache-v2.4-green.svg)](https://httpd.apache.org/)
 [![MySQL / MariaDB](https://img.shields.io/badge/MySQL%20%2F%20MariaDB-v5.4%20%2F%20v10.1-5882FA.svg)](https://mariadb.org/)
@@ -17,7 +17,7 @@
 <br /><br />
 
 
-## 現在更新している内容 2017/10/15
+## 現在更新している内容 2017/11/23
 Game UsersをReactで書き直しています。React化するに当たってファイルをひとところにまとめようと思い、reactというディレクトリー内に必要なファイルを集めています。現在はサイトを構成するファイルがあちこちに散在しているのですが、これからは以下のファイル、ディレクトリーだけで動作するようにしたいです。
 <br /><br />
 
@@ -33,21 +33,21 @@ Game UsersをReactで書き直しています。React化するに当たってフ
 
 
 #### 編集中のページ
-現在、オリジナルのシェアボタン（ソーシャルボタン）を作成しており、そのシェアボタンの公式ページをGame Users内のアプリケーションページ（関連アプリを紹介するページ）に設置しようと考えています。ゲームには直接関係のないコンテンツなのですが、せっかくなのでみなさんに使ってもらえるようにしようと思っています。
+現在、オリジナルのシェアボタン（ソーシャルボタン）を作成しており、そのシェアボタンの公式ページをGame Users内のアプリケーションページ（関連アプリを紹介するページ）に設置しました。
 
 https://localhost/gameusers/public/app/share-buttons<br />
 https://localhost/gameusers/public/app/pay
 
-※ シェアボタン部分のコードはライセンスがGPLのため、このリポジトリに含めて公開することができません（ライセンス汚染が発生するため）現在はシェアボタンのURLにアクセスしてもファイルが足りないため、正常に表示されません。完成したら別リポジトリで公開する予定で、そのファイルを特定の場所に設置することで動作するようになります。ややこしくて申し訳ありません。
+※ シェアボタン部分のコードはライセンスがGPLのため、このリポジトリに含めて公開することができません（ライセンス汚染が発生するため）そのため、シェアボタンのURLにアクセスしても正常に表示されません。ややこしくて申し訳ありません。
 
 2つめのURL、支払いページは正常に動作します。<br /><br />
 
 
 ## 必要な開発環境
 
-PHP 7.1以上  
-Apache 2.4以上  
-MySQL 5.4以上 または MariaDB 10.1以上
+PHP 7.0 以上  
+Apache 2.4 以上  
+MySQL 5.4 以上 または MariaDB 10.1 以上
 
 PHPは7以上でないと正常に動作しません。Windows版のXAMPPで開発していますので、開発環境を簡単に用意したい場合は、XAMPPのPHP7バージョンをインストールしてもらえば同じように動作すると思います。
 
@@ -73,7 +73,7 @@ cdコマンド（上記はXAMPPの場合）でgameusersディレクトリに移�
 - [Node.jsをイントールしよう！](https://gameusers.org/dev/blog/environment/node-js-install)
 - [npmの基本的な使い方](https://gameusers.org/dev/blog/environment/npm-tutorial)
 
-2017/9/16 現在、パッケージ関連で把握している問題
+2017/11/23 現在、パッケージ関連で把握している問題
 - [React関連パッケージのバージョンによって起こる問題](https://gameusers.org/dev/blog/notes/20170916-1)
 <br /><br />
 

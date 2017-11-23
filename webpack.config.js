@@ -40,9 +40,6 @@ const config = {
     new webpack.ProvidePlugin({
       Promise: 'es6-promise-promise'
     }),
-    // new webpack.IgnorePlugin(
-    //   /^\.\/locale$/, /moment$/
-    // ),
     new webpack.ContextReplacementPlugin(
       /moment[/\\]locale$/, /ja/
     )

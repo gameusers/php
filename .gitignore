@@ -38,7 +38,7 @@ desktop.ini
 _test.js
 _test.php
 _testform.php
-.atomignore
+/public/test/
 /fuel/app/classes/controller/test.php
 /fuel/app/views/test_view.php
 
