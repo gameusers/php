@@ -475,6 +475,7 @@ class Notification extends \Model_Crud
 
         foreach ($dataArr as $key => $value) {
 
+            // unset($dbArr);
             $tempArr = [];
 
             $tempArr['notificationId'] = $value['notificationId'];
@@ -488,7 +489,39 @@ class Notification extends \Model_Crud
 
 
 
-            if ($value['argument']) {
+            if ($value['type1'] === 'uc' && $value['type2'] === 'announcement') {
+
+
+                // --------------------------------------------------
+                //   データ入力
+                // --------------------------------------------------
+
+                $tempArr['contentsType'] = ['userCommunity', 'announcement'];
+                $tempArr['pageName'] = $value['communityName'];
+                $tempArr['communityNo'] = (int) $value['communityNo'];
+                $tempArr['communityId'] = $value['communityId'];
+                $tempArr['communityThumbnail'] = $value['communityThumbnail'] ? true : false;
+                $tempArr['title'] = '告知';
+                $tempArr['comment'] = $value['comment'];
+
+
+            } else if ($value['type1'] === 'uc' && $value['type2'] === 'mail_all') {
+
+
+                // --------------------------------------------------
+                //   データ入力
+                // --------------------------------------------------
+
+                $tempArr['contentsType'] = ['userCommunity', 'mail_all'];
+                $tempArr['pageName'] = $value['communityName'];
+                $tempArr['communityNo'] = (int) $value['communityNo'];
+                $tempArr['communityId'] = $value['communityId'];
+                $tempArr['communityThumbnail'] = $value['communityThumbnail'] ? true : false;
+                $tempArr['title'] = '告知';
+                $tempArr['comment'] = $value['comment'];
+
+
+            } else if ($value['argument']) {
 
                 $argumentArr = unserialize($value['argument']);
 
@@ -498,6 +531,7 @@ class Notification extends \Model_Crud
                 $bbsReplyNo = $argumentArr['bbs_reply_no'] ?? null;
 
                 $recruitmentId = $argumentArr['recruitment_id'] ?? null;
+
 
 
                 if (strpos($value['type2'], 'bbs_') !== false) {
@@ -678,6 +712,7 @@ class Notification extends \Model_Crud
                         $dbArr = $query->execute()->current();
 
 
+
                         // --------------------------------------------------
                         //   データ入力
                         // --------------------------------------------------
@@ -694,7 +729,6 @@ class Notification extends \Model_Crud
                         $tempArr['bbsCommentNo'] = (int) $dbArr['bbsCommentNo'];
                         $tempArr['bbsReplyNo'] = (int) $dbArr['bbsReplyNo'];
                         $tempArr['commentReplyTotal'] = $dbArr['commentTotal'] + $dbArr['replyTotal'];
-
 
                     }
 
@@ -739,52 +773,52 @@ class Notification extends \Model_Crud
                     $tempArr['commentReplyTotal'] = (int) $dbArr['commentReplyTotal'];
 
 
-									} else if ($value['type2'] === 'recruitment_reply') {
+				} else if ($value['type2'] === 'recruitment_reply') {
 
-											// テーブル notifications の argument に recruitment_reply_id がないため
-											// 返信を読み込み直すことができない
-											// notifications の comment をそのまま表示しているので投稿後の編集は反映されない
-											// また画像や動画も表示されない
-
-
-	                    // --------------------------------------------------
-	                    //   データ取得
-	                    // --------------------------------------------------
-
-	                    $query = \DB::select(
-	                        ['recruitment.recruitment_id', 'recruitmentId'],
-	                        // 'recruitment.image',
-	                        // 'recruitment.movie',
-	                        ['recruitment.etc_title', 'title'],
-	                        ['recruitment.comment', 'comment'],
-	                        ['game_community.recruitment_total_' . $language, 'commentReplyTotal']
-	                    )->from('recruitment');
-
-	                    $query->join('game_community', 'LEFT');
-	                    $query->on('recruitment.game_no', '=', 'game_community.game_no');
-
-	                    $query->where('recruitment.recruitment_id', '=', $recruitmentId);
-	                    $query->where('recruitment.on_off', '=', 1);
-
-	                    $dbArr = $query->execute()->current();
+					// テーブル notifications の argument に recruitment_reply_id がないため
+					// 返信を読み込み直すことができない
+					// notifications の comment をそのまま表示しているので投稿後の編集は反映されない
+					// また画像や動画も表示されない
 
 
-	                    // --------------------------------------------------
-	                    //   データ入力
-	                    // --------------------------------------------------
+                    // --------------------------------------------------
+                    //   データ取得
+                    // --------------------------------------------------
 
-	                    $tempArr['contentsType'] = ['gameCommunity', 'recruitment', 'recruitment'];
-	                    $tempArr['pageName'] = $value['gameName'];
-	                    $tempArr['gameNo'] = (int) $value['gameNo'];
-	                    $tempArr['gameId'] = $value['gameId'];
-	                    $tempArr['gameThumbnail'] = $value['gameThumbnail'] ? true : false;
-	                    $tempArr['title'] = $dbArr['title'];
-	                    $tempArr['comment'] = $value['comment'];
-	                    $tempArr['recruitmentId'] = $dbArr['recruitmentId'];
-	                    $tempArr['commentReplyTotal'] = (int) $dbArr['commentReplyTotal'];
+                    $query = \DB::select(
+                        ['recruitment.recruitment_id', 'recruitmentId'],
+                        // 'recruitment.image',
+                        // 'recruitment.movie',
+                        ['recruitment.etc_title', 'title'],
+                        ['recruitment.comment', 'comment'],
+                        ['game_community.recruitment_total_' . $language, 'commentReplyTotal']
+                    )->from('recruitment');
+
+                    $query->join('game_community', 'LEFT');
+                    $query->on('recruitment.game_no', '=', 'game_community.game_no');
+
+                    $query->where('recruitment.recruitment_id', '=', $recruitmentId);
+                    $query->where('recruitment.on_off', '=', 1);
+
+                    $dbArr = $query->execute()->current();
 
 
-	              } else {
+                    // --------------------------------------------------
+                    //   データ入力
+                    // --------------------------------------------------
+
+                    $tempArr['contentsType'] = ['gameCommunity', 'recruitment', 'recruitment'];
+                    $tempArr['pageName'] = $value['gameName'];
+                    $tempArr['gameNo'] = (int) $value['gameNo'];
+                    $tempArr['gameId'] = $value['gameId'];
+                    $tempArr['gameThumbnail'] = $value['gameThumbnail'] ? true : false;
+                    $tempArr['title'] = $dbArr['title'];
+                    $tempArr['comment'] = $value['comment'];
+                    $tempArr['recruitmentId'] = $dbArr['recruitmentId'];
+                    $tempArr['commentReplyTotal'] = (int) $dbArr['commentReplyTotal'];
+
+
+				} else {
                     continue;
                 }
 
@@ -821,10 +855,30 @@ class Notification extends \Model_Crud
                 //     \Debug::dump($dbArr);
                 // }
 
+            }
+
+
+
+            // --------------------------------------------------
+            //   配列に追加
+            // --------------------------------------------------
+
+            if (count($tempArr) > 0) {
+
+
+                // --------------------------------------------------
+                //   削除されていた場合の処理
+                // --------------------------------------------------
+
+                if ( ! $tempArr['comment']) {
+                    $tempArr['deleted'] = true;
+                    $tempArr['comment'] = 'Deleted Comment';
+                }
+
 
                 array_push($notificationArr, $tempArr);
-
             }
+
 
         }
 

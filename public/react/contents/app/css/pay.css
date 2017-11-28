@@ -3,7 +3,7 @@
 -------------------------------------------------- */
 
 .app-pay-list-1 {
-  list-style: disc;
+  list-style-type: disc;
   margin: 30px 0 30px 25px;
 }
 
@@ -12,7 +12,7 @@
 }
 
 .app-pay-list-2 {
-  list-style: decimal;
+  list-style-type: decimal;
   margin: 0 0 0 15px;
 }
 

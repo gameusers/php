@@ -129,7 +129,7 @@ define('LIMIT_NOTIFICATION_PRESERVATION_TERM', '-3 months');
 define('LIMIT_NOTIFICATION_ARR', [
     'smartphone' => 5,
     'tablet' => 5,
-    'other' => 1
+    'other' => 10
 ]);
 
 
@@ -281,9 +281,31 @@ if (Fuel::$env === 'production') {
 // ---------------------------------------------
 
 $this->initialStateArr['metaMap']['ja']['app']['share-buttons']['title'] = 'Game Users Share Buttons';
-$this->initialStateArr['metaMap']['ja']['app']['share-buttons']['keywords'] = 'シェアボタン,ソーシャルボタン';
+$this->initialStateArr['metaMap']['ja']['app']['share-buttons']['keywords'] = 'ゲームユーザーズ,シェアボタン,ソーシャルボタン';
 $this->initialStateArr['metaMap']['ja']['app']['share-buttons']['description'] = 'Twitter、Facebook、Google+など（全10サイト）をシェアすることが可能です。自由度の高いカスタマイズが行え、他にないオリジナルのシェアボタンを作成できます。';
 $this->initialStateArr['metaMap']['ja']['app']['share-buttons']['ogType'] = 'article';
+
+
+// ---------------------------------------------
+//   - アプリケーション / シェアボタン / テーマ募集
+//   https://gameusers.org/app/share-buttons/recruitment
+// ---------------------------------------------
+
+$this->initialStateArr['metaMap']['ja']['app']['share-buttons']['recruitment']['title'] = 'テーマ募集 - Game Users Share Buttons';
+$this->initialStateArr['metaMap']['ja']['app']['share-buttons']['recruitment']['keywords'] = 'ゲームユーザーズ,シェアボタン,ソーシャルボタン';
+$this->initialStateArr['metaMap']['ja']['app']['share-buttons']['recruitment']['description'] = 'シェアボタンのテーマを募集しています。採用された方には、ビジネスプラン（￥3000 相当）をプレゼント！';
+$this->initialStateArr['metaMap']['ja']['app']['share-buttons']['recruitment']['ogType'] = 'article';
+
+
+// ---------------------------------------------
+//   - アプリケーション / シェアボタン / キャンペーン
+//   https://gameusers.org/app/share-buttons/campaign
+// ---------------------------------------------
+
+$this->initialStateArr['metaMap']['ja']['app']['share-buttons']['campaign']['title'] = 'キャンペーン - Game Users Share Buttons';
+$this->initialStateArr['metaMap']['ja']['app']['share-buttons']['campaign']['keywords'] = 'ゲームユーザーズ,シェアボタン,ソーシャルボタン';
+$this->initialStateArr['metaMap']['ja']['app']['share-buttons']['campaign']['description'] = 'ブログでシェアボタンを紹介して、ビジネスプラン（￥3000 相当）をもらおう！';
+$this->initialStateArr['metaMap']['ja']['app']['share-buttons']['campaign']['ogType'] = 'article';
 
 
 // ---------------------------------------------

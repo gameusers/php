@@ -2,57 +2,13 @@
    基本
 -------------------------------------------------- */
 
-/* 参考： http://qiita.com/RinoTsuka/items/4181efd43d072e246519 2020年まで使えるfont-familyのベストプラクティス */
-
-/*@font-face {
-  font-family: "Original Yu Gothic";
-  src: local("Yu Gothic");
-  font-weight: 300;
-}
-
-@font-face {
-  font-family: "Original Yu Gothic";
-  src: local("Yu Gothic");
-  font-weight: 500;
-}
-
-@font-face {
-  font-family: "Original Yu Gothic";
-  src: local("Yu Gothic");
-  font-weight: bold;
-}
-
-@font-face {
-  font-family: "Helvetica Neue";
-  src: local("Helvetica Neue Regular");
-  font-weight: 100;
-}
-
-@font-face {
-  font-family: "Helvetica Neue";
-  src: local("Helvetica Neue Regular");
-  font-weight: 200;
-}*/
-
 body {
   background-color: #ecf0f1;
   word-wrap: break-word;
-  /*font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Original Yu Gothic", "Yu Gothic", YuGothic, Verdana, Meiryo, "M+ 1p", sans-serif;*/
-  font-family: "游ゴシック Medium", "游ゴシック体", "Yu Gothic Medium", YuGothic, "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "メイリオ", Meiryo, "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", sans-serif;
+  line-height: 1.8em;
 }
 
-/* IE10以上 */
-/*@media all and (-ms-high-contrast: none) {
-  body {
-    font-family: Verdana, Meiryo, sans-serif;
-  }
-}
-
-@media all and (-ms-high-contrast: active) {
-  body {
-    font-family: Verdana, Meiryo, sans-serif;
-  }
-}*/
 
 p {
   margin: 0;
@@ -711,6 +667,7 @@ footer .contents-type {
 
 footer .content-card-box {
   width: 100%;
+  line-height: 1em;
 }
 
 footer .content-card-box .select-type {

@@ -48,7 +48,7 @@ class Controller_App extends Controller
             throw new HttpNotFoundException;
         }
 
-        $pattern = '/^(vendor)$/';
+        $pattern = '/^(recruitment|campaign|vendor)$/';
 
         if ($urlDirectory2 && ! preg_match($pattern, $urlDirectory2)) {
             throw new HttpNotFoundException;
@@ -288,8 +288,8 @@ class Controller_App extends Controller
 		//    root-bundle.min.js
 		// ---------------------------------------------
 
-		array_push($jsArr, ['src' => URL_BASE . 'react/js/root-bundle.min.js?ver=1.1.3.0']);
-        array_push($jsArr, ['src' => URL_BASE . 'react/lib/game-users-share-buttons/js/share-bundle.min.js?ver=1.1.3.0']);
+		array_push($jsArr, ['src' => URL_BASE . 'react/js/root-bundle.min.js?ver=1.1.6.6']);
+        array_push($jsArr, ['src' => URL_BASE . 'react/lib/game-users-share-buttons/js/share-bundle.min.js?ver=1.1.4.0']);
 
 
 

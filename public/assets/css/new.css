@@ -1,4 +1,4 @@
-@font-face {
+/*@font-face {
 	font-family: 'Yu Gothic';
 	src: local('Yu Gothic Medium');
 	font-weight: 100;
@@ -32,24 +32,25 @@
   font-family: "Helvetica Neue";
   src: local("Helvetica Neue Regular");
   font-weight: 200;
-}
+}*/
 
 
 body {
 	background-color: #ECF0F1;
 
 	/* http://qiita.com/RinoTsuka/items/4181efd43d072e246519 2020年まで使えるfont-familyのベストプラクティス*/
-	font-family: "-apple-system", "Helvetica Neue", "Yu Gothic", YuGothic, Verdana, Meiryo, "M+ 1p", sans-serif;
-
+	/*font-family: "-apple-system", "Helvetica Neue", "Yu Gothic", YuGothic, Verdana, Meiryo, "M+ 1p", sans-serif;*/
+  font-family: -apple-system, BlinkMacSystemFont, "メイリオ", Meiryo, "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", sans-serif;
+  /*line-height: 1.8em;*/
 	word-wrap: break-word;
 }
 
 /* IE10以上 */
-@media all and (-ms-high-contrast: none) {
+/*@media all and (-ms-high-contrast: none) {
   body {
     font-family: Verdana, Meiryo, sans-serif;
   }
-}
+}*/
 
 p {
 	margin: 0;

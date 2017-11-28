@@ -118,9 +118,9 @@ return array(
 		 * SMTP settings
 		 */
 		'smtp' => array(
-			'host'     => 'mail.gameusers.org',
+			'host'     => '',
 			'port'     => 587,
-			'username' => 'test@gameusers.org',
+			'username' => '',
 			'password' => '',
 			'timeout'  => 5,
 			'starttls' => false,

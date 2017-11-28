@@ -12,6 +12,7 @@ import FormControl from 'react-bootstrap/lib/FormControl';
 import Checkbox from 'react-bootstrap/lib/Checkbox';
 import HelpBlock from 'react-bootstrap/lib/HelpBlock';
 import Alert from 'react-bootstrap/lib/Alert';
+import iziToast from 'izitoast';
 
 import StripeCheckout from 'react-stripe-checkout';
 
@@ -34,15 +35,23 @@ export default class ContentsAppPay extends React.Component {
   // }
 
 
+  funcButtonError() {
+    iziToast.error({
+      title: 'Error',
+      message: 'フォームの内容に問題があります。'
+    });
+  }
+
+
   buttonDisabled() {
 
-    let disabled = false;
-
-    if (this.props.contentsAppPayFormShareButtonsWebSiteNameError || this.props.contentsAppPayFormShareButtonsWebSiteUrlError || this.props.contentsAppPayFormShareButtonsAgreementError) {
-      disabled = true;
-    }
-
-    return disabled;
+    // let disabled = false;
+    //
+    // if (this.props.contentsAppPayFormShareButtonsWebSiteNameError || this.props.contentsAppPayFormShareButtonsWebSiteUrlError || this.props.contentsAppPayFormShareButtonsAgreementError) {
+    //   disabled = true;
+    // }
+    //
+    // return disabled;
 
   }
 
@@ -185,47 +194,69 @@ export default class ContentsAppPay extends React.Component {
               </FormGroup>
             </div>
 
-            <StripeCheckout
-              token={e => this.props.funcInsertShareButtonsPaidPlan(
-                this.props.stateModel,
-                this.props.stateAppModel,
-                'premium',
-                e
-              )}
-              stripeKey={this.props.stripePublishableKey}
-              name="Game Users Share Buttons"
-              description="プレミアムプラン申し込み"
-              image={`${this.props.urlBase}react/contents/app/img/free.png`}
-              zipCode
-              locale="auto"
-              amount={1000}
-              currency="JPY"
-            >
-              <Button className="btn btn-info btn-sm app-pay-form-stripe-button-margin" disabled={this.buttonDisabled()}>
-                <Glyphicon glyph="leaf" /> プレミアムプランに申し込む
-              </Button>
-            </StripeCheckout>
 
-            <StripeCheckout
-              token={e => this.props.funcInsertShareButtonsPaidPlan(
-                this.props.stateModel,
-                this.props.stateAppModel,
-                'business',
-                e
-              )}
-              stripeKey={this.props.stripePublishableKey}
-              name="Game Users Share Buttons"
-              description="ビジネスプラン申し込み"
-              image={`${this.props.urlBase}react/contents/app/img/free.png`}
-              zipCode
-              locale="auto"
-              amount={3000}
-              currency="JPY"
-            >
-              <Button className="btn btn-success btn-sm app-pay-form-stripe-button-margin" disabled={this.buttonDisabled()}>
-                <Glyphicon glyph="euro" /> ビジネスプランに申し込む
-              </Button>
-            </StripeCheckout>
+            {(this.props.contentsAppPayFormShareButtonsWebSiteNameError || this.props.contentsAppPayFormShareButtonsWebSiteUrlError || this.props.contentsAppPayFormShareButtonsAgreementError)
+              ?
+                <Button
+                  className="btn btn-info btn-sm app-pay-form-stripe-button-margin"
+                  onClick={() => this.funcButtonError()}
+                >
+                  <Glyphicon glyph="leaf" /> プレミアムプランに申し込む2
+                </Button>
+              :
+                <StripeCheckout
+                  token={e => this.props.funcInsertShareButtonsPaidPlan(
+                    this.props.stateModel,
+                    this.props.stateAppModel,
+                    'premium',
+                    e
+                  )}
+                  stripeKey={this.props.stripePublishableKey}
+                  name="Game Users Share Buttons"
+                  description="プレミアムプラン申し込み"
+                  image={`${this.props.urlBase}react/contents/app/img/free.png`}
+                  zipCode
+                  locale="auto"
+                  amount={1000}
+                  currency="JPY"
+                >
+                  <Button className="btn btn-info btn-sm app-pay-form-stripe-button-margin">
+                    <Glyphicon glyph="leaf" /> プレミアムプランに申し込む
+                  </Button>
+                </StripeCheckout>
+            }
+
+
+            {(this.props.contentsAppPayFormShareButtonsWebSiteNameError || this.props.contentsAppPayFormShareButtonsWebSiteUrlError || this.props.contentsAppPayFormShareButtonsAgreementError)
+              ?
+                <Button
+                  className="btn btn-success btn-sm app-pay-form-stripe-button-margin"
+                  onClick={() => this.funcButtonError()}
+                >
+                  <Glyphicon glyph="euro" /> ビジネスプランに申し込む
+                </Button>
+              :
+                <StripeCheckout
+                  token={e => this.props.funcInsertShareButtonsPaidPlan(
+                    this.props.stateModel,
+                    this.props.stateAppModel,
+                    'business',
+                    e
+                  )}
+                  stripeKey={this.props.stripePublishableKey}
+                  name="Game Users Share Buttons"
+                  description="ビジネスプラン申し込み"
+                  image={`${this.props.urlBase}react/contents/app/img/free.png`}
+                  zipCode
+                  locale="auto"
+                  amount={3000}
+                  currency="JPY"
+                >
+                  <Button className="btn btn-success btn-sm app-pay-form-stripe-button-margin">
+                    <Glyphicon glyph="euro" /> ビジネスプランに申し込む
+                  </Button>
+                </StripeCheckout>
+            }
 
 
             {this.props.contentsAppPayFormShareButtonsPurchased &&
@@ -258,16 +289,16 @@ ContentsAppPay.propTypes = {
   stripePublishableKey: PropTypes.string.isRequired,
 
   contentsAppPayFormShareButtonsWebSiteName: PropTypes.string.isRequired,
-  contentsAppPayFormShareButtonsWebSiteNameValidationState: PropTypes.string.isRequired,
-  contentsAppPayFormShareButtonsWebSiteNameError: PropTypes.bool.isRequired,
-
   contentsAppPayFormShareButtonsWebSiteUrl: PropTypes.string.isRequired,
-  contentsAppPayFormShareButtonsWebSiteUrlValidationState: PropTypes.string.isRequired,
-  contentsAppPayFormShareButtonsWebSiteUrlError: PropTypes.bool.isRequired,
-
   contentsAppPayFormShareButtonsAgreement: PropTypes.bool.isRequired,
-  contentsAppPayFormShareButtonsAgreementValidationState: PropTypes.string.isRequired,
+
+  contentsAppPayFormShareButtonsWebSiteNameError: PropTypes.bool.isRequired,
+  contentsAppPayFormShareButtonsWebSiteUrlError: PropTypes.bool.isRequired,
   contentsAppPayFormShareButtonsAgreementError: PropTypes.bool.isRequired,
+
+  contentsAppPayFormShareButtonsWebSiteNameValidationState: PropTypes.string,
+  contentsAppPayFormShareButtonsWebSiteUrlValidationState: PropTypes.string,
+  contentsAppPayFormShareButtonsAgreementValidationState: PropTypes.string,
 
   contentsAppPayFormShareButtonsPurchased: PropTypes.bool.isRequired,
 
@@ -285,5 +316,9 @@ ContentsAppPay.propTypes = {
 };
 
 ContentsAppPay.defaultProps = {
+
+  contentsAppPayFormShareButtonsWebSiteNameValidationState: null,
+  contentsAppPayFormShareButtonsWebSiteUrlValidationState: null,
+  contentsAppPayFormShareButtonsAgreementValidationState: null,
 
 };

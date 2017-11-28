@@ -1,0 +1,50 @@
+/* --------------------------------------------------
+   テーマ募集
+-------------------------------------------------- */
+
+.app-share-buttons-recruitment-list-1 {
+  list-style-type: decimal;
+  margin: 0 0 0 20px;
+}
+
+.app-share-buttons-recruitment-list-1 li {
+  margin: 0 0 20px;
+}
+
+.app-share-buttons-recruitment-list-1 .li-bottom {
+  margin-bottom: 0;
+}
+
+.app-share-buttons-recruitment-form-group-margin {
+  margin: 0 0 30px;
+}
+
+.app-share-buttons-recruitment-form-group-margin-bottom {
+  margin: 0 0 20px;
+}
+
+
+/* --------------------------------------------------
+   キャンペーン
+-------------------------------------------------- */
+
+.app-share-buttons-campaign-list-1 {
+  list-style-type: disc;
+  margin: 0 0 0 20px;
+}
+
+.app-share-buttons-campaign-list-1 li {
+  margin: 0 0 20px;
+}
+
+.app-share-buttons-campaign-list-1 .li-bottom {
+  margin-bottom: 0;
+}
+
+.app-share-buttons-campaign-form-group-margin {
+  margin: 0 0 30px;
+}
+
+.app-share-buttons-campaign-form-group-margin-bottom {
+  margin: 0 0 20px;
+}

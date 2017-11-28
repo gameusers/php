@@ -43,21 +43,46 @@ class Controller_Api extends Controller_Rest
 
             $_POST['csrfToken'] = '92fab32bb41475af1a8896e24829479953c81ce4cdda318e099a39f10db3c6e51ee589c8138c65a1adbdd17cf306cb557b3e26fb28d3ace5fdd1ceee73764291';
 
-			// $_POST['apiType'] = 'selectNotification';
+			$_POST['apiType'] = 'selectNotification';
             // $_POST['readType'] = 'unread';
-            // // $_POST['readType'] = 'alreadyRead';
-            // $_POST['page'] = 2;
+            $_POST['readType'] = 'alreadyRead';
+            $_POST['page'] = 1;
 
 
             // $_POST['apiType'] = 'updateAllUnreadToAlreadyRead';
 
-            $_POST['apiType'] = 'insertShareButtonsPaidPlan';
-            $_POST['plan'] = 'business';
-            $_POST['webSiteName'] = 'Test Site';
-            $_POST['webSiteUrl'] = 'https://www.example.com/';
+
+            // $_POST['apiType'] = 'sendMailRecruitmentTheme';
+            // $_POST['authorName'] = 'authorName';
+            // $_POST['authorUrl'] = 'authorUrl';
+            // // $_POST['file'] = 'file';
+            // $_POST['mail'] = 'mail@example.com';
+            // $_POST['webSiteName'] = 'webSiteName';
+            // $_POST['webSiteUrl'] = 'webSiteUrl';
+            // $_POST['comment'] = 'comment';
+
+
+            // $_POST['apiType'] = 'sendMailCampaign';
+            // $_POST['blogName'] = 'blogName';
+            // $_POST['blogUrl'] = 'blogUrl';
+            // $_POST['articleUrl'] = 'articleUrl';
+            // $_POST['mail'] = 'mail@example.com';
+            // $_POST['comment'] = 'comment';
+
+
+            // $_POST['apiType'] = 'insertShareButtonsPaidPlan';
+            // $_POST['plan'] = 'business';
+            // $_POST['webSiteName'] = 'Test Site';
+            // $_POST['webSiteUrl'] = 'https://www.example.com/';
 
 		}
 
+
+        // --------------------------------------------------
+        //  戻り値の配列
+        // --------------------------------------------------
+
+        $arr['error'] = false;
 
 
 		try {
@@ -129,8 +154,66 @@ class Controller_Api extends Controller_Rest
 
 
 
+
+
             // --------------------------------------------------
-            //   アプリ / シェアボタン / 有料プラン申し込み
+            //   アプリ / シェアボタン / テーマ募集
+            // --------------------------------------------------
+
+            else if (Input::post('apiType') === 'sendMailRecruitmentTheme') {
+
+                $from = Input::post('mail');
+                $fromName = Input::post('authorName');
+                $to = Config::get('inquiry_mail_address');
+                $toName = 'Game Users Share Buttons';
+                $subject = 'テーマ応募';
+
+                $body = Input::post('comment') . "\n\n";
+                $body .= 'authorName: ' . Input::post('authorName') . "\n";
+                $body .= 'authorUrl: ' . Input::post('authorUrl') . "\n";
+                $body .= 'webSiteName: ' . Input::post('webSiteName') . "\n";
+                $body .= 'webSiteUrl: ' . Input::post('webSiteUrl') . "\n";
+
+                $file = Input::post('file');
+
+                $configArr = [
+                    'ext_whitelist' => ['zip'],
+                    'type_whitelist' => ['application'],
+                    'mime_whitelist' => ['application/zip']
+                ];
+
+                $instance = new \React\Modules\Mail();
+                $arr = $instance->to($from, $fromName, $to, $toName, $subject, $body, $file, $configArr);
+
+            }
+
+
+            // --------------------------------------------------
+            //   アプリ / シェアボタン / キャンペーン
+            // --------------------------------------------------
+
+            else if (Input::post('apiType') === 'sendMailCampaign') {
+
+                $from = Input::post('mail');
+                $fromName = Input::post('blogName');
+                $to = Config::get('inquiry_mail_address');
+                $toName = 'Game Users Share Buttons';
+                $subject = 'キャンペーン応募';
+
+                $body = Input::post('comment') . "\n\n";
+                $body .= 'blogName: ' . Input::post('blogName') . "\n";
+                $body .= 'blogUrl: ' . Input::post('blogUrl') . "\n";
+                $body .= 'articleUrl: ' . Input::post('articleUrl') . "\n";
+
+                $instance = new \React\Modules\Mail();
+                $arr = $instance->to($from, $fromName, $to, $toName, $subject, $body, null, []);
+
+
+            }
+
+
+            // --------------------------------------------------
+            //   アプリ / 購入 / 有料プラン申し込み
             // --------------------------------------------------
 
             else if (Input::post('apiType') === 'insertShareButtonsPaidPlan') {
@@ -157,7 +240,6 @@ class Controller_Api extends Controller_Rest
 		if (isset($test)) {
 			\Debug::dump($arr);
 		} else {
-            $arr['error'] = false;
 			return $this->response($arr);
 		}
 

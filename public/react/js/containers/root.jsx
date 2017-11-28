@@ -255,9 +255,6 @@ const mapDispatchToProps = (dispatch) => {
       //   通知データ更新
       // --------------------------------------------------
 
-      // console.log('urlBase = ', `${urlBase}api/react.json`);
-      // const returnObj = await promiseReactJsonPost(urlBase, formData);
-
       const returnObj = await fetchApi(`${urlBase}api/react.json`, 'POST', 'same-origin', 'same-origin', formData);
 
       // console.log('returnObj = ', returnObj);
@@ -517,6 +514,17 @@ const mapDispatchToProps = (dispatch) => {
       }
 
       dispatch(actions.funcNotificationMap(unreadTotal, unreadArr, alreadyReadTotal, alreadyReadArr, activePage));
+
+
+
+      // --------------------------------------------------
+      //   スクロールを一番上に移動
+      //   Javascript で実装したかったが jQuery でしか正常に動作しない
+      //   モーダル表示時の Pure Javascript でのスクロール方法がわからない
+      // --------------------------------------------------
+
+      $('#modal-notification').scrollTop(0);
+
 
 
     } catch (e) {

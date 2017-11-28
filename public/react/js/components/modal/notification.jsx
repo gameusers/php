@@ -21,6 +21,7 @@ export default class ModalNotification extends React.Component {
         show={this.props.modalNotificationShow}
         onHide={() => this.props.funcHideModalNotification(this.props.stateModel)}
         bsSize="lg"
+        id="modal-notification"
       >
 
 

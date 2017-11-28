@@ -7,6 +7,8 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { List } from 'immutable';
 
+import { substrAndAddLeader, nl2brForReact } from '../modules/text';
+
 
 
 export default class Card extends React.Component {
@@ -18,48 +20,6 @@ export default class Card extends React.Component {
     moment.locale('ja');
   }
 
-
-  // componentDidMount() {
-  //
-  //   console.log('componentDidMount');
-  //
-  //   // $.contextMenu({
-  //   //   selector: '#jslink',
-  //   //   callback(key, options) {
-  //   //   // callback: function(key, options) {
-  //   //     // const target = '_target';
-  //   //     // const url = $(this).data('jslink');
-  //   //
-  //   //     // console.log('$(this).text() = ', $(this).text());
-  //   //     // console.log('key = ', key);
-  //   //     // console.log('options = ', options);
-  //   //     // console.log('this = ', this);
-  //   //     // console.log('url = ', url);
-  //   //     // window.open(url, target);
-  //   //   },
-  //   //   items: {
-  //   //     edit: { name: '新しいタブで開く' }
-  //   //   }
-  //   // });
-  //
-  //   // $.contextMenu({
-  //   //   selector: '#jslink',
-  //   //   build($trigger, e) {
-  //   //     // e.preventDefault();
-  //   //     return {
-  //   //       callback() {
-  //   //         // const target = '_target';
-  //   //         // const url = $(this).data('jslink');
-  //   //         // console.log('url = ', url);
-  //   //       },
-  //   //       items: {
-  //   //         new: { name: '新しいタブで開く' }
-  //   //       }
-  //   //     };
-  //   //   }
-  //   // });
-  //
-  // }
 
 
   codeCards() {
@@ -84,119 +44,6 @@ export default class Card extends React.Component {
     }
 
 
-    // const arr = [
-    //   {
-    //     contentsType: ['gameCommunity', 'bbs', 'comment'],
-    //     datetime: '2017-08-29 15:41:40',
-    //     pageName: 'アサシンクリードユニティ',
-    //     gameThumbnail: 1,
-    //     gameNo: 1,
-    //     gameId: 'assassins-creed-unity',
-    //     title: 'Assassin\'s Creed Unityについて語ろう！',
-    //     comment: 'Game Usersとは？Game Users（ゲームユーザーズ）はゲームユーザーのためのSNS・コミュニティサイトです。ゲームに興味のある人たちが集まって、交流がしやすくなるような様々な機能を用意しています',
-    //     imageArr: null,
-    //     movieArr: null,
-    //     bbsId: 'ffoa79pspg11zxvn',
-    //     commentReplyTotal: 15
-    //   },
-    //   {
-    //     contentsType: ['userCommunity', 'bbs', 'reply'],
-    //     datetime: '2017-03-17 15:33:35',
-    //     pageName: 'User2のコミュニティ012345678901234567890123456789012345678901234567890123456789',
-    //     communityThumbnail: 1,
-    //     communityNo: 1,
-    //     communityId: 'community',
-    //     title: '雑談スレッド01234567890123456789012345678901234567890123456789012345678901234567890123456789',
-    //     comment: 'コンテンツについて Game Usersが現在提供している基本的なコンテンツ（ページ）は、ゲームページ、コミュニティ、Wiki、プレイヤーの4つです。',
-    //     imageArr: null,
-    //     movieArr: null,
-    //     bbsId: 'doo4rqjid8kbn713',
-    //     commentReplyTotal: 100
-    //   },
-    //   {
-    //     contentsType: ['userCommunity', 'bbs', 'comment'],
-    //     datetime: '2017-02-10 18:00:01',
-    //     pageName: 'User2のコミュニティ',
-    //     communityThumbnail: 1,
-    //     communityNo: 1,
-    //     communityId: 'community',
-    //     title: 'スレッド1',
-    //     comment: '画像テスト',
-    //     imageArr: [
-    //       {
-    //         width: 1000,
-    //         height: 563
-    //       }
-    //     ],
-    //     movieArr: null,
-    //     bbsId: 'm8lxk167l3r9zepc',
-    //     bbsThreadNo: 1,
-    //     bbsCommentNo: 4,
-    //     commentReplyTotal: 1
-    //   },
-    //   {
-    //     contentsType: ['gameCommunity', 'bbs', 'comment'],
-    //     datetime: '2017-01-03 11:11:50',
-    //     pageName: 'Grand Theft Auto V',
-    //     gameThumbnail: 1,
-    //     gameNo: 3,
-    //     gameId: 'gta5',
-    //     title: 'Grand Theft Auto Vについて語ろう！',
-    //     comment: '縦長画像',
-    //     imageArr: [
-    //       {
-    //         width: 284,
-    //         height: 600
-    //       }
-    //     ],
-    //     movieArr: null,
-    //     bbsId: '6albgf1af7caw0ct',
-    //     bbsThreadNo: 3,
-    //     bbsCommentNo: 7,
-    //     commentReplyTotal: 88
-    //   },
-    //   {
-    //     contentsType: ['gameCommunity', 'bbs', 'comment'],
-    //     datetime: '2017-01-02 11:11:50',
-    //     pageName: 'Grand Theft Auto V / グランセフトオート5',
-    //     gameThumbnail: 1,
-    //     gameNo: 3,
-    //     gameId: 'gta5',
-    //     title: 'Grand Theft Auto Vについて語ろう！',
-    //     comment: '小さい画像',
-    //     imageArr: [
-    //       {
-    //         width: 128,
-    //         height: 128
-    //       }
-    //     ],
-    //     movieArr: null,
-    //     bbsId: '6albgf1af7caw0ct',
-    //     bbsThreadNo: 3,
-    //     bbsCommentNo: 8,
-    //     commentReplyTotal: 888
-    //   },
-    //   {
-    //     contentsType: ['gameCommunity', 'bbs', 'comment'],
-    //     datetime: '2016-12-02 10:10:10',
-    //     pageName: 'Grand Theft Auto V 01234567890123456789012345678901234567890123456789',
-    //     gameThumbnail: 1,
-    //     gameNo: 3,
-    //     gameId: 'gta5',
-    //     title: 'Grand Theft Auto Vについて語ろう！012345678901234567890123456789',
-    //     comment: 'YouTube動画テスト 0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789',
-    //     imageArr: null,
-    //     movieArr: [
-    //       {
-    //         YouTube: 'M8-vje-bq9c'
-    //       }
-    //     ],
-    //     bbsId: 'tjlk62tztyzvmr9g',
-    //     bbsThreadNo: 3,
-    //     bbsCommentNo: 9,
-    //     commentReplyTotal: 8888
-    //   },
-    // ];
 
 
     // const list = fromJSOrdered(arr);
@@ -204,6 +51,8 @@ export default class Card extends React.Component {
     // console.log('list = ', list.toJS());
     // console.log('list count = ', list.count());
 
+
+    // console.log('list = ', list);
 
     // --------------------------------------------------
     //   ループ
@@ -264,12 +113,18 @@ export default class Card extends React.Component {
 
       // ゲームコミュニティ
       const contentsType = value.get('contentsType');
+      const deleted = value.get('deleted');
 
       if (contentsType.get(0) === 'gameCommunity') {
 
         pageUrl = `${this.props.urlBase}gc/${value.get('gameId')}`;
 
-        if (contentsType.get(1) === 'bbs') {
+        if (deleted) {
+
+          individualUrl = pageUrl;
+          category = '-';
+
+        } else if (contentsType.get(1) === 'bbs') {
 
           individualUrl = `${pageUrl}/bbs/${value.get('bbsId')}`;
           category = '交流掲示板';
@@ -286,7 +141,17 @@ export default class Card extends React.Component {
 
         pageUrl = `${this.props.urlBase}uc/${value.get('communityId')}`;
 
-        if (contentsType.get(1) === 'bbs') {
+        if (deleted) {
+
+          individualUrl = pageUrl;
+          category = '-';
+
+        } else if (contentsType.get(1) === 'announcement' || contentsType.get(1) === 'mail_all') {
+
+          individualUrl = pageUrl;
+          category = 'コミュニティ';
+
+        } else if (contentsType.get(1) === 'bbs') {
 
           individualUrl = `${pageUrl}/bbs/${value.get('bbsId')}`;
           category = 'コミュニティ';
@@ -438,6 +303,16 @@ export default class Card extends React.Component {
 
 
       // --------------------------------------------------
+      //   コメントの処理
+      // --------------------------------------------------
+
+      const comment = nl2brForReact(substrAndAddLeader(value.get('comment'), 500));
+      // console.log('comment = ', comment);
+      // substrAndAddLeader(null, 500);
+      // nl2brForReact(null);
+
+
+      // --------------------------------------------------
       //   コード / ノーマルサイズ
       // --------------------------------------------------
 
@@ -458,7 +333,7 @@ export default class Card extends React.Component {
               <div className="right">
                 <a href={individualUrl} className="card-link">
                   <h2 className="title">{value.get('title')}{codeTotal}</h2>
-                  <p className="comment">{value.get('comment')}</p>
+                  <p className="comment">{comment}</p>
                 </a>
                 <div className="info">
                   <a href={individualUrl} className="card-link category-and-time">
@@ -472,6 +347,8 @@ export default class Card extends React.Component {
               </div>
             </section>
           );
+
+
 
 
         // --------------------------------------------------
@@ -502,7 +379,7 @@ export default class Card extends React.Component {
                 </div>
               </div>
               <a href={individualUrl} className="card-link">
-                <p className="bottom">{value.get('comment')}</p>
+                <p className="bottom">{comment}</p>
               </a>
             </section>
           );
@@ -524,7 +401,7 @@ export default class Card extends React.Component {
             <div className="bottom">
               <a href={individualUrl} className="card-link">
                 <h2 className="title">{value.get('title')}{codeTotal}</h2>
-                <p className="comment">{value.get('comment')}</p>
+                <p className="comment">{comment}</p>
               </a>
               <div className="info">
                 <a href={individualUrl} className="card-link category-and-time">

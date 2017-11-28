@@ -60,7 +60,7 @@ PHPは7以上でないと正常に動作しません。Windows版のXAMPPで開�
 トップページが以下のアドレスでアクセスできる場所に、Clone（ダウンロード）したファイルを配置してください。例）CドライブにXAMPPをインストールした場合は、C:\xampp\htdocs\gameusers 以下にファイルを置くと正常に表示されます。
 
 https://localhost/gameusers/public/
-<br /><br />
+<br />
 
 
 ### npm パッケージのインストール

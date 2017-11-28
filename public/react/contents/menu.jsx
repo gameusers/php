@@ -55,7 +55,21 @@ const menuObj = {
           urlDirectory2: 'share-buttons',
           urlDirectory3: null,
           materialIcon: 'share',
-          text: 'シェアボタン'
+          text: 'シェアボタン作成'
+        },
+        {
+          urlDirectory1: 'app',
+          urlDirectory2: 'share-buttons',
+          urlDirectory3: 'recruitment',
+          materialIcon: 'style',
+          text: 'テーマ募集'
+        },
+        {
+          urlDirectory1: 'app',
+          urlDirectory2: 'share-buttons',
+          urlDirectory3: 'campaign',
+          materialIcon: 'stars',
+          text: 'キャンペーン'
         },
       ],
       pay: [
