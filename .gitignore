@@ -51,6 +51,7 @@ _testform.php
 /fuel/app/config/production/*.php
 
 # 公開しなくてもいいファイル
+/public/BingSiteAuth.xml
 /public/dev/*
 # !/public/dev/blog/
 # /public/dev/blog/*

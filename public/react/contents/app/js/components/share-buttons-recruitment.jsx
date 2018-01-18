@@ -37,7 +37,7 @@ export default class ContentsAppShareButtonsRecruitment extends React.Component 
 
               絵が描けたり、デザインが行える方は、ぜひともご参加よろしくお願いします。<br /><br />
 
-              ※ テーマに利用する画像を作成する前に、編集タブ &gt; シェアボタン新規作成ボタン &gt; 画像アップロードフォームの下にある「モバイル環境で綺麗に表示するには？」を必ずチェックしてください。
+              ※ テーマに利用する画像を作成する前に、編集タブにある「モバイル環境で綺麗に表示するには？」を必ずチェックしてください。
             </p>
 
           </div>
@@ -55,6 +55,7 @@ export default class ContentsAppShareButtonsRecruitment extends React.Component 
               <li>Game Users がシェアボタン紹介用にテーマを利用することを了承してください。例えばこのような画像に含めて紹介・宣伝時に利用させてもらいます。<a href="https://gameusers.org/react/img/github/banner.jpg" target="_blank" rel="noopener noreferrer">https://gameusers.org/react/img/github/banner.jpg</a></li>
               <li>一度、公開されたテーマは Game Users Share Buttons のページから削除することはできますが、テーマを利用している各ユーザーのウェブサイトから削除することはできません。</li>
               <li>シェアボタンの画像、設定値はユーザーが自由に変更することができます。また有料プランを利用しているユーザーは、フリー画像を非表示にする、違う画像に置き換える、リンクを違うアドレスに変更することができます。</li>
+              <li>フリー画像のリンクに設定したウェブサイトにアクセスできなくなった場合は、一時的にGame Users Share Buttons公式サイトのURLに置き換えさせていただきます。</li>
               <li className="li-bottom">提供していただいたテーマに表示上の問題があった場合は、Game Users 側で設定の調整を行うことがあります。</li>
             </ol>
 

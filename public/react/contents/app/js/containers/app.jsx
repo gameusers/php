@@ -11,7 +11,7 @@ import iziToast from 'izitoast';
 
 import fetchApi from '../../../../js/modules/api';
 
-// import ContentsAppShareButtons from '../components/share-buttons';
+import ContentsAppShareButtons from '../components/share-buttons';
 import ContentsAppShareButtonsRecruitment from '../components/share-buttons-recruitment';
 import ContentsAppShareButtonsCampaign from '../components/share-buttons-campaign';
 import ContentsAppPay from '../components/pay';
@@ -28,7 +28,7 @@ import * as actions from '../actions/action';
  * @param {object} props props
  */
 const ContentsApp = props => [
-  // <Route key="/app/share-buttons" exact path="/app/share-buttons" render={() => <ContentsAppShareButtons {...props} />} />,
+  <Route key="/app/share-buttons" exact path="/app/share-buttons" render={() => <ContentsAppShareButtons {...props} />} />,
   <Route key="/app/share-buttons/recruitment" exact path="/app/share-buttons/recruitment" render={() => <ContentsAppShareButtonsRecruitment {...props} />} />,
   <Route key="/app/share-buttons/campaign" exact path="/app/share-buttons/campaign" render={() => <ContentsAppShareButtonsCampaign {...props} />} />,
   <Route key="/app/pay" exact path="/app/pay" render={() => <ContentsAppPay {...props} />} />,

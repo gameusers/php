@@ -180,7 +180,8 @@ export default class Root extends React.Component {
 
             {this.props.deviceType !== 'other' &&
               <div className="share-buttons" id="game-users-share-buttons-official">
-                <div id="game-users-share-buttons" data-theme="gameusers1-m2a4oi43" />
+                {/* <div id="game-users-share-buttons" data-theme="gameusers1-m2a4oi43" /> */}
+                <div data-game-users-share-buttons="gameusers1-m2a4oi43" />
               </div>
             }
 

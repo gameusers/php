@@ -213,7 +213,7 @@ export default class MainMenu extends React.Component {
             {this.codeOther()}
 
             <div className="share-buttons" id="game-users-share-buttons-official">
-              <div id="game-users-share-buttons" data-theme="gameusers1-m2a4oi43" />
+              <div data-game-users-share-buttons="gameusers1-m2a4oi43" />
             </div>
 
             <div className="pc-twitter-timeline">

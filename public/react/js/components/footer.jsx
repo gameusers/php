@@ -54,6 +54,7 @@ export default class Footer extends React.Component {
 
 
 
+
   /**
    * サムネイルカードのコードを返す
    * @return {string} コード

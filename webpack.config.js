@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const path = require('path');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 // 環境を記述 development or production
 const env = 'production';
@@ -31,7 +30,7 @@ const config = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.jsx', 'css']
+    extensions: ['.js', '.json', '.jsx', 'css']
   },
   plugins: [
     new webpack.EnvironmentPlugin({
@@ -50,13 +49,7 @@ const config = {
 // Production ビルドの場合は圧縮する
 if (env === 'production') {
   config.plugins.push(
-    new UglifyJSPlugin({
-      uglifyOptions: {
-        ie8: false,
-        ecma: 8,
-        warnings: false
-      }
-    })
+    new webpack.optimize.UglifyJsPlugin()
   );
 }
 

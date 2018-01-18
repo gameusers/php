@@ -201,7 +201,7 @@ export default class ContentsAppPay extends React.Component {
                   className="btn btn-info btn-sm app-pay-form-stripe-button-margin"
                   onClick={() => this.funcButtonError()}
                 >
-                  <Glyphicon glyph="leaf" /> プレミアムプランに申し込む2
+                  <Glyphicon glyph="leaf" /> プレミアムプランに申し込む
                 </Button>
               :
                 <StripeCheckout
